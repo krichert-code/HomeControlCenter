@@ -8,14 +8,15 @@ class WeatherForecaset(object):
     presure = ""
     temp = ""
     icon = ""
+    id = 0;
     
-    def __init__(self, time, temp, wind, presure,icon):
+    def __init__(self, id, time, temp, wind, presure,icon):
         self.temp = temp
         self.time = time
         self.icon = icon
         self.presure = presure
         self.wind = wind
-        
+        self.id = id
     
 class WeatherClass(object):
     __weatherData = {}
@@ -56,6 +57,7 @@ class WeatherClass(object):
         return self.__weatherData
     
     def getWeatherForecast(self):
+        id = 0
         xmldoc = minidom.parse('data/weatherDaily.xml')        
         
         itemlist = xmldoc.getElementsByTagName('forecast')
@@ -66,8 +68,11 @@ class WeatherClass(object):
             temp = item.getElementsByTagName('temp')[0].getElementsByTagName('metric')[0].childNodes[0].nodeValue            
             wind = item.getElementsByTagName('wspd')[0].getElementsByTagName('metric')[0].childNodes[0].nodeValue            
             presure = item.getElementsByTagName('mslp')[0].getElementsByTagName('metric')[0].childNodes[0].nodeValue
-            self.__weatherForecast.append(WeatherForecaset(time,temp,wind,presure,icon))
-
+            self.__weatherForecast.append(WeatherForecaset(id,time,temp,wind,presure,icon))
+            id = id + 1
+        
+        return self.__weatherForecast
+    
     def getCurrentTemperatureInside(self):
         print "test"
         with open("data/heater.csv", "rb") as csvfile:
