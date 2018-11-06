@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><html dir="ltr" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8; no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <title>Domowe Centrum Sterowania</title>
+    <link rel="stylesheet" href="css/audio.css" type="text/css">
+</head>
+
+
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'js/main.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'js/weather.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'js/heat.js') }}"></script>
+<script type="text/javascript">
+
+var last_minutes = -1;
+function updateContent(id, page)
+{
+	var xmlhttp;
+	
+	if (window.XMLHttpRequest)
+	{
+	  //code for IE7+, Firefox, Chrome, Opera, Safari
+	  xmlhttp=new XMLHttpRequest();
+    }
+	else
+	{
+  		alert("Your browser does not support XMLHTTP!");
+    }
+	xmlhttp.onreadystatechange=function()
+	{
+    	if(xmlhttp.readyState==4)
+    	{
+        	document.getElementById(id).innerHTML=xmlhttp.responseText;
+	    }
+	}
+	xmlhttp.open("GET",page,true);
+	xmlhttp.send(null);
+}
+	
+function GetCurrentData()
+{
+   var minutes = 1000 * 60;
+   var d = new Date();
+   var t= d.getTime();
+
+   updateCurrentGarageStatus(0);
+   updateCurrentMainGateStatus(0);
+
+   minutes = Math.round(t / minutes);
+   if ((last_minutes != minutes) || (last_minutes == -1))
+   {
+     //updateCurrentWeather();
+     //updateCurrentTemperature();
+     //GetPanelInfo();
+     updateContent('currentWeather', 'weather');
+     updateContent('currentTemInside', 'tempInside');
+     updateContent('infoBox', 'calendar');
+     last_minutes = minutes;
+   }
+}
+</script>
+
+<body style="background-image:url({{ url_for('static', filename = 'img/tapeta.jpg') }});background-repeat: no-repeat;">
+
+
+<div align="center">
+
+
+<div align="center" style="width:700px;background-color:#363636; opacity: 0.85;">
+	<table border="0">
+		<tr>
+ 			<td class="separator">
+ 				<div id='currentWeather' style="font-weight:bold;color:#000000;"/>
+ 			</td> 
+ 			<td style="text-align:center;font-size:25px;font-weight:bold;color:#000000;" onClick='self.location="weather/weatherF.php"'><br>
+ 				<div style="margin-left: 30px;margin-right: 30px;width:120px;height:110px; background-image:url({{ url_for('static', filename = 'img/weather.png') }});"/>
+			</td>
+ 			<td class="separator">
+ 				<div id='currentTemInside' style="font-weight:bold;color:#000000;"/>
+ 			</td>
+		</tr>
+	</table>
+</div>
+
+<br><br><br>
+
+<div id='content' align="center" style="width:700px;background-color:#363636; opacity: 0.85;">
+Content will be here
+</div>
+
+
+<br><br><br>
+
+<div align="center" style="width:700px;background-color:#363636; opacity: 0.85;">	
+  	<div id='infoBox' style="text-align:center;font-size:20px;font-weight:bold;color:#000000;margin-left: 10px;margin-right: 10px;width:350px;"/>  	
+</div>
+
+<script type="text/javascript">
+ GetCurrentData();
+ GetPanelInfo();
+ //setInterval("GetCurrentData()",1000); 
+</script>
+
+</body>

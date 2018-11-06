@@ -1,0 +1,12 @@
+<table border="0">
+
+{% for event in events %}
+<tr>
+	<td class='separator' width="10%"><img width='30' src="{{ url_for('static', filename = 'img/calendar.png') }}" /></td>
+	<td class='separator' width="60%">{{ event.name }}</td>
+	<td class='separator' width="30%">{{ event.date }}</td>
+</td>
+</tr>
+{% endfor %}
+
+</table>

@@ -1,0 +1,10 @@
+<div style="font-size:20px;">Pomiar o {{ heater['time'] }}</div><br>
+<div style="background-image:url({{ url_for('static', filename = heater['icon']) }}); background-repeat: no-repeat;background-position: left top; ">
+	<div style="margin-left:55px;font-size:40px;">{{ heater['temp'] }}</div>
+</div>
+
+<div style="width:94px;height:64px;background-size:contain;background-image:url({{ url_for('static', filename = heater['heat_state_icon']) }}); background-repeat: no-repeat;background-position: left top;">
+
+
+
+

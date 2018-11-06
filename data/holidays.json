@@ -1,0 +1,72 @@
+{
+ "kind": "calendar#events",
+ "etag": "\"p33kfd7kgniuds0g\"",
+ "summary": "Holidays in Poland",
+ "updated": "2018-11-03T23:52:20.000Z",
+ "timeZone": "UTC",
+ "accessRole": "reader",
+ "defaultReminders": [],
+ "nextSyncToken": "CICqvr21ud4CEAAYAQ==",
+ "items": [
+  {
+   "kind": "calendar#event",
+   "etag": "\"2778460504000000\"",
+   "id": "20181111_60o30dhn6so30c1g60o30dr568",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxODExMTFfNjBvMzBkaG42c28zMGMxZzYwbzMwZHI1NjggcG9saXNoQGg",
+   "created": "2014-01-09T01:17:32.000Z",
+   "updated": "2014-01-09T01:17:32.000Z",
+   "summary": "Independence Day",
+   "creator": {
+    "email": "polish@holiday.calendar.google.com",
+    "displayName": "Holidays in Poland",
+    "self": true
+   },
+   "organizer": {
+    "email": "polish@holiday.calendar.google.com",
+    "displayName": "Holidays in Poland",
+    "self": true
+   },
+   "start": {
+    "date": "2018-11-11"
+   },
+   "end": {
+    "date": "2018-11-12"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20181111_60o30dhn6so30c1g60o30dr568@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3081186634000000\"",
+   "id": "20181112_60o32e1n68o30c1g60o30dr568",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxODExMTJfNjBvMzJlMW42OG8zMGMxZzYwbzMwZHI1NjggcG9saXNoQGg",
+   "created": "2018-10-26T22:35:17.000Z",
+   "updated": "2018-10-26T22:35:17.000Z",
+   "summary": "Independence Day Holiday",
+   "creator": {
+    "email": "polish@holiday.calendar.google.com",
+    "displayName": "Holidays in Poland",
+    "self": true
+   },
+   "organizer": {
+    "email": "polish@holiday.calendar.google.com",
+    "displayName": "Holidays in Poland",
+    "self": true
+   },
+   "start": {
+    "date": "2018-11-12"
+   },
+   "end": {
+    "date": "2018-11-13"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20181112_60o32e1n68o30c1g60o30dr568@google.com",
+   "sequence": 0
+  }
+ ]
+}

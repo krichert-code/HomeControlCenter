@@ -1,0 +1,41 @@
+{
+ "kind": "calendar#events",
+ "etag": "\"p33cehimjuegtk0g\"",
+ "summary": "krzysiek.richert@gmail.com",
+ "updated": "2018-04-05T00:43:29.575Z",
+ "timeZone": "Europe/Warsaw",
+ "accessRole": "reader",
+ "defaultReminders": [],
+ "nextSyncToken": "CNjoytPzodoCEAAYAQ==",
+ "items": [
+  {
+   "kind": "calendar#event",
+   "etag": "\"3030632000130000\"",
+   "id": "0bfh3a6h3dl8qgng48i7ei3etr",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MGJmaDNhNmgzZGw4cWduZzQ4aTdlaTNldHIga3J6eXNpZWsucmljaGVydEBt",
+   "created": "2018-01-07T09:06:40.000Z",
+   "updated": "2018-01-07T09:06:40.065Z",
+   "summary": "Papier i szkło",
+   "creator": {
+    "email": "krzysiek.richert@gmail.com",
+    "displayName": "Krzysiek Richert",
+    "self": true
+   },
+   "organizer": {
+    "email": "krzysiek.richert@gmail.com",
+    "displayName": "Krzysiek Richert",
+    "self": true
+   },
+   "start": {
+    "date": "2018-11-05"
+   },
+   "end": {
+    "date": "2018-11-06"
+   },
+   "transparency": "transparent",
+   "iCalUID": "0bfh3a6h3dl8qgng48i7ei3etr@google.com",
+   "sequence": 0
+  }
+ ]
+}

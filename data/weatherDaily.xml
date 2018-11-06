@@ -1,0 +1,2897 @@
+
+<response>
+	<version>0.1</version>
+	<termsofService>http://www.wunderground.com/weather/api/d/terms.html</termsofService>
+	<features>
+		<feature>hourly</feature>
+	</features>
+	<hourly_forecast>
+		<forecast>
+		<FCTTIME>
+		<hour>7</hour><hour_padded>07</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>2</mday><mday_padded>02</mday_padded><yday>305</yday><isdst>0</isdst><epoch>1541138400</epoch><pretty>7:00 AM CET on November 02, 2018</pretty><civil>7:00 AM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>48.5</english>
+				<metric>9</metric>
+			</temp>
+			<dewpoint>
+				<english>44.1</english>
+				<metric>7</metric>
+			</dewpoint>
+			<condition>Clear</condition>
+			
+			
+			<icon>clear</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/clear.gif</icon_url>
+			<fctcode>1</fctcode>
+			<sky>28</sky>
+			<wspd>
+				<english>7</english>
+				<metric>11</metric>
+			</wspd>
+			<wdir>
+				<dir>SW</dir>
+				<degrees>233</degrees>
+			</wdir>
+			<wx>Mostly Sunny</wx>
+			<uvi>0</uvi>
+			<humidity>85</humidity>
+			<windchill>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>48.5</english>
+					<metric>9</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>0</pop>
+			<mslp>
+				<english>30.02</english>
+				<metric>1017</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>8</hour><hour_padded>08</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>2</mday><mday_padded>02</mday_padded><yday>305</yday><isdst>0</isdst><epoch>1541142000</epoch><pretty>8:00 AM CET on November 02, 2018</pretty><civil>8:00 AM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>49.1</english>
+				<metric>9</metric>
+			</temp>
+			<dewpoint>
+				<english>44.4</english>
+				<metric>7</metric>
+			</dewpoint>
+			<condition>Partly Cloudy</condition>
+			
+			
+			<icon>partlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/partlycloudy.gif</icon_url>
+			<fctcode>2</fctcode>
+			<sky>30</sky>
+			<wspd>
+				<english>8</english>
+				<metric>13</metric>
+			</wspd>
+			<wdir>
+				<dir>WSW</dir>
+				<degrees>239</degrees>
+			</wdir>
+			<wx>Partly Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>84</humidity>
+			<windchill>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>49.1</english>
+					<metric>9</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>0</pop>
+			<mslp>
+				<english>30.05</english>
+				<metric>1018</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>9</hour><hour_padded>09</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>2</mday><mday_padded>02</mday_padded><yday>305</yday><isdst>0</isdst><epoch>1541145600</epoch><pretty>9:00 AM CET on November 02, 2018</pretty><civil>9:00 AM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>51.0</english>
+				<metric>11</metric>
+			</temp>
+			<dewpoint>
+				<english>44.3</english>
+				<metric>7</metric>
+			</dewpoint>
+			<condition>Partly Cloudy</condition>
+			
+			
+			<icon>partlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/partlycloudy.gif</icon_url>
+			<fctcode>2</fctcode>
+			<sky>40</sky>
+			<wspd>
+				<english>9</english>
+				<metric>14</metric>
+			</wspd>
+			<wdir>
+				<dir>WSW</dir>
+				<degrees>242</degrees>
+			</wdir>
+			<wx>Partly Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>78</humidity>
+			<windchill>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>51.0</english>
+					<metric>11</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>0</pop>
+			<mslp>
+				<english>30.07</english>
+				<metric>1018</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>10</hour><hour_padded>10</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>2</mday><mday_padded>02</mday_padded><yday>305</yday><isdst>0</isdst><epoch>1541149200</epoch><pretty>10:00 AM CET on November 02, 2018</pretty><civil>10:00 AM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>52.5</english>
+				<metric>11</metric>
+			</temp>
+			<dewpoint>
+				<english>44.1</english>
+				<metric>7</metric>
+			</dewpoint>
+			<condition>Partly Cloudy</condition>
+			
+			
+			<icon>partlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/partlycloudy.gif</icon_url>
+			<fctcode>2</fctcode>
+			<sky>52</sky>
+			<wspd>
+				<english>11</english>
+				<metric>18</metric>
+			</wspd>
+			<wdir>
+				<dir>WSW</dir>
+				<degrees>240</degrees>
+			</wdir>
+			<wx>Partly Cloudy</wx>
+			<uvi>1</uvi>
+			<humidity>73</humidity>
+			<windchill>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>52.5</english>
+					<metric>11</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>0</pop>
+			<mslp>
+				<english>30.09</english>
+				<metric>1019</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>11</hour><hour_padded>11</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>2</mday><mday_padded>02</mday_padded><yday>305</yday><isdst>0</isdst><epoch>1541152800</epoch><pretty>11:00 AM CET on November 02, 2018</pretty><civil>11:00 AM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>54.1</english>
+				<metric>12</metric>
+			</temp>
+			<dewpoint>
+				<english>43.9</english>
+				<metric>7</metric>
+			</dewpoint>
+			<condition>Partly Cloudy</condition>
+			
+			
+			<icon>partlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/partlycloudy.gif</icon_url>
+			<fctcode>2</fctcode>
+			<sky>55</sky>
+			<wspd>
+				<english>11</english>
+				<metric>18</metric>
+			</wspd>
+			<wdir>
+				<dir>WSW</dir>
+				<degrees>237</degrees>
+			</wdir>
+			<wx>Partly Cloudy</wx>
+			<uvi>1</uvi>
+			<humidity>68</humidity>
+			<windchill>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>54.1</english>
+					<metric>12</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>0</pop>
+			<mslp>
+				<english>30.11</english>
+				<metric>1020</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>12</hour><hour_padded>12</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>2</mday><mday_padded>02</mday_padded><yday>305</yday><isdst>0</isdst><epoch>1541156400</epoch><pretty>12:00 PM CET on November 02, 2018</pretty><civil>12:00 PM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>55.2</english>
+				<metric>13</metric>
+			</temp>
+			<dewpoint>
+				<english>44.1</english>
+				<metric>7</metric>
+			</dewpoint>
+			<condition>Partly Cloudy</condition>
+			
+			
+			<icon>partlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/partlycloudy.gif</icon_url>
+			<fctcode>2</fctcode>
+			<sky>49</sky>
+			<wspd>
+				<english>11</english>
+				<metric>18</metric>
+			</wspd>
+			<wdir>
+				<dir>WSW</dir>
+				<degrees>238</degrees>
+			</wdir>
+			<wx>Partly Cloudy</wx>
+			<uvi>1</uvi>
+			<humidity>66</humidity>
+			<windchill>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>55.2</english>
+					<metric>13</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>0</pop>
+			<mslp>
+				<english>30.12</english>
+				<metric>1020</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>13</hour><hour_padded>13</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>2</mday><mday_padded>02</mday_padded><yday>305</yday><isdst>0</isdst><epoch>1541160000</epoch><pretty>1:00 PM CET on November 02, 2018</pretty><civil>1:00 PM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>56.1</english>
+				<metric>13</metric>
+			</temp>
+			<dewpoint>
+				<english>44.1</english>
+				<metric>7</metric>
+			</dewpoint>
+			<condition>Partly Cloudy</condition>
+			
+			
+			<icon>partlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/partlycloudy.gif</icon_url>
+			<fctcode>2</fctcode>
+			<sky>46</sky>
+			<wspd>
+				<english>10</english>
+				<metric>16</metric>
+			</wspd>
+			<wdir>
+				<dir>WSW</dir>
+				<degrees>239</degrees>
+			</wdir>
+			<wx>Partly Cloudy</wx>
+			<uvi>1</uvi>
+			<humidity>64</humidity>
+			<windchill>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>56.1</english>
+					<metric>13</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>0</pop>
+			<mslp>
+				<english>30.14</english>
+				<metric>1021</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>14</hour><hour_padded>14</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>2</mday><mday_padded>02</mday_padded><yday>305</yday><isdst>0</isdst><epoch>1541163600</epoch><pretty>2:00 PM CET on November 02, 2018</pretty><civil>2:00 PM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>55.8</english>
+				<metric>13</metric>
+			</temp>
+			<dewpoint>
+				<english>43.9</english>
+				<metric>7</metric>
+			</dewpoint>
+			<condition>Partly Cloudy</condition>
+			
+			
+			<icon>partlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/partlycloudy.gif</icon_url>
+			<fctcode>2</fctcode>
+			<sky>36</sky>
+			<wspd>
+				<english>9</english>
+				<metric>14</metric>
+			</wspd>
+			<wdir>
+				<dir>WSW</dir>
+				<degrees>239</degrees>
+			</wdir>
+			<wx>Partly Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>64</humidity>
+			<windchill>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>55.8</english>
+					<metric>13</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>1</pop>
+			<mslp>
+				<english>30.15</english>
+				<metric>1021</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>15</hour><hour_padded>15</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>2</mday><mday_padded>02</mday_padded><yday>305</yday><isdst>0</isdst><epoch>1541167200</epoch><pretty>3:00 PM CET on November 02, 2018</pretty><civil>3:00 PM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>54.9</english>
+				<metric>13</metric>
+			</temp>
+			<dewpoint>
+				<english>44.1</english>
+				<metric>7</metric>
+			</dewpoint>
+			<condition>Partly Cloudy</condition>
+			
+			
+			<icon>partlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/partlycloudy.gif</icon_url>
+			<fctcode>2</fctcode>
+			<sky>45</sky>
+			<wspd>
+				<english>8</english>
+				<metric>13</metric>
+			</wspd>
+			<wdir>
+				<dir>SW</dir>
+				<degrees>232</degrees>
+			</wdir>
+			<wx>Partly Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>67</humidity>
+			<windchill>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>54.9</english>
+					<metric>13</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>2</pop>
+			<mslp>
+				<english>30.16</english>
+				<metric>1021</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>16</hour><hour_padded>16</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>2</mday><mday_padded>02</mday_padded><yday>305</yday><isdst>0</isdst><epoch>1541170800</epoch><pretty>4:00 PM CET on November 02, 2018</pretty><civil>4:00 PM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>53.1</english>
+				<metric>12</metric>
+			</temp>
+			<dewpoint>
+				<english>43.9</english>
+				<metric>7</metric>
+			</dewpoint>
+			<condition>Partly Cloudy</condition>
+			
+			
+			<icon>partlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/partlycloudy.gif</icon_url>
+			<fctcode>2</fctcode>
+			<sky>58</sky>
+			<wspd>
+				<english>7</english>
+				<metric>11</metric>
+			</wspd>
+			<wdir>
+				<dir>SW</dir>
+				<degrees>219</degrees>
+			</wdir>
+			<wx>Partly Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>71</humidity>
+			<windchill>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>53.1</english>
+					<metric>12</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>4</pop>
+			<mslp>
+				<english>30.18</english>
+				<metric>1022</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>17</hour><hour_padded>17</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>2</mday><mday_padded>02</mday_padded><yday>305</yday><isdst>0</isdst><epoch>1541174400</epoch><pretty>5:00 PM CET on November 02, 2018</pretty><civil>5:00 PM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>51.1</english>
+				<metric>11</metric>
+			</temp>
+			<dewpoint>
+				<english>43.7</english>
+				<metric>7</metric>
+			</dewpoint>
+			<condition>Mostly Cloudy</condition>
+			
+			
+			<icon>mostlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_mostlycloudy.gif</icon_url>
+			<fctcode>3</fctcode>
+			<sky>65</sky>
+			<wspd>
+				<english>6</english>
+				<metric>10</metric>
+			</wspd>
+			<wdir>
+				<dir>SW</dir>
+				<degrees>222</degrees>
+			</wdir>
+			<wx>Mostly Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>76</humidity>
+			<windchill>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>51.1</english>
+					<metric>11</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>4</pop>
+			<mslp>
+				<english>30.2</english>
+				<metric>1023</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>18</hour><hour_padded>18</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>2</mday><mday_padded>02</mday_padded><yday>305</yday><isdst>0</isdst><epoch>1541178000</epoch><pretty>6:00 PM CET on November 02, 2018</pretty><civil>6:00 PM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>50.4</english>
+				<metric>10</metric>
+			</temp>
+			<dewpoint>
+				<english>43.9</english>
+				<metric>7</metric>
+			</dewpoint>
+			<condition>Mostly Cloudy</condition>
+			
+			
+			<icon>mostlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_mostlycloudy.gif</icon_url>
+			<fctcode>3</fctcode>
+			<sky>69</sky>
+			<wspd>
+				<english>6</english>
+				<metric>10</metric>
+			</wspd>
+			<wdir>
+				<dir>SW</dir>
+				<degrees>222</degrees>
+			</wdir>
+			<wx>Mostly Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>78</humidity>
+			<windchill>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>50.4</english>
+					<metric>10</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>5</pop>
+			<mslp>
+				<english>30.21</english>
+				<metric>1023</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>19</hour><hour_padded>19</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>2</mday><mday_padded>02</mday_padded><yday>305</yday><isdst>0</isdst><epoch>1541181600</epoch><pretty>7:00 PM CET on November 02, 2018</pretty><civil>7:00 PM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>49.3</english>
+				<metric>10</metric>
+			</temp>
+			<dewpoint>
+				<english>43.7</english>
+				<metric>7</metric>
+			</dewpoint>
+			<condition>Mostly Cloudy</condition>
+			
+			
+			<icon>mostlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_mostlycloudy.gif</icon_url>
+			<fctcode>3</fctcode>
+			<sky>76</sky>
+			<wspd>
+				<english>6</english>
+				<metric>10</metric>
+			</wspd>
+			<wdir>
+				<dir>SW</dir>
+				<degrees>230</degrees>
+			</wdir>
+			<wx>Mostly Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>81</humidity>
+			<windchill>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>49.3</english>
+					<metric>10</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>5</pop>
+			<mslp>
+				<english>30.23</english>
+				<metric>1024</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>20</hour><hour_padded>20</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>2</mday><mday_padded>02</mday_padded><yday>305</yday><isdst>0</isdst><epoch>1541185200</epoch><pretty>8:00 PM CET on November 02, 2018</pretty><civil>8:00 PM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>48.6</english>
+				<metric>9</metric>
+			</temp>
+			<dewpoint>
+				<english>43.9</english>
+				<metric>7</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>84</sky>
+			<wspd>
+				<english>6</english>
+				<metric>10</metric>
+			</wspd>
+			<wdir>
+				<dir>SW</dir>
+				<degrees>234</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>84</humidity>
+			<windchill>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>48.6</english>
+					<metric>9</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>5</pop>
+			<mslp>
+				<english>30.25</english>
+				<metric>1024</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>21</hour><hour_padded>21</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>2</mday><mday_padded>02</mday_padded><yday>305</yday><isdst>0</isdst><epoch>1541188800</epoch><pretty>9:00 PM CET on November 02, 2018</pretty><civil>9:00 PM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>47.7</english>
+				<metric>9</metric>
+			</temp>
+			<dewpoint>
+				<english>43.7</english>
+				<metric>7</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>91</sky>
+			<wspd>
+				<english>5</english>
+				<metric>8</metric>
+			</wspd>
+			<wdir>
+				<dir>WSW</dir>
+				<degrees>241</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>86</humidity>
+			<windchill>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>47.7</english>
+					<metric>9</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>5</pop>
+			<mslp>
+				<english>30.26</english>
+				<metric>1025</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>22</hour><hour_padded>22</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>2</mday><mday_padded>02</mday_padded><yday>305</yday><isdst>0</isdst><epoch>1541192400</epoch><pretty>10:00 PM CET on November 02, 2018</pretty><civil>10:00 PM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>47.1</english>
+				<metric>8</metric>
+			</temp>
+			<dewpoint>
+				<english>43.5</english>
+				<metric>6</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>92</sky>
+			<wspd>
+				<english>5</english>
+				<metric>8</metric>
+			</wspd>
+			<wdir>
+				<dir>WSW</dir>
+				<degrees>250</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>87</humidity>
+			<windchill>
+				<english>44</english>
+				<metric>7</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>44</english>
+					<metric>7</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>6</pop>
+			<mslp>
+				<english>30.27</english>
+				<metric>1025</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>23</hour><hour_padded>23</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>2</mday><mday_padded>02</mday_padded><yday>305</yday><isdst>0</isdst><epoch>1541196000</epoch><pretty>11:00 PM CET on November 02, 2018</pretty><civil>11:00 PM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>46.9</english>
+				<metric>8</metric>
+			</temp>
+			<dewpoint>
+				<english>43.3</english>
+				<metric>6</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>93</sky>
+			<wspd>
+				<english>5</english>
+				<metric>8</metric>
+			</wspd>
+			<wdir>
+				<dir>WSW</dir>
+				<degrees>255</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>87</humidity>
+			<windchill>
+				<english>44</english>
+				<metric>7</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>44</english>
+					<metric>7</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>13</pop>
+			<mslp>
+				<english>30.28</english>
+				<metric>1025</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>0</hour><hour_padded>00</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>3</mday><mday_padded>03</mday_padded><yday>306</yday><isdst>0</isdst><epoch>1541199600</epoch><pretty>12:00 AM CET on November 03, 2018</pretty><civil>12:00 AM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>46.6</english>
+				<metric>8</metric>
+			</temp>
+			<dewpoint>
+				<english>43.0</english>
+				<metric>6</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>97</sky>
+			<wspd>
+				<english>5</english>
+				<metric>8</metric>
+			</wspd>
+			<wdir>
+				<dir>W</dir>
+				<degrees>260</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>87</humidity>
+			<windchill>
+				<english>44</english>
+				<metric>7</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>44</english>
+					<metric>7</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>12</pop>
+			<mslp>
+				<english>30.29</english>
+				<metric>1026</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>1</hour><hour_padded>01</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>3</mday><mday_padded>03</mday_padded><yday>306</yday><isdst>0</isdst><epoch>1541203200</epoch><pretty>1:00 AM CET on November 03, 2018</pretty><civil>1:00 AM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>46.4</english>
+				<metric>8</metric>
+			</temp>
+			<dewpoint>
+				<english>43.0</english>
+				<metric>6</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>98</sky>
+			<wspd>
+				<english>5</english>
+				<metric>8</metric>
+			</wspd>
+			<wdir>
+				<dir>W</dir>
+				<degrees>268</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>88</humidity>
+			<windchill>
+				<english>44</english>
+				<metric>7</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>44</english>
+					<metric>7</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>24</pop>
+			<mslp>
+				<english>30.29</english>
+				<metric>1026</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>2</hour><hour_padded>02</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>3</mday><mday_padded>03</mday_padded><yday>306</yday><isdst>0</isdst><epoch>1541206800</epoch><pretty>2:00 AM CET on November 03, 2018</pretty><civil>2:00 AM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>46.2</english>
+				<metric>8</metric>
+			</temp>
+			<dewpoint>
+				<english>43.2</english>
+				<metric>6</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>100</sky>
+			<wspd>
+				<english>5</english>
+				<metric>8</metric>
+			</wspd>
+			<wdir>
+				<dir>W</dir>
+				<degrees>268</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>89</humidity>
+			<windchill>
+				<english>44</english>
+				<metric>7</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>44</english>
+					<metric>7</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>24</pop>
+			<mslp>
+				<english>30.29</english>
+				<metric>1026</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>3</hour><hour_padded>03</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>3</mday><mday_padded>03</mday_padded><yday>306</yday><isdst>0</isdst><epoch>1541210400</epoch><pretty>3:00 AM CET on November 03, 2018</pretty><civil>3:00 AM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>45.9</english>
+				<metric>8</metric>
+			</temp>
+			<dewpoint>
+				<english>43.3</english>
+				<metric>6</metric>
+			</dewpoint>
+			<condition>Chance of Rain</condition>
+			
+			
+			<icon>chancerain</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
+			<fctcode>12</fctcode>
+			<sky>99</sky>
+			<wspd>
+				<english>5</english>
+				<metric>8</metric>
+			</wspd>
+			<wdir>
+				<dir>W</dir>
+				<degrees>261</degrees>
+			</wdir>
+			<wx>Showers</wx>
+			<uvi>0</uvi>
+			<humidity>91</humidity>
+			<windchill>
+				<english>44</english>
+				<metric>7</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>44</english>
+					<metric>7</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>39</pop>
+			<mslp>
+				<english>30.29</english>
+				<metric>1026</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>4</hour><hour_padded>04</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>3</mday><mday_padded>03</mday_padded><yday>306</yday><isdst>0</isdst><epoch>1541214000</epoch><pretty>4:00 AM CET on November 03, 2018</pretty><civil>4:00 AM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>45.5</english>
+				<metric>8</metric>
+			</temp>
+			<dewpoint>
+				<english>43.9</english>
+				<metric>7</metric>
+			</dewpoint>
+			<condition>Chance of Rain</condition>
+			
+			
+			<icon>chancerain</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
+			<fctcode>12</fctcode>
+			<sky>99</sky>
+			<wspd>
+				<english>4</english>
+				<metric>6</metric>
+			</wspd>
+			<wdir>
+				<dir>W</dir>
+				<degrees>275</degrees>
+			</wdir>
+			<wx>Showers</wx>
+			<uvi>0</uvi>
+			<humidity>94</humidity>
+			<windchill>
+				<english>45</english>
+				<metric>7</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>45</english>
+					<metric>7</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>43</pop>
+			<mslp>
+				<english>30.29</english>
+				<metric>1026</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>5</hour><hour_padded>05</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>3</mday><mday_padded>03</mday_padded><yday>306</yday><isdst>0</isdst><epoch>1541217600</epoch><pretty>5:00 AM CET on November 03, 2018</pretty><civil>5:00 AM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>45.3</english>
+				<metric>7</metric>
+			</temp>
+			<dewpoint>
+				<english>44.1</english>
+				<metric>7</metric>
+			</dewpoint>
+			<condition>Chance of Rain</condition>
+			
+			
+			<icon>chancerain</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
+			<fctcode>12</fctcode>
+			<sky>99</sky>
+			<wspd>
+				<english>4</english>
+				<metric>6</metric>
+			</wspd>
+			<wdir>
+				<dir>W</dir>
+				<degrees>273</degrees>
+			</wdir>
+			<wx>Showers</wx>
+			<uvi>0</uvi>
+			<humidity>95</humidity>
+			<windchill>
+				<english>43</english>
+				<metric>6</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>43</english>
+					<metric>6</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.01</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>49</pop>
+			<mslp>
+				<english>30.3</english>
+				<metric>1026</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>6</hour><hour_padded>06</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>3</mday><mday_padded>03</mday_padded><yday>306</yday><isdst>0</isdst><epoch>1541221200</epoch><pretty>6:00 AM CET on November 03, 2018</pretty><civil>6:00 AM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>45.5</english>
+				<metric>8</metric>
+			</temp>
+			<dewpoint>
+				<english>43.7</english>
+				<metric>7</metric>
+			</dewpoint>
+			<condition>Chance of Rain</condition>
+			
+			
+			<icon>chancerain</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
+			<fctcode>12</fctcode>
+			<sky>100</sky>
+			<wspd>
+				<english>4</english>
+				<metric>6</metric>
+			</wspd>
+			<wdir>
+				<dir>W</dir>
+				<degrees>275</degrees>
+			</wdir>
+			<wx>Showers</wx>
+			<uvi>0</uvi>
+			<humidity>93</humidity>
+			<windchill>
+				<english>45</english>
+				<metric>7</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>45</english>
+					<metric>7</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.01</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>48</pop>
+			<mslp>
+				<english>30.32</english>
+				<metric>1027</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>7</hour><hour_padded>07</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>3</mday><mday_padded>03</mday_padded><yday>306</yday><isdst>0</isdst><epoch>1541224800</epoch><pretty>7:00 AM CET on November 03, 2018</pretty><civil>7:00 AM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>45.1</english>
+				<metric>7</metric>
+			</temp>
+			<dewpoint>
+				<english>43.5</english>
+				<metric>6</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>99</sky>
+			<wspd>
+				<english>5</english>
+				<metric>8</metric>
+			</wspd>
+			<wdir>
+				<dir>WNW</dir>
+				<degrees>290</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>94</humidity>
+			<windchill>
+				<english>42</english>
+				<metric>5</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>42</english>
+					<metric>5</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>15</pop>
+			<mslp>
+				<english>30.33</english>
+				<metric>1027</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>8</hour><hour_padded>08</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>3</mday><mday_padded>03</mday_padded><yday>306</yday><isdst>0</isdst><epoch>1541228400</epoch><pretty>8:00 AM CET on November 03, 2018</pretty><civil>8:00 AM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>45.7</english>
+				<metric>8</metric>
+			</temp>
+			<dewpoint>
+				<english>44.1</english>
+				<metric>7</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>94</sky>
+			<wspd>
+				<english>6</english>
+				<metric>10</metric>
+			</wspd>
+			<wdir>
+				<dir>WNW</dir>
+				<degrees>291</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>94</humidity>
+			<windchill>
+				<english>43</english>
+				<metric>6</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>43</english>
+					<metric>6</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>7</pop>
+			<mslp>
+				<english>30.34</english>
+				<metric>1027</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>9</hour><hour_padded>09</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>3</mday><mday_padded>03</mday_padded><yday>306</yday><isdst>0</isdst><epoch>1541232000</epoch><pretty>9:00 AM CET on November 03, 2018</pretty><civil>9:00 AM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>46.6</english>
+				<metric>8</metric>
+			</temp>
+			<dewpoint>
+				<english>44.1</english>
+				<metric>7</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>93</sky>
+			<wspd>
+				<english>7</english>
+				<metric>11</metric>
+			</wspd>
+			<wdir>
+				<dir>WNW</dir>
+				<degrees>291</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>91</humidity>
+			<windchill>
+				<english>43</english>
+				<metric>6</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>43</english>
+					<metric>6</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>7</pop>
+			<mslp>
+				<english>30.35</english>
+				<metric>1028</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>10</hour><hour_padded>10</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>3</mday><mday_padded>03</mday_padded><yday>306</yday><isdst>0</isdst><epoch>1541235600</epoch><pretty>10:00 AM CET on November 03, 2018</pretty><civil>10:00 AM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>47.8</english>
+				<metric>9</metric>
+			</temp>
+			<dewpoint>
+				<english>43.7</english>
+				<metric>7</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>80</sky>
+			<wspd>
+				<english>8</english>
+				<metric>13</metric>
+			</wspd>
+			<wdir>
+				<dir>WNW</dir>
+				<degrees>289</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>85</humidity>
+			<windchill>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>47.8</english>
+					<metric>9</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>5</pop>
+			<mslp>
+				<english>30.36</english>
+				<metric>1028</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>11</hour><hour_padded>11</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>3</mday><mday_padded>03</mday_padded><yday>306</yday><isdst>0</isdst><epoch>1541239200</epoch><pretty>11:00 AM CET on November 03, 2018</pretty><civil>11:00 AM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>48.2</english>
+				<metric>9</metric>
+			</temp>
+			<dewpoint>
+				<english>42.4</english>
+				<metric>6</metric>
+			</dewpoint>
+			<condition>Mostly Cloudy</condition>
+			
+			
+			<icon>mostlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/mostlycloudy.gif</icon_url>
+			<fctcode>3</fctcode>
+			<sky>73</sky>
+			<wspd>
+				<english>9</english>
+				<metric>14</metric>
+			</wspd>
+			<wdir>
+				<dir>WNW</dir>
+				<degrees>287</degrees>
+			</wdir>
+			<wx>Mostly Cloudy</wx>
+			<uvi>1</uvi>
+			<humidity>80</humidity>
+			<windchill>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>48.2</english>
+					<metric>9</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>4</pop>
+			<mslp>
+				<english>30.36</english>
+				<metric>1028</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>12</hour><hour_padded>12</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>3</mday><mday_padded>03</mday_padded><yday>306</yday><isdst>0</isdst><epoch>1541242800</epoch><pretty>12:00 PM CET on November 03, 2018</pretty><civil>12:00 PM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>48.7</english>
+				<metric>9</metric>
+			</temp>
+			<dewpoint>
+				<english>41.4</english>
+				<metric>5</metric>
+			</dewpoint>
+			<condition>Mostly Cloudy</condition>
+			
+			
+			<icon>mostlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/mostlycloudy.gif</icon_url>
+			<fctcode>3</fctcode>
+			<sky>70</sky>
+			<wspd>
+				<english>9</english>
+				<metric>14</metric>
+			</wspd>
+			<wdir>
+				<dir>WNW</dir>
+				<degrees>288</degrees>
+			</wdir>
+			<wx>Mostly Cloudy</wx>
+			<uvi>1</uvi>
+			<humidity>76</humidity>
+			<windchill>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>48.7</english>
+					<metric>9</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>3</pop>
+			<mslp>
+				<english>30.37</english>
+				<metric>1028</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>13</hour><hour_padded>13</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>3</mday><mday_padded>03</mday_padded><yday>306</yday><isdst>0</isdst><epoch>1541246400</epoch><pretty>1:00 PM CET on November 03, 2018</pretty><civil>1:00 PM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>49.1</english>
+				<metric>9</metric>
+			</temp>
+			<dewpoint>
+				<english>40.3</english>
+				<metric>5</metric>
+			</dewpoint>
+			<condition>Mostly Cloudy</condition>
+			
+			
+			<icon>mostlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/mostlycloudy.gif</icon_url>
+			<fctcode>3</fctcode>
+			<sky>64</sky>
+			<wspd>
+				<english>10</english>
+				<metric>16</metric>
+			</wspd>
+			<wdir>
+				<dir>WNW</dir>
+				<degrees>295</degrees>
+			</wdir>
+			<wx>Mostly Cloudy</wx>
+			<uvi>1</uvi>
+			<humidity>71</humidity>
+			<windchill>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>49.1</english>
+					<metric>9</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>2</pop>
+			<mslp>
+				<english>30.37</english>
+				<metric>1028</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>14</hour><hour_padded>14</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>3</mday><mday_padded>03</mday_padded><yday>306</yday><isdst>0</isdst><epoch>1541250000</epoch><pretty>2:00 PM CET on November 03, 2018</pretty><civil>2:00 PM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>48.9</english>
+				<metric>9</metric>
+			</temp>
+			<dewpoint>
+				<english>39.6</english>
+				<metric>4</metric>
+			</dewpoint>
+			<condition>Partly Cloudy</condition>
+			
+			
+			<icon>partlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/partlycloudy.gif</icon_url>
+			<fctcode>2</fctcode>
+			<sky>35</sky>
+			<wspd>
+				<english>9</english>
+				<metric>14</metric>
+			</wspd>
+			<wdir>
+				<dir>WNW</dir>
+				<degrees>295</degrees>
+			</wdir>
+			<wx>Partly Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>70</humidity>
+			<windchill>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>48.9</english>
+					<metric>9</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>2</pop>
+			<mslp>
+				<english>30.37</english>
+				<metric>1028</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>15</hour><hour_padded>15</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>3</mday><mday_padded>03</mday_padded><yday>306</yday><isdst>0</isdst><epoch>1541253600</epoch><pretty>3:00 PM CET on November 03, 2018</pretty><civil>3:00 PM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>48.4</english>
+				<metric>9</metric>
+			</temp>
+			<dewpoint>
+				<english>39.2</english>
+				<metric>4</metric>
+			</dewpoint>
+			<condition>Clear</condition>
+			
+			
+			<icon>clear</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/clear.gif</icon_url>
+			<fctcode>1</fctcode>
+			<sky>14</sky>
+			<wspd>
+				<english>9</english>
+				<metric>14</metric>
+			</wspd>
+			<wdir>
+				<dir>WNW</dir>
+				<degrees>294</degrees>
+			</wdir>
+			<wx>Sunny</wx>
+			<uvi>0</uvi>
+			<humidity>70</humidity>
+			<windchill>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>48.4</english>
+					<metric>9</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>2</pop>
+			<mslp>
+				<english>30.38</english>
+				<metric>1029</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>16</hour><hour_padded>16</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>3</mday><mday_padded>03</mday_padded><yday>306</yday><isdst>0</isdst><epoch>1541257200</epoch><pretty>4:00 PM CET on November 03, 2018</pretty><civil>4:00 PM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>46.4</english>
+				<metric>8</metric>
+			</temp>
+			<dewpoint>
+				<english>38.8</english>
+				<metric>4</metric>
+			</dewpoint>
+			<condition>Clear</condition>
+			
+			
+			<icon>clear</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/clear.gif</icon_url>
+			<fctcode>1</fctcode>
+			<sky>3</sky>
+			<wspd>
+				<english>7</english>
+				<metric>11</metric>
+			</wspd>
+			<wdir>
+				<dir>WNW</dir>
+				<degrees>292</degrees>
+			</wdir>
+			<wx>Sunny</wx>
+			<uvi>0</uvi>
+			<humidity>75</humidity>
+			<windchill>
+				<english>43</english>
+				<metric>6</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>43</english>
+					<metric>6</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>4</pop>
+			<mslp>
+				<english>30.39</english>
+				<metric>1029</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>17</hour><hour_padded>17</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>3</mday><mday_padded>03</mday_padded><yday>306</yday><isdst>0</isdst><epoch>1541260800</epoch><pretty>5:00 PM CET on November 03, 2018</pretty><civil>5:00 PM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>43.9</english>
+				<metric>7</metric>
+			</temp>
+			<dewpoint>
+				<english>38.7</english>
+				<metric>4</metric>
+			</dewpoint>
+			<condition>Clear</condition>
+			
+			
+			<icon>clear</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_clear.gif</icon_url>
+			<fctcode>1</fctcode>
+			<sky>6</sky>
+			<wspd>
+				<english>6</english>
+				<metric>10</metric>
+			</wspd>
+			<wdir>
+				<dir>WNW</dir>
+				<degrees>294</degrees>
+			</wdir>
+			<wx>Clear</wx>
+			<uvi>0</uvi>
+			<humidity>82</humidity>
+			<windchill>
+				<english>41</english>
+				<metric>5</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>41</english>
+					<metric>5</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>5</pop>
+			<mslp>
+				<english>30.4</english>
+				<metric>1029</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>18</hour><hour_padded>18</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>11</mon><mon_padded>11</mon_padded><mon_abbrev>Nov</mon_abbrev><mday>3</mday><mday_padded>03</mday_padded><yday>306</yday><isdst>0</isdst><epoch>1541264400</epoch><pretty>6:00 PM CET on November 03, 2018</pretty><civil>6:00 PM</civil><month_name>November</month_name><month_name_abbrev>Nov</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>42.4</english>
+				<metric>6</metric>
+			</temp>
+			<dewpoint>
+				<english>38.8</english>
+				<metric>4</metric>
+			</dewpoint>
+			<condition>Clear</condition>
+			
+			
+			<icon>clear</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_clear.gif</icon_url>
+			<fctcode>1</fctcode>
+			<sky>10</sky>
+			<wspd>
+				<english>5</english>
+				<metric>8</metric>
+			</wspd>
+			<wdir>
+				<dir>W</dir>
+				<degrees>276</degrees>
+			</wdir>
+			<wx>Clear</wx>
+			<uvi>0</uvi>
+			<humidity>87</humidity>
+			<windchill>
+				<english>40</english>
+				<metric>4</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>40</english>
+					<metric>4</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>6</pop>
+			<mslp>
+				<english>30.4</english>
+				<metric>1029</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+	</hourly_forecast>
+
+    
+    
+    
+	
+  
+	
+	
+	
+	
+	
+    
+    
+
+
+    
+    
+    
+    
+</response>
+	
