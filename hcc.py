@@ -15,6 +15,12 @@ def weather():
 	obj = WeatherClass.WeatherClass()	
 	return render_template('weather.html', weather = obj.getCurrentWeather())
 
+@app.route("/weatherForecast")
+def weatherForecast():
+#	obj = WeatherClass.WeatherClass()	
+#	return render_template('weather.html', weather = obj.getCurrentWeather())
+	return render_template('weatherForecast.html')
+
 @app.route("/tempInside")
 def temperatureInside():
 	obj = WeatherClass.WeatherClass()	
@@ -26,6 +32,9 @@ def calendarInfo():
 	obj = CalendarClass.CalendarClass()			
 	return render_template('events.html', events = obj.getEventsData())
 	
+@app.route("/menu")
+def menu():	
+	return render_template('menu.html')
 
 if (__name__ == "__main__"):
 	app.run(host="0.0.0.0", port = 8002)
