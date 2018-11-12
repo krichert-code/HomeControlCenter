@@ -75,8 +75,7 @@ class ActionClass:
                 
                 if permament == False:
                     ActionThread(self.__xmldoc, item, 18).start()
-                else:                    
-                    print "________________" + url
+                else:                                        
                     ActionThread(self.__xmldoc, item, 25, url, 2).start()
                 
             

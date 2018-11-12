@@ -1,0 +1,7 @@
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+# m h dom mon dow user<>command
+15 6 * * * root wget -q -O /HomeControlCenter/data/weatherDaily.xml http://api.wunderground.com/api/31e42ae65d62abd5/hourly/q/PL/EPGD.xml
+15 * * * * root wget -q -O /HomeControlCenter/data/weather.xml http://api.wunderground.com/api/31e42ae65d62abd5/conditions/q/CA/EPGD.xml
+30 0 * * * root echo "0" > /var/www/html/settings/rain
+30 * * * * root if [ `grep rain /HomeControlCenter/data/weather.xml |wc -l` -gt 0 ]; then  echo "1" > /var/www/html/settings/rain; fi

@@ -26,12 +26,6 @@ def temperatureInside():
 	obj = WeatherClass.WeatherClass()	
 	return render_template('heater.html', heater = obj.getCurrentTemperatureInside())
 
-
-@app.route("/calendar")
-def calendarInfo():
-	obj = CalendarClass.CalendarClass()			
-	return render_template('events.html', events = obj.getEventsData())
-
 @app.route("/action/<actionName>")
 def action(actionName):	
 	action = ActionClass.ActionClass()
@@ -41,6 +35,14 @@ def action(actionName):
 	
 	#render_template('events.html', events = action.getEventsData(actionName))
 	#return "fsdfsd"
+@app.route("/sprinkler")
+def sprinkler():
+	#action = ActionClass.ActionClass()
+	#calendar = CalendarClass.CalendarClass()
+	#allEvents = action.getEventsData(actionName) + calendar.getEventsData()		
+	return render_template('sprinkler.html')
+
+
 	
 @app.route("/menu")
 def menu():	
