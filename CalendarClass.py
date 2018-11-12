@@ -1,16 +1,9 @@
 import json
+import EventClass
 
-class Event(object):
-    name = ""
-    date = ""
-            
-    def __init__(self, name, date):
-        self.name = name
-        self.date = date
-        
-        
-class CalendarClass(object):
-    __eventsData = []    
+                
+class CalendarClass:
+    __eventsData = []
     
     # The class "constructor" - It's actually an initializer
     def __init__(self):
@@ -23,7 +16,7 @@ class CalendarClass(object):
         events = data['items']
                
         for element in events:
-            self.__eventsData.append(Event(element['summary'], element['start']['date']))
+            self.__eventsData.append(EventClass.EventClass(element['summary'], element['start']['date']))
                 
     def getEventsData(self):
         self.__getDataFromFile("data/holidays.json")

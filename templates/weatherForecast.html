@@ -21,9 +21,9 @@ td.menu  {padding: 50px; align: center}
 {% if element.id % 3 == 0 %}
 <tr>
 {% endif %}
-	<td class="menu" >
+	<td class="menu" style="font-size:25px">
 		<img src="{{ element.icon }}" height="60px" width="60px" /> <br>
-		{{ element.time }}<br>Temp {{ element.temp }}<sup>o</sup>C<br>Wiatr {{ element.wind }} km/h<br>Ciśnienie {{ element.presure }}MB		
+		{{ element.time }}<br>{{ element.temp }}<sup>o</sup>C<br>{{ element.wind }} km/h<br>{{ element.presure }}MB		
 	</td>
 {% if element.id % 3 == 2 %}
 </tr>

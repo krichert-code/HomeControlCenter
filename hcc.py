@@ -3,6 +3,7 @@
 from flask import Flask, render_template, request, make_response
 import WeatherClass
 import CalendarClass
+import ActionClass
 
 app = Flask(__name__)
 
@@ -30,6 +31,16 @@ def temperatureInside():
 def calendarInfo():
 	obj = CalendarClass.CalendarClass()			
 	return render_template('events.html', events = obj.getEventsData())
+
+@app.route("/action/<actionName>")
+def action(actionName):	
+	action = ActionClass.ActionClass()
+	calendar = CalendarClass.CalendarClass()
+	allEvents = action.getEventsData(actionName) + calendar.getEventsData()		
+	return render_template('events.html', events = allEvents)
+	
+	#render_template('events.html', events = action.getEventsData(actionName))
+	#return "fsdfsd"
 	
 @app.route("/menu")
 def menu():	

@@ -38,7 +38,7 @@ class WeatherClass(object):
         item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('temp_c')        
         self.__weatherData['temp']=item[0].childNodes[0].nodeValue
 
-        item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('observation_time_rfc822')        
+        item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('local_time_rfc822')        
         self.__weatherData['date']=item[0].childNodes[0].nodeValue
         time = self.__weatherData['date']
         time = time[:time.rfind(" ")]
@@ -58,11 +58,15 @@ class WeatherClass(object):
     
     def getWeatherForecast(self):
         id = 0
+        skip = -1
         xmldoc = minidom.parse('data/weatherDaily.xml')        
         
         itemlist = xmldoc.getElementsByTagName('forecast')
         
         for item in itemlist:
+            skip = skip + 1
+            if skip % 3 != 0:
+                continue
             icon = item.getElementsByTagName('icon_url')[0].childNodes[0].nodeValue
             time = item.getElementsByTagName('FCTTIME')[0].getElementsByTagName('hour')[0].childNodes[0].nodeValue + " : 00" 
             temp = item.getElementsByTagName('temp')[0].getElementsByTagName('metric')[0].childNodes[0].nodeValue            
@@ -70,6 +74,8 @@ class WeatherClass(object):
             presure = item.getElementsByTagName('mslp')[0].getElementsByTagName('metric')[0].childNodes[0].nodeValue
             self.__weatherForecast.append(WeatherForecaset(id,time,temp,wind,presure,icon))
             id = id + 1
+            if id > 5:
+                break
         
         return self.__weatherForecast
     

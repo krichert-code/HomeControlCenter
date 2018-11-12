@@ -48,14 +48,10 @@ function GetCurrentData()
    updateCurrentMainGateStatus(0);
 
    minutes = Math.round(t / minutes);
-   if ((last_minutes != minutes) || (last_minutes == -1))
+   //if ((last_minutes != minutes) || (last_minutes == -1))
    {
-     //updateCurrentWeather();
-     //updateCurrentTemperature();
-     //GetPanelInfo();
      updateContent('currentWeather', 'weather');
      updateContent('currentTemInside', 'tempInside');
-     updateContent('content', 'menu');
      updateContent('infoBox', 'calendar');
      last_minutes = minutes;
    }
@@ -97,9 +93,9 @@ function GetCurrentData()
 
 
 <script type="text/javascript">
+ updateContent('content', 'menu');
  GetCurrentData();
- //GetPanelInfo();
- //setInterval("GetCurrentData()",1000); 
+ setInterval("GetCurrentData()",60000); 
 </script>
 
 </body>
