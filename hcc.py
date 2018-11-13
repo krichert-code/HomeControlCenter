@@ -33,14 +33,10 @@ def action(actionName):
 	allEvents = action.getEventsData(actionName) + calendar.getEventsData()		
 	return render_template('events.html', events = allEvents)
 	
-	#render_template('events.html', events = action.getEventsData(actionName))
-	#return "fsdfsd"
-@app.route("/sprinkler")
-def sprinkler():
-	#action = ActionClass.ActionClass()
-	#calendar = CalendarClass.CalendarClass()
-	#allEvents = action.getEventsData(actionName) + calendar.getEventsData()		
-	return render_template('sprinkler.html')
+@app.route("/sprinkler/<actionName>")
+def sprinkler(actionName):
+	action = ActionClass.ActionClass()
+	return render_template('sprinkler.html', sprinklerStatus = action.getEventsData(actionName))
 
 
 	

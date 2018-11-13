@@ -44,15 +44,13 @@ function GetCurrentData()
    var d = new Date();
    var t= d.getTime();
 
-   updateCurrentGarageStatus(0);
-   updateCurrentMainGateStatus(0);
 
    minutes = Math.round(t / minutes);
    //if ((last_minutes != minutes) || (last_minutes == -1))
    {
      updateContent('currentWeather', 'weather');
      updateContent('currentTemInside', 'tempInside');
-     updateContent('infoBox', 'action/calendar_and_events');
+     updateContent('infoBox', 'action/GetActiveEvents');
      last_minutes = minutes;
    }
 }

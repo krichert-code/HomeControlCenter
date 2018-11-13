@@ -80,7 +80,6 @@ class WeatherClass(object):
         return self.__weatherForecast
     
     def getCurrentTemperatureInside(self):
-        print "test"
         with open("data/heater.csv", "rb") as csvfile:
             reader = csv.DictReader(csvfile,['temp','state','mode','time','icon'])
             #reader = csv.reader(csvfile, delimiter=",", quotechar="|")
