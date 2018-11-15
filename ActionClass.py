@@ -3,6 +3,7 @@ import requests
 import threading
 import EventClass
 import time
+import ConfigClass
 
 class Task:
     type = ""
@@ -11,25 +12,18 @@ class Task:
     def __init__(self, type, value, desc = ""):
         self.type = type
         self.value = value
-        self.desc = desc
+        self.desc = desc        
         
 class ActionThread(threading.Thread):
-    __xmldoc = None
-    __xmlItem = None
-    __url = ""
-    __pause = 0
-    __delay = 0
-
     __event = None
     __taskList = None
-    __mutex = None
+    __mutex = None    
     
     def __init__(self, event, tasks):
         threading.Thread.__init__(self)
         self.__event = event
-        self.__taskList = tasks
-        if ActionThread.__mutex == None:
-	    print "____________MUTEX was created"
+        self.__taskList = tasks        
+        if ActionThread.__mutex == None:	    
             ActionThread.__mutex = threading.Lock()
         
     def __findItem(self, name):
@@ -45,19 +39,22 @@ class ActionThread(threading.Thread):
         forceClean = False
         
         for task in self.__taskList:
-            ActionThread.__mutex.acquire()
-            print "_____________" + task.type
+            
+            ActionThread.__mutex.acquire()            
             if task.type == "request":
                 try:
+                    # Wait up to 3 second for response
+                    # If no response then initialize 'cleaning' - set forceClean
                     req = requests.get(task.value, verify = False, timeout = 3)
                 except requests.exceptions.RequestException as e:
                     req = None                
-                
-                if req == None or req.text <> "OK":
-                    print "____________FORCEClean is needed"
-                    forceClean = True
+                finally:
+                    if req == None or req.text <> "OK":                    
+                        forceClean = True
                     
             if task.type == "set":
+                # After set state event to waiting thread have to be send
+                # Waiting thread may collect and disaply active events 
                 xmldoc, node = self.__findItem(task.value)
                 if node.getAttribute('state') == "0":        
                     node.setAttribute("state","1")                                    
@@ -65,6 +62,7 @@ class ActionThread(threading.Thread):
                     xmldoc.writexml( open('data/config.xml', 'w'))
                     self.__event.set()
                 else:
+                    # Task is already in progress (state = 1), so just initialize exit thread
                     exit = True
                     self.__event.set()
 
@@ -76,6 +74,7 @@ class ActionThread(threading.Thread):
             
             ActionThread.__mutex.release()
             
+            # Below events don't need to in critical section 
             if task.type == "delay" and forceClean == False:
                 time.sleep(task.value)
 
@@ -85,25 +84,17 @@ class ActionThread(threading.Thread):
 
 
 class ActionClass(object):
-    __eventsData = []    
+    __eventsData = []        
     
     def __init__(self):
-        self.__eventsData = []
-        self.__xmldoc = minidom.parse('data/config.xml')
-
-    def __updateEvents(self, onlyActiveEvents = True):
-        xmldoc = minidom.parse('data/config.xml')
-        itemsList = xmldoc.getElementsByTagName('status')[0].getElementsByTagName('element')        
-        for item in itemsList:
-            if (item.getAttribute('state') == "1" and onlyActiveEvents == True) or (onlyActiveEvents == False):
-                self.__eventsData.append(EventClass.EventClass(item.getAttribute('desc'),"",item.getAttribute('name'), item.getAttribute('state')))    
+        self.__eventsData = []        
+        self.config = ConfigClass.ConfigClass()
         
     def actionOnGate0(self):
         taskList = []
-        event = threading.Event()        
-        xmldoc = minidom.parse('data/config.xml')
+        event = threading.Event()                
+        url = self.config.getSwitchURL("garage")
         
-        url = xmldoc.getElementsByTagName('switch')[0].getElementsByTagName('garage')[0].getAttribute('url')
         taskList.append(Task("set","garage", "Otwieranie/Zamykanie bramy garazowej"))
         taskList.append(Task("request",url))
         taskList.append(Task("delay",20))
@@ -111,14 +102,14 @@ class ActionClass(object):
         event.clear()
         ActionThread(event, taskList).start()
         event.wait()
-        self.__updateEvents();
+        self.__eventsData = self.config.getEvents()        
 
     def actionOnGate1(self):
         taskList = []
         event = threading.Event()        
-        xmldoc = minidom.parse('data/config.xml')
-        
-        url = xmldoc.getElementsByTagName('switch')[0].getElementsByTagName('mainGate')[0].getAttribute('url')
+                
+        url = self.config.getSwitchURL("mainGate")
+
         taskList.append(Task("set","mainGate", "Otwieranie bramy wjazdowej"))
         taskList.append(Task("request",url))
         taskList.append(Task("delay",20))
@@ -126,15 +117,15 @@ class ActionClass(object):
         event.clear()
         ActionThread(event, taskList).start()
         event.wait()
-        self.__updateEvents();
+        self.__eventsData = self.config.getEvents()        
         
 
     def actionOnGate1Perm(self):
         taskList = []
         event = threading.Event()        
-        xmldoc = minidom.parse('data/config.xml')
         
-        url = xmldoc.getElementsByTagName('switch')[0].getElementsByTagName('mainGate')[0].getAttribute('url')
+        url = self.config.getSwitchURL("mainGate")
+
         taskList.append(Task("set","mainGate", "Otwieranie bramy wjazdowej"))
         taskList.append(Task("request",url))
         taskList.append(Task("delay",25))
@@ -145,12 +136,12 @@ class ActionClass(object):
         event.clear()
         ActionThread(event, taskList).start()
         event.wait()
-        self.__updateEvents();
+        self.__eventsData = self.config.getEvents()        
 
                 
     def actionOnGetSprinklersStatus(self):
         internalEventList = []
-        self.__updateEvents(False);
+        self.__eventsData = self.config.getEvents(False)        
         # remove events not related to sprinklers
         for item in self.__eventsData:
             if item.name.find("Sprinkler") <> -1:
@@ -178,7 +169,7 @@ class ActionClass(object):
 
     def actionOnGetActiveEvents(self):
         # get only activate events
-        self.__updateEvents();
+        self.__eventsData = self.config.getEvents()            
 
     def getEventsData(self,actionName):
         method_name = 'actionOn' + actionName

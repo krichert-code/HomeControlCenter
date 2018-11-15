@@ -4,6 +4,7 @@ from flask import Flask, render_template, request, make_response
 import WeatherClass
 import CalendarClass
 import ActionClass
+import ConfigClass
 
 app = Flask(__name__)
 
@@ -45,4 +46,6 @@ def menu():
 	return render_template('menu.html')
 
 if (__name__ == "__main__"):
+	config = ConfigClass.ConfigClass()
+	config.initializeConfigData()
 	app.run(host="0.0.0.0", port = 8002)
