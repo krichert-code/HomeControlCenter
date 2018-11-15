@@ -19,68 +19,68 @@ class ActionThread(threading.Thread):
     __url = ""
     __pause = 0
     __delay = 0
+
     __event = None
     __taskList = None
     __mutex = None
     
     def __init__(self, event, tasks):
         threading.Thread.__init__(self)
-        #self.__delay = delay
-        #self.__xmldoc = xmldoc
-        #self.__xmlItem = item
-        #self.__pause = pause
-        #self.__url = url
         self.__event = event
         self.__taskList = tasks
         if ActionThread.__mutex == None:
-            ActionThread.__mutex = threading.Lock() 
+	    print "____________MUTEX was created"
+            ActionThread.__mutex = threading.Lock()
         
+    def __findItem(self, name):
+	xmldoc = minidom.parse('data/config.xml')
+	itemsList = xmldoc.getElementsByTagName('status')[0].getElementsByTagName('element')
+        for item in itemsList:
+            if item.getAttribute('name') == name:
+                break
+	return xmldoc, item
+
     def run(self):
         exit = False
         forceClean = False
         
         for task in self.__taskList:
             ActionThread.__mutex.acquire()
-            
+            print "_____________" + task.type
             if task.type == "request":
                 req = requests.get(task.value)
+		print "____________Request cc = " + req.text
                 if req.text <> "OK":
+		    print "____________FORCEClean is needed"
                     forceClean = True
                     
             if task.type == "set":
-                item = __findItem(task.value)
-                if item.getAttribute('state') == "0":        
-                    item.setAttribute("state","1")                                    
-                    item.setAttribute("desc",desc)
-                    self.__xmldoc.writexml( open('data/config.xml', 'w'))
+                xmldoc, node = self.__findItem(task.value)
+                if node.getAttribute('state') == "0":        
+                    node.setAttribute("state","1")                                    
+                    node.setAttribute("desc",task.desc)
+                    xmldoc.writexml( open('data/config.xml', 'w'))
+		    self.__event.set()
                 else:
+		    print "____________Action already in progress:exit"
                     exit = True
-                    
+		    self.__event.set()
+
             if task.type == "clear":
-                item = __findItem(task.value)
-                item.setAttribute("state","0")                                    
-                item.setAttribute("desc",desc)
-                self.__xmldoc.writexml( open('data/config.xml', 'w'))
+		print "____________Clear Action"
+                xmldoc, node = self.__findItem(task.value)
+                node.setAttribute("state","0")                                    
+                node.setAttribute("desc",task.desc)
+                xmldoc.writexml( open('data/config.xml', 'w') )
             
             ActionThread.__mutex.release()
             
             if task.type == "delay" and forceClean == False:
                 time.sleep(task.value)
+		print "____________Delay action"
 
             if exit == True:
                 break
-            
-        event.set()
-            
-        time.sleep(self.__delay)
-        if len(self.__url) > 0:
-            req = requests.get(self.__url)
-            time.sleep(self.__pause)
-            req = requests.get(self.__url)
-        self.__xmlItem.setAttribute("state","0")                                    
-        self.__xmlItem.setAttribute("desc","No action")
-        self.__xmldoc.writexml( open('data/config.xml', 'w'))
-
     
 
 
@@ -93,7 +93,8 @@ class ActionClass(object):
         self.__xmldoc = minidom.parse('data/config.xml')
 
     def __updateEvents(self, onlyActiveEvents = True):
-        itemsList = self.__xmldoc.getElementsByTagName('status')[0].getElementsByTagName('element')        
+	xmldoc = minidom.parse('data/config.xml')
+        itemsList = xmldoc.getElementsByTagName('status')[0].getElementsByTagName('element')        
         for item in itemsList:
             if (item.getAttribute('state') == "1" and onlyActiveEvents == True) or (onlyActiveEvents == False):
                 self.__eventsData.append(EventClass.EventClass(item.getAttribute('desc'),"",item.getAttribute('name'), item.getAttribute('state')))    
@@ -104,21 +105,27 @@ class ActionClass(object):
         event.clear()
         
         url = self.__xmldoc.getElementsByTagName('switch')[0].getElementsByTagName('garage')[0].getAttribute('url')
+	taskList.append(Task("set","garage", "Otwieranie/Zamykanie bramy garazowej"))
+	taskList.append(Task("request",url))
+	taskList.append(Task("delay",5))
+	taskList.append(Task("clear","garage", "No action"))
+	ActionThread(event, taskList).start()
+	event.wait()
 
-        itemsList = self.__xmldoc.getElementsByTagName('status')[0].getElementsByTagName('element')
-        for item in itemsList:
-            if item.getAttribute('name') == "garage":
-                break
+        #itemsList = self.__xmldoc.getElementsByTagName('status')[0].getElementsByTagName('element')
+        #for item in itemsList:
+        #    if item.getAttribute('name') == "garage":
+        #        break
 
         # allow to open gate only if action is not in progress already
-        if item.getAttribute('state') == "0":                                    
-            req = requests.get(url)
-            if req.text=="OK":                
-                item.setAttribute("state","1")                                    
-                item.setAttribute("desc","Otwieranie/Zamykanie bramy garazowej")
-                self.__xmldoc.writexml( open('data/config.xml', 'w'))
-                ActionThread(event, taskList).start()
-                event.wait(5)
+        #if item.getAttribute('state') == "0":                                    
+        #    req = requests.get(url)
+        #    if req.text=="OK":                
+        #        item.setAttribute("state","1")                                    
+        #        item.setAttribute("desc","Otwieranie/Zamykanie bramy garazowej")
+        #        self.__xmldoc.writexml( open('data/config.xml', 'w'))
+        #        ActionThread(event, taskList).start()
+        #        event.wait(5)
 	self.__updateEvents();
 
     def actionOnGate1(self):
