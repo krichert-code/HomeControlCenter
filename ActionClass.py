@@ -26,13 +26,6 @@ class ActionThread(threading.Thread):
         if ActionThread.__mutex == None:	    
             ActionThread.__mutex = threading.Lock()
         
-    def __findItem(self, name):
-	xmldoc = minidom.parse('data/config.xml')
-	itemsList = xmldoc.getElementsByTagName('status')[0].getElementsByTagName('element')
-        for item in itemsList:
-            if item.getAttribute('name') == name:
-                break
-	return xmldoc, item
 
     def run(self):
         exit = False
@@ -40,7 +33,8 @@ class ActionThread(threading.Thread):
         
         for task in self.__taskList:
             
-            ActionThread.__mutex.acquire()            
+            ActionThread.__mutex.acquire()
+
             if task.type == "request":
                 try:
                     # Wait up to 3 second for response
@@ -55,28 +49,25 @@ class ActionThread(threading.Thread):
             if task.type == "set":
                 # After set state event to waiting thread have to be send
                 # Waiting thread may collect and disaply active events 
-                xmldoc, node = self.__findItem(task.value)
-                if node.getAttribute('state') == "0":        
-                    node.setAttribute("state","1")                                    
-                    node.setAttribute("desc",task.desc)
-                    xmldoc.writexml( open('data/config.xml', 'w'))
-                    self.__event.set()
-                else:
-                    # Task is already in progress (state = 1), so just initialize exit thread
+		config = ConfigClass.ConfigClass()
+		ret_val = config.changeStatus(task.value, "1", task.desc)
+                if ret_val <> "Conf_Change_ok":
+		    # Task is already in progress (state = 1), so just initialize exit thread
                     exit = True
-                    self.__event.set()
+		self.__event.set()
 
             if task.type == "clear":
-                xmldoc, node = self.__findItem(task.value)
-                node.setAttribute("state","0")                                    
-                node.setAttribute("desc",task.desc)
-                xmldoc.writexml( open('data/config.xml', 'w') )
-            
+		config = ConfigClass.ConfigClass()
+		ret_val = config.changeStatus(task.value, "0", task.desc)
+
             ActionThread.__mutex.release()
             
-            # Below events don't need to in critical section 
+            # Below events don't need to be in critical section 
             if task.type == "delay" and forceClean == False:
                 time.sleep(task.value)
+
+            if task.type == "notify":
+		self.__event.set()
 
             if exit == True:
                 break
@@ -84,16 +75,15 @@ class ActionThread(threading.Thread):
 
 
 class ActionClass(object):
-    __eventsData = []        
+    __config = None
     
     def __init__(self):
-        self.__eventsData = []        
-        self.config = ConfigClass.ConfigClass()
+        self.__config = ConfigClass.ConfigClass()
         
     def actionOnGate0(self):
         taskList = []
         event = threading.Event()                
-        url = self.config.getSwitchURL("garage")
+        url = self.__config.getSwitchURL("garage")
         
         taskList.append(Task("set","garage", "Otwieranie/Zamykanie bramy garazowej"))
         taskList.append(Task("request",url))
@@ -102,13 +92,13 @@ class ActionClass(object):
         event.clear()
         ActionThread(event, taskList).start()
         event.wait()
-        self.__eventsData = self.config.getEvents()        
+        return self.__config.getEvents()        
 
     def actionOnGate1(self):
         taskList = []
         event = threading.Event()        
                 
-        url = self.config.getSwitchURL("mainGate")
+        url = self.__config.getSwitchURL("mainGate")
 
         taskList.append(Task("set","mainGate", "Otwieranie bramy wjazdowej"))
         taskList.append(Task("request",url))
@@ -117,14 +107,14 @@ class ActionClass(object):
         event.clear()
         ActionThread(event, taskList).start()
         event.wait()
-        self.__eventsData = self.config.getEvents()        
+        return self.__config.getEvents()        
         
 
     def actionOnGate1Perm(self):
         taskList = []
         event = threading.Event()        
         
-        url = self.config.getSwitchURL("mainGate")
+        url = self.__config.getSwitchURL("mainGate")
 
         taskList.append(Task("set","mainGate", "Otwieranie bramy wjazdowej"))
         taskList.append(Task("request",url))
@@ -136,43 +126,72 @@ class ActionClass(object):
         event.clear()
         ActionThread(event, taskList).start()
         event.wait()
-        self.__eventsData = self.config.getEvents()        
+        return self.__config.getEvents()        
 
                 
     def actionOnGetSprinklersStatus(self):
         internalEventList = []
-        self.__eventsData = self.config.getEvents(False)        
+
+	internalEventList.append(self.__config.getEvent("Sprinkler1"))
+	internalEventList.append(self.__config.getEvent("Sprinkler2"))
+	internalEventList.append(self.__config.getEvent("Sprinkler3"))
+
         # remove events not related to sprinklers
-        for item in self.__eventsData:
-            if item.name.find("Sprinkler") <> -1:
-                # update icon depands on device state
-                if item.state == "0":
-                    item.icon="img/off_mobile.png"
-                else:
-                    item.icon="img/on_mobile.png"
-                internalEventList.append(item)
-                self.__eventsData = internalEventList
+        for item in internalEventList:
+            # update icon depands on device state
+            if item.state == "0":
+                item.icon="img/off_mobile.png"
+            else:
+                item.icon="img/on_mobile.png"
+
+	return internalEventList
 
 
-    def __actionOnSprinkler(self, id):
+    def __actionOnSprinkler(self, name):
         #on/off sprinkler and update status in xml
-        pass
+        taskList = []
+        event = threading.Event()
+        url = self.__config.getSwitchURL(name)
+        url_off_all = self.__config.getSwitchURL("SprinklerOff")
+
+	xmlEvent = self.__config.getEvent(name)
+
+	#taskList.append(Task("request",url_off_all))
+	taskList.append(Task("clear","Sprinkler1"))
+	taskList.append(Task("clear","Sprinkler2"))
+	taskList.append(Task("clear","Sprinkler3"))
+	
+	if xmlEvent.state == "0":
+	    taskList.append(Task("set",name))
+	else:
+	    taskList.append(Task("notify",url))
+
+	#taskList.append(Task("request",url))
+	taskList.append(Task("delay",5))
+
+        event.clear()
+        ActionThread(event, taskList).start()
+        event.wait()
+
 
     def actionOnSprinkler1(self):
-        self.__actionOnSprinkler(1)
+        self.__actionOnSprinkler("Sprinkler1")
+	return self.actionOnGetSprinklersStatus()
 
     def actionOnSprinkler2(self):
-        self.__actionOnSprinkler(2)
+        self.__actionOnSprinkler("Sprinkler2")
+	return self.actionOnGetSprinklersStatus()
 
     def actionOnSprinkler3(self):
-        self.__actionOnSprinkler(3)
+        self.__actionOnSprinkler("Sprinkler3")
+	return self.actionOnGetSprinklersStatus()
 
     def actionOnGetActiveEvents(self):
         # get only activate events
-        self.__eventsData = self.config.getEvents()            
+        return self.__config.getEvents()
 
     def getEventsData(self,actionName):
         method_name = 'actionOn' + actionName
         method = getattr(self, method_name)
-        method()
-        return self.__eventsData
+        events = method()
+        return events

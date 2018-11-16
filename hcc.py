@@ -38,12 +38,11 @@ def action(actionName):
 def sprinkler(actionName):
 	action = ActionClass.ActionClass()
 	return render_template('sprinkler.html', sprinklerStatus = action.getEventsData(actionName))
-
-
 	
 @app.route("/menu")
 def menu():	
 	return render_template('menu.html')
+
 
 if (__name__ == "__main__"):
 	config = ConfigClass.ConfigClass()
