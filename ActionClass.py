@@ -9,7 +9,7 @@ class Task:
     type = ""
     value = ""
     desc = ""    
-    def __init__(self, type, value, desc = ""):
+    def __init__(self, type, value="", desc = ""):
         self.type = type
         self.value = value
         self.desc = desc        
@@ -49,16 +49,16 @@ class ActionThread(threading.Thread):
             if task.type == "set":
                 # After set state event to waiting thread have to be send
                 # Waiting thread may collect and disaply active events 
-		config = ConfigClass.ConfigClass()
-		ret_val = config.changeStatus(task.value, "1", task.desc)
+                config = ConfigClass.ConfigClass()
+                ret_val = config.changeStatus(task.value, "1", task.desc)
                 if ret_val <> "Conf_Change_ok":
-		    # Task is already in progress (state = 1), so just initialize exit thread
+                    # Task is already in progress (state = 1), so just initialize exit thread
                     exit = True
-		self.__event.set()
+                self.__event.set()
 
             if task.type == "clear":
-		config = ConfigClass.ConfigClass()
-		ret_val = config.changeStatus(task.value, "0", task.desc)
+                config = ConfigClass.ConfigClass()
+                ret_val = config.changeStatus(task.value, "0", task.desc)
 
             ActionThread.__mutex.release()
             
@@ -67,7 +67,7 @@ class ActionThread(threading.Thread):
                 time.sleep(task.value)
 
             if task.type == "notify":
-		self.__event.set()
+                self.__event.set()
 
             if exit == True:
                 break
@@ -132,9 +132,9 @@ class ActionClass(object):
     def actionOnGetSprinklersStatus(self):
         internalEventList = []
 
-	internalEventList.append(self.__config.getEvent("Sprinkler1"))
-	internalEventList.append(self.__config.getEvent("Sprinkler2"))
-	internalEventList.append(self.__config.getEvent("Sprinkler3"))
+        internalEventList.append(self.__config.getEvent("Sprinkler1"))
+        internalEventList.append(self.__config.getEvent("Sprinkler2"))
+        internalEventList.append(self.__config.getEvent("Sprinkler3"))
 
         # remove events not related to sprinklers
         for item in internalEventList:
@@ -144,7 +144,7 @@ class ActionClass(object):
             else:
                 item.icon="img/on_mobile.png"
 
-	return internalEventList
+        return internalEventList
 
 
     def __actionOnSprinkler(self, name):
@@ -154,20 +154,20 @@ class ActionClass(object):
         url = self.__config.getSwitchURL(name)
         url_off_all = self.__config.getSwitchURL("SprinklerOff")
 
-	xmlEvent = self.__config.getEvent(name)
+        xmlEvent = self.__config.getEvent(name)
 
-	#taskList.append(Task("request",url_off_all))
-	taskList.append(Task("clear","Sprinkler1"))
-	taskList.append(Task("clear","Sprinkler2"))
-	taskList.append(Task("clear","Sprinkler3"))
+        taskList.append(Task("request",url_off_all))
+        taskList.append(Task("clear","Sprinkler1"))
+        taskList.append(Task("clear","Sprinkler2"))
+        taskList.append(Task("clear","Sprinkler3"))
 	
-	if xmlEvent.state == "0":
-	    taskList.append(Task("set",name))
-	else:
-	    taskList.append(Task("notify",url))
+        if xmlEvent.state == "0":
+            taskList.append(Task("set",name))
+	    taskList.append(Task("delay",5))
+	    taskList.append(Task("request",url))
+        else:
+            taskList.append(Task("notify"))
 
-	#taskList.append(Task("request",url))
-	taskList.append(Task("delay",5))
 
         event.clear()
         ActionThread(event, taskList).start()
