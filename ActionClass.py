@@ -130,7 +130,7 @@ class ActionClass(object):
         return self.__config.getEvents()        
 
                 
-    def actionOnGetSprinklersStatus(self):
+    def actionOnGetSprinklersStatus(self, param = ""):
         internalEventList = []
 
         internalEventList.append(self.__config.getEvent("Sprinkler1"))
