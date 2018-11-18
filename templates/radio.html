@@ -10,12 +10,18 @@ td.menu  {padding: 50px; align: center}
 
 <table align="center" border="0" width="80%">
 
+<tr>
+	<td>
+    	<div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/dom.jpg') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('content', 'menu')"/>
+	</td>
+</tr>
+
 {% for element in radioMenu %}
 {% if element.id % 3 == 0 %}
 <tr>
 {% endif %}
 	<td class="menu">
-	    <div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/gate.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('infoBox', 'radio/Play?name={{ element.name }}')">
+	    <div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/play.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('infoBox', 'radio/Play?name={{ element.name }}')">
 	    	{{ element.name }}
 		</div>	    	
 	</td>
@@ -25,16 +31,21 @@ td.menu  {padding: 50px; align: center}
 {% endfor %}
 
 <tr>
+	<td colspan="3">
+		<hr>
+	</td>
+</tr>
+<tr>
 	<td class="menu">
-	    <div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/gate.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('infoBox', 'radio/VolumeUp')">
+	    <div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/down.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('infoBox', 'radio/VolumeUp')">
 	</td>
 	
 	<td class="menu">
-	    <div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/music.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('infoBox', 'radio/Stop')">
+	    <div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/stop.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('infoBox', 'radio/Stop')">
 	</td>    
 
 	<td class="menu">
-	    <div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/gate.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('infoBox', 'radio/VolumeDown')">
+	    <div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/up.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('infoBox', 'radio/VolumeDown')">
 	</td>    
 	    
 </tr>
