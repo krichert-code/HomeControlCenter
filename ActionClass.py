@@ -214,6 +214,24 @@ class ActionClass(object):
         event.wait()
         return self.__config.getEvents()        
 
+    def actionOnVolumeUp(self, param = ""):
+        taskList = []
+        radio = RadioClass.RadioClass()
+        radio_req = radio.getRadioVolumeUpRequest() 
+        taskList.append(Task("request",radio_req))
+        taskList.append(Task("delay",5))
+        ActionThread(event, taskList).start()
+        return self.__config.getEvents()        
+
+    def actionOnVolumeDown(self, param = ""):
+        taskList = []
+        radio = RadioClass.RadioClass()
+        radio_req = radio.getRadioVolumeDownRequest() 
+        taskList.append(Task("request",radio_req))
+        taskList.append(Task("delay",5))
+        ActionThread(event, taskList).start()
+        return self.__config.getEvents()        
+
     def actionOnGetActiveEvents(self, param = ""):
         # get only activate events
         return self.__config.getEvents()
