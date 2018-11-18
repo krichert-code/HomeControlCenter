@@ -216,6 +216,7 @@ class ActionClass(object):
 
     def actionOnVolumeUp(self, param = ""):
         taskList = []
+        event = threading.Event()
         radio = RadioClass.RadioClass()
         radio_req = radio.getRadioVolumeUpRequest() 
         taskList.append(Task("request",radio_req))
@@ -225,6 +226,7 @@ class ActionClass(object):
 
     def actionOnVolumeDown(self, param = ""):
         taskList = []
+        event = threading.Event()
         radio = RadioClass.RadioClass()
         radio_req = radio.getRadioVolumeDownRequest() 
         taskList.append(Task("request",radio_req))
