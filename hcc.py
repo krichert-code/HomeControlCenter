@@ -5,6 +5,7 @@ import WeatherClass
 import CalendarClass
 import ActionClass
 import ConfigClass
+import RadioClass
 
 app = Flask(__name__)
 
@@ -38,6 +39,19 @@ def action(actionName):
 def sprinkler(actionName):
 	action = ActionClass.ActionClass()
 	return render_template('sprinkler.html', sprinklerStatus = action.getEventsData(actionName))
+
+@app.route("/radio", methods=['GET', 'POST'])
+@app.route("/radio/<actionName>", methods=['GET', 'POST'])
+def radio(actionName=""):
+	radio = RadioClass.RadioClass()
+	if len(actionName) == 0:
+		return render_template('radio.html', radioMenu = radio.getRadioStations())
+	else:
+		stationName = request.args.get('name')		
+		action = ActionClass.ActionClass()
+		calendar = CalendarClass.CalendarClass()
+		allEvents = action.getEventsData(actionName, stationName) + calendar.getEventsData()						
+		return render_template('events.html', events = allEvents)
 	
 @app.route("/menu")
 def menu():	

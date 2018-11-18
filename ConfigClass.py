@@ -23,6 +23,25 @@ class ConfigClass(object):
         url = "http://"+ ip + url
         return url
 
+    def getRadioURL(self,name):
+        for item in ConfigClass.__xmldoc.getElementsByTagName('radio')[0].getElementsByTagName('element'):
+            if item.getAttribute('name') == name:
+                break
+        return item.getAttribute('url');
+                                
+    def getRadioSettings(self):
+        ip = ConfigClass.__xmldoc.getElementsByTagName('radio')[0].getAttribute('ip')
+        port = ConfigClass.__xmldoc.getElementsByTagName('radio')[0].getAttribute('port')
+        device = ip + ":" + port 
+        return device
+
+    def getRadioStationsName(self):
+        names = []                
+        for item in ConfigClass.__xmldoc.getElementsByTagName('radio')[0].getElementsByTagName('element'):
+            names.append(item.getAttribute('name'))            
+        return names
+
+
     def getEvent(self, name):
         xmldoc = minidom.parse('data/config.xml')
         eventData = None

@@ -4,6 +4,7 @@ import threading
 import EventClass
 import time
 import ConfigClass
+import RadioClass
 
 class Task:
     type = ""
@@ -80,7 +81,7 @@ class ActionClass(object):
     def __init__(self):
         self.__config = ConfigClass.ConfigClass()
         
-    def actionOnGate0(self):
+    def actionOnGate0(self, param = ""):
         taskList = []
         event = threading.Event()                
         url = self.__config.getSwitchURL("garage")
@@ -94,7 +95,7 @@ class ActionClass(object):
         event.wait()
         return self.__config.getEvents()        
 
-    def actionOnGate1(self):
+    def actionOnGate1(self, param = ""):
         taskList = []
         event = threading.Event()        
                 
@@ -110,7 +111,7 @@ class ActionClass(object):
         return self.__config.getEvents()        
         
 
-    def actionOnGate1Perm(self):
+    def actionOnGate1Perm(self, param = ""):
         taskList = []
         event = threading.Event()        
         
@@ -168,30 +169,57 @@ class ActionClass(object):
         else:
             taskList.append(Task("notify"))
 
-
         event.clear()
         ActionThread(event, taskList).start()
         event.wait()
 
 
-    def actionOnSprinkler1(self):
+    def actionOnSprinkler1(self, param = ""):
         self.__actionOnSprinkler("Sprinkler1")
-	return self.actionOnGetSprinklersStatus()
+        return self.actionOnGetSprinklersStatus()
 
-    def actionOnSprinkler2(self):
+    def actionOnSprinkler2(self, param = ""):
         self.__actionOnSprinkler("Sprinkler2")
-	return self.actionOnGetSprinklersStatus()
+        return self.actionOnGetSprinklersStatus()
 
-    def actionOnSprinkler3(self):
+    def actionOnSprinkler3(self, param = ""):
         self.__actionOnSprinkler("Sprinkler3")
-	return self.actionOnGetSprinklersStatus()
+        return self.actionOnGetSprinklersStatus()
 
-    def actionOnGetActiveEvents(self):
+    def actionOnPlay(self, param = ""):
+        taskList = []
+        event = threading.Event()
+        radio = RadioClass.RadioClass()
+        radio_station = radio.getRadioStation(param)
+        radio_req = radio.getRadioPlayRequest(param) 
+        taskList.append(Task("request",radio_req))
+        taskList.append(Task("set","radio", radio_station.name))
+        taskList.append(Task("delay",5))
+        event.clear()
+        ActionThread(event, taskList).start()
+        event.wait()
+        return self.__config.getEvents()        
+
+    def actionOnStop(self, param = ""):
+        taskList = []
+        event = threading.Event()
+        radio = RadioClass.RadioClass()
+        radio_req = radio.getRadioStopRequest() 
+        taskList.append(Task("request",radio_req))
+        taskList.append(Task("clear","radio"))
+        taskList.append(Task("notify"))        
+        taskList.append(Task("delay",5))
+        event.clear()
+        ActionThread(event, taskList).start()
+        event.wait()
+        return self.__config.getEvents()        
+
+    def actionOnGetActiveEvents(self, param = ""):
         # get only activate events
         return self.__config.getEvents()
 
-    def getEventsData(self,actionName):
+    def getEventsData(self,actionName, param = ""):
         method_name = 'actionOn' + actionName
         method = getattr(self, method_name)
-        events = method()
+        events = method(param)
         return events
