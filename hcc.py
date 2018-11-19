@@ -31,14 +31,12 @@ def temperatureInside():
 @app.route("/action/<actionName>")
 def action(actionName):	
 	action = ActionClass.ActionClass()
-	calendar = CalendarClass.CalendarClass()
-	allEvents = action.getEventsData(actionName) + calendar.getEventsData()		
-	return render_template('events.html', events = allEvents)
+	return render_template('events.html', events = action.getEventsData(actionName))
 	
 @app.route("/sprinkler/<actionName>")
 def sprinkler(actionName):
 	action = ActionClass.ActionClass()
-	return render_template('sprinkler.html', sprinklerStatus = action.getEventsData(actionName))
+	return render_template('sprinkler.html', sprinklerStatus = action.getEventsData(actionName, "", action.ActionEventSprinkler))
 
 @app.route("/radio", methods=['GET', 'POST'])
 @app.route("/radio/<actionName>", methods=['GET', 'POST'])
@@ -49,9 +47,7 @@ def radio(actionName=""):
 	else:
 		stationName = request.args.get('name')		
 		action = ActionClass.ActionClass()
-		calendar = CalendarClass.CalendarClass()
-		allEvents = action.getEventsData(actionName, stationName) + calendar.getEventsData()						
-		return render_template('events.html', events = allEvents)
+		return render_template('events.html', events = action.getEventsData(actionName, stationName))
 	
 @app.route("/menu")
 def menu():	

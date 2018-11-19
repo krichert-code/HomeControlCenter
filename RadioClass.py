@@ -1,4 +1,5 @@
 import ConfigClass
+import EventClass
 import requests
 import json
 
@@ -9,15 +10,17 @@ class StationClass:
     def __init__(self, id, name, url):
         self.id = id
         self.name = name
-        self.url = "/jsonrpc?request={%22jsonrpc%22:%222.0%22,%22id%22:%221%22,%22method%22:%22Player.Open%22,%22params%22:{%22item%22:{%22file%22:%22"+url+"%22}}}" 
+        self.url = url
         
         
 class RadioClass(object):
     __stations = []
     __settings = ""    
+    __play_req = "/jsonrpc?request={%22jsonrpc%22:%222.0%22,%22id%22:%221%22,%22method%22:%22Player.Open%22,%22params%22:{%22item%22:{%22file%22:%22PLAY_REQUEST%22}}}"
     __stop_req = "/jsonrpc?request={%22jsonrpc%22:%222.0%22,%22method%22:%22Player.Stop%22,%22params%22:{%20%22playerid%22:1},%22id%22:%221%22}"
     __get_volume_req = "/jsonrpc?request={%22jsonrpc%22:%222.0%22,%22method%22:%22Application.GetProperties%22,%22params%22:{%22properties%22:[%22volume%22]},%22id%22:1}"
     __set_volume_req = "/jsonrpc?request={%22jsonrpc%22: %222.0%22, %22method%22: %22Application.SetVolume%22, %22params%22: {%22volume%22: VOLUME_VALUE}, %22id%22: 1}"
+    __get_event_req = "/jsonrpc?request={%22jsonrpc%22: %222.0%22, %22method%22: %22Application.SetVolume%22, %22params%22: {%22volume%22: VOLUME_VALUE}, %22id%22: 1}"
                     
     def __init__(self):
         config = ConfigClass.ConfigClass()        
@@ -27,7 +30,9 @@ class RadioClass(object):
             RadioClass.__settings = config.getRadioSettings()
 	    
             for name in config.getRadioStationsName():
-                url = config.getRadioURL(name)
+                req = config.getRadioURL(name)
+		url = RadioClass.__play_req
+		url = url.replace("PLAY_REQUEST", req)
                 station = StationClass(id, name, url)
                 RadioClass.__stations.append( station )
                 id = id + 1
@@ -76,5 +81,18 @@ class RadioClass(object):
                 requests.get(req, verify = False, timeout = 3)                
         except requests.exceptions.RequestException as e:
             req = None                
+
+    def getEventsData(self):
+	events = []
+	req = self.getRadioDevice() + RadioClass.__get_event_req
+	try:
+            event = requests.get(req, verify = False, timeout = 3)            
+            data = json.loads(event.text)
+	    events.append(EventClass.EventClass(event['summary'], "", "radio"))
+            #new_value = data['result']['volume'] - 5
+        except requests.exceptions.RequestException as e:
+            events = []                
+	finally:
+	    return events
 
         
