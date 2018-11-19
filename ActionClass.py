@@ -88,12 +88,29 @@ class ActionClass(object):
 
     def __init__(self):
         self.__config = ConfigClass.ConfigClass()
+	
         
     def __isEventEnable(self, events, eventID):
 	if (events & eventID <> 0) or (events & ActionClass.ActionEventAll <> 0):
 	    return True
 	else:
 	    return False
+
+    def __updateEvents(self, events, filters):
+	if (filters & ActionClass.ActionEventAll <> 0):
+	    ActionClass.__actionEvents = events
+	else:
+	    # find events in global event list and update them, if not exist then add
+	    for item in events:
+		exist = False
+		for global_event_item in ActionClass.__actionEvents:
+		    if global_event_item.name == item.name:
+			exist = True
+			global_event_item = item
+			break
+		if exist == False:
+		    ActionClass.__actionEvent.append(item)
+
 
     def actionOnGate0(self, param = ""):
         taskList = []
@@ -205,7 +222,7 @@ class ActionClass(object):
         radio_req = radio.getRadioPlayRequest(param) 
         taskList.append(Task("request",radio_req))
         taskList.append(Task("notify"))        
-        taskList.append(Task("delay",5))
+        taskList.append(Task("delay",2))
         event.clear()
         ActionThread(event, taskList).start()
         event.wait()
@@ -217,7 +234,7 @@ class ActionClass(object):
         radio_req = radio.getRadioStopRequest()
         taskList.append(Task("request",radio_req))
         taskList.append(Task("notify"))        
-        taskList.append(Task("delay",5))
+        taskList.append(Task("delay",2))
         event.clear()
         ActionThread(event, taskList).start()
         event.wait()
@@ -227,7 +244,7 @@ class ActionClass(object):
         radio = RadioClass.RadioClass()
         radio_req = radio.getRadioVolumeUpRequest() 
         taskList.append(Task("request",radio_req))
-        taskList.append(Task("delay",5))
+        taskList.append(Task("delay",3))
         ActionThread(None, taskList).start()
 
     def actionOnVolumeDown(self, param = ""):
@@ -235,7 +252,7 @@ class ActionClass(object):
         radio = RadioClass.RadioClass()
         radio_req = radio.getRadioVolumeDownRequest() 
         taskList.append(Task("request",radio_req))
-        taskList.append(Task("delay",5))
+        taskList.append(Task("delay",3))
         ActionThread(None, taskList).start()
 
     def actionOnGetActiveEvents(self, param = ""):
@@ -243,15 +260,22 @@ class ActionClass(object):
 	pass
 
 #---------------------------------------------------------------------------------------------------------------
-    def getEventsData(self,actionName, param = "", filters = ActionEventAll):
+    def getEventsData(self,actionName, param = "", filters = ActionEventAll, returnOnlyRequestedEvents = False):
 	events = []
 
 	calendarEvents = CalendarClass.CalendarClass()
 	radioEvents = RadioClass.RadioClass()
 
-        method_name = 'actionOn' + actionName
-        method = getattr(self, method_name)
-        method(param)
+	if actionName <> None:
+    	    method_name = 'actionOn' + actionName
+    	    method = getattr(self, method_name)
+    	    method(param)
+
+	if self.__isEventEnable(filters, ActionClass.ActionEventRadio) == True:
+	    events = events + radioEvents.getEventsData()
+
+	if self.__isEventEnable(filters, ActionClass.ActionEventSprinkler) == True:
+	    events = events + self.actionOnGetSprinklersStatus()
 
 	if self.__isEventEnable(filters, ActionClass.ActionEventGeneric) == True:
 	    events = events + self.__config.getEvents()
@@ -259,12 +283,12 @@ class ActionClass(object):
 	if self.__isEventEnable(filters, ActionClass.ActionEventCalendar) == True:
 	    events = events + calendarEvents.getEventsData()
 
-	if self.__isEventEnable(filters, ActionClass.ActionEventRadio) == True:
-	    events = events + radioEvents.getEventsData()
+	self.__updateEvents(events, filters)
 
-	#if self.__isEventEnable(filters, ActionClass.ActionEventSprinkler) == True:
-	#    events = events + self.actionOnGetSprinklersStatus()
 
-	ActionClass.__actionEvents = events
+	if returnOnlyRequestedEvents == True:
+	    return events
+	else:
+	    return ActionClass.__actionEvents
 
-	return events
+

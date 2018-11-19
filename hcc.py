@@ -36,7 +36,7 @@ def action(actionName):
 @app.route("/sprinkler/<actionName>")
 def sprinkler(actionName):
 	action = ActionClass.ActionClass()
-	return render_template('sprinkler.html', sprinklerStatus = action.getEventsData(actionName, "", action.ActionEventSprinkler))
+	return render_template('sprinkler.html', sprinklerStatus = action.getEventsData(actionName, "", action.ActionEventSprinkler, True))
 
 @app.route("/radio", methods=['GET', 'POST'])
 @app.route("/radio/<actionName>", methods=['GET', 'POST'])
