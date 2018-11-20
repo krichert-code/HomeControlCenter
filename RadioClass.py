@@ -82,17 +82,17 @@ class RadioClass(object):
         except requests.exceptions.RequestException as e:
             req = None                
 
-    def getEventsData(self):
-	events = []
-	req = self.getRadioDevice() + RadioClass.__get_event_req
-	try:
+    def getEventsData(self, id):
+        events = []
+        req = self.getRadioDevice() + RadioClass.__get_event_req
+        try:
             event = requests.get(req, verify = False, timeout = 3)            
             data = json.loads(event.text)
-	    if len(data['result']['item']['label']) > 0:
-		events.append(EventClass.EventClass(data['result']['item']['label'], "", "radio"))
+            if len(data['result']['item']['label']) > 0:
+                events.append(EventClass.EventClass(data['result']['item']['label'], "", id))
         except requests.exceptions.RequestException as e:
             events = []                
-	finally:
-	    return events
+        finally:                    
+            return events
 
         

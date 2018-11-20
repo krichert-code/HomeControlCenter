@@ -23,6 +23,9 @@ class ConfigClass(object):
         url = "http://"+ ip + url
         return url
 
+    def getSwitchItemDesc(self, name):
+        return ConfigClass.__xmldoc.getElementsByTagName('switch')[0].getElementsByTagName(name)[0].getAttribute('desc')
+        
     def getRadioURL(self,name):
         for item in ConfigClass.__xmldoc.getElementsByTagName('radio')[0].getElementsByTagName('element'):
             if item.getAttribute('name') == name:
@@ -51,13 +54,13 @@ class ConfigClass(object):
 		break
 	return EventClass.EventClass(item.getAttribute('desc'),"",item.getAttribute('name'), item.getAttribute('state'))
 
-    def getEvents(self, onlyActiveEvents = True):
+    def getEvents(self, id, onlyActiveEvents = True):
         xmldoc = minidom.parse('data/config.xml')
         eventsData = []
         itemsList = xmldoc.getElementsByTagName('status')[0].getElementsByTagName('element')        
         for item in itemsList:
             if (item.getAttribute('state') == "1" and onlyActiveEvents == True) or (onlyActiveEvents == False):
-                eventsData.append(EventClass.EventClass(item.getAttribute('desc'),"",item.getAttribute('name'), item.getAttribute('state')))                
+                eventsData.append(EventClass.EventClass(item.getAttribute('desc'),"",id, item.getAttribute('state')))                
         return eventsData
 
 

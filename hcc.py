@@ -6,6 +6,7 @@ import CalendarClass
 import ActionClass
 import ConfigClass
 import RadioClass
+import SprinklerClass
 
 app = Flask(__name__)
 
@@ -35,7 +36,7 @@ def action(actionName):
 
 @app.route("/sprinkler", methods=['GET', 'POST'])	
 @app.route("/sprinkler/<actionName>")
-def sprinkler(actionName):
+def sprinkler(actionName=""):
 	sprinkler = SprinklerClass.SprinklerClass()
 	if len(actionName) == 0:
 	    return render_template('sprinkler.html', sprinklerElements = sprinkler.getSprinklerElements())
@@ -52,7 +53,7 @@ def radio(actionName=""):
 	else:
 		stationName = request.args.get('name')		
 		action = ActionClass.ActionClass()
-		return render_template('events.html', events = action.getEventsData(actionName, stationName))
+		return render_template('events.html', events = action.getEventsData(actionName, stationName, action.ActionEventRadio))
 	
 @app.route("/menu")
 def menu():	

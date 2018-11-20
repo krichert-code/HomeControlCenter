@@ -92,26 +92,30 @@ class ActionClass(object):
 	
         
     def __isEventEnable(self, events, eventID):
-	if (events & eventID <> 0) or (events & ActionClass.ActionEventAll <> 0):
-	    return True
-	else:
-	    return False
+        if (events & eventID <> 0) or (events & ActionClass.ActionEventAll <> 0):
+            return True
+        else:
+            return False
 
     def __updateEvents(self, events, filters):
-	if (filters & ActionClass.ActionEventAll <> 0):
-	    ActionClass.__actionEvents = events
-	else:
-	    # find events in global event list and update them, if not exist then add
-	    for item in events:
-		exist = False
-		for global_event_item in ActionClass.__actionEvents:
-		    if global_event_item.name == item.name:
-			exist = True
-			global_event_item = item
-			break
-		if exist == False:
-		    ActionClass.__actionEvents.append(item)
-
+        print "++++++++++++++++" + str (len(events))
+        if (filters & ActionClass.ActionEventAll <> 0):
+            ActionClass.__actionEvents = events
+        elif len(events) > 0:
+            # find events in global event list and update them, if not exist then add
+            for item in events:                
+                exist = False
+                for global_event_item in ActionClass.__actionEvents:
+                    if global_event_item.id == item.id:                                                
+                        ActionClass.__actionEvents.remove(global_event_item)                        
+                        break                    
+                                                            
+                ActionClass.__actionEvents.insert(0, item)
+        else:
+            for global_event_item in ActionClass.__actionEvents:
+                if global_event_item.id & filters <> 0:
+                    ActionClass.__actionEvents.remove(global_event_item)
+                    
 
     def actionOnGate0(self, param = ""):
         taskList = []
@@ -190,9 +194,6 @@ class ActionClass(object):
         xmlEvent = self.__config.getEvent(name)
 
         taskList.append(Task("request",url_off_all))
-        taskList.append(Task("clear","Sprinkler1"))
-        taskList.append(Task("clear","Sprinkler2"))
-        taskList.append(Task("clear","Sprinkler3"))
 	
         if xmlEvent.state == "0":
             taskList.append(Task("set",name))
@@ -221,9 +222,9 @@ class ActionClass(object):
         radio = RadioClass.RadioClass()
         radio_station = radio.getRadioStation(param)
         radio_req = radio.getRadioPlayRequest(param) 
-        taskList.append(Task("request",radio_req))
-        taskList.append(Task("notify"))        
-        taskList.append(Task("delay",2))
+        taskList.append(Task("request",radio_req))            
+        taskList.append(Task("delay",1))
+        taskList.append(Task("notify")) 
         event.clear()
         ActionThread(event, taskList).start()
         event.wait()
@@ -233,9 +234,9 @@ class ActionClass(object):
         event = threading.Event()
         radio = RadioClass.RadioClass()
         radio_req = radio.getRadioStopRequest()
-        taskList.append(Task("request",radio_req))
-        taskList.append(Task("notify"))        
-        taskList.append(Task("delay",2))
+        taskList.append(Task("request",radio_req))            
+        taskList.append(Task("delay",1))
+        taskList.append(Task("notify"))
         event.clear()
         ActionThread(event, taskList).start()
         event.wait()
@@ -244,16 +245,14 @@ class ActionClass(object):
         taskList = []
         radio = RadioClass.RadioClass()
         radio_req = radio.getRadioVolumeUpRequest() 
-        taskList.append(Task("request",radio_req))
-        taskList.append(Task("delay",3))
+        taskList.append(Task("request",radio_req))        
         ActionThread(None, taskList).start()
 
     def actionOnVolumeDown(self, param = ""):
         taskList = []
         radio = RadioClass.RadioClass()
         radio_req = radio.getRadioVolumeDownRequest() 
-        taskList.append(Task("request",radio_req))
-        taskList.append(Task("delay",3))
+        taskList.append(Task("request",radio_req))        
         ActionThread(None, taskList).start()
 
     def actionOnGetActiveEvents(self, param = ""):
@@ -262,35 +261,35 @@ class ActionClass(object):
 
 #---------------------------------------------------------------------------------------------------------------
     def getEventsData(self,actionName, param = "", filters = ActionEventAll, returnOnlyRequestedEvents = False):
-	events = []
+        events = []
 
-	calendarEvents = CalendarClass.CalendarClass()
-	radioEvents = RadioClass.RadioClass()
-	sprinklerEvent = SprinklerClass.SprinklerClass()
+        calendarEvents = CalendarClass.CalendarClass()
+        radioEvents = RadioClass.RadioClass()
+        sprinklerEvent = SprinklerClass.SprinklerClass()
 
-	if actionName <> None:
-    	    method_name = 'actionOn' + actionName
-    	    method = getattr(self, method_name)
-    	    method(param)
+        if actionName <> None:
+            method_name = 'actionOn' + actionName
+            method = getattr(self, method_name)
+            method(param)
 
-	if self.__isEventEnable(filters, ActionClass.ActionEventRadio) == True:
-	    events = events + radioEvents.getEventsData()
+        if self.__isEventEnable(filters, ActionClass.ActionEventRadio) == True:
+            events = events + radioEvents.getEventsData(self.ActionEventRadio)
 
-	if self.__isEventEnable(filters, ActionClass.ActionEventSprinkler) == True:
-	    events = events + sprinklerEvent.getEventsData()
+        if self.__isEventEnable(filters, ActionClass.ActionEventSprinkler) == True:
+            events = events + sprinklerEvent.getEventsData(self.ActionEventSprinkler)
 
-	if self.__isEventEnable(filters, ActionClass.ActionEventGeneric) == True:
-	    events = events + self.__config.getEvents()
+        if self.__isEventEnable(filters, ActionClass.ActionEventGeneric) == True:
+            events = events + self.__config.getEvents(self.ActionEventGeneric)
 
-	if self.__isEventEnable(filters, ActionClass.ActionEventCalendar) == True:
-	    events = events + calendarEvents.getEventsData()
+        if self.__isEventEnable(filters, ActionClass.ActionEventCalendar) == True:
+            events = events + calendarEvents.getEventsData(self.ActionEventCalendar)
 
-	self.__updateEvents(events, filters)
+        self.__updateEvents(events, filters)
 
 
-	if returnOnlyRequestedEvents == True:
-	    return events
-	else:
-	    return ActionClass.__actionEvents
+        if returnOnlyRequestedEvents == True:
+            return events
+        else:
+            return ActionClass.__actionEvents
 
 
