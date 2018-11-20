@@ -32,11 +32,16 @@ def temperatureInside():
 def action(actionName):	
 	action = ActionClass.ActionClass()
 	return render_template('events.html', events = action.getEventsData(actionName))
-	
+
+@app.route("/sprinkler", methods=['GET', 'POST'])	
 @app.route("/sprinkler/<actionName>")
 def sprinkler(actionName):
-	action = ActionClass.ActionClass()
-	return render_template('sprinkler.html', sprinklerStatus = action.getEventsData(actionName, "", action.ActionEventSprinkler, True))
+	sprinkler = SprinklerClass.SprinklerClass()
+	if len(actionName) == 0:
+	    return render_template('sprinkler.html', sprinklerElements = sprinkler.getSprinklerElements())
+	else:
+	    action = ActionClass.ActionClass()
+	    return render_template('events.html', sprinklerStatus = action.getEventsData(actionName, "", action.ActionEventSprinkler))
 
 @app.route("/radio", methods=['GET', 'POST'])
 @app.route("/radio/<actionName>", methods=['GET', 'POST'])

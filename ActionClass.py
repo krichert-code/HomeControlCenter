@@ -6,6 +6,7 @@ import time
 import ConfigClass
 import CalendarClass
 import RadioClass
+import SprinklerClass
 
 class Task:
     type = ""
@@ -109,7 +110,7 @@ class ActionClass(object):
 			global_event_item = item
 			break
 		if exist == False:
-		    ActionClass.__actionEvent.append(item)
+		    ActionClass.__actionEvents.append(item)
 
 
     def actionOnGate0(self, param = ""):
@@ -265,6 +266,7 @@ class ActionClass(object):
 
 	calendarEvents = CalendarClass.CalendarClass()
 	radioEvents = RadioClass.RadioClass()
+	sprinklerEvent = SprinklerClass.SprinklerClass()
 
 	if actionName <> None:
     	    method_name = 'actionOn' + actionName
@@ -275,7 +277,7 @@ class ActionClass(object):
 	    events = events + radioEvents.getEventsData()
 
 	if self.__isEventEnable(filters, ActionClass.ActionEventSprinkler) == True:
-	    events = events + self.actionOnGetSprinklersStatus()
+	    events = events + sprinklerEvent.getEventsData()
 
 	if self.__isEventEnable(filters, ActionClass.ActionEventGeneric) == True:
 	    events = events + self.__config.getEvents()
