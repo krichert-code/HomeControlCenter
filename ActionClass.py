@@ -1,8 +1,6 @@
 from xml.dom import minidom
 import ActionThread
 import EventClass
-#import time
-import threading
 import ConfigClass
 import CalendarClass
 import RadioClass
@@ -50,52 +48,42 @@ class ActionClass(object):
                     
 
     def actionOnGate0(self, param = ""):
-        taskList = []
-        event = threading.Event()                
         url = self.__config.getSwitchURL("garage")
+        threadTask = ActionThread.ActionThread()
+
+        threadTask.addTask("set","garage", "Otwieranie/Zamykanie bramy garazowej")
+        threadTask.addTask("request",url)
+        threadTask.addTask("delay",20)
+        threadTask.addTask("clear","garage", "No action")
+        threadTask.start()
+        threadTask.suspend()
         
-        taskList.append(Task("set","garage", "Otwieranie/Zamykanie bramy garazowej"))
-        taskList.append(Task("request",url))
-        taskList.append(Task("delay",20))
-        taskList.append(Task("clear","garage", "No action"))
-        event.clear()
-        ActionThread(event, taskList).start()
-        event.wait()
-        return self.__config.getEvents()        
-
     def actionOnGate1(self, param = ""):
-        taskList = []
-        event = threading.Event()        
-                
         url = self.__config.getSwitchURL("mainGate")
+        threadTask = ActionThread.ActionThread()
 
-        taskList.append(Task("set","mainGate", "Otwieranie bramy wjazdowej"))
-        taskList.append(Task("request",url))
-        taskList.append(Task("delay",20))
-        taskList.append(Task("clear","mainGate", "No action"))
-        event.clear()
-        ActionThread(event, taskList).start()
-        event.wait()
-        return self.__config.getEvents()        
+        threadTask.addTask("set","mainGate", "Otwieranie bramy wjazdowej")
+        threadTask.addTask("request",url)
+        threadTask.addTask("delay",20)
+        threadTask.addTask("clear","mainGate", "No action")
+        threadTask.start()
+        threadTask.suspend()
+
         
 
     def actionOnGate1Perm(self, param = ""):
-        taskList = []
-        event = threading.Event()        
-        
         url = self.__config.getSwitchURL("mainGate")
+        threadTask = ActionThread.ActionThread()
 
-        taskList.append(Task("set","mainGate", "Otwieranie bramy wjazdowej"))
-        taskList.append(Task("request",url))
-        taskList.append(Task("delay",25))
-        taskList.append(Task("request",url))
-        taskList.append(Task("delay",2))
-        taskList.append(Task("request",url))
-        taskList.append(Task("clear","mainGate", "No action"))
-        event.clear()
-        ActionThread(event, taskList).start()
-        event.wait()
-        return self.__config.getEvents()        
+        threadTask.addTask("set","mainGate", "Otwieranie bramy wjazdowej")
+        threadTask.addTask("request",url)
+        threadTask.addTask("delay",25)
+        threadTask.addTask("request",url)
+        threadTask.addTask("delay",2)
+        threadTask.addTask("request",url)
+        threadTask.addTask("clear","mainGate", "No action")
+        threadTask.start()
+	threadTask.addTask.suspend()
 
                 
     def actionOnGetSprinklersStatus(self, param = ""):
@@ -149,43 +137,42 @@ class ActionClass(object):
         self.__actionOnSprinkler("Sprinkler3")
 
     def actionOnPlay(self, param = ""):
-        taskList = []
-        event = threading.Event()
+        threadTask = ActionThread.ActionThread()
         radio = RadioClass.RadioClass()
-        radio_station = radio.getRadioStation(param)
-        radio_req = radio.getRadioPlayRequest(param) 
-        taskList.append(Task("request",radio_req))            
-        taskList.append(Task("delay",1))
-        taskList.append(Task("notify")) 
-        event.clear()
-        ActionThread(event, taskList).start()
-        event.wait()
+        radio_req = radio.getRadioPlayRequest(param)
+        threadTask.addTask("request",radio_req)
+        threadTask.addTask("delay",1)
+        threadTask.addTask("notify")
+        threadTask.start()
+	threadTask.suspend()
+
 
     def actionOnStop(self, param = ""):
-        taskList = []
-        event = threading.Event()
+        threadTask = ActionThread.ActionThread()
+
         radio = RadioClass.RadioClass()
         radio_req = radio.getRadioStopRequest()
-        taskList.append(Task("request",radio_req))            
-        taskList.append(Task("delay",1))
-        taskList.append(Task("notify"))
-        event.clear()
-        ActionThread(event, taskList).start()
-        event.wait()
+        threadTask.addTask("request",radio_req)            
+        threadTask.addTask("delay",1)
+        threadTask.addTask("notify")
+        threadTask.start()
+        threadTask.suspend()
 
     def actionOnVolumeUp(self, param = ""):
-        taskList = []
+        threadTask = ActionThread.ActionThread()
+
         radio = RadioClass.RadioClass()
         radio_req = radio.getRadioVolumeUpRequest() 
-        taskList.append(Task("request",radio_req))        
-        ActionThread(None, taskList).start()
+        threadTask.addTask("request",radio_req)        
+        threadTask.start()
 
     def actionOnVolumeDown(self, param = ""):
-        taskList = []
+        threadTask = ActionThread.ActionThread()
+
         radio = RadioClass.RadioClass()
         radio_req = radio.getRadioVolumeDownRequest() 
-        taskList.append(Task("request",radio_req))        
-        ActionThread(None, taskList).start()
+        threadTask.addTask("request",radio_req)        
+        threadTask.start()
 
     def actionOnGetActiveEvents(self, param = ""):
         # get only activate events

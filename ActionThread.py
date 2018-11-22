@@ -16,13 +16,20 @@ class ActionThread(threading.Thread):
     __taskList = None
     __mutex = None    
     
-    def __init__(self, event, tasks):
+    def __init__(self):
         threading.Thread.__init__(self)
-        self.__event = event
-        self.__taskList = tasks        
+        self.__event = threading.Event()
+	self.__event.clear()
+        self.__taskList = []
         if ActionThread.__mutex == None:	    
             ActionThread.__mutex = threading.Lock()
         
+
+    def suspend(self):
+	self.__event.wait()
+
+    def addTask(self, type, value="", desc=""):
+	self.__taskList.append(Task(type,value,desc))
 
     def run(self):
         exit = False
@@ -40,7 +47,7 @@ class ActionThread(threading.Thread):
                 except requests.exceptions.RequestException as e:
                     req = None                
                 finally:
-                    if req == None or req.text <> "OK":                    
+                    if req == None:                    
                         forceClean = True
                     
             if task.type == "set":
