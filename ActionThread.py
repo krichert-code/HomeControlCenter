@@ -1,6 +1,7 @@
 import requests
 import threading
 import time
+import ConfigClass
 
 class Task:
     type = ""
