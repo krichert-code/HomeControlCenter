@@ -39,7 +39,7 @@ def action(actionName):
 def sprinkler(actionName=""):
 	sprinkler = SprinklerClass.SprinklerClass()
 	if len(actionName) == 0:
-	    return render_template('sprinkler.html', sprinklerElements = sprinkler.getSprinklerElements())
+	    return render_template('sprinkler.html', sprinklerElements = sprinkler.getSprinklerEvents())
 	else:
 	    action = ActionClass.ActionClass()
 	    return render_template('events.html', sprinklerStatus = action.getEventsData(actionName, "", action.ActionEventSprinkler))
