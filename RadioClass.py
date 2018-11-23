@@ -88,7 +88,10 @@ class RadioClass(object):
         try:
             event = requests.get(req, verify = False, timeout = 3)            
             data = json.loads(event.text)
-            if len(data['result']['item']['label']) > 0:
+
+            if len(data['result']['item']['title']) > 0:
+                events.append(EventClass.EventClass(data['result']['item']['title'], "", id))
+            elsif len(data['result']['item']['label']) > 0:
                 events.append(EventClass.EventClass(data['result']['item']['label'], "", id))
         except requests.exceptions.RequestException as e:
             events = []                
