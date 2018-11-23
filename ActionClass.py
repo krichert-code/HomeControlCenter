@@ -28,7 +28,6 @@ class ActionClass(object):
             return False
 
     def __updateEvents(self, events, filters):
-        print "++++++++++++++++" + str (len(events))
         if (filters & ActionClass.ActionEventAll <> 0):
             ActionClass.__actionEvents = events
         elif len(events) > 0:
@@ -93,11 +92,11 @@ class ActionClass(object):
 	url_off = sprinkler.getSprinklersOffRequest()
 	url = sprinkler.getSprinklerOnRequest(param)
 	status_val = sprinkler.getSprinklerStatus()
-	
         threadTask.addTask("request", url_off)
 	threadTask.addTask("delay", 1)
-	if status_val <> int(param) and status_val > 0:
+	if status_val <> int(param) and status_val >= 0:
     	    threadTask.addTask("request", url)
+    	    threadTask.addTask("delay", 2)
         threadTask.addTask("notify")
         threadTask.start()
 	threadTask.suspend()
@@ -172,7 +171,6 @@ class ActionClass(object):
             events = events + calendarEvents.getEventsData(self.ActionEventCalendar)
 
         self.__updateEvents(events, filters)
-
 
         if returnOnlyRequestedEvents == True:
             return events

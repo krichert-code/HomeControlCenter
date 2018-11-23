@@ -1,7 +1,7 @@
 import ConfigClass
 import EventClass
 import ActionThread
-
+import time
 
 class SprinklerClass(object):
 
@@ -51,9 +51,9 @@ class SprinklerClass(object):
 
 
     def getSprinklerStatus(self):
-	sprinklerStatus1 = (1 << 1)
+	sprinklerStatus3 = (1 << 1)
 	sprinklerStatus2 = (1 << 2)
-	sprinklerStatus3 = (1 << 3)
+	sprinklerStatus1 = (1 << 3)
 	ret_val = 0
 	# getting status have to be perform by ActionThread class because switch may handle only one request in the same time
         config = ConfigClass.ConfigClass()
@@ -63,7 +63,6 @@ class SprinklerClass(object):
 	threadStatus.addTask("notify")
 	threadStatus.start()
 	threadStatus.suspend()
-
 	try:
 	    status = int(threadStatus.getResponse())
 	    if (status & sprinklerStatus1 <> 0):

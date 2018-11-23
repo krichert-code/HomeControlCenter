@@ -19,7 +19,7 @@ td.menu  {padding: 50px; align: center}
 
 {% for event in sprinklerElements %}
     <tr>
-	<td class="event" ><div style="height:60px;width:60px;background-image:url({{ url_for('static', filename = event.icon ) }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('infoBox', 'sprinkler/SprinklerOn?param={{ event.name }}');"/></td>
+	<td class="event" ><div style="height:60px;width:60px;background-image:url({{ url_for('static', filename = event.icon ) }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('infoBox', 'sprinkler/SprinklerOn?param={{ event.name }}')"/></td>
 	<td class="event" >{{ event.desc }}</td>
     </tr>
 {% endfor %}
