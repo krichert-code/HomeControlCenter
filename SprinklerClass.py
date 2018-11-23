@@ -1,7 +1,6 @@
 import ConfigClass
 import EventClass
 import ActionThread
-import requests
 
 
 class SprinklerClass(object):
@@ -12,54 +11,86 @@ class SprinklerClass(object):
 
     def getSprinklerEvents(self):
         events = []
+	status = self.getSprinklerStatus()
         config = ConfigClass.ConfigClass()
         desc = config.getSwitchItemDesc("Sprinkler1")
 	item = EventClass.EventClass(desc)
-	item.setEventName("Sprinkler1")
-	item.setEventIcon("img/off_mobile.png")
+	item.setEventName("1")
+	if status == 1:
+	    item.setEventIcon("img/on_mobile.png")
+	else:
+	    item.setEventIcon("img/off_mobile.png")
         events.append(item)
 
         desc = config.getSwitchItemDesc("Sprinkler2")
 	item = EventClass.EventClass(desc)
-	item.setEventName("Sprinkler2")
-	item.setEventIcon("img/off_mobile.png")
+	item.setEventName("2")
+	if status == 2:
+	    item.setEventIcon("img/on_mobile.png")
+	else:
+	    item.setEventIcon("img/off_mobile.png")
         events.append(item)
 
         desc = config.getSwitchItemDesc("Sprinkler3")
 	item = EventClass.EventClass(desc)
-	item.setEventName("Sprinkler3")
-	item.setEventIcon("img/off_mobile.png")
+	item.setEventName("3")
+	if status == 3:
+	    item.setEventIcon("img/on_mobile.png")
+	else:
+	    item.setEventIcon("img/off_mobile.png")
         events.append(item)
-
         return events
 
     def getSprinklersOffRequest(self):
         config = ConfigClass.ConfigClass()
         return config.getSwitchURL("SprinklerOff")
 	
+    def getSprinklerOnRequest(self,sprinklerId):
+        config = ConfigClass.ConfigClass()
+        return config.getSwitchURL("Sprinkler"+sprinklerId)
+
+
+    def getSprinklerStatus(self):
+	sprinklerStatus1 = (1 << 1)
+	sprinklerStatus2 = (1 << 2)
+	sprinklerStatus3 = (1 << 3)
+	ret_val = 0
+	# getting status have to be perform by ActionThread class because switch may handle only one request in the same time
+        config = ConfigClass.ConfigClass()
+	status_url = config.getSwitchURL("SprinklerStatus")
+	threadStatus = ActionThread.ActionThread()
+	threadStatus.addTask("request",status_url)
+	threadStatus.addTask("notify")
+	threadStatus.start()
+	threadStatus.suspend()
+
+	try:
+	    status = int(threadStatus.getResponse())
+	    if (status & sprinklerStatus1 <> 0):
+		ret_val = 1
+	    if (status & sprinklerStatus2 <> 0):
+		ret_val = 2
+	    if (status & sprinklerStatus3 <> 0):
+		ret_val = 3
+	except:
+	    ret_val = -1
+	    
+	return ret_val
+
 
     def getEventsData(self, id):
         events = []
-	sprinkler1Status1 = (1 << 1)
-	sprinkler1Status2 = (1 << 2)
-	sprinkler1Status3 = (1 << 3)
-	status = 0
-        config = ConfigClass.ConfigClass()
-        url_status = config.getSwitchURL("SprinklerStatus")
+	status = self.getSprinklerStatus()
 
-        try:
-            event = requests.get(url_status, verify = False, timeout = 3)
-	    status = int(event.text)
-	    if (status & sprinklerStatus1) <> 0:
-        	events.append(EventClass.EventClass("System zraszaczy 1 jest wlaczony", "", id))
-	    elif (status & sprinklerStatus2) <> 0:
-        	events.append(EventClass.EventClass("System zraszaczy 2 jest wlaczony", "", id))
-	    elif (status & sprinklerStatus3) <> 0:
-        	events.append(EventClass.EventClass("System zraszaczy 3 jest wlaczony", "", id))
+	if status == -1:
+	    events.append(EventClass.EventClass("System zraszaczy - Blad krytyczny", "", id))
+	elif status == 1:
+	    events.append(EventClass.EventClass("System zraszaczy 1 jest wlaczony", "", id))
+	elif status == 2:
+	    events.append(EventClass.EventClass("System zraszaczy 2 jest wlaczony", "", id))
+	elif status == 3:
+    	    events.append(EventClass.EventClass("System zraszaczy 3 jest wlaczony", "", id))
 	    
-        except requests.exceptions.RequestException as e:
-            events = []
-        finally:
-            return events
+        return events
 
 

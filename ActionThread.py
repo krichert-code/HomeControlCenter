@@ -16,6 +16,7 @@ class ActionThread(threading.Thread):
     __event = None
     __taskList = None
     __mutex = None    
+    __response = ""
     
     def __init__(self):
         threading.Thread.__init__(self)
@@ -32,6 +33,9 @@ class ActionThread(threading.Thread):
     def addTask(self, type, value="", desc=""):
 	self.__taskList.append(Task(type,value,desc))
 
+    def getResponse(self):
+	return self.__response
+
     def run(self):
         exit = False
         forceClean = False
@@ -45,8 +49,10 @@ class ActionThread(threading.Thread):
                     # Wait up to 3 second for response
                     # If no response then initialize 'cleaning' - set forceClean
                     req = requests.get(task.value, verify = False, timeout = 3)
+		    self.__response = req.text
                 except requests.exceptions.RequestException as e:
                     req = None                
+		    self.__response = ""
                 finally:
                     if req == None:                    
                         forceClean = True

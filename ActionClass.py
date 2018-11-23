@@ -83,58 +83,26 @@ class ActionClass(object):
         threadTask.addTask("request",url)
         threadTask.addTask("clear","mainGate", "No action")
         threadTask.start()
-	threadTask.addTask.suspend()
+	threadTask.suspend()
 
                 
-    def actionOnGetSprinklersStatus(self, param = ""):
-        internalEventList = []
+    def actionOnSprinklerOn(self, param = ""):
+	threadTask = ActionThread.ActionThread()
+	sprinkler = SprinklerClass.SprinklerClass()
 
-        internalEventList.append(self.__config.getEvent("Sprinkler1"))
-        internalEventList.append(self.__config.getEvent("Sprinkler2"))
-        internalEventList.append(self.__config.getEvent("Sprinkler3"))
-
-        # remove events not related to sprinklers
-        for item in internalEventList:
-            # update icon depands on device state
-            if item.state == "0":
-                item.icon="img/off_mobile.png"
-            else:
-                item.icon="img/on_mobile.png"
-
-        return internalEventList
-
-
-    def __actionOnSprinkler(self, name):
-        #on/off sprinkler and update status in xml
-        taskList = []
-        event = threading.Event()
-        url = self.__config.getSwitchURL(name)
-        url_off_all = self.__config.getSwitchURL("SprinklerOff")
-
-        xmlEvent = self.__config.getEvent(name)
-
-        taskList.append(Task("request",url_off_all))
+	url_off = sprinkler.getSprinklersOffRequest()
+	url = sprinkler.getSprinklerOnRequest(param)
+	status_val = sprinkler.getSprinklerStatus()
 	
-        if xmlEvent.state == "0":
-            taskList.append(Task("set",name))
-	    taskList.append(Task("delay",5))
-	    taskList.append(Task("request",url))
-        else:
-            taskList.append(Task("notify"))
+        threadTask.addTask("request", url_off)
+	threadTask.addTask("delay", 1)
+	if status_val <> int(param) and status_val > 0:
+    	    threadTask.addTask("request", url)
+        threadTask.addTask("notify")
+        threadTask.start()
+	threadTask.suspend()
 
-        event.clear()
-        ActionThread(event, taskList).start()
-        event.wait()
-
-
-    def actionOnSprinkler1(self, param = ""):
-        self.__actionOnSprinkler("Sprinkler1")
-
-    def actionOnSprinkler2(self, param = ""):
-        self.__actionOnSprinkler("Sprinkler2")
-
-    def actionOnSprinkler3(self, param = ""):
-        self.__actionOnSprinkler("Sprinkler3")
+	
 
     def actionOnPlay(self, param = ""):
         threadTask = ActionThread.ActionThread()

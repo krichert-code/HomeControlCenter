@@ -21,7 +21,7 @@ def weather():
 
 @app.route("/weatherForecast")
 def weatherForecast():
-	obj = WeatherClass.WeatherClass()	#	
+	obj = WeatherClass.WeatherClass()
 	return render_template('weatherForecast.html', weather = obj.getWeatherForecast())
 
 @app.route("/tempInside")
@@ -35,14 +35,15 @@ def action(actionName):
 	return render_template('events.html', events = action.getEventsData(actionName))
 
 @app.route("/sprinkler", methods=['GET', 'POST'])	
-@app.route("/sprinkler/<actionName>")
+@app.route("/sprinkler/<actionName>", methods=['GET', 'POST'])
 def sprinkler(actionName=""):
 	sprinkler = SprinklerClass.SprinklerClass()
 	if len(actionName) == 0:
 	    return render_template('sprinkler.html', sprinklerElements = sprinkler.getSprinklerEvents())
 	else:
+	    sprinklerName = request.args.get('param')		
 	    action = ActionClass.ActionClass()
-	    return render_template('events.html', sprinklerStatus = action.getEventsData(actionName, "", action.ActionEventSprinkler))
+	    return render_template('events.html', sprinklerStatus = action.getEventsData(actionName, sprinklerName, action.ActionEventSprinkler))
 
 @app.route("/radio", methods=['GET', 'POST'])
 @app.route("/radio/<actionName>", methods=['GET', 'POST'])
@@ -51,7 +52,7 @@ def radio(actionName=""):
 	if len(actionName) == 0:
 		return render_template('radio.html', radioMenu = radio.getRadioStations())
 	else:
-		stationName = request.args.get('name')		
+		stationName = request.args.get('param')		
 		action = ActionClass.ActionClass()
 		return render_template('events.html', events = action.getEventsData(actionName, stationName, action.ActionEventRadio))
 	
