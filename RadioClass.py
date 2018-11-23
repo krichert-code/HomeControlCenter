@@ -91,7 +91,7 @@ class RadioClass(object):
 
             if len(data['result']['item']['title']) > 0:
                 events.append(EventClass.EventClass(data['result']['item']['title'], "", id))
-            elsif len(data['result']['item']['label']) > 0:
+            elif len(data['result']['item']['label']) > 0:
                 events.append(EventClass.EventClass(data['result']['item']['label'], "", id))
         except requests.exceptions.RequestException as e:
             events = []                
