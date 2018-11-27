@@ -13,6 +13,7 @@ class EventClass:
         self.desc = desc
         self.date = date
         self.state = state
+	self.icon = 'calendar'
 
     def setEventName(self, name):
 	self.name = name

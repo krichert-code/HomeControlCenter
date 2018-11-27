@@ -12,7 +12,7 @@ td.event  {padding: 10px; align: center}
 
 {% for event in events %}
 <tr>
-	<td class="event" ><div style="height:60px;width:60px;background-image:url({{ url_for('static', filename = 'img/calendar.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;"/></td>
+	<td class="event" ><div style="height:60px;width:60px;background-image:url({{ url_for('static', filename = 'img/'+event.icon+'.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;"/></td>
 
 	<td class="event" >{{ event.desc }}</td>
 	<td class="event" >{{ event.date }}</td>
