@@ -7,6 +7,7 @@ import ActionClass
 import ConfigClass
 import RadioClass
 import SprinklerClass
+import HccDeamonClass
 
 app = Flask(__name__)
 
@@ -64,4 +65,11 @@ def menu():
 if (__name__ == "__main__"):
 	config = ConfigClass.ConfigClass()
 	config.initializeConfigData()
+
+	hccDeamon = HccDeamonClass.HccDeamonClass()
+	hccDeamon.start()
+
 	app.run(host="0.0.0.0", port = 8002)
+
+	hccDeamon.stop()
+	hccDeamon.join()
