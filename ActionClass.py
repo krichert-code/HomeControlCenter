@@ -141,9 +141,6 @@ class ActionClass(object):
         threadTask.addTask("request",radio_req)        
         threadTask.start()
 
-    def actionOnGetActiveEvents(self, param = ""):
-        # get only activate events
-	pass
 
 #---------------------------------------------------------------------------------------------------------------
     def getEventsData(self,actionName, param = "", filters = ActionEventAll, returnOnlyRequestedEvents = False):
@@ -153,7 +150,7 @@ class ActionClass(object):
         radioEvents = RadioClass.RadioClass()
         sprinklerEvent = SprinklerClass.SprinklerClass()
 
-        if actionName <> None:
+        if len(actionName) > 0:
             method_name = 'actionOn' + actionName
             method = getattr(self, method_name)
             method(param)
@@ -171,6 +168,7 @@ class ActionClass(object):
             events = events + calendarEvents.getEventsData(self.ActionEventCalendar)
 
         self.__updateEvents(events, filters)
+
 
         if returnOnlyRequestedEvents == True:
             return events
