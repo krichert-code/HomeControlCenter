@@ -29,10 +29,8 @@ def temperatureInside():
 	obj = WeatherClass.WeatherClass()	
 	return render_template('heater.html', heater = obj.getCurrentTemperatureInside())
 
-
-@app.route("/action")
 @app.route("/action/<actionName>")
-def action(actionName=""):
+def action(actionName):	
 	action = ActionClass.ActionClass()
 	return render_template('events.html', events = action.getEventsData(actionName))
 
