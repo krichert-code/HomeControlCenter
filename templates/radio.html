@@ -21,9 +21,8 @@ td.menu  {padding: 50px; align: center}
 <tr>
 {% endif %}
 	<td class="menu">
-	    <div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/play.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('infoBox', 'radio/Play?param={{ element.name }}')">
-	    	{{ element.name }}
-		</div>	    	
+	    <div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/play.png') }});  background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('infoBox', 'radio/Play?param={{ element.name }}')"></div>
+	    <p style="font-size:20px; color: orange; text-align: center;">{{ element.name }}</p>		    	
 	</td>
 {% if element.id % 3 == 2 %}
 </tr>

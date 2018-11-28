@@ -90,9 +90,12 @@ class RadioClass(object):
             data = json.loads(event.text)
 
             if len(data['result']['item']['title']) > 0:
-                events.append(EventClass.EventClass(data['result']['item']['title'], "", id))
+		state = EventClass.EventClass(data['result']['item']['title'], "", id)
             elif len(data['result']['item']['label']) > 0:
-                events.append(EventClass.EventClass(data['result']['item']['label'], "", id))
+		state = EventClass.EventClass(data['result']['item']['label'], "", id)
+
+	    state.setEventIcon('radio')                
+	    events.append(state)
         except requests.exceptions.RequestException as e:
             events = []                
         finally:                    

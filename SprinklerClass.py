@@ -80,16 +80,20 @@ class SprinklerClass(object):
     def getEventsData(self, id):
         events = []
 	status = self.getSprinklerStatus()
+	event = None
 
 	if status == -1:
-	    events.append(EventClass.EventClass("System zraszaczy - Blad krytyczny", "", id))
+	    event = EventClass.EventClass("System zraszaczy - Blad krytyczny", "", id)
 	elif status == 1:
-	    events.append(EventClass.EventClass("System zraszaczy 1 jest wlaczony", "", id))
+	    event = EventClass.EventClass("System zraszaczy 1 jest wlaczony", "", id)
 	elif status == 2:
-	    events.append(EventClass.EventClass("System zraszaczy 2 jest wlaczony", "", id))
+	    event =EventClass.EventClass("System zraszaczy 2 jest wlaczony", "", id)
 	elif status == 3:
-    	    events.append(EventClass.EventClass("System zraszaczy 3 jest wlaczony", "", id))
+    	    event = EventClass.EventClass("System zraszaczy 3 jest wlaczony", "", id)
 	    
+	if event <> None:
+	    event.setEventIcon('garden')
+	    events.append(event)
         return events
 
 
