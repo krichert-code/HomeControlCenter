@@ -44,6 +44,8 @@ class ConfigClass(object):
             names.append(item.getAttribute('name'))            
         return names
 
+    def getAlarmSetting(self, name):
+        return ConfigClass.__xmldoc.getElementsByTagName('alarm')[0].getElementsByTagName(name)[0].getAttribute('value')
 
     def getEvent(self, name):
         xmldoc = minidom.parse('data/config.xml')

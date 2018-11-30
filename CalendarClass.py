@@ -16,7 +16,9 @@ class CalendarClass:
         events = data['items']
                
         for element in events:
-            self.__eventsData.append(EventClass.EventClass(element['summary'], element['start']['date'], id))
+	    event = EventClass.EventClass(element['summary'], element['start']['date'], id)
+	    event.setEventIcon('calendar')
+            self.__eventsData.append(event)
                 
     def getEventsData(self,id ):
         self.__getDataFromFile("data/holidays.json", id)

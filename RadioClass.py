@@ -56,6 +56,14 @@ class RadioClass(object):
                 break        
         return station
     
+    def setRadioVolume(self, volume):
+        try:
+            req = self.getRadioDevice() + RadioClass.__set_volume_req
+            req = req.replace("VOLUME_VALUE", str(volume))
+            requests.get(req, verify = False, timeout = 3)                
+        except requests.exceptions.RequestException as e:
+            req = None                
+
     def getRadioVolumeUpRequest(self):        
         req = self.getRadioDevice() + RadioClass.__get_volume_req
         try:
@@ -84,18 +92,25 @@ class RadioClass(object):
 
     def getEventsData(self, id):
         events = []
-        req = self.getRadioDevice() + RadioClass.__get_event_req
+	event_text = ""
         try:
+            req = self.getRadioDevice() + RadioClass.__get_event_req
             event = requests.get(req, verify = False, timeout = 3)            
             data = json.loads(event.text)
 
             if len(data['result']['item']['title']) > 0:
-		state = EventClass.EventClass(data['result']['item']['title'], "", id)
+		event_text = data['result']['item']['title']
             elif len(data['result']['item']['label']) > 0:
-		state = EventClass.EventClass(data['result']['item']['label'], "", id)
-
-	    state.setEventIcon('radio')                
-	    events.append(state)
+		event_text = data['result']['item']['label']
+	    
+	    if len(event_text) > 0:
+		req = self.getRadioDevice() + RadioClass.__get_volume_req
+    		volume = requests.get(req, verify = False, timeout = 3)            
+        	data = json.loads(volume.text)
+        	event_text = event_text + "[" + str(data['result']['volume']) + " %]"
+		state = EventClass.EventClass(event_text, "", id)
+		state.setEventIcon('radio')                
+		events.append(state)
         except requests.exceptions.RequestException as e:
             events = []                
         finally:                    
