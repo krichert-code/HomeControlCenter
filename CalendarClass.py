@@ -7,7 +7,7 @@ import EventClass
 class CalendarClass:
     __eventsData = []
     __get_my_cal_req = "https://www.googleapis.com/calendar/v3/calendars/krzysiek.richert@gmail.com/events?timeMax=STOP_DATET00%3A00%3A00-07%3A00&timeMin=START_DATET00%3A00%3A00-07%3A00&key=AIzaSyDepBebtgRz7DIOR60j4Uu0Y-CnOpy22fo"
-    __get_holdays_req = "https://www.googleapis.com/calendar/v3/calendars/polish@holiday.calendar.google.com/events?timeMax=STOP_DATET00%3A00%3A00-07%3A00&timeMin=START_DATET00%3A00%3A00-07%3A00&key=AIzaSyDepBebtgRz7DIOR60j4Uu0Y-CnOpy22fo"
+    __get_holidays_req = "https://www.googleapis.com/calendar/v3/calendars/polish@holiday.calendar.google.com/events?timeMax=STOP_DATET00%3A00%3A00-07%3A00&timeMin=START_DATET00%3A00%3A00-07%3A00&key=AIzaSyDepBebtgRz7DIOR60j4Uu0Y-CnOpy22fo"
 
     __myCalFile = "data/mycal.json"
     __holidaysCalFile = "data/holidays.json"
@@ -32,12 +32,23 @@ class CalendarClass:
 	    start_date = datetime.now().strftime('%Y-%m-%d')
 	    delta = timedelta(days=7)
 	    stop_date = (datetime.now() + delta).strftime('%Y-%m-%d')
+
             req = CalendarClass.__get_my_cal_req
             req = req.replace("START_DATE", start_date)
             req = req.replace("STOP_DATE", stop_date)
-	    #print req
-            #result = requests.get(req, verify = False, timeout = 5)
-	    #print result.text
+	    resp = requests.get(req, verify = False, timeout = 5)
+	    data = json.loads(resp.text)
+	    with open(CalendarClass.__myCalFile, 'w') as outfile:
+		json.dump(data, outfile)
+
+            req = CalendarClass.__get_holidays_req
+            req = req.replace("START_DATE", start_date)
+            req = req.replace("STOP_DATE", stop_date)
+	    resp = requests.get(req, verify = False, timeout = 5)
+	    data = json.loads(resp.text)
+	    with open(CalendarClass.__holidaysCalFile, 'w') as outfile:
+		json.dump(data, outfile)
+
 	except requests.exceptions.RequestException as e:
             pass
 

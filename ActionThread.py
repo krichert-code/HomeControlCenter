@@ -48,7 +48,7 @@ class ActionThread(threading.Thread):
                 try:
                     # Wait up to 3 second for response
                     # If no response then initialize 'cleaning' - set forceClean
-                    req = requests.get(task.value, verify = False, timeout = 3)
+                    req = requests.get(task.value, verify = False, timeout = 10)
 		    self.__response = req.text
                 except requests.exceptions.RequestException as e:
                     req = None                

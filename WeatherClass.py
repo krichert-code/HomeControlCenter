@@ -22,6 +22,9 @@ class WeatherClass(object):
     __weatherData = {}
     __weatherForecast = []
     __heater = {}
+    __currWeatherFile = "data/weather.xml"
+    __hourlyWeatherFile = "data/weatherHourly.xml"
+    __dailyWeatherFile = "data/weatherDaily.xml"
     
     # The class "constructor" - It's actually an initializer
     def __init__(self):
@@ -30,7 +33,7 @@ class WeatherClass(object):
         self.__weatherForecast = []
         
     def getCurrentWeather(self):
-        xmldoc = minidom.parse('data/weather.xml')
+        xmldoc = minidom.parse(WeatherClass.__currWeatherFile)
         
         item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('icon_url')        
         self.__weatherData['icon']=item[0].childNodes[0].nodeValue
@@ -59,6 +62,7 @@ class WeatherClass(object):
     def getWeatherForecast(self):
         id = 0
         skip = -1
+	#WeatherClass.__hourlyWeatherFile)
         xmldoc = minidom.parse('data/weatherDaily.xml')        
         
         itemlist = xmldoc.getElementsByTagName('forecast')

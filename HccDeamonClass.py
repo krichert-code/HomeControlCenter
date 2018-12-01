@@ -84,11 +84,14 @@ class Speaker:
 
 class Calendar:
     def __init__(self):
-	pass
+	self.__day = datetime.datetime.now().strftime('%d')
 
     def timeEvent(self):
 	calendar = CalendarClass.CalendarClass()
-	calendar.generateFiles()
+	curr_day = datetime.datetime.now().strftime('%d')
+	if self.__day <> curr_day:
+	    self.__day = curr_day
+	    calendar.generateFiles()
 
 #------------------------------------------------------------------------------------------------------------------------
 class HccDeamonClass(threading.Thread):
