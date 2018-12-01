@@ -1,0 +1,22 @@
+1. Install pip
+   sudo apt-get install python-pip python-dev build-essential
+
+2. Install Flask (globally)
+   sudo -H pip install flask
+
+3. Install GPIO library
+    a. Download package
+	http://pypi.python.org/pypi/RPi.GPIO
+    b. Install python-dev library
+	sudo apt-get install python-dev
+    c. Run setup file
+	sudo python setup.py install
+    d. Alternative to above is to use pip
+	pip install RPi.GPIO
+
+3. Run application (as a service)
+      Add one of below entry to /etc/rc.local file
+
+      1.cd /HomeControlCenter && python hcc.py &
+      2.start-stop-daemon -b -S --chdir /HomeControlCenter -x hcc.py
+

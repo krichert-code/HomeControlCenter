@@ -21,6 +21,7 @@ class RadioClass(object):
     __get_volume_req = "/jsonrpc?request={%22jsonrpc%22:%222.0%22,%22method%22:%22Application.GetProperties%22,%22params%22:{%22properties%22:[%22volume%22]},%22id%22:1}"
     __set_volume_req = "/jsonrpc?request={%22jsonrpc%22: %222.0%22, %22method%22: %22Application.SetVolume%22, %22params%22: {%22volume%22: VOLUME_VALUE}, %22id%22: 1}"
     __get_event_req = "/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22method%22:%20%22Player.GetItem%22,%20%22params%22:%20{%20%22properties%22:%20[%22title%22,%22artist%22],%20%22playerid%22:%201%20},%20%22id%22:%221%22}"
+    __get_player_state_req = "/jsonrpc?request={%22jsonrpc%22:%222.0%22,%22method%22:%22Player.GetActivePlayers%22,%22id%22:1}"
                     
     def __init__(self):
         config = ConfigClass.ConfigClass()        
@@ -89,6 +90,21 @@ class RadioClass(object):
                 requests.get(req, verify = False, timeout = 3)                
         except requests.exceptions.RequestException as e:
             req = None                
+
+    def isPlayerEnabled(self):
+	isEnabled = False
+
+        try:
+            req = self.getRadioDevice() + RadioClass.__get_event_req
+            event = requests.get(req, verify = False, timeout = 3)            
+            data = json.loads(event.text)
+            if len(data['result']['item']['label']) > 0:
+		isEnabled = True
+        except requests.exceptions.RequestException as e:
+            isEnabled = False
+        finally:                    
+            return isEnabled
+
 
     def getEventsData(self, id):
         events = []

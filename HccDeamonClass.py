@@ -4,6 +4,8 @@ import time
 import datetime
 import ConfigClass
 import RadioClass
+import CalendarClass
+import RPi.GPIO as GPIO
 
         
 class Alarm:
@@ -46,6 +48,47 @@ class Alarm:
 		self.__playing = True
 
 
+class Speaker:
+    __powerPin    = 17    #wPi = 0
+    __activatePin = 27    #wPi = 2
+
+    __no_activeCounter = 0
+
+    def __init__(self):
+	GPIO.setwarnings(False)
+	GPIO.setmode(GPIO.BCM)
+	GPIO.setup(self.__powerPin, GPIO.OUT)
+	GPIO.setup(self.__activatePin, GPIO.OUT)
+
+	GPIO.output(self.__powerPin, GPIO.LOW)
+	GPIO.output(self.__activatePin, GPIO.LOW)
+
+
+    def timeEvent(self):
+	player = RadioClass.RadioClass()
+	isPlayerEnabled = player.isPlayerEnabled()
+	isSpeakerActivated = GPIO.input(self.__powerPin)
+    
+	if False == isPlayerEnabled:
+	    self.__no_activeCounter = self.__no_activeCounter + 1
+	    if self.__no_activeCounter > 60 and 1 == isSpeakerActivated:
+		GPIO.output(self.__powerPin, GPIO.LOW)
+
+	if True == isPlayerEnabled and 0 == isSpeakerActivated:
+	    GPIO.output(self.__powerPin, GPIO.HIGH)
+	    time.sleep(1)
+	    GPIO.output(self.__activatePin, GPIO.HIGH)
+	    time.sleep(1)
+	    GPIO.output(self.__activatePin, GPIO.LOW)
+	    self.__no_activeCounter = 0
+
+class Calendar:
+    def __init__(self):
+	pass
+
+    def timeEvent(self):
+	calendar = CalendarClass.CalendarClass()
+	calendar.generateFiles()
 
 #------------------------------------------------------------------------------------------------------------------------
 class HccDeamonClass(threading.Thread):
@@ -60,10 +103,14 @@ class HccDeamonClass(threading.Thread):
 
     def run(self):
 	config = ConfigClass.ConfigClass()
+	speaker = Speaker()
 	alarm = Alarm()
+	calendar = Calendar()
 
 	while (not self.__stopEvent):
 	    alarm.timeEvent()
+	    speaker.timeEvent()
+	    calendar.timeEvent()
 	    
 	    time.sleep(1)
 
