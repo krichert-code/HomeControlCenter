@@ -48,6 +48,7 @@ class Alarm:
 	    try:
 		req = radio.getRadioStopRequest()
 		requests.get(req , verify = False)
+		req = radio.setRadioVolume(50)
                 self.__playing = False
             except requests.exceptions.RequestException as e:
 		self.__playing = True
@@ -89,7 +90,7 @@ class Speaker:
 
 class Calendar:
     def __init__(self):
-	self.__day = datetime.datetime.now().strftime('%d')
+	self.__day = 0
 
     def timeEvent(self):
 	calendar = CalendarClass.CalendarClass()

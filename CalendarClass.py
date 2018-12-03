@@ -1,5 +1,7 @@
 import json
+import glob
 import requests
+import ConfigClass
 from datetime import datetime, timedelta
 import EventClass
 
@@ -7,9 +9,6 @@ import EventClass
 class CalendarClass:
     __eventsData = []
     __get_cal_req = "https://www.googleapis.com/calendar/v3/calendars/CALENDAR_NAME/events?timeMax=STOP_DATET00%3A00%3A00-07%3A00&timeMin=START_DATET00%3A00%3A00-07%3A00&key=USER_KEY"
-
-    __myCalFile = "data/mycal.json"
-    __holidaysCalFile = "data/holidays.json"
 
     # The class "constructor" - It's actually an initializer
     def __init__(self):
@@ -29,12 +28,12 @@ class CalendarClass:
     def generateFiles(self):
 	config = ConfigClass.ConfigClass()
 
-	req = CalendarClass.__get_my_cal_req
+	req = CalendarClass.__get_cal_req
 	req = req.replace("USER_KEY", config.getCalendarKey())
 
 	try:
 	    start_date = datetime.now().strftime('%Y-%m-%d')
-	    delta = timedelta(days=7)
+	    delta = timedelta(days=config.getCalendarRange())
 	    stop_date = (datetime.now() + delta).strftime('%Y-%m-%d')
 	    req = req.replace("START_DATE", start_date)
 	    req = req.replace("STOP_DATE", stop_date)
@@ -46,7 +45,7 @@ class CalendarClass:
 		req_to_send = req_to_send.replace("CALENDAR_NAME", name)
 		resp = requests.get(req_to_send, verify = False, timeout = 5)
 		data = json.loads(resp.text)
-		with open(CalendarClass.__myCalFile, 'w') as outfile:
+		with open("data/" + name + "_calendar.json", 'w') as outfile:
 		    json.dump(data, outfile)
 
 	except requests.exceptions.RequestException as e:
@@ -54,8 +53,8 @@ class CalendarClass:
 
 
     def getEventsData(self,id ):
-        self.__getDataFromFile(CalendarClass.__holidaysCalFile, id)
-        self.__getDataFromFile(CalendarClass.__myCalFile, id)
-
+	fileList = glob.glob("data/*_calendar.json")
+	for name in fileList:
+	    self.__getDataFromFile(name, id)
         return self.__eventsData
         

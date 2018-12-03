@@ -52,9 +52,13 @@ class ConfigClass(object):
 
     def getCalendarsList(self):
         names = []
-        for item in ConfigClass.__xmldoc.getElementsByTagName('calendar')[0]..getElementsByTagName('calendars_list')[0].getElementsByTagName('element'):
+        for item in ConfigClass.__xmldoc.getElementsByTagName('calendar')[0].getElementsByTagName('calendars_list')[0].getElementsByTagName('element'):
             names.append(item.getAttribute('name'))
         return names
+
+    def getCalendarRange(self):
+        return int(ConfigClass.__xmldoc.getElementsByTagName('calendar')[0].getElementsByTagName('range')[0].getAttribute('value'))
+
 
     def getEvent(self, name):
         xmldoc = minidom.parse('data/config.xml')
