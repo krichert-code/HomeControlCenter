@@ -15,6 +15,7 @@ class Alarm:
 	self.__stop_time = config.getAlarmSetting("stop_time")
 	self.__radio = config.getAlarmSetting("radio")
 	self.__volume = config.getAlarmSetting("volume")
+	self.__policy = config.getAlarmSetting("day_policy")
 	self.__playing = False
 
     def __compareTime(self, date):
@@ -28,9 +29,13 @@ class Alarm:
 	    return False
 
     def timeEvent(self):
-	radio = RadioClass.RadioClass()
+    	radio = RadioClass.RadioClass()
+	playRadio = True
+	#disable alarm if value is = 'disable' or alarm is set on 'week_day' and now is weekend
+	if (self.__policy == "disabled") or (self.__policy == "week_day" and datetime.datetime.today().weekday() >= 5):
+	    playRadio = False
 
-	if  self.__compareTime(self.__start_time) == True and self.__playing == False:
+	if  self.__compareTime(self.__start_time) == True and self.__playing == False and playRadio == True:
 	    try:
 		req = radio.getRadioPlayRequest(self.__radio)
 		requests.get(req , verify = False)

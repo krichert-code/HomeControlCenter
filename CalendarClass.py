@@ -6,8 +6,7 @@ import EventClass
                 
 class CalendarClass:
     __eventsData = []
-    __get_my_cal_req = "https://www.googleapis.com/calendar/v3/calendars/krzysiek.richert@gmail.com/events?timeMax=STOP_DATET00%3A00%3A00-07%3A00&timeMin=START_DATET00%3A00%3A00-07%3A00&key=AIzaSyDepBebtgRz7DIOR60j4Uu0Y-CnOpy22fo"
-    __get_holidays_req = "https://www.googleapis.com/calendar/v3/calendars/polish@holiday.calendar.google.com/events?timeMax=STOP_DATET00%3A00%3A00-07%3A00&timeMin=START_DATET00%3A00%3A00-07%3A00&key=AIzaSyDepBebtgRz7DIOR60j4Uu0Y-CnOpy22fo"
+    __get_cal_req = "https://www.googleapis.com/calendar/v3/calendars/CALENDAR_NAME/events?timeMax=STOP_DATET00%3A00%3A00-07%3A00&timeMin=START_DATET00%3A00%3A00-07%3A00&key=USER_KEY"
 
     __myCalFile = "data/mycal.json"
     __holidaysCalFile = "data/holidays.json"
@@ -28,26 +27,27 @@ class CalendarClass:
             self.__eventsData.append(event)
                 
     def generateFiles(self):
+	config = ConfigClass.ConfigClass()
+
+	req = CalendarClass.__get_my_cal_req
+	req = req.replace("USER_KEY", config.getCalendarKey())
+
 	try:
 	    start_date = datetime.now().strftime('%Y-%m-%d')
 	    delta = timedelta(days=7)
 	    stop_date = (datetime.now() + delta).strftime('%Y-%m-%d')
+	    req = req.replace("START_DATE", start_date)
+	    req = req.replace("STOP_DATE", stop_date)
 
-            req = CalendarClass.__get_my_cal_req
-            req = req.replace("START_DATE", start_date)
-            req = req.replace("STOP_DATE", stop_date)
-	    resp = requests.get(req, verify = False, timeout = 5)
-	    data = json.loads(resp.text)
-	    with open(CalendarClass.__myCalFile, 'w') as outfile:
-		json.dump(data, outfile)
+	    calNames = config.getCalendarsList()
 
-            req = CalendarClass.__get_holidays_req
-            req = req.replace("START_DATE", start_date)
-            req = req.replace("STOP_DATE", stop_date)
-	    resp = requests.get(req, verify = False, timeout = 5)
-	    data = json.loads(resp.text)
-	    with open(CalendarClass.__holidaysCalFile, 'w') as outfile:
-		json.dump(data, outfile)
+	    for name in calNames:
+        	req_to_send = req
+		req_to_send = req_to_send.replace("CALENDAR_NAME", name)
+		resp = requests.get(req_to_send, verify = False, timeout = 5)
+		data = json.loads(resp.text)
+		with open(CalendarClass.__myCalFile, 'w') as outfile:
+		    json.dump(data, outfile)
 
 	except requests.exceptions.RequestException as e:
             pass

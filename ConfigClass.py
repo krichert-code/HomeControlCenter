@@ -47,6 +47,15 @@ class ConfigClass(object):
     def getAlarmSetting(self, name):
         return ConfigClass.__xmldoc.getElementsByTagName('alarm')[0].getElementsByTagName(name)[0].getAttribute('value')
 
+    def getCalendarKey(self):
+        return ConfigClass.__xmldoc.getElementsByTagName('calendar')[0].getElementsByTagName('key')[0].getAttribute('value')
+
+    def getCalendarsList(self):
+        names = []
+        for item in ConfigClass.__xmldoc.getElementsByTagName('calendar')[0]..getElementsByTagName('calendars_list')[0].getElementsByTagName('element'):
+            names.append(item.getAttribute('name'))
+        return names
+
     def getEvent(self, name):
         xmldoc = minidom.parse('data/config.xml')
         eventData = None
