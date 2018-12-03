@@ -11,7 +11,7 @@
 	sudo apt-get install python-dev
     c. Run setup file
 	sudo python setup.py install
-    d. Alternative to above is to use pip
+    d. Alternative to above is to use pip (still installing python-dev is required)
 	pip install RPi.GPIO
 
 3. Run application (as a service)
