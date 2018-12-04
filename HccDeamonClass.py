@@ -5,6 +5,7 @@ import datetime
 import ConfigClass
 import RadioClass
 import CalendarClass
+import WeatherClass
 import RPi.GPIO as GPIO
 
         
@@ -74,7 +75,7 @@ class Speaker:
 	player = RadioClass.RadioClass()
 	isPlayerEnabled = player.isPlayerEnabled()
 	isSpeakerActivated = GPIO.input(self.__powerPin)
-    
+
 	if False == isPlayerEnabled:
 	    self.__no_activeCounter = self.__no_activeCounter + 1
 	    if self.__no_activeCounter > 60 and 1 == isSpeakerActivated:
@@ -99,6 +100,40 @@ class Calendar:
 	    self.__day = curr_day
 	    calendar.generateFiles()
 
+class Weather:
+	def __init__(self):
+		weather = WeatherClass.WeatherClass()
+		self.__day = 0
+		self.__hour = 0
+		self.__weatherFiles = 0;
+		# Below counter is needed to generate weather files not exactly when new day/hour,
+        # but some time later because data are not available.
+		self.__counter = 0
+		weather.generateFiles(weather.WeatherDailyFile | weather.WeatherHourlyFile | weather.WeatherCurrentFile)
+
+	def timeEvent(self):
+		weather = WeatherClass.WeatherClass()
+
+		curr_day = datetime.datetime.now().strftime('%d')
+		curr_hour = datetime.datetime.now().strftime('%H')
+
+		if self.__day <> curr_day:
+			self.__day = curr_day
+			self.__weatherFiles = self.__weatherFiles | weather.WeatherDailyFile | weather.WeatherHourlyFile
+			self.__counter = 200
+
+		if self.__hour <> curr_hour:
+			self.__hour = curr_hour
+			self.__weatherFiles = self.__weatherFiles | weather.WeatherCurrentFile
+			self.__counter = 200
+
+		if self.__weatherFiles <> 0 and self.__counter == 0:
+			weather.generateFiles(self.__weatherFiles)
+			self.__weatherFiles = 0
+
+		if self.__counter > 0 :
+			self.__counter = self.__counter - 1
+
 #------------------------------------------------------------------------------------------------------------------------
 class HccDeamonClass(threading.Thread):
 
@@ -115,12 +150,14 @@ class HccDeamonClass(threading.Thread):
 	speaker = Speaker()
 	alarm = Alarm()
 	calendar = Calendar()
+	weather = Weather()
 
 	while (not self.__stopEvent):
-	    alarm.timeEvent()
-	    speaker.timeEvent()
-	    calendar.timeEvent()
+		alarm.timeEvent()
+		speaker.timeEvent()
+		calendar.timeEvent()
+		weather.timeEvent()
 	    
-	    time.sleep(1)
+		time.sleep(1)
 
 

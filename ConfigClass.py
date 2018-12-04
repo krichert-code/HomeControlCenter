@@ -59,6 +59,14 @@ class ConfigClass(object):
     def getCalendarRange(self):
         return int(ConfigClass.__xmldoc.getElementsByTagName('calendar')[0].getElementsByTagName('range')[0].getAttribute('value'))
 
+    def getCurrentWeatherReq(self):
+        return ConfigClass.__xmldoc.getElementsByTagName('weather')[0].getElementsByTagName('current')[0].getAttribute('url')
+
+    def getHourlyWeatherForecastReq(self):
+        return ConfigClass.__xmldoc.getElementsByTagName('weather')[0].getElementsByTagName('hourly')[0].getAttribute('url')
+
+    def getDailyWeatherForecastReq(self):
+        return ConfigClass.__xmldoc.getElementsByTagName('weather')[0].getElementsByTagName('daily')[0].getAttribute('url')
 
     def getEvent(self, name):
         xmldoc = minidom.parse('data/config.xml')

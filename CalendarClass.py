@@ -43,7 +43,7 @@ class CalendarClass:
 	    for name in calNames:
         	req_to_send = req
 		req_to_send = req_to_send.replace("CALENDAR_NAME", name)
-		resp = requests.get(req_to_send, verify = False, timeout = 5)
+		resp = requests.get(req_to_send, verify = False, timeout = 10)
 		data = json.loads(resp.text)
 		with open("data/" + name + "_calendar.json", 'w') as outfile:
 		    json.dump(data, outfile)

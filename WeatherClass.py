@@ -1,5 +1,6 @@
 from xml.dom import minidom
-#import subprocess as sub
+import ConfigClass
+import requests
 import csv
 
 class WeatherForecaset(object):
@@ -19,8 +20,10 @@ class WeatherForecaset(object):
         self.id = id
     
 class WeatherClass(object):
-    __weatherData = {}
-    __weatherForecast = []
+    WeatherCurrentFile  =  1 << 0
+    WeatherHourlyFile   =  1 << 1
+    WeatherDailyFile    =  1 << 2
+
     __heater = {}
     __currWeatherFile = "data/weather.xml"
     __hourlyWeatherFile = "data/weatherHourly.xml"
@@ -28,42 +31,40 @@ class WeatherClass(object):
     
     # The class "constructor" - It's actually an initializer
     def __init__(self):
-        self.__weatherData = {}
         self.__heater = {}
-        self.__weatherForecast = []
         
     def getCurrentWeather(self):
+        weatherData = {}
         xmldoc = minidom.parse(WeatherClass.__currWeatherFile)
         
         item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('icon_url')        
-        self.__weatherData['icon']=item[0].childNodes[0].nodeValue
+        weatherData['icon']=item[0].childNodes[0].nodeValue
         
         item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('temp_c')        
-        self.__weatherData['temp']=item[0].childNodes[0].nodeValue
+        weatherData['temp']=item[0].childNodes[0].nodeValue
 
         item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('local_time_rfc822')        
-        self.__weatherData['date']=item[0].childNodes[0].nodeValue
-        time = self.__weatherData['date']
+        weatherData['date']=item[0].childNodes[0].nodeValue
+        time = weatherData['date']
         time = time[:time.rfind(" ")]
         time = time[time.rfind(" "):]
-        self.__weatherData['time'] = time
+        weatherData['time'] = time
         
         item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('pressure_mb')        
-        self.__weatherData['pressure']=item[0].childNodes[0].nodeValue
+        weatherData['pressure']=item[0].childNodes[0].nodeValue
         
         item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('wind_kph')        
-        self.__weatherData['wind']=item[0].childNodes[0].nodeValue
+        weatherData['wind']=item[0].childNodes[0].nodeValue
         
         item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('wind_dir')        
-        self.__weatherData['wind_dir']=item[0].childNodes[0].nodeValue
-        
-        return self.__weatherData
+        weatherData['wind_dir']=item[0].childNodes[0].nodeValue
+        return weatherData
     
-    def getWeatherForecast(self):
+    def getWeatherHourlyForecast(self):
         id = 0
         skip = -1
-	#WeatherClass.__hourlyWeatherFile)
-        xmldoc = minidom.parse('data/weatherDaily.xml')        
+        weatherForecast = []
+        xmldoc = minidom.parse(WeatherClass.__hourlyWeatherFile)
         
         itemlist = xmldoc.getElementsByTagName('forecast')
         
@@ -76,30 +77,69 @@ class WeatherClass(object):
             temp = item.getElementsByTagName('temp')[0].getElementsByTagName('metric')[0].childNodes[0].nodeValue            
             wind = item.getElementsByTagName('wspd')[0].getElementsByTagName('metric')[0].childNodes[0].nodeValue            
             presure = item.getElementsByTagName('mslp')[0].getElementsByTagName('metric')[0].childNodes[0].nodeValue
-            self.__weatherForecast.append(WeatherForecaset(id,time,temp,wind,presure,icon))
+            weatherForecast.append(WeatherForecaset(id,time,temp,wind,presure,icon))
             id = id + 1
             if id > 5:
                 break
-        
-        return self.__weatherForecast
-    
+        return weatherForecast
+
+    def getWeatherDailyForecast(self):
+        id = 0
+        weatherForecast = []
+        xmldoc = minidom.parse(WeatherClass.__dailyWeatherFile)
+        itemlist = xmldoc.getElementsByTagName('simpleforecast')[0].getElementsByTagName('forecastdays')[0].getElementsByTagName('forecastday')
+        for item in itemlist:
+            icon = item.getElementsByTagName('icon_url')[0].childNodes[0].nodeValue
+            time = item.getElementsByTagName('date')[0].getElementsByTagName('day')[0].childNodes[0].nodeValue + " " + \
+                   item.getElementsByTagName('date')[0].getElementsByTagName('monthname_short')[0].childNodes[0].nodeValue
+            temp = temp = item.getElementsByTagName('low')[0].getElementsByTagName('celsius')[0].childNodes[0].nodeValue + \
+                          "/" + item.getElementsByTagName('high')[0].getElementsByTagName('celsius')[0].childNodes[0].nodeValue
+            wind = item.getElementsByTagName('avewind')[0].getElementsByTagName('kph')[0].childNodes[0].nodeValue
+            weatherForecast.append(WeatherForecaset(id,time,temp,wind,"",icon))
+            id = id + 1
+            if id > 2:
+                break
+        return weatherForecast
+
+    def __saveWeatherFile(self, url, name):
+        try:
+            resp = requests.get(url, verify=False, timeout=10)
+            with open(name, 'w') as f:
+                f.write(resp.text)
+        except requests.exceptions.RequestException as e:
+            pass
+
+
+    def generateFiles(self, files):
+        config = ConfigClass.ConfigClass()
+
+        if (files & WeatherClass.WeatherCurrentFile) <> 0:
+            self.__saveWeatherFile( config.getCurrentWeatherReq(), self.__currWeatherFile)
+
+        if (files & WeatherClass.WeatherHourlyFile) <> 0:
+            self.__saveWeatherFile( config.getHourlyWeatherForecastReq(), self.__hourlyWeatherFile)
+
+        if (files & WeatherClass.WeatherDailyFile) <> 0:
+            self.__saveWeatherFile( config.getDailyWeatherForecastReq(), self.__dailyWeatherFile)
+
+
+
     def getCurrentTemperatureInside(self):
         with open("data/heater.csv", "rb") as csvfile:
             reader = csv.DictReader(csvfile,['temp','state','mode','time','icon'])
             #reader = csv.reader(csvfile, delimiter=",", quotechar="|")
             for row in reader:
                 pass
-                
-            
+
             self.__heater['temp'] = row['temp']
             self.__heater['state'] = row['state']
             self.__heater['mode'] = row['mode']
             self.__heater['time'] = row['time']            
   
             if self.__heater['state'] == "1":
-                self.__heater['heat_state_icon'] = "img/piec_on1.gif";
+                self.__heater['heat_state_icon'] = "img/piec_on1.gif"
             else:
-                self.__heater['heat_state_icon'] = "";
+                self.__heater['heat_state_icon'] = ""
                 
             if self.__heater['mode'] == "1":
                 self.__heater['icon'] = "img/day.gif"

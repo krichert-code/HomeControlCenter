@@ -23,7 +23,7 @@ def weather():
 @app.route("/weatherForecast")
 def weatherForecast():
 	obj = WeatherClass.WeatherClass()
-	return render_template('weatherForecast.html', weather = obj.getWeatherForecast())
+	return render_template('weatherForecast.html', weather = obj.getWeatherHourlyForecast(), dailyweather = obj.getWeatherDailyForecast())
 
 @app.route("/tempInside")
 def temperatureInside():
