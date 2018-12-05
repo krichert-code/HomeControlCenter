@@ -6,7 +6,7 @@ import ConfigClass
 import RadioClass
 import CalendarClass
 import WeatherClass
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 
         
 class Alarm:
@@ -62,32 +62,32 @@ class Speaker:
     __no_activeCounter = 0
 
     def __init__(self):
-	# GPIO.setwarnings(False)
-	# GPIO.setmode(GPIO.BCM)
-	# GPIO.setup(self.__powerPin, GPIO.OUT)
-	# GPIO.setup(self.__activatePin, GPIO.OUT)
-    #
-	# GPIO.output(self.__powerPin, GPIO.LOW)
-	# GPIO.output(self.__activatePin, GPIO.LOW)
-	pass
+	GPIO.setwarnings(False)
+	GPIO.setmode(GPIO.BCM)
+	GPIO.setup(self.__powerPin, GPIO.OUT)
+	GPIO.setup(self.__activatePin, GPIO.OUT)
+    
+	GPIO.output(self.__powerPin, GPIO.LOW)
+	GPIO.output(self.__activatePin, GPIO.LOW)
+	#pass
 
     def timeEvent(self):
-	# player = RadioClass.RadioClass()
-	# isPlayerEnabled = player.isPlayerEnabled()
-	# isSpeakerActivated = GPIO.input(self.__powerPin)
-    #
-	# if False == isPlayerEnabled:
-	#     self.__no_activeCounter = self.__no_activeCounter + 1
-	#     if self.__no_activeCounter > 60 and 1 == isSpeakerActivated:
-	# 	GPIO.output(self.__powerPin, GPIO.LOW)
-    #
-	# if True == isPlayerEnabled and 0 == isSpeakerActivated:
-	#     GPIO.output(self.__powerPin, GPIO.HIGH)
-	#     time.sleep(1)
-	#     GPIO.output(self.__activatePin, GPIO.HIGH)
-	#     time.sleep(1)
-	#     GPIO.output(self.__activatePin, GPIO.LOW)
-	#     self.__no_activeCounter = 0
+	player = RadioClass.RadioClass()
+	isPlayerEnabled = player.isPlayerEnabled()
+	isSpeakerActivated = GPIO.input(self.__powerPin)
+    
+	if False == isPlayerEnabled:
+	    self.__no_activeCounter = self.__no_activeCounter + 1
+	if self.__no_activeCounter > 60 and 1 == isSpeakerActivated:
+	    GPIO.output(self.__powerPin, GPIO.LOW)
+    
+	if True == isPlayerEnabled and 0 == isSpeakerActivated:
+	    GPIO.output(self.__powerPin, GPIO.HIGH)
+	    time.sleep(1)
+	    GPIO.output(self.__activatePin, GPIO.HIGH)
+	    time.sleep(1)
+	    GPIO.output(self.__activatePin, GPIO.LOW)
+	    self.__no_activeCounter = 0
 	pass
 
 class Calendar:
