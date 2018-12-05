@@ -7,6 +7,7 @@ import ActionClass
 import ConfigClass
 import RadioClass
 import SprinklerClass
+import ScheduleClass
 import HccDeamonClass
 
 app = Flask(__name__)
@@ -60,6 +61,13 @@ def radio(actionName=""):
 @app.route("/menu")
 def menu():	
 	return render_template('menu.html')
+
+@app.route("/train_schedule")
+def train_schedule():
+	obj = ScheduleClass.ScheduleClass()
+	#eventsDirB = obj.getTimetoDirectionB()
+	return render_template('train_schedule.html', eventsDirA = obj.getTimetoDirectionA())
+
 
 
 if (__name__ == "__main__"):
