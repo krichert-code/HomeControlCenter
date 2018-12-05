@@ -38,33 +38,33 @@
 		<estimated>
 		</estimated>
 		<station_id>EPGD</station_id>
-		<observation_time>Last Updated on December 5, 3:30 PM CET</observation_time>
-		<observation_time_rfc822>Wed, 05 Dec 2018 15:30:00 +0100</observation_time_rfc822>
-		<observation_epoch>1544020200</observation_epoch>
-		<local_time_rfc822>Wed, 05 Dec 2018 16:09:23 +0100</local_time_rfc822>
-		<local_epoch>1544022563</local_epoch>
+		<observation_time>Last Updated on December 5, 9:30 PM CET</observation_time>
+		<observation_time_rfc822>Wed, 05 Dec 2018 21:30:00 +0100</observation_time_rfc822>
+		<observation_epoch>1544041800</observation_epoch>
+		<local_time_rfc822>Wed, 05 Dec 2018 21:33:08 +0100</local_time_rfc822>
+		<local_epoch>1544041988</local_epoch>
 		<local_tz_short>CET</local_tz_short>
 		<local_tz_long>Europe/Warsaw</local_tz_long>
 		<local_tz_offset>+0100</local_tz_offset>
-		<weather>Partly Cloudy</weather>
-		<temperature_string>36 F (2 C)</temperature_string>
-		<temp_f>36</temp_f>
-		<temp_c>2</temp_c>
-		<relative_humidity>75%</relative_humidity>
-		<wind_string>From the West at 8 MPH</wind_string>
-		<wind_dir>West</wind_dir>
-		<wind_degrees>270</wind_degrees>
-		<wind_mph>8</wind_mph>
+		<weather>Scattered Clouds</weather>
+		<temperature_string>34 F (1 C)</temperature_string>
+		<temp_f>34</temp_f>
+		<temp_c>1</temp_c>
+		<relative_humidity>93%</relative_humidity>
+		<wind_string>From the SW at 5 MPH</wind_string>
+		<wind_dir>SW</wind_dir>
+		<wind_degrees>230</wind_degrees>
+		<wind_mph>5</wind_mph>
 		<wind_gust_mph>0</wind_gust_mph>
-		<wind_kph>13</wind_kph>
+		<wind_kph>7</wind_kph>
 		<wind_gust_kph>0</wind_gust_kph>
-		<pressure_mb>1023</pressure_mb>
-		<pressure_in>30.21</pressure_in>
-		<pressure_trend>-</pressure_trend>
+		<pressure_mb>1024</pressure_mb>
+		<pressure_in>30.24</pressure_in>
+		<pressure_trend>0</pressure_trend>
 		
-		<dewpoint_string>28 F (-2 C)</dewpoint_string>
-		<dewpoint_f>28</dewpoint_f>
-		<dewpoint_c>-2</dewpoint_c>
+		<dewpoint_string>32 F (0 C)</dewpoint_string>
+		<dewpoint_f>32</dewpoint_f>
+		<dewpoint_c>0</dewpoint_c>
 		
 		
 		<heat_index_string>NA</heat_index_string>
@@ -72,15 +72,15 @@
 		<heat_index_c>NA</heat_index_c>
 		
 		
-		<windchill_string>29 F (-2 C)</windchill_string>
-		<windchill_f>29</windchill_f>
-		<windchill_c>-2</windchill_c>
+		<windchill_string>30 F (-1 C)</windchill_string>
+		<windchill_f>30</windchill_f>
+		<windchill_c>-1</windchill_c>
 		
-        <feelslike_string>29 F (-2 C)</feelslike_string>
-        <feelslike_f>29</feelslike_f>
-        <feelslike_c>-2</feelslike_c>
-		<visibility_mi>6.2</visibility_mi>
-		<visibility_km>10.0</visibility_km>
+        <feelslike_string>30 F (-1 C)</feelslike_string>
+        <feelslike_f>30</feelslike_f>
+        <feelslike_c>-1</feelslike_c>
+		<visibility_mi>5.0</visibility_mi>
+		<visibility_km>8.0</visibility_km>
 		<solarradiation></solarradiation>
 		<UV>0</UV>
 		<precip_1hr_string>-9999.00 in (-9999.00 mm)</precip_1hr_string>

@@ -37,7 +37,7 @@ class MyHTMLParser(HTMLParser.HTMLParser):
             event_day_ts = self.__hour * 60 + self.__minute
             # Add only 5 next trains
             if len(self.events) < 5 and event_day_ts > current_day_ts:
-                print "___________" + str(self.__hour) + " : " + str(self.__minute)
+		self.events.append(EventClass.EventClass("Odjazd za " + str(event_day_ts - current_day_ts) + "min", str(self.__hour) +" : " +str(self.__minute)))
 
 
 
@@ -60,12 +60,11 @@ class ScheduleClass(HTMLParser.HTMLParser):
 
 
     def getTimetoDirectionA(self):
-        events = []
         resp = requests.get(self.__directionA, verify=False, timeout=10)
         parser = MyHTMLParser()
         parser.feed(resp.text)
         #self.feed(resp.text)
-        return events
+        return parser.events
 
     def getTimetoDirectionB(self):
         events = []

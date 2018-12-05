@@ -17,6 +17,12 @@ td.menu  {padding: 50px; align: center}
 		</td>
     </tr>
 
+{% for event in eventsDirA %}
+    <tr>
+	<td class="event"><div style="font-size:25px">{{ event.desc }}</div></td>
+	<td class="event"><div style="font-size:25px">{{ event.date }}</div></td>
+    </tr>
+{% endfor %}
 
 
 </table>
