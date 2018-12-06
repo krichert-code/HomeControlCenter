@@ -15,6 +15,11 @@ td.menu  {padding: 50px; align: center}
 		<td>
 	    	<div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/dom.jpg') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('content', 'menu')"/>
 		</td>
+
+		<td>
+	    	<div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/dom.jpg') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('content', '{{ url }}')"/>
+		</td>
+
     </tr>
 
 {% for event in eventsDirA %}

@@ -24,7 +24,6 @@ class WeatherClass(object):
     WeatherHourlyFile   =  1 << 1
     WeatherDailyFile    =  1 << 2
 
-    __heater = {}
     __currWeatherFile = "data/weather.xml"
     __hourlyWeatherFile = "data/weatherHourly.xml"
     __dailyWeatherFile = "data/weatherDaily.xml"

@@ -7,7 +7,6 @@ import EventClass
 
                 
 class CalendarClass:
-    __eventsData = []
     __get_cal_req = "https://www.googleapis.com/calendar/v3/calendars/CALENDAR_NAME/events?timeMax=STOP_DATET00%3A00%3A00-07%3A00&timeMin=START_DATET00%3A00%3A00-07%3A00&key=USER_KEY"
 
     # The class "constructor" - It's actually an initializer

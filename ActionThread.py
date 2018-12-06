@@ -4,25 +4,22 @@ import time
 import ConfigClass
 
 class Task:
-    type = ""
-    value = ""
-    desc = ""    
     def __init__(self, type, value="", desc = ""):
         self.type = type
         self.value = value
         self.desc = desc        
         
 class ActionThread(threading.Thread):
-    __event = None
-    __taskList = None
-    __mutex = None    
-    __response = ""
-    
+    __mutex = None
+
     def __init__(self):
         threading.Thread.__init__(self)
-        self.__event = threading.Event()
-	self.__event.clear()
+        self.__response = ""
         self.__taskList = []
+        self.__event = threading.Event()
+
+        self.__event.clear()
+
         if ActionThread.__mutex == None:	    
             ActionThread.__mutex = threading.Lock()
         

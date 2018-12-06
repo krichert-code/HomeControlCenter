@@ -1,22 +1,14 @@
 class EventClass:
-    name = ""
-    id = -1
-    name = ""
-    desc = ""
-    date = ""
-    state = ""
-    icon = ""
-            
     def __init__(self, desc, date = "", id = -1, state = "0"):
-        #self.name = name
+        self.name = ""
         self.id = id
         self.desc = desc
         self.date = date
         self.state = state
-	self.icon = 'gate'
+        self.icon = 'gate'
 
     def setEventName(self, name):
-	self.name = name
+        self.name = name
 
     def setEventIcon(self, icon):
-	self.icon = icon
+        self.icon = icon

@@ -4,9 +4,6 @@ import requests
 import json
 
 class StationClass:
-    name = ""
-    url = ""
-    id = 0
     def __init__(self, id, name, url):
         self.id = id
         self.name = name
@@ -24,7 +21,7 @@ class RadioClass(object):
     __get_player_state_req = "/jsonrpc?request={%22jsonrpc%22:%222.0%22,%22method%22:%22Player.GetActivePlayers%22,%22id%22:1}"
                     
     def __init__(self):
-        config = ConfigClass.ConfigClass()        
+        config = ConfigClass.ConfigClass()
         id = 0
         
         if len(RadioClass.__stations) == 0:

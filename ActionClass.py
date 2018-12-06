@@ -9,8 +9,6 @@ import SprinklerClass
 
 
 class ActionClass(object):
-    __config = None
-    __actionEvents = []
     ActionEventAll       = 1 << 0
     ActionEventGeneric   = 1 << 1
     ActionEventCalendar  = 1 << 2
@@ -19,8 +17,8 @@ class ActionClass(object):
 
     def __init__(self):
         self.__config = ConfigClass.ConfigClass()
-	
-        
+        self.__actionEvents = []
+
     def __isEventEnable(self, events, eventID):
         if (events & eventID <> 0) or (events & ActionClass.ActionEventAll <> 0):
             return True
