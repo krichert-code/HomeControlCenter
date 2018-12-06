@@ -92,12 +92,12 @@ class RadioClass(object):
 	isEnabled = False
 
         try:
-            req = self.getRadioDevice() + RadioClass.__get_event_req
+            req = self.getRadioDevice() + RadioClass.__get_player_state_req
             event = requests.get(req, verify = False, timeout = 3)            
             data = json.loads(event.text)
-            if len(data['result']['item']['label']) > 0:
+            if len(data['result']) > 0:
 		isEnabled = True
-        except requests.exceptions.RequestException as e:
+        except:
             isEnabled = False
         finally:                    
             return isEnabled
