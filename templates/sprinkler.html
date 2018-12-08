@@ -1,10 +1,5 @@
 <!DOCTYPE html>
 <html>
-<head>
-<style>
-td.menu  {padding: 50px; align: center}
-</style>
-</head>
 <body>
 
 <br>
@@ -12,15 +7,15 @@ td.menu  {padding: 50px; align: center}
 
 <table align="center" border="0" width="80%">
     <tr>
-		<td>
-	    	<div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/dom.jpg') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('content', 'menu')"/>
-		</td>
+	<td>
+	    <div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/home.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('content', 'menu')"/>
+	</td>
     </tr>
 
 {% for event in sprinklerElements %}
     <tr>
 	<td class="event" ><div style="height:60px;width:60px;background-image:url({{ url_for('static', filename = event.icon ) }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('infoBox', 'sprinkler/SprinklerOn?param={{ event.name }}')"/></td>
-	<td class="event"><div style="font-size:25px">{{ event.desc }}</div></td>
+	<td class="event"><div class="{{ event.style }}">{{ event.desc }}</div></td>
     </tr>
 {% endfor %}
 

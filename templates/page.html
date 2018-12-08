@@ -3,7 +3,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8; no-cache">
     <meta http-equiv="Pragma" content="no-cache">
     <title>Domowe Centrum Sterowania</title>
-    <link rel="stylesheet" href="css/audio.css" type="text/css">
+
+    <style>
+	td.menu  {padding: 50px; align: center}
+	td.event  {padding: 10px; align: center}
+	div.title { font-weight: bold; font-size:28px; }
+	div.text { font-size:28px; }
+    </style>
+
 </head>
 
 
@@ -53,7 +60,7 @@ function GetCurrentData()
 }
 </script>
 
-<body style="background-image:url({{ url_for('static', filename = 'img/tapeta.jpg') }});background-repeat: no-repeat;">
+<body style="background-image:url({{ url_for('static', filename = 'img/tapeta.jpg') }});background-repeat: repeat;">
 
 
 <div align="center">

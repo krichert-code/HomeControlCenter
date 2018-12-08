@@ -6,9 +6,13 @@ class EventClass:
         self.date = date
         self.state = state
         self.icon = 'gate'
+	self.style= "text"
 
     def setEventName(self, name):
         self.name = name
 
     def setEventIcon(self, icon):
         self.icon = icon
+
+    def setStyle(self, style):
+	self.style = style

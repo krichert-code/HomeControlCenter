@@ -104,7 +104,9 @@ class ScheduleClass(HTMLParser.HTMLParser, object):
             dir = "Kierunek Gdynia"
 
         date = datetime.now().strftime('%Y-%m-%d')
-        self.events.append(EventClass.EventClass(dir, date))
+	event = EventClass.EventClass(dir, date)
+	event.setStyle("title")
+        self.events.append(event)
 
         req = req.replace("DEP_DATE", date)
         try:

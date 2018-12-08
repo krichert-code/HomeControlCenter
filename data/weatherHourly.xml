@@ -8,98 +8,37 @@
 	<hourly_forecast>
 		<forecast>
 		<FCTTIME>
-		<hour>15</hour><hour_padded>15</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>6</mday><mday_padded>06</mday_padded><yday>339</yday><isdst>0</isdst><epoch>1544104800</epoch><pretty>3:00 PM CET on December 06, 2018</pretty><civil>3:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Thursday</weekday_name><weekday_name_night>Thursday Night</weekday_name_night><weekday_name_abbrev>Thu</weekday_name_abbrev><weekday_name_unlang>Thursday</weekday_name_unlang><weekday_name_night_unlang>Thursday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+		<hour>12</hour><hour_padded>12</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>8</mday><mday_padded>08</mday_padded><yday>341</yday><isdst>0</isdst><epoch>1544266800</epoch><pretty>12:00 PM CET on December 08, 2018</pretty><civil>12:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
-				<english>34.1</english>
-				<metric>1</metric>
+				<english>42.3</english>
+				<metric>6</metric>
 			</temp>
 			<dewpoint>
-				<english>29.3</english>
-				<metric>-2</metric>
-			</dewpoint>
-			<condition>Clear</condition>
-			
-			
-			<icon>clear</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/clear.gif</icon_url>
-			<fctcode>1</fctcode>
-			<sky>20</sky>
-			<wspd>
-				<english>11</english>
-				<metric>18</metric>
-			</wspd>
-			<wdir>
-				<dir>S</dir>
-				<degrees>179</degrees>
-			</wdir>
-			<wx>Mostly Sunny</wx>
-			<uvi>0</uvi>
-			<humidity>82</humidity>
-			<windchill>
-				<english>25</english>
-				<metric>-4</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>25</english>
-					<metric>-4</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.0</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>2</pop>
-			<mslp>
-				<english>30.06</english>
-				<metric>1018</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>16</hour><hour_padded>16</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>6</mday><mday_padded>06</mday_padded><yday>339</yday><isdst>0</isdst><epoch>1544108400</epoch><pretty>4:00 PM CET on December 06, 2018</pretty><civil>4:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Thursday</weekday_name><weekday_name_night>Thursday Night</weekday_name_night><weekday_name_abbrev>Thu</weekday_name_abbrev><weekday_name_unlang>Thursday</weekday_name_unlang><weekday_name_night_unlang>Thursday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>33.8</english>
-				<metric>1</metric>
-			</temp>
-			<dewpoint>
-				<english>29.2</english>
-				<metric>-2</metric>
+				<english>35.0</english>
+				<metric>2</metric>
 			</dewpoint>
 			<condition>Partly Cloudy</condition>
 			
 			
 			<icon>partlycloudy</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_partlycloudy.gif</icon_url>
+			<icon_url>http://icons.wxug.com/i/c/k/partlycloudy.gif</icon_url>
 			<fctcode>2</fctcode>
-			<sky>30</sky>
+			<sky>57</sky>
 			<wspd>
-				<english>11</english>
-				<metric>18</metric>
+				<english>22</english>
+				<metric>35</metric>
 			</wspd>
 			<wdir>
-				<dir>S</dir>
-				<degrees>177</degrees>
+				<dir>WSW</dir>
+				<degrees>241</degrees>
 			</wdir>
-			<wx>Partly Cloudy</wx>
+			<wx>Partly Cloudy/Wind</wx>
 			<uvi>0</uvi>
-			<humidity>83</humidity>
+			<humidity>75</humidity>
 			<windchill>
-				<english>25</english>
-				<metric>-4</metric>
+				<english>34</english>
+				<metric>1</metric>
 			</windchill>
 			<heatindex>
 				<english>-9999</english>
@@ -107,8 +46,8 @@
 			</heatindex>
 			
 				<feelslike>
-					<english>25</english>
-					<metric>-4</metric>
+					<english>34</english>
+					<metric>1</metric>
 				</feelslike>
 			
 			<qpf>
@@ -119,10 +58,10 @@
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>5</pop>
+			<pop>0</pop>
 			<mslp>
-				<english>30.04</english>
-				<metric>1017</metric>
+				<english>29.45</english>
+				<metric>997</metric>
 			</mslp>
 		</forecast>
 		
@@ -130,644 +69,217 @@
 		
 		<forecast>
 			<FCTTIME>
-				<hour>17</hour><hour_padded>17</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>6</mday><mday_padded>06</mday_padded><yday>339</yday><isdst>0</isdst><epoch>1544112000</epoch><pretty>5:00 PM CET on December 06, 2018</pretty><civil>5:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Thursday</weekday_name><weekday_name_night>Thursday Night</weekday_name_night><weekday_name_abbrev>Thu</weekday_name_abbrev><weekday_name_unlang>Thursday</weekday_name_unlang><weekday_name_night_unlang>Thursday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+				<hour>13</hour><hour_padded>13</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>8</mday><mday_padded>08</mday_padded><yday>341</yday><isdst>0</isdst><epoch>1544270400</epoch><pretty>1:00 PM CET on December 08, 2018</pretty><civil>1:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
-				<english>33.7</english>
-				<metric>1</metric>
+				<english>41.9</english>
+				<metric>6</metric>
 			</temp>
 			<dewpoint>
-				<english>28.6</english>
-				<metric>-2</metric>
+				<english>34.5</english>
+				<metric>1</metric>
 			</dewpoint>
 			<condition>Partly Cloudy</condition>
 			
 			
 			<icon>partlycloudy</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_partlycloudy.gif</icon_url>
+			<icon_url>http://icons.wxug.com/i/c/k/partlycloudy.gif</icon_url>
 			<fctcode>2</fctcode>
-			<sky>43</sky>
+			<sky>44</sky>
 			<wspd>
-				<english>12</english>
-				<metric>19</metric>
-			</wspd>
-			<wdir>
-				<dir>S</dir>
-				<degrees>179</degrees>
-			</wdir>
-			<wx>Partly Cloudy</wx>
-			<uvi>0</uvi>
-			<humidity>81</humidity>
-			<windchill>
-				<english>25</english>
-				<metric>-4</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>25</english>
-					<metric>-4</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.0</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>16</pop>
-			<mslp>
-				<english>30.03</english>
-				<metric>1017</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>18</hour><hour_padded>18</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>6</mday><mday_padded>06</mday_padded><yday>339</yday><isdst>0</isdst><epoch>1544115600</epoch><pretty>6:00 PM CET on December 06, 2018</pretty><civil>6:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Thursday</weekday_name><weekday_name_night>Thursday Night</weekday_name_night><weekday_name_abbrev>Thu</weekday_name_abbrev><weekday_name_unlang>Thursday</weekday_name_unlang><weekday_name_night_unlang>Thursday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>34.3</english>
-				<metric>1</metric>
-			</temp>
-			<dewpoint>
-				<english>28.0</english>
-				<metric>-2</metric>
-			</dewpoint>
-			<condition>Snow</condition>
-			
-			
-			<icon>snow</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_snow.gif</icon_url>
-			<fctcode>21</fctcode>
-			<sky>100</sky>
-			<wspd>
-				<english>15</english>
-				<metric>24</metric>
-			</wspd>
-			<wdir>
-				<dir>S</dir>
-				<degrees>183</degrees>
-			</wdir>
-			<wx>Snow</wx>
-			<uvi>0</uvi>
-			<humidity>77</humidity>
-			<windchill>
-				<english>24</english>
-				<metric>-4</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>24</english>
-					<metric>-4</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.01</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.1</english>
-				<metric>3</metric>
-			</snow>
-			<pop>55</pop>
-			<mslp>
-				<english>30.01</english>
-				<metric>1016</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>19</hour><hour_padded>19</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>6</mday><mday_padded>06</mday_padded><yday>339</yday><isdst>0</isdst><epoch>1544119200</epoch><pretty>7:00 PM CET on December 06, 2018</pretty><civil>7:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Thursday</weekday_name><weekday_name_night>Thursday Night</weekday_name_night><weekday_name_abbrev>Thu</weekday_name_abbrev><weekday_name_unlang>Thursday</weekday_name_unlang><weekday_name_night_unlang>Thursday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>33.6</english>
-				<metric>1</metric>
-			</temp>
-			<dewpoint>
-				<english>28.6</english>
-				<metric>-2</metric>
-			</dewpoint>
-			<condition>Snow</condition>
-			
-			
-			<icon>snow</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_snow.gif</icon_url>
-			<fctcode>21</fctcode>
-			<sky>100</sky>
-			<wspd>
-				<english>13</english>
-				<metric>21</metric>
-			</wspd>
-			<wdir>
-				<dir>S</dir>
-				<degrees>184</degrees>
-			</wdir>
-			<wx>Snow</wx>
-			<uvi>0</uvi>
-			<humidity>82</humidity>
-			<windchill>
-				<english>25</english>
-				<metric>-4</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>25</english>
-					<metric>-4</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.03</english>
-				<metric>1</metric>
-			</qpf>
-			<snow>
-				<english>0.3</english>
-				<metric>8</metric>
-			</snow>
-			<pop>84</pop>
-			<mslp>
-				<english>30.0</english>
-				<metric>1016</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>20</hour><hour_padded>20</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>6</mday><mday_padded>06</mday_padded><yday>339</yday><isdst>0</isdst><epoch>1544122800</epoch><pretty>8:00 PM CET on December 06, 2018</pretty><civil>8:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Thursday</weekday_name><weekday_name_night>Thursday Night</weekday_name_night><weekday_name_abbrev>Thu</weekday_name_abbrev><weekday_name_unlang>Thursday</weekday_name_unlang><weekday_name_night_unlang>Thursday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>33.3</english>
-				<metric>1</metric>
-			</temp>
-			<dewpoint>
-				<english>29.5</english>
-				<metric>-1</metric>
-			</dewpoint>
-			<condition>Rain</condition>
-			
-			
-			<icon>rain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_rain.gif</icon_url>
-			<fctcode>13</fctcode>
-			<sky>100</sky>
-			<wspd>
-				<english>13</english>
-				<metric>21</metric>
-			</wspd>
-			<wdir>
-				<dir>S</dir>
-				<degrees>183</degrees>
-			</wdir>
-			<wx>Rain</wx>
-			<uvi>0</uvi>
-			<humidity>86</humidity>
-			<windchill>
-				<english>25</english>
-				<metric>-4</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>25</english>
-					<metric>-4</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.03</english>
-				<metric>1</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>84</pop>
-			<mslp>
-				<english>29.97</english>
-				<metric>1015</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>21</hour><hour_padded>21</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>6</mday><mday_padded>06</mday_padded><yday>339</yday><isdst>0</isdst><epoch>1544126400</epoch><pretty>9:00 PM CET on December 06, 2018</pretty><civil>9:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Thursday</weekday_name><weekday_name_night>Thursday Night</weekday_name_night><weekday_name_abbrev>Thu</weekday_name_abbrev><weekday_name_unlang>Thursday</weekday_name_unlang><weekday_name_night_unlang>Thursday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>33.1</english>
-				<metric>1</metric>
-			</temp>
-			<dewpoint>
-				<english>30.4</english>
-				<metric>-1</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>100</sky>
-			<wspd>
-				<english>12</english>
-				<metric>19</metric>
-			</wspd>
-			<wdir>
-				<dir>S</dir>
-				<degrees>183</degrees>
-			</wdir>
-			<wx>Light Rain</wx>
-			<uvi>0</uvi>
-			<humidity>90</humidity>
-			<windchill>
-				<english>25</english>
-				<metric>-4</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>25</english>
-					<metric>-4</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.02</english>
-				<metric>1</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>81</pop>
-			<mslp>
-				<english>29.94</english>
-				<metric>1014</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>22</hour><hour_padded>22</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>6</mday><mday_padded>06</mday_padded><yday>339</yday><isdst>0</isdst><epoch>1544130000</epoch><pretty>10:00 PM CET on December 06, 2018</pretty><civil>10:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Thursday</weekday_name><weekday_name_night>Thursday Night</weekday_name_night><weekday_name_abbrev>Thu</weekday_name_abbrev><weekday_name_unlang>Thursday</weekday_name_unlang><weekday_name_night_unlang>Thursday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>33.6</english>
-				<metric>1</metric>
-			</temp>
-			<dewpoint>
-				<english>31.5</english>
-				<metric>-0</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>100</sky>
-			<wspd>
-				<english>12</english>
-				<metric>19</metric>
-			</wspd>
-			<wdir>
-				<dir>S</dir>
-				<degrees>185</degrees>
-			</wdir>
-			<wx>Light Rain</wx>
-			<uvi>0</uvi>
-			<humidity>92</humidity>
-			<windchill>
-				<english>25</english>
-				<metric>-4</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>25</english>
-					<metric>-4</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.02</english>
-				<metric>1</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>81</pop>
-			<mslp>
-				<english>29.92</english>
-				<metric>1013</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>23</hour><hour_padded>23</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>6</mday><mday_padded>06</mday_padded><yday>339</yday><isdst>0</isdst><epoch>1544133600</epoch><pretty>11:00 PM CET on December 06, 2018</pretty><civil>11:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Thursday</weekday_name><weekday_name_night>Thursday Night</weekday_name_night><weekday_name_abbrev>Thu</weekday_name_abbrev><weekday_name_unlang>Thursday</weekday_name_unlang><weekday_name_night_unlang>Thursday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>34.2</english>
-				<metric>1</metric>
-			</temp>
-			<dewpoint>
-				<english>32.2</english>
-				<metric>0</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>100</sky>
-			<wspd>
-				<english>12</english>
-				<metric>19</metric>
-			</wspd>
-			<wdir>
-				<dir>S</dir>
-				<degrees>187</degrees>
-			</wdir>
-			<wx>Light Rain</wx>
-			<uvi>0</uvi>
-			<humidity>92</humidity>
-			<windchill>
-				<english>25</english>
-				<metric>-4</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>25</english>
-					<metric>-4</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.02</english>
-				<metric>1</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>79</pop>
-			<mslp>
-				<english>29.89</english>
-				<metric>1012</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>0</hour><hour_padded>00</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>7</mday><mday_padded>07</mday_padded><yday>340</yday><isdst>0</isdst><epoch>1544137200</epoch><pretty>12:00 AM CET on December 07, 2018</pretty><civil>12:00 AM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>34.3</english>
-				<metric>1</metric>
-			</temp>
-			<dewpoint>
-				<english>33.3</english>
-				<metric>1</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>100</sky>
-			<wspd>
-				<english>12</english>
-				<metric>19</metric>
-			</wspd>
-			<wdir>
-				<dir>S</dir>
-				<degrees>190</degrees>
-			</wdir>
-			<wx>Light Rain</wx>
-			<uvi>0</uvi>
-			<humidity>96</humidity>
-			<windchill>
-				<english>25</english>
-				<metric>-4</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>25</english>
-					<metric>-4</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.02</english>
-				<metric>1</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>79</pop>
-			<mslp>
-				<english>29.87</english>
-				<metric>1012</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>1</hour><hour_padded>01</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>7</mday><mday_padded>07</mday_padded><yday>340</yday><isdst>0</isdst><epoch>1544140800</epoch><pretty>1:00 AM CET on December 07, 2018</pretty><civil>1:00 AM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>35.2</english>
-				<metric>2</metric>
-			</temp>
-			<dewpoint>
-				<english>34.2</english>
-				<metric>1</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>100</sky>
-			<wspd>
-				<english>11</english>
-				<metric>18</metric>
-			</wspd>
-			<wdir>
-				<dir>SSW</dir>
-				<degrees>199</degrees>
-			</wdir>
-			<wx>Light Rain</wx>
-			<uvi>0</uvi>
-			<humidity>96</humidity>
-			<windchill>
-				<english>28</english>
-				<metric>-2</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>28</english>
-					<metric>-2</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.01</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>59</pop>
-			<mslp>
-				<english>29.84</english>
-				<metric>1011</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>2</hour><hour_padded>02</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>7</mday><mday_padded>07</mday_padded><yday>340</yday><isdst>0</isdst><epoch>1544144400</epoch><pretty>2:00 AM CET on December 07, 2018</pretty><civil>2:00 AM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>36.1</english>
-				<metric>2</metric>
-			</temp>
-			<dewpoint>
-				<english>35.4</english>
-				<metric>2</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>100</sky>
-			<wspd>
-				<english>11</english>
-				<metric>18</metric>
-			</wspd>
-			<wdir>
-				<dir>SSW</dir>
-				<degrees>206</degrees>
-			</wdir>
-			<wx>Light Rain</wx>
-			<uvi>0</uvi>
-			<humidity>97</humidity>
-			<windchill>
-				<english>28</english>
-				<metric>-2</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>28</english>
-					<metric>-2</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.0</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>49</pop>
-			<mslp>
-				<english>29.81</english>
-				<metric>1009</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>3</hour><hour_padded>03</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>7</mday><mday_padded>07</mday_padded><yday>340</yday><isdst>0</isdst><epoch>1544148000</epoch><pretty>3:00 AM CET on December 07, 2018</pretty><civil>3:00 AM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>37.4</english>
-				<metric>3</metric>
-			</temp>
-			<dewpoint>
-				<english>36.7</english>
-				<metric>3</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>100</sky>
-			<wspd>
-				<english>10</english>
-				<metric>16</metric>
+				<english>21</english>
+				<metric>34</metric>
 			</wspd>
 			<wdir>
 				<dir>SW</dir>
-				<degrees>217</degrees>
+				<degrees>234</degrees>
 			</wdir>
-			<wx>Light Rain</wx>
+			<wx>Partly Cloudy/Wind</wx>
 			<uvi>0</uvi>
-			<humidity>97</humidity>
+			<humidity>75</humidity>
+			<windchill>
+				<english>34</english>
+				<metric>1</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>34</english>
+					<metric>1</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>0</pop>
+			<mslp>
+				<english>29.44</english>
+				<metric>997</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>14</hour><hour_padded>14</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>8</mday><mday_padded>08</mday_padded><yday>341</yday><isdst>0</isdst><epoch>1544274000</epoch><pretty>2:00 PM CET on December 08, 2018</pretty><civil>2:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>41.4</english>
+				<metric>5</metric>
+			</temp>
+			<dewpoint>
+				<english>34.1</english>
+				<metric>1</metric>
+			</dewpoint>
+			<condition>Partly Cloudy</condition>
+			
+			
+			<icon>partlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/partlycloudy.gif</icon_url>
+			<fctcode>2</fctcode>
+			<sky>39</sky>
+			<wspd>
+				<english>19</english>
+				<metric>31</metric>
+			</wspd>
+			<wdir>
+				<dir>SW</dir>
+				<degrees>226</degrees>
+			</wdir>
+			<wx>Partly Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>75</humidity>
+			<windchill>
+				<english>32</english>
+				<metric>0</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>32</english>
+					<metric>0</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>0</pop>
+			<mslp>
+				<english>29.44</english>
+				<metric>997</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>15</hour><hour_padded>15</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>8</mday><mday_padded>08</mday_padded><yday>341</yday><isdst>0</isdst><epoch>1544277600</epoch><pretty>3:00 PM CET on December 08, 2018</pretty><civil>3:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>40.3</english>
+				<metric>5</metric>
+			</temp>
+			<dewpoint>
+				<english>35.1</english>
+				<metric>2</metric>
+			</dewpoint>
+			<condition>Mostly Cloudy</condition>
+			
+			
+			<icon>mostlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/mostlycloudy.gif</icon_url>
+			<fctcode>3</fctcode>
+			<sky>65</sky>
+			<wspd>
+				<english>17</english>
+				<metric>27</metric>
+			</wspd>
+			<wdir>
+				<dir>SW</dir>
+				<degrees>220</degrees>
+			</wdir>
+			<wx>Mostly Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>81</humidity>
+			<windchill>
+				<english>33</english>
+				<metric>0</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>33</english>
+					<metric>0</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>17</pop>
+			<mslp>
+				<english>29.43</english>
+				<metric>997</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>16</hour><hour_padded>16</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>8</mday><mday_padded>08</mday_padded><yday>341</yday><isdst>0</isdst><epoch>1544281200</epoch><pretty>4:00 PM CET on December 08, 2018</pretty><civil>4:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>39.9</english>
+				<metric>4</metric>
+			</temp>
+			<dewpoint>
+				<english>35.6</english>
+				<metric>2</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>82</sky>
+			<wspd>
+				<english>17</english>
+				<metric>27</metric>
+			</wspd>
+			<wdir>
+				<dir>SW</dir>
+				<degrees>215</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>84</humidity>
 			<windchill>
 				<english>30</english>
 				<metric>-1</metric>
@@ -790,10 +302,10 @@
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>35</pop>
+			<pop>14</pop>
 			<mslp>
-				<english>29.78</english>
-				<metric>1008</metric>
+				<english>29.43</english>
+				<metric>997</metric>
 			</mslp>
 		</forecast>
 		
@@ -801,14 +313,807 @@
 		
 		<forecast>
 			<FCTTIME>
-				<hour>4</hour><hour_padded>04</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>7</mday><mday_padded>07</mday_padded><yday>340</yday><isdst>0</isdst><epoch>1544151600</epoch><pretty>4:00 AM CET on December 07, 2018</pretty><civil>4:00 AM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+				<hour>17</hour><hour_padded>17</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>8</mday><mday_padded>08</mday_padded><yday>341</yday><isdst>0</isdst><epoch>1544284800</epoch><pretty>5:00 PM CET on December 08, 2018</pretty><civil>5:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
-				<english>38.7</english>
+				<english>40.1</english>
 				<metric>4</metric>
 			</temp>
 			<dewpoint>
+				<english>36.1</english>
+				<metric>2</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>86</sky>
+			<wspd>
+				<english>17</english>
+				<metric>27</metric>
+			</wspd>
+			<wdir>
+				<dir>SSW</dir>
+				<degrees>213</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>86</humidity>
+			<windchill>
+				<english>30</english>
+				<metric>-1</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>30</english>
+					<metric>-1</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>5</pop>
+			<mslp>
+				<english>29.41</english>
+				<metric>996</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>18</hour><hour_padded>18</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>8</mday><mday_padded>08</mday_padded><yday>341</yday><isdst>0</isdst><epoch>1544288400</epoch><pretty>6:00 PM CET on December 08, 2018</pretty><civil>6:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>40.8</english>
+				<metric>5</metric>
+			</temp>
+			<dewpoint>
+				<english>36.5</english>
+				<metric>2</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>85</sky>
+			<wspd>
+				<english>18</english>
+				<metric>29</metric>
+			</wspd>
+			<wdir>
+				<dir>SSW</dir>
+				<degrees>211</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>84</humidity>
+			<windchill>
+				<english>32</english>
+				<metric>0</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>32</english>
+					<metric>0</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>5</pop>
+			<mslp>
+				<english>29.39</english>
+				<metric>995</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>19</hour><hour_padded>19</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>8</mday><mday_padded>08</mday_padded><yday>341</yday><isdst>0</isdst><epoch>1544292000</epoch><pretty>7:00 PM CET on December 08, 2018</pretty><civil>7:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>41.0</english>
+				<metric>5</metric>
+			</temp>
+			<dewpoint>
+				<english>36.9</english>
+				<metric>3</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>84</sky>
+			<wspd>
+				<english>17</english>
+				<metric>27</metric>
+			</wspd>
+			<wdir>
+				<dir>SSW</dir>
+				<degrees>212</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>85</humidity>
+			<windchill>
+				<english>33</english>
+				<metric>0</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>33</english>
+					<metric>0</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>5</pop>
+			<mslp>
+				<english>29.37</english>
+				<metric>995</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>20</hour><hour_padded>20</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>8</mday><mday_padded>08</mday_padded><yday>341</yday><isdst>0</isdst><epoch>1544295600</epoch><pretty>8:00 PM CET on December 08, 2018</pretty><civil>8:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>41.2</english>
+				<metric>5</metric>
+			</temp>
+			<dewpoint>
+				<english>37.4</english>
+				<metric>3</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>89</sky>
+			<wspd>
+				<english>17</english>
+				<metric>27</metric>
+			</wspd>
+			<wdir>
+				<dir>SSW</dir>
+				<degrees>212</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>86</humidity>
+			<windchill>
+				<english>33</english>
+				<metric>0</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>33</english>
+					<metric>0</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>5</pop>
+			<mslp>
+				<english>29.36</english>
+				<metric>994</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>21</hour><hour_padded>21</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>8</mday><mday_padded>08</mday_padded><yday>341</yday><isdst>0</isdst><epoch>1544299200</epoch><pretty>9:00 PM CET on December 08, 2018</pretty><civil>9:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>41.2</english>
+				<metric>5</metric>
+			</temp>
+			<dewpoint>
+				<english>37.6</english>
+				<metric>3</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>93</sky>
+			<wspd>
+				<english>17</english>
+				<metric>27</metric>
+			</wspd>
+			<wdir>
+				<dir>SSW</dir>
+				<degrees>213</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>87</humidity>
+			<windchill>
+				<english>33</english>
+				<metric>0</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>33</english>
+					<metric>0</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>5</pop>
+			<mslp>
+				<english>29.34</english>
+				<metric>994</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>22</hour><hour_padded>22</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>8</mday><mday_padded>08</mday_padded><yday>341</yday><isdst>0</isdst><epoch>1544302800</epoch><pretty>10:00 PM CET on December 08, 2018</pretty><civil>10:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>41.2</english>
+				<metric>5</metric>
+			</temp>
+			<dewpoint>
+				<english>37.9</english>
+				<metric>3</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>93</sky>
+			<wspd>
+				<english>18</english>
+				<metric>29</metric>
+			</wspd>
+			<wdir>
+				<dir>SW</dir>
+				<degrees>216</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>88</humidity>
+			<windchill>
+				<english>32</english>
+				<metric>0</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>32</english>
+					<metric>0</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>16</pop>
+			<mslp>
+				<english>29.33</english>
+				<metric>993</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>23</hour><hour_padded>23</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>8</mday><mday_padded>08</mday_padded><yday>341</yday><isdst>0</isdst><epoch>1544306400</epoch><pretty>11:00 PM CET on December 08, 2018</pretty><civil>11:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>41.5</english>
+				<metric>5</metric>
+			</temp>
+			<dewpoint>
+				<english>38.5</english>
+				<metric>4</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>93</sky>
+			<wspd>
+				<english>17</english>
+				<metric>27</metric>
+			</wspd>
+			<wdir>
+				<dir>SSW</dir>
+				<degrees>214</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>89</humidity>
+			<windchill>
+				<english>33</english>
+				<metric>0</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>33</english>
+					<metric>0</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>23</pop>
+			<mslp>
+				<english>29.32</english>
+				<metric>993</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>0</hour><hour_padded>00</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>9</mday><mday_padded>09</mday_padded><yday>342</yday><isdst>0</isdst><epoch>1544310000</epoch><pretty>12:00 AM CET on December 09, 2018</pretty><civil>12:00 AM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>41.5</english>
+				<metric>5</metric>
+			</temp>
+			<dewpoint>
+				<english>38.8</english>
+				<metric>4</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>94</sky>
+			<wspd>
+				<english>16</english>
+				<metric>26</metric>
+			</wspd>
+			<wdir>
+				<dir>SW</dir>
+				<degrees>214</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>90</humidity>
+			<windchill>
+				<english>33</english>
+				<metric>0</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>33</english>
+					<metric>0</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>13</pop>
+			<mslp>
+				<english>29.31</english>
+				<metric>993</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>1</hour><hour_padded>01</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>9</mday><mday_padded>09</mday_padded><yday>342</yday><isdst>0</isdst><epoch>1544313600</epoch><pretty>1:00 AM CET on December 09, 2018</pretty><civil>1:00 AM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>41.7</english>
+				<metric>5</metric>
+			</temp>
+			<dewpoint>
+				<english>39.0</english>
+				<metric>4</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>93</sky>
+			<wspd>
+				<english>17</english>
+				<metric>27</metric>
+			</wspd>
+			<wdir>
+				<dir>SW</dir>
+				<degrees>215</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>90</humidity>
+			<windchill>
+				<english>33</english>
+				<metric>0</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>33</english>
+					<metric>0</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>6</pop>
+			<mslp>
+				<english>29.3</english>
+				<metric>992</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>2</hour><hour_padded>02</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>9</mday><mday_padded>09</mday_padded><yday>342</yday><isdst>0</isdst><epoch>1544317200</epoch><pretty>2:00 AM CET on December 09, 2018</pretty><civil>2:00 AM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>41.4</english>
+				<metric>5</metric>
+			</temp>
+			<dewpoint>
+				<english>38.7</english>
+				<metric>4</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>95</sky>
+			<wspd>
+				<english>16</english>
+				<metric>26</metric>
+			</wspd>
+			<wdir>
+				<dir>SSW</dir>
+				<degrees>213</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>90</humidity>
+			<windchill>
+				<english>33</english>
+				<metric>0</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>33</english>
+					<metric>0</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>6</pop>
+			<mslp>
+				<english>29.28</english>
+				<metric>992</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>3</hour><hour_padded>03</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>9</mday><mday_padded>09</mday_padded><yday>342</yday><isdst>0</isdst><epoch>1544320800</epoch><pretty>3:00 AM CET on December 09, 2018</pretty><civil>3:00 AM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>41.0</english>
+				<metric>5</metric>
+			</temp>
+			<dewpoint>
 				<english>38.1</english>
+				<metric>3</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>86</sky>
+			<wspd>
+				<english>14</english>
+				<metric>23</metric>
+			</wspd>
+			<wdir>
+				<dir>SSW</dir>
+				<degrees>210</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>89</humidity>
+			<windchill>
+				<english>33</english>
+				<metric>1</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>33</english>
+					<metric>1</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>6</pop>
+			<mslp>
+				<english>29.26</english>
+				<metric>991</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>4</hour><hour_padded>04</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>9</mday><mday_padded>09</mday_padded><yday>342</yday><isdst>0</isdst><epoch>1544324400</epoch><pretty>4:00 AM CET on December 09, 2018</pretty><civil>4:00 AM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>40.6</english>
+				<metric>5</metric>
+			</temp>
+			<dewpoint>
+				<english>37.4</english>
+				<metric>3</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>86</sky>
+			<wspd>
+				<english>14</english>
+				<metric>23</metric>
+			</wspd>
+			<wdir>
+				<dir>SSW</dir>
+				<degrees>201</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>88</humidity>
+			<windchill>
+				<english>33</english>
+				<metric>1</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>33</english>
+					<metric>1</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>7</pop>
+			<mslp>
+				<english>29.23</english>
+				<metric>990</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>5</hour><hour_padded>05</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>9</mday><mday_padded>09</mday_padded><yday>342</yday><isdst>0</isdst><epoch>1544328000</epoch><pretty>5:00 AM CET on December 09, 2018</pretty><civil>5:00 AM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>40.1</english>
+				<metric>4</metric>
+			</temp>
+			<dewpoint>
+				<english>37.4</english>
+				<metric>3</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>91</sky>
+			<wspd>
+				<english>13</english>
+				<metric>21</metric>
+			</wspd>
+			<wdir>
+				<dir>SSW</dir>
+				<degrees>192</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>90</humidity>
+			<windchill>
+				<english>31</english>
+				<metric>-0</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>31</english>
+					<metric>-0</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>22</pop>
+			<mslp>
+				<english>29.2</english>
+				<metric>989</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>6</hour><hour_padded>06</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>9</mday><mday_padded>09</mday_padded><yday>342</yday><isdst>0</isdst><epoch>1544331600</epoch><pretty>6:00 AM CET on December 09, 2018</pretty><civil>6:00 AM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>39.7</english>
+				<metric>4</metric>
+			</temp>
+			<dewpoint>
+				<english>37.4</english>
 				<metric>3</metric>
 			</dewpoint>
 			<condition>Chance of Rain</condition>
@@ -817,21 +1122,21 @@
 			<icon>chancerain</icon>
 			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
 			<fctcode>12</fctcode>
-			<sky>99</sky>
+			<sky>94</sky>
 			<wspd>
-				<english>11</english>
-				<metric>18</metric>
+				<english>14</english>
+				<metric>23</metric>
 			</wspd>
 			<wdir>
-				<dir>SW</dir>
-				<degrees>226</degrees>
+				<dir>S</dir>
+				<degrees>182</degrees>
 			</wdir>
 			<wx>Light Rain</wx>
 			<uvi>0</uvi>
-			<humidity>98</humidity>
+			<humidity>91</humidity>
 			<windchill>
-				<english>32</english>
-				<metric>0</metric>
+				<english>31</english>
+				<metric>-0</metric>
 			</windchill>
 			<heatindex>
 				<english>-9999</english>
@@ -839,22 +1144,22 @@
 			</heatindex>
 			
 				<feelslike>
-					<english>32</english>
-					<metric>0</metric>
+					<english>31</english>
+					<metric>-0</metric>
 				</feelslike>
 			
 			<qpf>
-				<english>0.01</english>
-				<metric>0</metric>
+				<english>0.02</english>
+				<metric>1</metric>
 			</qpf>
 			<snow>
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>54</pop>
+			<pop>50</pop>
 			<mslp>
-				<english>29.76</english>
-				<metric>1008</metric>
+				<english>29.17</english>
+				<metric>988</metric>
 			</mslp>
 		</forecast>
 		
@@ -862,15 +1167,15 @@
 		
 		<forecast>
 			<FCTTIME>
-				<hour>5</hour><hour_padded>05</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>7</mday><mday_padded>07</mday_padded><yday>340</yday><isdst>0</isdst><epoch>1544155200</epoch><pretty>5:00 AM CET on December 07, 2018</pretty><civil>5:00 AM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+				<hour>7</hour><hour_padded>07</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>9</mday><mday_padded>09</mday_padded><yday>342</yday><isdst>0</isdst><epoch>1544335200</epoch><pretty>7:00 AM CET on December 09, 2018</pretty><civil>7:00 AM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
-				<english>40.1</english>
+				<english>38.8</english>
 				<metric>4</metric>
 			</temp>
 			<dewpoint>
-				<english>39.7</english>
-				<metric>4</metric>
+				<english>37.0</english>
+				<metric>3</metric>
 			</dewpoint>
 			<condition>Chance of Rain</condition>
 			
@@ -878,21 +1183,21 @@
 			<icon>chancerain</icon>
 			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
 			<fctcode>12</fctcode>
-			<sky>99</sky>
+			<sky>95</sky>
 			<wspd>
-				<english>11</english>
-				<metric>18</metric>
+				<english>14</english>
+				<metric>23</metric>
 			</wspd>
 			<wdir>
-				<dir>SW</dir>
-				<degrees>225</degrees>
+				<dir>S</dir>
+				<degrees>177</degrees>
 			</wdir>
 			<wx>Light Rain</wx>
 			<uvi>0</uvi>
-			<humidity>99</humidity>
+			<humidity>93</humidity>
 			<windchill>
-				<english>32</english>
-				<metric>0</metric>
+				<english>31</english>
+				<metric>-0</metric>
 			</windchill>
 			<heatindex>
 				<english>-9999</english>
@@ -900,22 +1205,22 @@
 			</heatindex>
 			
 				<feelslike>
-					<english>32</english>
-					<metric>0</metric>
+					<english>31</english>
+					<metric>-0</metric>
 				</feelslike>
 			
 			<qpf>
-				<english>0.01</english>
-				<metric>0</metric>
+				<english>0.02</english>
+				<metric>1</metric>
 			</qpf>
 			<snow>
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>49</pop>
+			<pop>65</pop>
 			<mslp>
-				<english>29.74</english>
-				<metric>1007</metric>
+				<english>29.14</english>
+				<metric>987</metric>
 			</mslp>
 		</forecast>
 		
@@ -923,34 +1228,339 @@
 		
 		<forecast>
 			<FCTTIME>
-				<hour>6</hour><hour_padded>06</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>7</mday><mday_padded>07</mday_padded><yday>340</yday><isdst>0</isdst><epoch>1544158800</epoch><pretty>6:00 AM CET on December 07, 2018</pretty><civil>6:00 AM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+				<hour>8</hour><hour_padded>08</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>9</mday><mday_padded>09</mday_padded><yday>342</yday><isdst>0</isdst><epoch>1544338800</epoch><pretty>8:00 AM CET on December 09, 2018</pretty><civil>8:00 AM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
-				<english>41.5</english>
-				<metric>5</metric>
+				<english>38.3</english>
+				<metric>3</metric>
 			</temp>
 			<dewpoint>
-				<english>41.0</english>
-				<metric>5</metric>
+				<english>37.2</english>
+				<metric>3</metric>
 			</dewpoint>
 			<condition>Chance of Rain</condition>
 			
 			
 			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
+			<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
 			<fctcode>12</fctcode>
 			<sky>100</sky>
 			<wspd>
-				<english>11</english>
-				<metric>18</metric>
+				<english>13</english>
+				<metric>21</metric>
 			</wspd>
 			<wdir>
-				<dir>SW</dir>
-				<degrees>223</degrees>
+				<dir>S</dir>
+				<degrees>179</degrees>
+			</wdir>
+			<wx>Light Rain</wx>
+			<uvi>0</uvi>
+			<humidity>96</humidity>
+			<windchill>
+				<english>29</english>
+				<metric>-2</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>29</english>
+					<metric>-2</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.01</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>45</pop>
+			<mslp>
+				<english>29.12</english>
+				<metric>986</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>9</hour><hour_padded>09</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>9</mday><mday_padded>09</mday_padded><yday>342</yday><isdst>0</isdst><epoch>1544342400</epoch><pretty>9:00 AM CET on December 09, 2018</pretty><civil>9:00 AM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>38.8</english>
+				<metric>4</metric>
+			</temp>
+			<dewpoint>
+				<english>38.3</english>
+				<metric>3</metric>
+			</dewpoint>
+			<condition>Chance of Rain</condition>
+			
+			
+			<icon>chancerain</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
+			<fctcode>12</fctcode>
+			<sky>100</sky>
+			<wspd>
+				<english>13</english>
+				<metric>21</metric>
+			</wspd>
+			<wdir>
+				<dir>S</dir>
+				<degrees>180</degrees>
 			</wdir>
 			<wx>Light Rain</wx>
 			<uvi>0</uvi>
 			<humidity>98</humidity>
+			<windchill>
+				<english>31</english>
+				<metric>-0</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>31</english>
+					<metric>-0</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.01</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>46</pop>
+			<mslp>
+				<english>29.1</english>
+				<metric>985</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>10</hour><hour_padded>10</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>9</mday><mday_padded>09</mday_padded><yday>342</yday><isdst>0</isdst><epoch>1544346000</epoch><pretty>10:00 AM CET on December 09, 2018</pretty><civil>10:00 AM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>39.0</english>
+				<metric>4</metric>
+			</temp>
+			<dewpoint>
+				<english>39.0</english>
+				<metric>4</metric>
+			</dewpoint>
+			<condition>Chance of Rain</condition>
+			
+			
+			<icon>chancerain</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
+			<fctcode>12</fctcode>
+			<sky>100</sky>
+			<wspd>
+				<english>13</english>
+				<metric>21</metric>
+			</wspd>
+			<wdir>
+				<dir>SSW</dir>
+				<degrees>193</degrees>
+			</wdir>
+			<wx>Light Rain</wx>
+			<uvi>0</uvi>
+			<humidity>100</humidity>
+			<windchill>
+				<english>31</english>
+				<metric>-0</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>31</english>
+					<metric>-0</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>35</pop>
+			<mslp>
+				<english>29.09</english>
+				<metric>985</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>11</hour><hour_padded>11</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>9</mday><mday_padded>09</mday_padded><yday>342</yday><isdst>0</isdst><epoch>1544349600</epoch><pretty>11:00 AM CET on December 09, 2018</pretty><civil>11:00 AM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>39.6</english>
+				<metric>4</metric>
+			</temp>
+			<dewpoint>
+				<english>39.0</english>
+				<metric>4</metric>
+			</dewpoint>
+			<condition>Chance of Rain</condition>
+			
+			
+			<icon>chancerain</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
+			<fctcode>12</fctcode>
+			<sky>100</sky>
+			<wspd>
+				<english>12</english>
+				<metric>19</metric>
+			</wspd>
+			<wdir>
+				<dir>SW</dir>
+				<degrees>214</degrees>
+			</wdir>
+			<wx>Light Rain</wx>
+			<uvi>0</uvi>
+			<humidity>98</humidity>
+			<windchill>
+				<english>32</english>
+				<metric>-0</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>32</english>
+					<metric>-0</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.01</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>46</pop>
+			<mslp>
+				<english>29.09</english>
+				<metric>985</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>12</hour><hour_padded>12</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>9</mday><mday_padded>09</mday_padded><yday>342</yday><isdst>0</isdst><epoch>1544353200</epoch><pretty>12:00 PM CET on December 09, 2018</pretty><civil>12:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>39.9</english>
+				<metric>4</metric>
+			</temp>
+			<dewpoint>
+				<english>39.0</english>
+				<metric>4</metric>
+			</dewpoint>
+			<condition>Chance of Rain</condition>
+			
+			
+			<icon>chancerain</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
+			<fctcode>12</fctcode>
+			<sky>96</sky>
+			<wspd>
+				<english>12</english>
+				<metric>19</metric>
+			</wspd>
+			<wdir>
+				<dir>WSW</dir>
+				<degrees>248</degrees>
+			</wdir>
+			<wx>Light Rain</wx>
+			<uvi>0</uvi>
+			<humidity>97</humidity>
+			<windchill>
+				<english>32</english>
+				<metric>-0</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>32</english>
+					<metric>-0</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.02</english>
+				<metric>1</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>57</pop>
+			<mslp>
+				<english>29.1</english>
+				<metric>985</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>13</hour><hour_padded>13</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>9</mday><mday_padded>09</mday_padded><yday>342</yday><isdst>0</isdst><epoch>1544356800</epoch><pretty>1:00 PM CET on December 09, 2018</pretty><civil>1:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>40.3</english>
+				<metric>5</metric>
+			</temp>
+			<dewpoint>
+				<english>38.8</english>
+				<metric>4</metric>
+			</dewpoint>
+			<condition>Chance of Rain</condition>
+			
+			
+			<icon>chancerain</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
+			<fctcode>12</fctcode>
+			<sky>94</sky>
+			<wspd>
+				<english>11</english>
+				<metric>18</metric>
+			</wspd>
+			<wdir>
+				<dir>WSW</dir>
+				<degrees>257</degrees>
+			</wdir>
+			<wx>Light Rain</wx>
+			<uvi>0</uvi>
+			<humidity>95</humidity>
 			<windchill>
 				<english>34</english>
 				<metric>1</metric>
@@ -966,17 +1576,17 @@
 				</feelslike>
 			
 			<qpf>
-				<english>0.02</english>
-				<metric>1</metric>
+				<english>0.0</english>
+				<metric>0</metric>
 			</qpf>
 			<snow>
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>71</pop>
+			<pop>37</pop>
 			<mslp>
-				<english>29.71</english>
-				<metric>1006</metric>
+				<english>29.11</english>
+				<metric>986</metric>
 			</mslp>
 		</forecast>
 		
@@ -984,15 +1594,137 @@
 		
 		<forecast>
 			<FCTTIME>
-				<hour>7</hour><hour_padded>07</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>7</mday><mday_padded>07</mday_padded><yday>340</yday><isdst>0</isdst><epoch>1544162400</epoch><pretty>7:00 AM CET on December 07, 2018</pretty><civil>7:00 AM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+				<hour>14</hour><hour_padded>14</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>9</mday><mday_padded>09</mday_padded><yday>342</yday><isdst>0</isdst><epoch>1544360400</epoch><pretty>2:00 PM CET on December 09, 2018</pretty><civil>2:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
-				<english>42.4</english>
-				<metric>6</metric>
+				<english>40.8</english>
+				<metric>5</metric>
 			</temp>
 			<dewpoint>
-				<english>42.1</english>
-				<metric>6</metric>
+				<english>39.0</english>
+				<metric>4</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>98</sky>
+			<wspd>
+				<english>11</english>
+				<metric>18</metric>
+			</wspd>
+			<wdir>
+				<dir>WSW</dir>
+				<degrees>253</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>93</humidity>
+			<windchill>
+				<english>34</english>
+				<metric>1</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>34</english>
+					<metric>1</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>19</pop>
+			<mslp>
+				<english>29.13</english>
+				<metric>986</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>15</hour><hour_padded>15</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>9</mday><mday_padded>09</mday_padded><yday>342</yday><isdst>0</isdst><epoch>1544364000</epoch><pretty>3:00 PM CET on December 09, 2018</pretty><civil>3:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>41.2</english>
+				<metric>5</metric>
+			</temp>
+			<dewpoint>
+				<english>38.8</english>
+				<metric>4</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>95</sky>
+			<wspd>
+				<english>11</english>
+				<metric>18</metric>
+			</wspd>
+			<wdir>
+				<dir>WSW</dir>
+				<degrees>253</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>91</humidity>
+			<windchill>
+				<english>34</english>
+				<metric>1</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>34</english>
+					<metric>1</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>24</pop>
+			<mslp>
+				<english>29.15</english>
+				<metric>987</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>16</hour><hour_padded>16</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>9</mday><mday_padded>09</mday_padded><yday>342</yday><isdst>0</isdst><epoch>1544367600</epoch><pretty>4:00 PM CET on December 09, 2018</pretty><civil>4:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>41.0</english>
+				<metric>5</metric>
+			</temp>
+			<dewpoint>
+				<english>39.0</english>
+				<metric>4</metric>
 			</dewpoint>
 			<condition>Overcast</condition>
 			
@@ -1000,692 +1732,82 @@
 			<icon>cloudy</icon>
 			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
 			<fctcode>4</fctcode>
-			<sky>99</sky>
-			<wspd>
-				<english>11</english>
-				<metric>18</metric>
-			</wspd>
-			<wdir>
-				<dir>SW</dir>
-				<degrees>225</degrees>
-			</wdir>
-			<wx>Cloudy</wx>
-			<uvi>0</uvi>
-			<humidity>99</humidity>
-			<windchill>
-				<english>37</english>
-				<metric>3</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>37</english>
-					<metric>3</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.0</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>24</pop>
-			<mslp>
-				<english>29.69</english>
-				<metric>1005</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>8</hour><hour_padded>08</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>7</mday><mday_padded>07</mday_padded><yday>340</yday><isdst>0</isdst><epoch>1544166000</epoch><pretty>8:00 AM CET on December 07, 2018</pretty><civil>8:00 AM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>43.2</english>
-				<metric>6</metric>
-			</temp>
-			<dewpoint>
-				<english>42.8</english>
-				<metric>6</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>100</sky>
-			<wspd>
-				<english>11</english>
-				<metric>18</metric>
-			</wspd>
-			<wdir>
-				<dir>SW</dir>
-				<degrees>230</degrees>
-			</wdir>
-			<wx>Light Rain</wx>
-			<uvi>0</uvi>
-			<humidity>99</humidity>
-			<windchill>
-				<english>37</english>
-				<metric>3</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>37</english>
-					<metric>3</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.0</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>35</pop>
-			<mslp>
-				<english>29.67</english>
-				<metric>1005</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>9</hour><hour_padded>09</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>7</mday><mday_padded>07</mday_padded><yday>340</yday><isdst>0</isdst><epoch>1544169600</epoch><pretty>9:00 AM CET on December 07, 2018</pretty><civil>9:00 AM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>43.5</english>
-				<metric>6</metric>
-			</temp>
-			<dewpoint>
-				<english>43.5</english>
-				<metric>6</metric>
-			</dewpoint>
-			<condition>Overcast</condition>
-			
-			
-			<icon>cloudy</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
-			<fctcode>4</fctcode>
-			<sky>100</sky>
-			<wspd>
-				<english>12</english>
-				<metric>19</metric>
-			</wspd>
-			<wdir>
-				<dir>SW</dir>
-				<degrees>227</degrees>
-			</wdir>
-			<wx>Cloudy</wx>
-			<uvi>0</uvi>
-			<humidity>100</humidity>
-			<windchill>
-				<english>36</english>
-				<metric>2</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>36</english>
-					<metric>2</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.0</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>24</pop>
-			<mslp>
-				<english>29.66</english>
-				<metric>1004</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>10</hour><hour_padded>10</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>7</mday><mday_padded>07</mday_padded><yday>340</yday><isdst>0</isdst><epoch>1544173200</epoch><pretty>10:00 AM CET on December 07, 2018</pretty><civil>10:00 AM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>44.2</english>
-				<metric>7</metric>
-			</temp>
-			<dewpoint>
-				<english>44.2</english>
-				<metric>7</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>99</sky>
-			<wspd>
-				<english>13</english>
-				<metric>21</metric>
-			</wspd>
-			<wdir>
-				<dir>SW</dir>
-				<degrees>231</degrees>
-			</wdir>
-			<wx>Light Rain</wx>
-			<uvi>0</uvi>
-			<humidity>100</humidity>
-			<windchill>
-				<english>38</english>
-				<metric>4</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>38</english>
-					<metric>4</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.0</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>35</pop>
-			<mslp>
-				<english>29.65</english>
-				<metric>1004</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>11</hour><hour_padded>11</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>7</mday><mday_padded>07</mday_padded><yday>340</yday><isdst>0</isdst><epoch>1544176800</epoch><pretty>11:00 AM CET on December 07, 2018</pretty><civil>11:00 AM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>45.1</english>
-				<metric>7</metric>
-			</temp>
-			<dewpoint>
-				<english>44.8</english>
-				<metric>7</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>100</sky>
-			<wspd>
-				<english>13</english>
-				<metric>21</metric>
-			</wspd>
-			<wdir>
-				<dir>SW</dir>
-				<degrees>232</degrees>
-			</wdir>
-			<wx>Light Rain</wx>
-			<uvi>0</uvi>
-			<humidity>99</humidity>
-			<windchill>
-				<english>38</english>
-				<metric>4</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>38</english>
-					<metric>4</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.0</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>35</pop>
-			<mslp>
-				<english>29.63</english>
-				<metric>1003</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>12</hour><hour_padded>12</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>7</mday><mday_padded>07</mday_padded><yday>340</yday><isdst>0</isdst><epoch>1544180400</epoch><pretty>12:00 PM CET on December 07, 2018</pretty><civil>12:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>45.7</english>
-				<metric>8</metric>
-			</temp>
-			<dewpoint>
-				<english>45.3</english>
-				<metric>7</metric>
-			</dewpoint>
-			<condition>Overcast</condition>
-			
-			
-			<icon>cloudy</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
-			<fctcode>4</fctcode>
-			<sky>100</sky>
-			<wspd>
-				<english>13</english>
-				<metric>21</metric>
-			</wspd>
-			<wdir>
-				<dir>SW</dir>
-				<degrees>237</degrees>
-			</wdir>
-			<wx>Cloudy</wx>
-			<uvi>0</uvi>
-			<humidity>99</humidity>
-			<windchill>
-				<english>41</english>
-				<metric>5</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>41</english>
-					<metric>5</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.0</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>24</pop>
-			<mslp>
-				<english>29.62</english>
-				<metric>1003</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>13</hour><hour_padded>13</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>7</mday><mday_padded>07</mday_padded><yday>340</yday><isdst>0</isdst><epoch>1544184000</epoch><pretty>1:00 PM CET on December 07, 2018</pretty><civil>1:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>46.0</english>
-				<metric>8</metric>
-			</temp>
-			<dewpoint>
-				<english>45.5</english>
-				<metric>8</metric>
-			</dewpoint>
-			<condition>Overcast</condition>
-			
-			
-			<icon>cloudy</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
-			<fctcode>4</fctcode>
-			<sky>99</sky>
-			<wspd>
-				<english>12</english>
-				<metric>19</metric>
-			</wspd>
-			<wdir>
-				<dir>WSW</dir>
-				<degrees>240</degrees>
-			</wdir>
-			<wx>Cloudy</wx>
-			<uvi>0</uvi>
-			<humidity>98</humidity>
-			<windchill>
-				<english>41</english>
-				<metric>5</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>41</english>
-					<metric>5</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.0</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>24</pop>
-			<mslp>
-				<english>29.6</english>
-				<metric>1002</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>14</hour><hour_padded>14</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>7</mday><mday_padded>07</mday_padded><yday>340</yday><isdst>0</isdst><epoch>1544187600</epoch><pretty>2:00 PM CET on December 07, 2018</pretty><civil>2:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>46.2</english>
-				<metric>8</metric>
-			</temp>
-			<dewpoint>
-				<english>45.3</english>
-				<metric>7</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>100</sky>
+			<sky>94</sky>
 			<wspd>
 				<english>11</english>
 				<metric>18</metric>
 			</wspd>
 			<wdir>
 				<dir>WSW</dir>
-				<degrees>238</degrees>
+				<degrees>255</degrees>
 			</wdir>
-			<wx>Light Rain</wx>
+			<wx>Cloudy</wx>
 			<uvi>0</uvi>
-			<humidity>97</humidity>
+			<humidity>93</humidity>
 			<windchill>
-				<english>41</english>
+				<english>34</english>
+				<metric>1</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>34</english>
+					<metric>1</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>16</pop>
+			<mslp>
+				<english>29.16</english>
+				<metric>987</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>17</hour><hour_padded>17</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>9</mday><mday_padded>09</mday_padded><yday>342</yday><isdst>0</isdst><epoch>1544371200</epoch><pretty>5:00 PM CET on December 09, 2018</pretty><civil>5:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>40.8</english>
 				<metric>5</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>41</english>
-					<metric>5</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.01</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>42</pop>
-			<mslp>
-				<english>29.59</english>
-				<metric>1002</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>15</hour><hour_padded>15</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>7</mday><mday_padded>07</mday_padded><yday>340</yday><isdst>0</isdst><epoch>1544191200</epoch><pretty>3:00 PM CET on December 07, 2018</pretty><civil>3:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>46.4</english>
-				<metric>8</metric>
 			</temp>
 			<dewpoint>
-				<english>45.3</english>
-				<metric>7</metric>
+				<english>39.2</english>
+				<metric>4</metric>
 			</dewpoint>
-			<condition>Chance of Rain</condition>
+			<condition>Overcast</condition>
 			
 			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>99</sky>
-			<wspd>
-				<english>9</english>
-				<metric>14</metric>
-			</wspd>
-			<wdir>
-				<dir>SW</dir>
-				<degrees>230</degrees>
-			</wdir>
-			<wx>Light Rain</wx>
-			<uvi>0</uvi>
-			<humidity>96</humidity>
-			<windchill>
-				<english>42</english>
-				<metric>6</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>42</english>
-					<metric>6</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.02</english>
-				<metric>1</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>54</pop>
-			<mslp>
-				<english>29.57</english>
-				<metric>1001</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>16</hour><hour_padded>16</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>7</mday><mday_padded>07</mday_padded><yday>340</yday><isdst>0</isdst><epoch>1544194800</epoch><pretty>4:00 PM CET on December 07, 2018</pretty><civil>4:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>46.0</english>
-				<metric>8</metric>
-			</temp>
-			<dewpoint>
-				<english>45.5</english>
-				<metric>8</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>100</sky>
-			<wspd>
-				<english>9</english>
-				<metric>14</metric>
-			</wspd>
-			<wdir>
-				<dir>SW</dir>
-				<degrees>224</degrees>
-			</wdir>
-			<wx>Light Rain</wx>
-			<uvi>0</uvi>
-			<humidity>98</humidity>
-			<windchill>
-				<english>42</english>
-				<metric>6</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>42</english>
-					<metric>6</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.02</english>
-				<metric>1</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>71</pop>
-			<mslp>
-				<english>29.54</english>
-				<metric>1000</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>17</hour><hour_padded>17</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>7</mday><mday_padded>07</mday_padded><yday>340</yday><isdst>0</isdst><epoch>1544198400</epoch><pretty>5:00 PM CET on December 07, 2018</pretty><civil>5:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>45.9</english>
-				<metric>8</metric>
-			</temp>
-			<dewpoint>
-				<english>45.5</english>
-				<metric>8</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>100</sky>
-			<wspd>
-				<english>10</english>
-				<metric>16</metric>
-			</wspd>
-			<wdir>
-				<dir>SW</dir>
-				<degrees>214</degrees>
-			</wdir>
-			<wx>Light Rain</wx>
-			<uvi>0</uvi>
-			<humidity>99</humidity>
-			<windchill>
-				<english>42</english>
-				<metric>5</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>42</english>
-					<metric>5</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.02</english>
-				<metric>1</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>69</pop>
-			<mslp>
-				<english>29.52</english>
-				<metric>1000</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>18</hour><hour_padded>18</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>7</mday><mday_padded>07</mday_padded><yday>340</yday><isdst>0</isdst><epoch>1544202000</epoch><pretty>6:00 PM CET on December 07, 2018</pretty><civil>6:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>46.2</english>
-				<metric>8</metric>
-			</temp>
-			<dewpoint>
-				<english>45.5</english>
-				<metric>8</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>100</sky>
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>94</sky>
 			<wspd>
 				<english>11</english>
 				<metric>18</metric>
 			</wspd>
 			<wdir>
-				<dir>SSW</dir>
-				<degrees>207</degrees>
+				<dir>WSW</dir>
+				<degrees>253</degrees>
 			</wdir>
-			<wx>Light Rain</wx>
+			<wx>Cloudy</wx>
 			<uvi>0</uvi>
-			<humidity>97</humidity>
+			<humidity>94</humidity>
 			<windchill>
-				<english>41</english>
-				<metric>5</metric>
+				<english>34</english>
+				<metric>1</metric>
 			</windchill>
 			<heatindex>
 				<english>-9999</english>
@@ -1693,22 +1815,22 @@
 			</heatindex>
 			
 				<feelslike>
-					<english>41</english>
-					<metric>5</metric>
+					<english>34</english>
+					<metric>1</metric>
 				</feelslike>
 			
 			<qpf>
-				<english>0.01</english>
+				<english>0.0</english>
 				<metric>0</metric>
 			</qpf>
 			<snow>
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>59</pop>
+			<pop>8</pop>
 			<mslp>
-				<english>29.49</english>
-				<metric>999</metric>
+				<english>29.18</english>
+				<metric>988</metric>
 			</mslp>
 		</forecast>
 		
@@ -1716,37 +1838,37 @@
 		
 		<forecast>
 			<FCTTIME>
-				<hour>19</hour><hour_padded>19</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>7</mday><mday_padded>07</mday_padded><yday>340</yday><isdst>0</isdst><epoch>1544205600</epoch><pretty>7:00 PM CET on December 07, 2018</pretty><civil>7:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+				<hour>18</hour><hour_padded>18</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>9</mday><mday_padded>09</mday_padded><yday>342</yday><isdst>0</isdst><epoch>1544374800</epoch><pretty>6:00 PM CET on December 09, 2018</pretty><civil>6:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
-				<english>46.0</english>
-				<metric>8</metric>
+				<english>41.0</english>
+				<metric>5</metric>
 			</temp>
 			<dewpoint>
-				<english>45.7</english>
-				<metric>8</metric>
+				<english>39.2</english>
+				<metric>4</metric>
 			</dewpoint>
-			<condition>Chance of Rain</condition>
+			<condition>Overcast</condition>
 			
 			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>100</sky>
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>90</sky>
 			<wspd>
 				<english>11</english>
 				<metric>18</metric>
 			</wspd>
 			<wdir>
-				<dir>SSW</dir>
-				<degrees>208</degrees>
+				<dir>WSW</dir>
+				<degrees>249</degrees>
 			</wdir>
-			<wx>Light Rain</wx>
+			<wx>Cloudy</wx>
 			<uvi>0</uvi>
-			<humidity>99</humidity>
+			<humidity>93</humidity>
 			<windchill>
-				<english>41</english>
-				<metric>5</metric>
+				<english>34</english>
+				<metric>1</metric>
 			</windchill>
 			<heatindex>
 				<english>-9999</english>
@@ -1754,22 +1876,22 @@
 			</heatindex>
 			
 				<feelslike>
-					<english>41</english>
-					<metric>5</metric>
+					<english>34</english>
+					<metric>1</metric>
 				</feelslike>
 			
 			<qpf>
-				<english>0.02</english>
-				<metric>1</metric>
+				<english>0.0</english>
+				<metric>0</metric>
 			</qpf>
 			<snow>
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>66</pop>
+			<pop>8</pop>
 			<mslp>
-				<english>29.46</english>
-				<metric>998</metric>
+				<english>29.19</english>
+				<metric>988</metric>
 			</mslp>
 		</forecast>
 		
@@ -1777,37 +1899,37 @@
 		
 		<forecast>
 			<FCTTIME>
-				<hour>20</hour><hour_padded>20</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>7</mday><mday_padded>07</mday_padded><yday>340</yday><isdst>0</isdst><epoch>1544209200</epoch><pretty>8:00 PM CET on December 07, 2018</pretty><civil>8:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+				<hour>19</hour><hour_padded>19</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>9</mday><mday_padded>09</mday_padded><yday>342</yday><isdst>0</isdst><epoch>1544378400</epoch><pretty>7:00 PM CET on December 09, 2018</pretty><civil>7:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
-				<english>46.4</english>
-				<metric>8</metric>
+				<english>40.5</english>
+				<metric>5</metric>
 			</temp>
 			<dewpoint>
-				<english>46.0</english>
-				<metric>8</metric>
+				<english>39.2</english>
+				<metric>4</metric>
 			</dewpoint>
-			<condition>Chance of Rain</condition>
+			<condition>Overcast</condition>
 			
 			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>96</sky>
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>88</sky>
 			<wspd>
 				<english>11</english>
 				<metric>18</metric>
 			</wspd>
 			<wdir>
-				<dir>SSW</dir>
-				<degrees>211</degrees>
+				<dir>WSW</dir>
+				<degrees>248</degrees>
 			</wdir>
-			<wx>Light Rain</wx>
+			<wx>Cloudy</wx>
 			<uvi>0</uvi>
-			<humidity>99</humidity>
+			<humidity>95</humidity>
 			<windchill>
-				<english>41</english>
-				<metric>5</metric>
+				<english>34</english>
+				<metric>1</metric>
 			</windchill>
 			<heatindex>
 				<english>-9999</english>
@@ -1815,22 +1937,22 @@
 			</heatindex>
 			
 				<feelslike>
-					<english>41</english>
-					<metric>5</metric>
+					<english>34</english>
+					<metric>1</metric>
 				</feelslike>
 			
 			<qpf>
-				<english>0.02</english>
-				<metric>1</metric>
+				<english>0.0</english>
+				<metric>0</metric>
 			</qpf>
 			<snow>
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>74</pop>
+			<pop>7</pop>
 			<mslp>
-				<english>29.43</english>
-				<metric>997</metric>
+				<english>29.21</english>
+				<metric>989</metric>
 			</mslp>
 		</forecast>
 		
@@ -1838,159 +1960,98 @@
 		
 		<forecast>
 			<FCTTIME>
-				<hour>21</hour><hour_padded>21</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>7</mday><mday_padded>07</mday_padded><yday>340</yday><isdst>0</isdst><epoch>1544212800</epoch><pretty>9:00 PM CET on December 07, 2018</pretty><civil>9:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+				<hour>20</hour><hour_padded>20</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>9</mday><mday_padded>09</mday_padded><yday>342</yday><isdst>0</isdst><epoch>1544382000</epoch><pretty>8:00 PM CET on December 09, 2018</pretty><civil>8:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
-				<english>46.8</english>
-				<metric>8</metric>
+				<english>40.3</english>
+				<metric>5</metric>
 			</temp>
 			<dewpoint>
-				<english>46.0</english>
-				<metric>8</metric>
+				<english>39.0</english>
+				<metric>4</metric>
 			</dewpoint>
-			<condition>Chance of Rain</condition>
+			<condition>Overcast</condition>
 			
 			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>87</sky>
+			<wspd>
+				<english>11</english>
+				<metric>18</metric>
+			</wspd>
+			<wdir>
+				<dir>WSW</dir>
+				<degrees>246</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>95</humidity>
+			<windchill>
+				<english>34</english>
+				<metric>1</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>34</english>
+					<metric>1</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>8</pop>
+			<mslp>
+				<english>29.22</english>
+				<metric>990</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>21</hour><hour_padded>21</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>9</mday><mday_padded>09</mday_padded><yday>342</yday><isdst>0</isdst><epoch>1544385600</epoch><pretty>9:00 PM CET on December 09, 2018</pretty><civil>9:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>39.9</english>
+				<metric>4</metric>
+			</temp>
+			<dewpoint>
+				<english>38.7</english>
+				<metric>4</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
 			<sky>89</sky>
 			<wspd>
 				<english>11</english>
 				<metric>18</metric>
 			</wspd>
 			<wdir>
-				<dir>SSW</dir>
-				<degrees>214</degrees>
+				<dir>WSW</dir>
+				<degrees>246</degrees>
 			</wdir>
-			<wx>Light Rain</wx>
-			<uvi>0</uvi>
-			<humidity>97</humidity>
-			<windchill>
-				<english>41</english>
-				<metric>5</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>41</english>
-					<metric>5</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.02</english>
-				<metric>1</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>74</pop>
-			<mslp>
-				<english>29.41</english>
-				<metric>996</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>22</hour><hour_padded>22</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>7</mday><mday_padded>07</mday_padded><yday>340</yday><isdst>0</isdst><epoch>1544216400</epoch><pretty>10:00 PM CET on December 07, 2018</pretty><civil>10:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>47.1</english>
-				<metric>8</metric>
-			</temp>
-			<dewpoint>
-				<english>46.2</english>
-				<metric>8</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>88</sky>
-			<wspd>
-				<english>12</english>
-				<metric>19</metric>
-			</wspd>
-			<wdir>
-				<dir>SW</dir>
-				<degrees>219</degrees>
-			</wdir>
-			<wx>Light Rain</wx>
-			<uvi>0</uvi>
-			<humidity>97</humidity>
-			<windchill>
-				<english>41</english>
-				<metric>5</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>41</english>
-					<metric>5</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.01</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>57</pop>
-			<mslp>
-				<english>29.38</english>
-				<metric>995</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>23</hour><hour_padded>23</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>7</mday><mday_padded>07</mday_padded><yday>340</yday><isdst>0</isdst><epoch>1544220000</epoch><pretty>11:00 PM CET on December 07, 2018</pretty><civil>11:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Friday</weekday_name><weekday_name_night>Friday Night</weekday_name_night><weekday_name_abbrev>Fri</weekday_name_abbrev><weekday_name_unlang>Friday</weekday_name_unlang><weekday_name_night_unlang>Friday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>47.3</english>
-				<metric>8</metric>
-			</temp>
-			<dewpoint>
-				<english>46.0</english>
-				<metric>8</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>90</sky>
-			<wspd>
-				<english>12</english>
-				<metric>19</metric>
-			</wspd>
-			<wdir>
-				<dir>SW</dir>
-				<degrees>218</degrees>
-			</wdir>
-			<wx>Light Rain</wx>
+			<wx>Cloudy</wx>
 			<uvi>0</uvi>
 			<humidity>95</humidity>
 			<windchill>
-				<english>41</english>
-				<metric>5</metric>
+				<english>32</english>
+				<metric>0</metric>
 			</windchill>
 			<heatindex>
 				<english>-9999</english>
@@ -1998,22 +2059,22 @@
 			</heatindex>
 			
 				<feelslike>
-					<english>41</english>
-					<metric>5</metric>
+					<english>32</english>
+					<metric>0</metric>
 				</feelslike>
 			
 			<qpf>
-				<english>0.01</english>
+				<english>0.0</english>
 				<metric>0</metric>
 			</qpf>
 			<snow>
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>51</pop>
+			<pop>8</pop>
 			<mslp>
-				<english>29.36</english>
-				<metric>994</metric>
+				<english>29.23</english>
+				<metric>990</metric>
 			</mslp>
 		</forecast>
 		
@@ -2021,37 +2082,37 @@
 		
 		<forecast>
 			<FCTTIME>
-				<hour>0</hour><hour_padded>00</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>8</mday><mday_padded>08</mday_padded><yday>341</yday><isdst>0</isdst><epoch>1544223600</epoch><pretty>12:00 AM CET on December 08, 2018</pretty><civil>12:00 AM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+				<hour>22</hour><hour_padded>22</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>9</mday><mday_padded>09</mday_padded><yday>342</yday><isdst>0</isdst><epoch>1544389200</epoch><pretty>10:00 PM CET on December 09, 2018</pretty><civil>10:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
-				<english>47.1</english>
-				<metric>8</metric>
+				<english>39.9</english>
+				<metric>4</metric>
 			</temp>
 			<dewpoint>
-				<english>45.7</english>
-				<metric>8</metric>
+				<english>38.5</english>
+				<metric>4</metric>
 			</dewpoint>
-			<condition>Chance of Rain</condition>
+			<condition>Overcast</condition>
 			
 			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>96</sky>
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>93</sky>
 			<wspd>
-				<english>12</english>
-				<metric>19</metric>
+				<english>11</english>
+				<metric>18</metric>
 			</wspd>
 			<wdir>
-				<dir>SW</dir>
-				<degrees>217</degrees>
+				<dir>WSW</dir>
+				<degrees>249</degrees>
 			</wdir>
-			<wx>Light Rain</wx>
+			<wx>Cloudy</wx>
 			<uvi>0</uvi>
 			<humidity>95</humidity>
 			<windchill>
-				<english>41</english>
-				<metric>5</metric>
+				<english>32</english>
+				<metric>0</metric>
 			</windchill>
 			<heatindex>
 				<english>-9999</english>
@@ -2059,8 +2120,8 @@
 			</heatindex>
 			
 				<feelslike>
-					<english>41</english>
-					<metric>5</metric>
+					<english>32</english>
+					<metric>0</metric>
 				</feelslike>
 			
 			<qpf>
@@ -2071,10 +2132,10 @@
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>35</pop>
+			<pop>8</pop>
 			<mslp>
-				<english>29.34</english>
-				<metric>994</metric>
+				<english>29.23</english>
+				<metric>990</metric>
 			</mslp>
 		</forecast>
 		
@@ -2082,37 +2143,37 @@
 		
 		<forecast>
 			<FCTTIME>
-				<hour>1</hour><hour_padded>01</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>8</mday><mday_padded>08</mday_padded><yday>341</yday><isdst>0</isdst><epoch>1544227200</epoch><pretty>1:00 AM CET on December 08, 2018</pretty><civil>1:00 AM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+				<hour>23</hour><hour_padded>23</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>9</mday><mday_padded>09</mday_padded><yday>342</yday><isdst>0</isdst><epoch>1544392800</epoch><pretty>11:00 PM CET on December 09, 2018</pretty><civil>11:00 PM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
-				<english>46.9</english>
-				<metric>8</metric>
+				<english>40.1</english>
+				<metric>4</metric>
 			</temp>
 			<dewpoint>
-				<english>45.3</english>
-				<metric>7</metric>
+				<english>38.5</english>
+				<metric>4</metric>
 			</dewpoint>
-			<condition>Chance of Rain</condition>
+			<condition>Overcast</condition>
 			
 			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>98</sky>
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>93</sky>
 			<wspd>
-				<english>12</english>
-				<metric>19</metric>
+				<english>11</english>
+				<metric>18</metric>
 			</wspd>
 			<wdir>
-				<dir>SW</dir>
-				<degrees>218</degrees>
+				<dir>WSW</dir>
+				<degrees>243</degrees>
 			</wdir>
-			<wx>Light Rain</wx>
+			<wx>Cloudy</wx>
 			<uvi>0</uvi>
 			<humidity>94</humidity>
 			<windchill>
-				<english>41</english>
-				<metric>5</metric>
+				<english>32</english>
+				<metric>0</metric>
 			</windchill>
 			<heatindex>
 				<english>-9999</english>
@@ -2120,83 +2181,22 @@
 			</heatindex>
 			
 				<feelslike>
-					<english>41</english>
-					<metric>5</metric>
+					<english>32</english>
+					<metric>0</metric>
 				</feelslike>
 			
 			<qpf>
-				<english>0.01</english>
+				<english>0.0</english>
 				<metric>0</metric>
 			</qpf>
 			<snow>
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>51</pop>
+			<pop>12</pop>
 			<mslp>
-				<english>29.33</english>
-				<metric>993</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>2</hour><hour_padded>02</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2018</year><mon>12</mon><mon_padded>12</mon_padded><mon_abbrev>Dec</mon_abbrev><mday>8</mday><mday_padded>08</mday_padded><yday>341</yday><isdst>0</isdst><epoch>1544230800</epoch><pretty>2:00 AM CET on December 08, 2018</pretty><civil>2:00 AM</civil><month_name>December</month_name><month_name_abbrev>Dec</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>46.6</english>
-				<metric>8</metric>
-			</temp>
-			<dewpoint>
-				<english>45.0</english>
-				<metric>7</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>100</sky>
-			<wspd>
-				<english>12</english>
-				<metric>19</metric>
-			</wspd>
-			<wdir>
-				<dir>SW</dir>
-				<degrees>223</degrees>
-			</wdir>
-			<wx>Light Rain</wx>
-			<uvi>0</uvi>
-			<humidity>94</humidity>
-			<windchill>
-				<english>41</english>
-				<metric>5</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>41</english>
-					<metric>5</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.02</english>
-				<metric>1</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>64</pop>
-			<mslp>
-				<english>29.32</english>
-				<metric>993</metric>
+				<english>29.24</english>
+				<metric>990</metric>
 			</mslp>
 		</forecast>
 		

@@ -7,79 +7,79 @@
 	</features>
 	<forecast>
 		<txt_forecast>
-		<date>1:41 PM CET</date>
+		<date>10:19 AM CET</date>
 		<forecastdays>
 		<forecastday>
 		<period>0</period>
-		<icon>snow</icon>
-		<icon_url>http://icons.wxug.com/i/c/k/snow.gif</icon_url>
-		<title>Thursday</title>
-		<fcttext><![CDATA[Periods of snow. Temps nearly steady in the mid 30s. Winds S at 10 to 20 mph. Chance of snow 50%.]]></fcttext>
-		<fcttext_metric><![CDATA[Periods of snow. High 1C. Winds S at 15 to 30 km/h. Chance of snow 60%.]]></fcttext_metric>
-		<pop>50</pop>
+		<icon>chancerain</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
+		<title>Saturday</title>
+		<fcttext><![CDATA[Cloudy and windy. Periods of light rain this morning. High 44F. Winds SW at 20 to 30 mph. Chance of rain 70%.]]></fcttext>
+		<fcttext_metric><![CDATA[Cloudy and windy. Periods of light rain this morning. High 7C. Winds SW at 30 to 50 km/h. Chance of rain 40%.]]></fcttext_metric>
+		<pop>70</pop>
 		</forecastday>
 		<forecastday>
 		<period>1</period>
-		<icon>nt_rain</icon>
-		<icon_url>http://icons.wxug.com/i/c/k/nt_rain.gif</icon_url>
-		<title>Thursday Night</title>
-		<fcttext><![CDATA[Periods of rain. Low 32F. Winds SSW at 10 to 15 mph. Chance of rain 80%.]]></fcttext>
-		<fcttext_metric><![CDATA[Periods of rain. Low around 0C. Winds SSW at 15 to 30 km/h. Chance of rain 80%. Rainfall near 6mm.]]></fcttext_metric>
-		<pop>80</pop>
+		<icon>nt_cloudy</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+		<title>Saturday Night</title>
+		<fcttext><![CDATA[Cloudy. Low 37F. Winds SSW at 15 to 25 mph.]]></fcttext>
+		<fcttext_metric><![CDATA[Cloudy. Low 3C. Winds SSW at 25 to 40 km/h.]]></fcttext_metric>
+		<pop>20</pop>
 		</forecastday>
 		<forecastday>
 		<period>2</period>
 		<icon>chancerain</icon>
 		<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
-		<title>Friday</title>
-		<fcttext><![CDATA[Cloudy with occasional light rain in the afternoon. High 47F. Winds SW at 10 to 15 mph. Chance of rain 70%.]]></fcttext>
-		<fcttext_metric><![CDATA[Cloudy. Some light rain is likely. High 8C. Winds SW at 15 to 25 km/h. Chance of rain 70%.]]></fcttext_metric>
+		<title>Sunday</title>
+		<fcttext><![CDATA[Cloudy with light rain early. High 41F. Winds SW at 10 to 20 mph. Chance of rain 70%.]]></fcttext>
+		<fcttext_metric><![CDATA[Cloudy with light rain early. High around 5C. Winds SW at 15 to 30 km/h. Chance of rain 70%.]]></fcttext_metric>
 		<pop>70</pop>
 		</forecastday>
 		<forecastday>
 		<period>3</period>
 		<icon>nt_chancerain</icon>
 		<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-		<title>Friday Night</title>
-		<fcttext><![CDATA[Cloudy with periods of light rain. Low around 40F. Winds SW at 10 to 20 mph. Chance of rain 80%.]]></fcttext>
-		<fcttext_metric><![CDATA[Occasional light rain. Low near 5C. Winds SW at 15 to 30 km/h. Chance of rain 70%.]]></fcttext_metric>
-		<pop>80</pop>
+		<title>Sunday Night</title>
+		<fcttext><![CDATA[Cloudy skies early with showers later at night. Low around 35F. Winds WSW at 10 to 15 mph. Chance of rain 40%.]]></fcttext>
+		<fcttext_metric><![CDATA[Considerable cloudiness. Occasional rain showers later at night. Low 2C. Winds WSW at 15 to 25 km/h. Chance of rain 40%.]]></fcttext_metric>
+		<pop>40</pop>
 		</forecastday>
 		<forecastday>
 		<period>4</period>
-		<icon>cloudy</icon>
-		<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
-		<title>Saturday</title>
-		<fcttext><![CDATA[Cloudy. High 43F. Winds WSW at 15 to 25 mph.]]></fcttext>
-		<fcttext_metric><![CDATA[Cloudy skies. High 7C. Winds WSW at 15 to 30 km/h.]]></fcttext_metric>
-		<pop>10</pop>
+		<icon>partlycloudy</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/partlycloudy.gif</icon_url>
+		<title>Monday</title>
+		<fcttext><![CDATA[Partly to mostly cloudy. Slight chance of a rain shower. Temps nearly steady in the mid to upper 30s. Winds W at 10 to 20 mph.]]></fcttext>
+		<fcttext_metric><![CDATA[Mostly cloudy skies early will become partly cloudy later in the day. Slight chance of a rain shower. High 4C. Winds W at 15 to 30 km/h.]]></fcttext_metric>
+		<pop>20</pop>
 		</forecastday>
 		<forecastday>
 		<period>5</period>
 		<icon>nt_chancerain</icon>
 		<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-		<title>Saturday Night</title>
-		<fcttext><![CDATA[Cloudy with occasional light rain...mainly in the evening. Low 39F. Winds SW at 10 to 20 mph. Chance of rain 50%.]]></fcttext>
-		<fcttext_metric><![CDATA[Cloudy with occasional light rain...mainly in the evening. Low 4C. Winds SW at 15 to 30 km/h. Chance of rain 50%.]]></fcttext_metric>
+		<title>Monday Night</title>
+		<fcttext><![CDATA[Overcast with rain showers at times. Low 34F. Winds W at 10 to 15 mph. Chance of rain 50%.]]></fcttext>
+		<fcttext_metric><![CDATA[Cloudy with occasional rain showers. Low 1C. Winds W at 10 to 15 km/h. Chance of rain 50%.]]></fcttext_metric>
 		<pop>50</pop>
 		</forecastday>
 		<forecastday>
 		<period>6</period>
-		<icon>rain</icon>
-		<icon_url>http://icons.wxug.com/i/c/k/rain.gif</icon_url>
-		<title>Sunday</title>
-		<fcttext><![CDATA[Cloudy with rain ending in the afternoon. High 43F. Winds SW at 10 to 20 mph. Chance of rain 90%.]]></fcttext>
-		<fcttext_metric><![CDATA[Cloudy with rain ending in the afternoon. High 6C. Winds SW at 15 to 30 km/h. Chance of rain 90%.]]></fcttext_metric>
-		<pop>90</pop>
+		<icon>chancerain</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
+		<title>Tuesday</title>
+		<fcttext><![CDATA[A steady light rain early...then remaining cloudy with a few showers. Temps nearly steady in the mid to upper 30s. Winds NNW at 10 to 15 mph. Chance of rain 60%.]]></fcttext>
+		<fcttext_metric><![CDATA[A steady light rain early...then remaining cloudy with a few showers. High 4C. Winds NNW at 15 to 25 km/h. Chance of rain 60%.]]></fcttext_metric>
+		<pop>60</pop>
 		</forecastday>
 		<forecastday>
 		<period>7</period>
-		<icon>nt_chancerain</icon>
-		<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-		<title>Sunday Night</title>
-		<fcttext><![CDATA[Cloudy skies early with showers later at night. Low 37F. Winds WSW at 10 to 15 mph. Chance of rain 50%.]]></fcttext>
-		<fcttext_metric><![CDATA[Considerable cloudiness. Occasional rain showers later at night. Low 3C. Winds WSW at 15 to 25 km/h. Chance of rain 50%.]]></fcttext_metric>
-		<pop>50</pop>
+		<icon>nt_mostlycloudy</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/nt_mostlycloudy.gif</icon_url>
+		<title>Tuesday Night</title>
+		<fcttext><![CDATA[Mostly cloudy. Low 34F. Winds NE at 5 to 10 mph.]]></fcttext>
+		<fcttext_metric><![CDATA[Considerable cloudiness. Low 1C. Winds NE at 10 to 15 km/h.]]></fcttext_metric>
+		<pop>20</pop>
 		</forecastday>
 		</forecastdays>
 		</txt_forecast>
@@ -87,160 +87,6 @@
 		<forecastdays>
 		<forecastday>
 		<date>
-  <epoch>1544119200</epoch>
-  <pretty_short>7:00 PM CET</pretty_short>
-  <pretty>7:00 PM CET on December 06, 2018</pretty>
-  <day>6</day>
-  <month>12</month>
-  <year>2018</year>
-  <yday>339</yday>
-  <hour>19</hour>
-  <min>00</min>
-  <sec>0</sec>
-  <isdst>0</isdst>
-  <monthname>December</monthname>
-  <monthname_short>Dec</monthname_short>
-  <weekday_short>Thu</weekday_short>
-  <weekday>Thursday</weekday>
-  <ampm>PM</ampm>
-  <tz_short>CET</tz_short>
-  <tz_long>Europe/Warsaw</tz_long>
-</date>
-					<period>1</period>
-					<high>
-						<fahrenheit>35</fahrenheit>
-						<celsius>2</celsius>
-					</high>
-					<low>
-						<fahrenheit>32</fahrenheit>
-						<celsius>0</celsius>
-					</low>
-					<conditions>Snow</conditions>
-					
-					<icon>snow</icon>
-					<icon_url>http://icons.wxug.com/i/c/k/snow.gif</icon_url>
-					<skyicon></skyicon>
-					<pop>50</pop>
-					<qpf_allday>
-						<in>0.20</in>
-						<mm>5</mm>
-					</qpf_allday>
-					<qpf_day>
-						<in>0.01</in>
-						<mm>0</mm>
-					</qpf_day>
-					<qpf_night>
-						<in>0.19</in>
-						<mm>5</mm>
-					</qpf_night>
-					<snow_allday>
-						<in>0.4</in>
-						<cm>1.0</cm>
-					</snow_allday>
-					<snow_day>
-						<in>0.1</in>
-						<cm>0.3</cm>
-					</snow_day>
-					<snow_night>
-						<in>0.3</in>
-						<cm>0.8</cm>
-					</snow_night>
-					<maxwind>
-						<mph>20</mph>
-						<kph>32</kph>
-						<dir>S</dir>
-						<degrees>179</degrees>
-					</maxwind>
-					<avewind>
-						<mph>14</mph>
-						<kph>23</kph>
-						<dir>S</dir>
-						<degrees>179</degrees>
-					</avewind>
-					<avehumidity>82</avehumidity>
-					<maxhumidity>0</maxhumidity>
-					<minhumidity>0</minhumidity>
-				</forecastday>
-				
-				<forecastday>
-					<date>
-  <epoch>1544205600</epoch>
-  <pretty_short>7:00 PM CET</pretty_short>
-  <pretty>7:00 PM CET on December 07, 2018</pretty>
-  <day>7</day>
-  <month>12</month>
-  <year>2018</year>
-  <yday>340</yday>
-  <hour>19</hour>
-  <min>00</min>
-  <sec>0</sec>
-  <isdst>0</isdst>
-  <monthname>December</monthname>
-  <monthname_short>Dec</monthname_short>
-  <weekday_short>Fri</weekday_short>
-  <weekday>Friday</weekday>
-  <ampm>PM</ampm>
-  <tz_short>CET</tz_short>
-  <tz_long>Europe/Warsaw</tz_long>
-</date>
-					<period>2</period>
-					<high>
-						<fahrenheit>47</fahrenheit>
-						<celsius>8</celsius>
-					</high>
-					<low>
-						<fahrenheit>40</fahrenheit>
-						<celsius>4</celsius>
-					</low>
-					<conditions>Chance of Rain</conditions>
-					
-					<icon>chancerain</icon>
-					<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
-					<skyicon></skyicon>
-					<pop>70</pop>
-					<qpf_allday>
-						<in>0.19</in>
-						<mm>5</mm>
-					</qpf_allday>
-					<qpf_day>
-						<in>0.08</in>
-						<mm>2</mm>
-					</qpf_day>
-					<qpf_night>
-						<in>0.11</in>
-						<mm>3</mm>
-					</qpf_night>
-					<snow_allday>
-						<in>0.0</in>
-						<cm>0.0</cm>
-					</snow_allday>
-					<snow_day>
-						<in>0.0</in>
-						<cm>0.0</cm>
-					</snow_day>
-					<snow_night>
-						<in>0.0</in>
-						<cm>0.0</cm>
-					</snow_night>
-					<maxwind>
-						<mph>15</mph>
-						<kph>24</kph>
-						<dir>SW</dir>
-						<degrees>228</degrees>
-					</maxwind>
-					<avewind>
-						<mph>12</mph>
-						<kph>19</kph>
-						<dir>SW</dir>
-						<degrees>228</degrees>
-					</avewind>
-					<avehumidity>98</avehumidity>
-					<maxhumidity>0</maxhumidity>
-					<minhumidity>0</minhumidity>
-				</forecastday>
-				
-				<forecastday>
-					<date>
   <epoch>1544292000</epoch>
   <pretty_short>7:00 PM CET</pretty_short>
   <pretty>7:00 PM CET on December 08, 2018</pretty>
@@ -260,23 +106,23 @@
   <tz_short>CET</tz_short>
   <tz_long>Europe/Warsaw</tz_long>
 </date>
-					<period>3</period>
+					<period>1</period>
 					<high>
-						<fahrenheit>43</fahrenheit>
-						<celsius>6</celsius>
+						<fahrenheit>44</fahrenheit>
+						<celsius>7</celsius>
 					</high>
 					<low>
-						<fahrenheit>39</fahrenheit>
-						<celsius>4</celsius>
+						<fahrenheit>37</fahrenheit>
+						<celsius>3</celsius>
 					</low>
-					<conditions>Overcast</conditions>
+					<conditions>Chance of Rain</conditions>
 					
-					<icon>cloudy</icon>
-					<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
+					<icon>chancerain</icon>
+					<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
 					<skyicon></skyicon>
-					<pop>10</pop>
+					<pop>70</pop>
 					<qpf_allday>
-						<in>0.04</in>
+						<in>0.02</in>
 						<mm>1</mm>
 					</qpf_allday>
 					<qpf_day>
@@ -284,8 +130,8 @@
 						<mm>0</mm>
 					</qpf_day>
 					<qpf_night>
-						<in>0.04</in>
-						<mm>1</mm>
+						<in>0.00</in>
+						<mm>0</mm>
 					</qpf_night>
 					<snow_allday>
 						<in>0.0</in>
@@ -300,18 +146,18 @@
 						<cm>0.0</cm>
 					</snow_night>
 					<maxwind>
-						<mph>25</mph>
-						<kph>40</kph>
-						<dir>WSW</dir>
-						<degrees>239</degrees>
+						<mph>30</mph>
+						<kph>48</kph>
+						<dir>SW</dir>
+						<degrees>226</degrees>
 					</maxwind>
 					<avewind>
-						<mph>17</mph>
-						<kph>27</kph>
-						<dir>WSW</dir>
-						<degrees>239</degrees>
+						<mph>21</mph>
+						<kph>34</kph>
+						<dir>SW</dir>
+						<degrees>226</degrees>
 					</avewind>
-					<avehumidity>87</avehumidity>
+					<avehumidity>79</avehumidity>
 					<maxhumidity>0</maxhumidity>
 					<minhumidity>0</minhumidity>
 				</forecastday>
@@ -337,31 +183,31 @@
   <tz_short>CET</tz_short>
   <tz_long>Europe/Warsaw</tz_long>
 </date>
-					<period>4</period>
+					<period>2</period>
 					<high>
-						<fahrenheit>43</fahrenheit>
-						<celsius>6</celsius>
+						<fahrenheit>41</fahrenheit>
+						<celsius>5</celsius>
 					</high>
 					<low>
-						<fahrenheit>37</fahrenheit>
-						<celsius>3</celsius>
+						<fahrenheit>35</fahrenheit>
+						<celsius>2</celsius>
 					</low>
-					<conditions>Rain</conditions>
+					<conditions>Chance of Rain</conditions>
 					
-					<icon>rain</icon>
-					<icon_url>http://icons.wxug.com/i/c/k/rain.gif</icon_url>
+					<icon>chancerain</icon>
+					<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
 					<skyicon></skyicon>
-					<pop>90</pop>
+					<pop>70</pop>
 					<qpf_allday>
-						<in>0.15</in>
-						<mm>4</mm>
+						<in>0.08</in>
+						<mm>2</mm>
 					</qpf_allday>
 					<qpf_day>
-						<in>0.13</in>
-						<mm>3</mm>
+						<in>0.06</in>
+						<mm>2</mm>
 					</qpf_day>
 					<qpf_night>
-						<in>0.03</in>
+						<in>0.02</in>
 						<mm>1</mm>
 					</qpf_night>
 					<snow_allday>
@@ -380,15 +226,169 @@
 						<mph>20</mph>
 						<kph>32</kph>
 						<dir>SW</dir>
-						<degrees>223</degrees>
+						<degrees>227</degrees>
 					</maxwind>
 					<avewind>
 						<mph>14</mph>
 						<kph>23</kph>
 						<dir>SW</dir>
-						<degrees>223</degrees>
+						<degrees>227</degrees>
 					</avewind>
-					<avehumidity>94</avehumidity>
+					<avehumidity>95</avehumidity>
+					<maxhumidity>0</maxhumidity>
+					<minhumidity>0</minhumidity>
+				</forecastday>
+				
+				<forecastday>
+					<date>
+  <epoch>1544464800</epoch>
+  <pretty_short>7:00 PM CET</pretty_short>
+  <pretty>7:00 PM CET on December 10, 2018</pretty>
+  <day>10</day>
+  <month>12</month>
+  <year>2018</year>
+  <yday>343</yday>
+  <hour>19</hour>
+  <min>00</min>
+  <sec>0</sec>
+  <isdst>0</isdst>
+  <monthname>December</monthname>
+  <monthname_short>Dec</monthname_short>
+  <weekday_short>Mon</weekday_short>
+  <weekday>Monday</weekday>
+  <ampm>PM</ampm>
+  <tz_short>CET</tz_short>
+  <tz_long>Europe/Warsaw</tz_long>
+</date>
+					<period>3</period>
+					<high>
+						<fahrenheit>39</fahrenheit>
+						<celsius>4</celsius>
+					</high>
+					<low>
+						<fahrenheit>34</fahrenheit>
+						<celsius>1</celsius>
+					</low>
+					<conditions>Partly Cloudy</conditions>
+					
+					<icon>partlycloudy</icon>
+					<icon_url>http://icons.wxug.com/i/c/k/partlycloudy.gif</icon_url>
+					<skyicon></skyicon>
+					<pop>20</pop>
+					<qpf_allday>
+						<in>0.04</in>
+						<mm>1</mm>
+					</qpf_allday>
+					<qpf_day>
+						<in>0.00</in>
+						<mm>0</mm>
+					</qpf_day>
+					<qpf_night>
+						<in>0.04</in>
+						<mm>1</mm>
+					</qpf_night>
+					<snow_allday>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_allday>
+					<snow_day>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_day>
+					<snow_night>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_night>
+					<maxwind>
+						<mph>20</mph>
+						<kph>32</kph>
+						<dir>W</dir>
+						<degrees>271</degrees>
+					</maxwind>
+					<avewind>
+						<mph>14</mph>
+						<kph>23</kph>
+						<dir>W</dir>
+						<degrees>271</degrees>
+					</avewind>
+					<avehumidity>89</avehumidity>
+					<maxhumidity>0</maxhumidity>
+					<minhumidity>0</minhumidity>
+				</forecastday>
+				
+				<forecastday>
+					<date>
+  <epoch>1544551200</epoch>
+  <pretty_short>7:00 PM CET</pretty_short>
+  <pretty>7:00 PM CET on December 11, 2018</pretty>
+  <day>11</day>
+  <month>12</month>
+  <year>2018</year>
+  <yday>344</yday>
+  <hour>19</hour>
+  <min>00</min>
+  <sec>0</sec>
+  <isdst>0</isdst>
+  <monthname>December</monthname>
+  <monthname_short>Dec</monthname_short>
+  <weekday_short>Tue</weekday_short>
+  <weekday>Tuesday</weekday>
+  <ampm>PM</ampm>
+  <tz_short>CET</tz_short>
+  <tz_long>Europe/Warsaw</tz_long>
+</date>
+					<period>4</period>
+					<high>
+						<fahrenheit>39</fahrenheit>
+						<celsius>4</celsius>
+					</high>
+					<low>
+						<fahrenheit>34</fahrenheit>
+						<celsius>1</celsius>
+					</low>
+					<conditions>Chance of Rain</conditions>
+					
+					<icon>chancerain</icon>
+					<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
+					<skyicon></skyicon>
+					<pop>60</pop>
+					<qpf_allday>
+						<in>0.06</in>
+						<mm>2</mm>
+					</qpf_allday>
+					<qpf_day>
+						<in>0.06</in>
+						<mm>2</mm>
+					</qpf_day>
+					<qpf_night>
+						<in>0.00</in>
+						<mm>0</mm>
+					</qpf_night>
+					<snow_allday>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_allday>
+					<snow_day>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_day>
+					<snow_night>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_night>
+					<maxwind>
+						<mph>15</mph>
+						<kph>24</kph>
+						<dir>NNW</dir>
+						<degrees>345</degrees>
+					</maxwind>
+					<avewind>
+						<mph>10</mph>
+						<kph>16</kph>
+						<dir>NNW</dir>
+						<degrees>345</degrees>
+					</avewind>
+					<avehumidity>95</avehumidity>
 					<maxhumidity>0</maxhumidity>
 					<minhumidity>0</minhumidity>
 				</forecastday>
