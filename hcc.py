@@ -57,10 +57,6 @@ def radio(actionName=""):
 		stationName = request.args.get('param')		
 		action = ActionClass.ActionClass()
 		return render_template('events.html', events = action.getEventsData(actionName, stationName, action.ActionEventRadio))
-	
-@app.route("/menu")
-def menu():	
-	return render_template('menu.html')
 
 @app.route("/train_schedule")
 @app.route("/train_schedule/<direction>")
@@ -72,6 +68,29 @@ def train_schedule(direction="A"):
 	else:
 		switch_url = switch_url + "A"
 	return render_template('train_schedule.html', eventsDirA = obj.getTimetoDirection(direction), url = switch_url)
+
+@app.route("/info")
+def info():
+	config = ConfigClass.ConfigClass()
+	infoObj = {}
+	if config.getAlarmSetting('day_policy') == 'disabled':
+		infoObj['alarm_state'] = "Alarm wylaczony"
+	elif config.getAlarmSetting('day_policy') == 'week_day':
+		infoObj['alarm_state'] = "Alarm wlaczony na dni tygodnia"
+	else:
+		infoObj['alarm_state'] = "Alarm wlaczony"
+	infoObj['alarm_start'] = config.getAlarmSetting('start_time')
+
+	if config.getEvent('rain').state == "0":
+		infoObj['rain'] = "Dzisiaj nie zanotowano opadow"
+	else:
+		infoObj['rain'] = "Dzisiaj zanotowano opady"
+	return render_template('info.html', info = infoObj)
+
+@app.route("/menu")
+def menu():	
+	return render_template('menu.html')
+
 
 
 

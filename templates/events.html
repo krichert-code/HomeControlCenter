@@ -9,8 +9,8 @@
 <tr>
 	<td class="event" ><div style="height:60px;width:60px;background-image:url({{ url_for('static', filename = 'img/'+event.icon+'.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;"/></td>
 
-	<td class="event" >{{ event.desc }}</td>
-	<td class="event" >{{ event.date }}</td>
+	<td class="event" ><div class="title">{{ event.desc }}</div></td>
+	<td class="event" ><div class="title">{{ event.date }}</div></td>
 </tr>
 {% endfor %}
 
