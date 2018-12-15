@@ -2,6 +2,19 @@
 <html>
 <body>
 
+<!-- The Modal -->
+<div id="mainGateQuestion" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close" onClick="document.getElementById('mainGateQuestion').style.display='none';">&times;</span>
+    <p class="question">Otworzyc brame wjazdowa na stale ?</p>
+    <p><br></p>
+    <p><input class="question" type="button" value="Na stale" onClick="updateContent('infoBox', 'action/Gate1Perm'); document.getElementById('mainGateQuestion').style.display='none';""></p>
+    <p><br><br></p>
+    <p><input class="question" type="button" value="Tylko na zdefiniowany czas" onClick="updateContent('infoBox', 'action/Gate1'); document.getElementById('mainGateQuestion').style.display='none';""></p>
+  </div>
+</div>
+
 <br>
 <table align="center" border="0" width="80%">
     <tr>
@@ -10,36 +23,36 @@
 	</td>
 
 	<td class="menu">
-	    <div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/gate1.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('infoBox', 'action/Gate1')"/>
+	    <div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/gate1.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="document.getElementById('mainGateQuestion').style.display = 'block';"/>
 	</td>
-
-	<td class="menu">
-	    <div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/gate1.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('infoBox', 'action/Gate1Perm')"/>
-	</td>
-    </tr>
-
-    <tr>
 
 	<td class="menu">
 	    <div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/open.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;"/>
 	</td>
+    </tr>
+
+    <tr>
+
+	<td class="menu">
+	    <div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/radio.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('content', 'radio')"/>
+	</td>
         
 	<td class="menu">
-	    <div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/piec.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;"/>
+	    <div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/mp3.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;"/>
 	</td>
 
 	<td class="menu">
-	    <div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/garden.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('content', 'sprinkler')"/>
+	    <div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/web_camera.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;"/>
 	</td>
     </tr>
 
     <tr>
 	<td class="menu">
-	    <div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/web_camera.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;"/>
+	    <div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/garden.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('content', 'sprinkler')"/>
 	</td>
 
 	<td class="menu">
-	    <div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/radio.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('content', 'radio')"/>
+	    <div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/piec.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;"/>
 	</td>
 
 	<td class="menu">
@@ -54,7 +67,7 @@
 	</td>
 
 	<td class="menu">
-	    <div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/settings.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;"/>
+	    <div id="myBtn" style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/settings.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="document.getElementById('mainGateQuestion').style.display = 'block';"/>
 	</td>
 
 	<td class="menu">

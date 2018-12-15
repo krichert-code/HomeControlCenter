@@ -9,15 +9,52 @@
 	td.event  {padding: 10px; align: center}
 	div.title { font-weight: bold; font-size:28px; }
 	div.text { font-size:28px; }
+	p.question { font-size:32px; }
+	input.question { font-size:28px; }
+
+	/* The Modal (background) */
+	.modal {
+	  display: none; /* Hidden by default */
+	  position: fixed; /* Stay in place */
+	  z-index: 1; /* Sit on top */
+	  left: 0;
+	  top: 0;
+	  width: 100%; /* Full width */
+	  height: 100%; /* Full height */
+	  overflow: auto; /* Enable scroll if needed */
+	  background-color: rgb(0,0,0); /* Fallback color */
+	  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	}
+
+	/* Modal Content/Box */
+	.modal-content {
+	  background-color: #fefefe;
+	  margin: 15% auto; /* 15% from the top and centered */
+	  padding: 20px;
+	  border: 1px solid #888;
+	  width: 50%; /* Could be more or less, depending on screen size */
+	}
+
+	/* The Close Button */
+	.close {
+	  color: #aaa;
+	  float: right;
+	  font-size: 28px;
+	  font-weight: bold;
+	}
+
+	.close:hover,
+	.close:focus {
+	  color: black;
+	  text-decoration: none;
+	  cursor: pointer;
+	}
     </style>
-
 </head>
-
 
 
 <script type="text/javascript">
 
-var last_minutes = -1;
 function updateContent(id, page)
 {
 	var xmlhttp;
@@ -26,16 +63,16 @@ function updateContent(id, page)
 	{
 	  //code for IE7+, Firefox, Chrome, Opera, Safari
 	  xmlhttp=new XMLHttpRequest();
-    }
+        }
 	else
 	{
   		alert("Your browser does not support XMLHTTP!");
-    }
+	}
 	xmlhttp.onreadystatechange=function()
 	{
-    	if(xmlhttp.readyState==4 && xmlhttp.status == 200)
-    	{
-        	document.getElementById(id).innerHTML=xmlhttp.responseText;
+    	    if(xmlhttp.readyState==4 && xmlhttp.status == 200)
+    	    {
+    		document.getElementById(id).innerHTML=xmlhttp.responseText;
 	    }
 	}
 	xmlhttp.open("GET",page,true);
@@ -44,20 +81,13 @@ function updateContent(id, page)
 	
 function GetCurrentData()
 {
-   var minutes = 1000 * 60;
-   var d = new Date();
-   var t= d.getTime();
-
-
-   minutes = Math.round(t / minutes);
-   //if ((last_minutes != minutes) || (last_minutes == -1))
-   {
      updateContent('currentWeather', 'weather');
      updateContent('currentTemInside', 'tempInside');
      updateContent('infoBox', 'action/GetActiveEvents');
-     last_minutes = minutes;
-   }
 }
+
+
+
 </script>
 
 <body style="background-image:url({{ url_for('static', filename = 'img/tapeta.jpg') }});background-repeat: repeat;">
@@ -91,7 +121,8 @@ function GetCurrentData()
 <br><br><br>
 
 
-<div id='infoBox' style="width:700px;background-color:#363636; opacity: 0.85;text-align:center;font-size:20px;font-weight:bold;color:#000000;margin-left: 10px;margin-right: 10px;"/>  	
+<div id='infoBox' style="width:700px;background-color:#363636; opacity: 0.85;text-align:center;font-size:20px;font-weight:bold;color:#000000;margin-left: 10px;margin-right: 10px;"> </div>
+
 
 
 <script type="text/javascript">
