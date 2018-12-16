@@ -6,7 +6,7 @@ import ConfigClass
 import RadioClass
 import CalendarClass
 import WeatherClass
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 
         
 class Alarm:
@@ -62,44 +62,49 @@ class Speaker:
     __no_activeCounter = 0
 
     def __init__(self):
-	# GPIO.setwarnings(False)
-	# GPIO.setmode(GPIO.BCM)
-	# GPIO.setup(self.__powerPin, GPIO.OUT)
-	# GPIO.setup(self.__activatePin, GPIO.OUT)
+	GPIO.setwarnings(False)
+	GPIO.setmode(GPIO.BCM)
+	GPIO.setup(self.__powerPin, GPIO.OUT)
+	GPIO.setup(self.__activatePin, GPIO.OUT)
     # #
-	# GPIO.output(self.__powerPin, GPIO.LOW)
-	# GPIO.output(self.__activatePin, GPIO.LOW)
+	GPIO.output(self.__powerPin, GPIO.LOW)
+	GPIO.output(self.__activatePin, GPIO.LOW)
 	pass
 
     def timeEvent(self):
-	# player = RadioClass.RadioClass()
-	# isPlayerEnabled = player.isPlayerEnabled()
-	# isSpeakerActivated = GPIO.input(self.__powerPin)
+	try:
+	    player = RadioClass.RadioClass()
+	    isPlayerEnabled = player.isPlayerEnabled()
+	    isSpeakerActivated = GPIO.input(self.__powerPin)
     #
-	# if False == isPlayerEnabled:
-	#     self.__no_activeCounter = self.__no_activeCounter + 1
-	# if self.__no_activeCounter > 60 and 1 == isSpeakerActivated:
-	#     GPIO.output(self.__powerPin, GPIO.LOW)
+	    if False == isPlayerEnabled:
+		self.__no_activeCounter = self.__no_activeCounter + 1
+	    if self.__no_activeCounter > 60 and 1 == isSpeakerActivated:
+		GPIO.output(self.__powerPin, GPIO.LOW)
     # #
-	# if True == isPlayerEnabled and 0 == isSpeakerActivated:
-	#     GPIO.output(self.__powerPin, GPIO.HIGH)
-	#     time.sleep(1)
-	#     GPIO.output(self.__activatePin, GPIO.HIGH)
-	#     time.sleep(1)
-	#     GPIO.output(self.__activatePin, GPIO.LOW)
-	#     self.__no_activeCounter = 0
-	pass
+	    if True == isPlayerEnabled and 0 == isSpeakerActivated:
+		GPIO.output(self.__powerPin, GPIO.HIGH)
+		time.sleep(1)
+		GPIO.output(self.__activatePin, GPIO.HIGH)
+		time.sleep(1)
+		GPIO.output(self.__activatePin, GPIO.LOW)
+		self.__no_activeCounter = 0
+	except:
+	    pass
 
 class Calendar:
     def __init__(self):
 	self.__day = 0
 
     def timeEvent(self):
-	calendar = CalendarClass.CalendarClass()
-	curr_day = datetime.datetime.now().strftime('%d')
-	if self.__day <> curr_day:
-	    self.__day = curr_day
-	    calendar.generateFiles()
+	try:
+	    calendar = CalendarClass.CalendarClass()
+	    curr_day = datetime.datetime.now().strftime('%d')
+	    if self.__day <> curr_day:
+		self.__day = curr_day
+		calendar.generateFiles()
+	except:
+	    pass
 
 class Weather:
 	def __init__(self):
@@ -113,27 +118,30 @@ class Weather:
 		weather.generateFiles(weather.WeatherDailyFile | weather.WeatherHourlyFile | weather.WeatherCurrentFile)
 
 	def timeEvent(self):
-		weather = WeatherClass.WeatherClass()
+		try:
+		    weather = WeatherClass.WeatherClass()
 
-		curr_day = datetime.datetime.now().strftime('%d')
-		curr_hour = datetime.datetime.now().strftime('%H')
+		    curr_day = datetime.datetime.now().strftime('%d')
+		    curr_hour = datetime.datetime.now().strftime('%H')
 
-		if self.__day <> curr_day:
-			self.__day = curr_day
-			self.__weatherFiles = self.__weatherFiles | weather.WeatherDailyFile | weather.WeatherHourlyFile
-			self.__counter = 200
+		    if self.__day <> curr_day:
+			    self.__day = curr_day
+			    self.__weatherFiles = self.__weatherFiles | weather.WeatherDailyFile | weather.WeatherHourlyFile
+			    self.__counter = 200
 
-		if self.__hour <> curr_hour:
-			self.__hour = curr_hour
-			self.__weatherFiles = self.__weatherFiles | weather.WeatherCurrentFile
-			self.__counter = 200
+		    if self.__hour <> curr_hour:
+			    self.__hour = curr_hour
+			    self.__weatherFiles = self.__weatherFiles | weather.WeatherCurrentFile
+			    self.__counter = 200
 
-		if self.__weatherFiles <> 0 and self.__counter == 0:
-			weather.generateFiles(self.__weatherFiles)
-			self.__weatherFiles = 0
+		    if self.__weatherFiles <> 0 and self.__counter == 0:
+			    weather.generateFiles(self.__weatherFiles)
+			    self.__weatherFiles = 0
 
-		if self.__counter > 0 :
-			self.__counter = self.__counter - 1
+		    if self.__counter > 0 :
+			    self.__counter = self.__counter - 1
+		except:
+		    pass
 
 #------------------------------------------------------------------------------------------------------------------------
 class HccDeamonClass(threading.Thread):
