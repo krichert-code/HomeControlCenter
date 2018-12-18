@@ -44,6 +44,17 @@ class ActionClass(object):
                     ActionClass.__actionEvents.remove(global_event_item)
                     
 
+    def actionOnDoor(self, param = ""):
+        url = self.__config.getSwitchURL("door")
+        threadTask = ActionThread.ActionThread()
+
+        threadTask.addTask("set","door", "Otwieranie furtki")
+        threadTask.addTask("request",url)
+        threadTask.addTask("delay",5)
+        threadTask.addTask("clear","door", "No action")
+        threadTask.start()
+        threadTask.suspend()
+
     def actionOnGate0(self, param = ""):
         url = self.__config.getSwitchURL("garage")
         threadTask = ActionThread.ActionThread()

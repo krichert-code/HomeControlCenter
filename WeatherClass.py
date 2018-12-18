@@ -69,17 +69,18 @@ class WeatherClass(object):
         
         for item in itemlist:
             skip = skip + 1
-            if skip % 3 != 0:
-                continue
-            icon = item.getElementsByTagName('icon_url')[0].childNodes[0].nodeValue
-            time = item.getElementsByTagName('FCTTIME')[0].getElementsByTagName('hour')[0].childNodes[0].nodeValue + " : 00" 
-            temp = item.getElementsByTagName('temp')[0].getElementsByTagName('metric')[0].childNodes[0].nodeValue            
-            wind = item.getElementsByTagName('wspd')[0].getElementsByTagName('metric')[0].childNodes[0].nodeValue            
-            presure = item.getElementsByTagName('mslp')[0].getElementsByTagName('metric')[0].childNodes[0].nodeValue
-            weatherForecast.append(WeatherForecaset(id,time,temp,wind,presure,icon))
-            id = id + 1
-            if id > 5:
-                break
+            # skip weather forecast between 1am to 5am, and display only temperature on every 3 hours
+            if skip % 3 == 0 and skip > 5:
+                icon = item.getElementsByTagName('icon_url')[0].childNodes[0].nodeValue
+                time = item.getElementsByTagName('FCTTIME')[0].getElementsByTagName('hour')[0].childNodes[0].nodeValue + " : 00"
+                temp = item.getElementsByTagName('temp')[0].getElementsByTagName('metric')[0].childNodes[0].nodeValue
+                wind = item.getElementsByTagName('wspd')[0].getElementsByTagName('metric')[0].childNodes[0].nodeValue
+                presure = item.getElementsByTagName('mslp')[0].getElementsByTagName('metric')[0].childNodes[0].nodeValue
+                weatherForecast.append(WeatherForecaset(id,time,temp,wind,presure,icon))
+                id = id + 1
+                if id > 5:
+                    break
+
         return weatherForecast
 
     def getWeatherDailyForecast(self):

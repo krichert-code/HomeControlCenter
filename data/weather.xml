@@ -38,28 +38,28 @@
 		<estimated>
 		</estimated>
 		<station_id>EPGD</station_id>
-		<observation_time>Last Updated on December 16, 12:00 PM CET</observation_time>
-		<observation_time_rfc822>Sun, 16 Dec 2018 12:00:00 +0100</observation_time_rfc822>
-		<observation_epoch>1544958000</observation_epoch>
-		<local_time_rfc822>Sun, 16 Dec 2018 12:11:04 +0100</local_time_rfc822>
-		<local_epoch>1544958664</local_epoch>
+		<observation_time>Last Updated on December 18, 3:30 PM CET</observation_time>
+		<observation_time_rfc822>Tue, 18 Dec 2018 15:30:00 +0100</observation_time_rfc822>
+		<observation_epoch>1545143400</observation_epoch>
+		<local_time_rfc822>Tue, 18 Dec 2018 16:03:25 +0100</local_time_rfc822>
+		<local_epoch>1545145405</local_epoch>
 		<local_tz_short>CET</local_tz_short>
 		<local_tz_long>Europe/Warsaw</local_tz_long>
 		<local_tz_offset>+0100</local_tz_offset>
-		<weather>Light Snow</weather>
+		<weather>Overcast</weather>
 		<temperature_string>28 F (-2 C)</temperature_string>
 		<temp_f>28</temp_f>
 		<temp_c>-2</temp_c>
 		<relative_humidity>93%</relative_humidity>
-		<wind_string>From the ESE at 12 MPH</wind_string>
-		<wind_dir>ESE</wind_dir>
-		<wind_degrees>120</wind_degrees>
-		<wind_mph>12</wind_mph>
+		<wind_string>From the SE at 5 MPH</wind_string>
+		<wind_dir>SE</wind_dir>
+		<wind_degrees>130</wind_degrees>
+		<wind_mph>5</wind_mph>
 		<wind_gust_mph>0</wind_gust_mph>
-		<wind_kph>18</wind_kph>
+		<wind_kph>7</wind_kph>
 		<wind_gust_kph>0</wind_gust_kph>
-		<pressure_mb>1019</pressure_mb>
-		<pressure_in>30.09</pressure_in>
+		<pressure_mb>1027</pressure_mb>
+		<pressure_in>30.33</pressure_in>
 		<pressure_trend>0</pressure_trend>
 		
 		<dewpoint_string>27 F (-3 C)</dewpoint_string>
@@ -72,15 +72,15 @@
 		<heat_index_c>NA</heat_index_c>
 		
 		
-		<windchill_string>18 F (-8 C)</windchill_string>
-		<windchill_f>18</windchill_f>
-		<windchill_c>-8</windchill_c>
+		<windchill_string>23 F (-5 C)</windchill_string>
+		<windchill_f>23</windchill_f>
+		<windchill_c>-5</windchill_c>
 		
-        <feelslike_string>18 F (-8 C)</feelslike_string>
-        <feelslike_f>18</feelslike_f>
-        <feelslike_c>-8</feelslike_c>
-		<visibility_mi>1.6</visibility_mi>
-		<visibility_km>2.5</visibility_km>
+        <feelslike_string>23 F (-5 C)</feelslike_string>
+        <feelslike_f>23</feelslike_f>
+        <feelslike_c>-5</feelslike_c>
+		<visibility_mi>N/A</visibility_mi>
+		<visibility_km>N/A</visibility_km>
 		<solarradiation></solarradiation>
 		<UV>0</UV>
 		<precip_1hr_string>-9999.00 in (-9999.00 mm)</precip_1hr_string>
@@ -92,11 +92,11 @@
 		
 		
 		
-		<icon>snow</icon>
-		<icon_url>http://icons.wxug.com/i/c/k/snow.gif</icon_url>
+		<icon>cloudy</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
 		<forecast_url>http://www.wunderground.com/global/stations/12150.html</forecast_url>
         
-		<history_url>http://www.wunderground.com/history/airport/EPGD/2018/12/16/DailyHistory.html</history_url>
+		<history_url>http://www.wunderground.com/history/airport/EPGD/2018/12/18/DailyHistory.html</history_url>
 		
 		<ob_url>http://www.wunderground.com/cgi-bin/findweather/getForecast?query=54.38000107,18.46999931</ob_url>
 	</current_observation>

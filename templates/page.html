@@ -39,7 +39,7 @@
 	.close {
 	  color: #aaa;
 	  float: right;
-	  font-size: 28px;
+	  font-size: 78px;
 	  font-weight: bold;
 	}
 
@@ -129,6 +129,12 @@ function GetCurrentData()
  updateContent('content', 'menu');
  GetCurrentData();
  setInterval("GetCurrentData()",60000); 
+ window.onclick = function(event) {
+   modal = document.getElementById('mainGateQuestion');
+   if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
 </script>
 
 </body>
