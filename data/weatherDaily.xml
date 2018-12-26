@@ -7,7 +7,7 @@
 	</features>
 	<forecast>
 		<txt_forecast>
-		<date>7:30 PM CET</date>
+		<date>9:05 PM CET</date>
 		<forecastdays>
 		<forecastday>
 		<period>0</period>
@@ -15,34 +15,34 @@
 		<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
 		<title>Wednesday</title>
 		<fcttext><![CDATA[Light rain overnight. Lows overnight in the mid 30s.]]></fcttext>
-		<fcttext_metric><![CDATA[Light rain overnight. Low 2C.]]></fcttext_metric>
-		<pop>60</pop>
+		<fcttext_metric><![CDATA[Light rain developing late. Low 2C.]]></fcttext_metric>
+		<pop>50</pop>
 		</forecastday>
 		<forecastday>
 		<period>1</period>
 		<icon>nt_chancerain</icon>
 		<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
 		<title>Wednesday Night</title>
-		<fcttext><![CDATA[Cloudy skies with periods of light rain late. Low 36F. Winds W at 10 to 20 mph. Chance of rain 60%.]]></fcttext>
-		<fcttext_metric><![CDATA[Cloudy skies with periods of light rain late. Low 2C. Winds WNW at 15 to 30 km/h. Chance of rain 60%.]]></fcttext_metric>
-		<pop>60</pop>
+		<fcttext><![CDATA[Cloudy skies with periods of light rain late. Low 36F. Winds WNW at 10 to 20 mph. Chance of rain 50%.]]></fcttext>
+		<fcttext_metric><![CDATA[Cloudy skies with periods of light rain late. Low 2C. Winds WNW at 15 to 30 km/h. Chance of rain 50%.]]></fcttext_metric>
+		<pop>50</pop>
 		</forecastday>
 		<forecastday>
 		<period>2</period>
 		<icon>chancerain</icon>
 		<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
 		<title>Thursday</title>
-		<fcttext><![CDATA[Cloudy with light rain developing later in the day. High 43F. Winds W at 15 to 25 mph. Chance of rain 50%.]]></fcttext>
-		<fcttext_metric><![CDATA[Cloudy skies with periods of light rain later in the day. High 6C. Winds W at 25 to 40 km/h. Chance of rain 50%.]]></fcttext_metric>
-		<pop>50</pop>
+		<fcttext><![CDATA[Cloudy. Some light rain is likely. High 43F. Winds W at 15 to 25 mph. Chance of rain 60%.]]></fcttext>
+		<fcttext_metric><![CDATA[Cloudy. Some light rain is likely. High 6C. Winds W at 25 to 40 km/h. Chance of rain 60%.]]></fcttext_metric>
+		<pop>60</pop>
 		</forecastday>
 		<forecastday>
 		<period>3</period>
 		<icon>nt_chancerain</icon>
 		<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
 		<title>Thursday Night</title>
-		<fcttext><![CDATA[Cloudy with light rain early. Low 39F. Winds WNW at 10 to 20 mph. Chance of rain 50%.]]></fcttext>
-		<fcttext_metric><![CDATA[Cloudy with occasional light rain...mainly in the evening. Low 4C. Winds WNW at 15 to 30 km/h. Chance of rain 50%.]]></fcttext_metric>
+		<fcttext><![CDATA[Cloudy with light rain early. Low 39F. Winds WNW at 15 to 25 mph. Chance of rain 50%.]]></fcttext>
+		<fcttext_metric><![CDATA[Cloudy with occasional light rain...mainly in the evening. Low 4C. Winds WNW at 25 to 40 km/h. Chance of rain 50%.]]></fcttext_metric>
 		<pop>50</pop>
 		</forecastday>
 		<forecastday>
@@ -50,8 +50,8 @@
 		<icon>cloudy</icon>
 		<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
 		<title>Friday</title>
-		<fcttext><![CDATA[Cloudy. High 42F. Winds NW at 10 to 15 mph.]]></fcttext>
-		<fcttext_metric><![CDATA[Overcast. High 6C. Winds NW at 15 to 25 km/h.]]></fcttext_metric>
+		<fcttext><![CDATA[Cloudy. High 42F. Winds NW at 10 to 20 mph.]]></fcttext>
+		<fcttext_metric><![CDATA[Overcast. High 6C. Winds NW at 15 to 30 km/h.]]></fcttext_metric>
 		<pop>20</pop>
 		</forecastday>
 		<forecastday>
@@ -60,25 +60,25 @@
 		<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
 		<title>Friday Night</title>
 		<fcttext><![CDATA[Overcast. Low 36F. Winds WNW at 10 to 15 mph.]]></fcttext>
-		<fcttext_metric><![CDATA[Cloudy skies. Low 2C. Winds WNW at 15 to 25 km/h.]]></fcttext_metric>
+		<fcttext_metric><![CDATA[Cloudy skies. Low 2C. Winds WNW at 10 to 15 km/h.]]></fcttext_metric>
 		<pop>20</pop>
 		</forecastday>
 		<forecastday>
 		<period>6</period>
-		<icon>chancerain</icon>
-		<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
+		<icon>cloudy</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
 		<title>Saturday</title>
-		<fcttext><![CDATA[Rain showers early with overcast skies later in the day. High 41F. Winds W at 10 to 20 mph. Chance of rain 40%.]]></fcttext>
-		<fcttext_metric><![CDATA[Showers in the morning, then cloudy in the afternoon. High around 5C. Winds W at 15 to 30 km/h. Chance of rain 40%.]]></fcttext_metric>
-		<pop>40</pop>
+		<fcttext><![CDATA[Cloudy skies. High 41F. Winds W at 10 to 20 mph.]]></fcttext>
+		<fcttext_metric><![CDATA[Cloudy. High around 5C. Winds W at 15 to 30 km/h.]]></fcttext_metric>
+		<pop>20</pop>
 		</forecastday>
 		<forecastday>
 		<period>7</period>
-		<icon>nt_chancerain</icon>
-		<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
+		<icon>nt_rain</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/nt_rain.gif</icon_url>
 		<title>Saturday Night</title>
-		<fcttext><![CDATA[Rain showers in the evening becoming a steady light rain overnight. Low 37F. Winds W at 10 to 20 mph. Chance of rain 70%.]]></fcttext>
-		<fcttext_metric><![CDATA[Rain showers in the evening becoming a steady light rain overnight. Low 3C. Winds W at 15 to 30 km/h. Chance of rain 70%.]]></fcttext_metric>
+		<fcttext><![CDATA[Rain showers in the evening will evolve into a more steady rain overnight. Low 37F. Winds W at 10 to 15 mph. Chance of rain 70%.]]></fcttext>
+		<fcttext_metric><![CDATA[Rain showers in the evening will evolve into a more steady rain overnight. Low 3C. Winds W at 15 to 25 km/h. Chance of rain 70%.]]></fcttext_metric>
 		<pop>70</pop>
 		</forecastday>
 		</forecastdays>
@@ -120,18 +120,18 @@
 					<icon>chancerain</icon>
 					<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
 					<skyicon></skyicon>
-					<pop>60</pop>
+					<pop>50</pop>
 					<qpf_allday>
-						<in>0.03</in>
-						<mm>1</mm>
+						<in>0.01</in>
+						<mm>0</mm>
 					</qpf_allday>
 					<qpf_day>
 						<in></in>
 						<mm></mm>
 					</qpf_day>
 					<qpf_night>
-						<in>0.03</in>
-						<mm>1</mm>
+						<in>0.01</in>
+						<mm>0</mm>
 					</qpf_night>
 					<snow_allday>
 						<in>0.0</in>
@@ -153,11 +153,11 @@
 					</maxwind>
 					<avewind>
 						<mph>18</mph>
-						<kph>29</kph>
+						<kph>28</kph>
 						<dir>WNW</dir>
 						<degrees>0</degrees>
 					</avewind>
-					<avehumidity>94</avehumidity>
+					<avehumidity>93</avehumidity>
 					<maxhumidity>0</maxhumidity>
 					<minhumidity>0</minhumidity>
 				</forecastday>
@@ -197,14 +197,14 @@
 					<icon>chancerain</icon>
 					<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
 					<skyicon></skyicon>
-					<pop>50</pop>
+					<pop>60</pop>
 					<qpf_allday>
-						<in>0.07</in>
+						<in>0.09</in>
 						<mm>2</mm>
 					</qpf_allday>
 					<qpf_day>
-						<in>0.05</in>
-						<mm>1</mm>
+						<in>0.07</in>
+						<mm>2</mm>
 					</qpf_day>
 					<qpf_night>
 						<in>0.03</in>
@@ -226,13 +226,13 @@
 						<mph>25</mph>
 						<kph>40</kph>
 						<dir>W</dir>
-						<degrees>280</degrees>
+						<degrees>279</degrees>
 					</maxwind>
 					<avewind>
-						<mph>17</mph>
-						<kph>27</kph>
+						<mph>18</mph>
+						<kph>29</kph>
 						<dir>W</dir>
-						<degrees>280</degrees>
+						<degrees>279</degrees>
 					</avewind>
 					<avehumidity>96</avehumidity>
 					<maxhumidity>0</maxhumidity>
@@ -300,16 +300,16 @@
 						<cm>0.0</cm>
 					</snow_night>
 					<maxwind>
-						<mph>15</mph>
-						<kph>24</kph>
+						<mph>20</mph>
+						<kph>32</kph>
 						<dir>NW</dir>
-						<degrees>312</degrees>
+						<degrees>314</degrees>
 					</maxwind>
 					<avewind>
-						<mph>12</mph>
-						<kph>19</kph>
+						<mph>13</mph>
+						<kph>21</kph>
 						<dir>NW</dir>
-						<degrees>312</degrees>
+						<degrees>314</degrees>
 					</avewind>
 					<avehumidity>95</avehumidity>
 					<maxhumidity>0</maxhumidity>
@@ -346,22 +346,22 @@
 						<fahrenheit>37</fahrenheit>
 						<celsius>3</celsius>
 					</low>
-					<conditions>Chance of Rain</conditions>
+					<conditions>Overcast</conditions>
 					
-					<icon>chancerain</icon>
-					<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
+					<icon>cloudy</icon>
+					<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
 					<skyicon></skyicon>
-					<pop>40</pop>
+					<pop>20</pop>
 					<qpf_allday>
 						<in>0.13</in>
 						<mm>3</mm>
 					</qpf_allday>
 					<qpf_day>
-						<in>0.01</in>
+						<in>0.00</in>
 						<mm>0</mm>
 					</qpf_day>
 					<qpf_night>
-						<in>0.12</in>
+						<in>0.13</in>
 						<mm>3</mm>
 					</qpf_night>
 					<snow_allday>

@@ -1,0 +1,139 @@
+# ******************************************************************************
+# *                                                                            *
+# * This file is part of XBian --- Kodi on the Raspberry Pi.                   *
+# * Copyright © 2018 XBian Team -- http://www.xbian.org - info@xbian.org       *
+# *                                                                            *
+# * XBian is free software: you can redistribute it and/or modify it under the *
+# * terms of the GNU General Public License as published by the Free Software  *
+# * Foundation, either version 3 of the License, or (at your option) any later *
+# * version.                                                                   *
+# *                                                                            *
+# * XBian is distributed in the hope that it will be useful, but WITHOUT ANY   *
+# * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS  *
+# * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more      *
+# * details.                                                                   *
+# *                                                                            *
+# * You should have received a copy of the GNU General Public License along    *
+# * with XBian. If not, see <http://www.gnu.org/licenses/>                     *
+# *                                                                            *
+# ******************************************************************************
+
+# see /etc/default/xbian-initramfs
+#initramfs initramfs.gz  followkernel
+
+
+# ******************************************************************************
+# * Memory (System/GPU configuration)                                          *
+# ******************************************************************************
+
+# SDRAM size based GPU memory split
+gpu_mem_1024=256
+gpu_mem_512=144
+gpu_mem_256=100
+
+# Extra 16M memory on Pi2/Pi3/Pi3B+
+# See also https://www.raspberrypi.org/forums/viewtopic.php?f=29&t=180420
+#total_mem=1024
+
+
+# ******************************************************************************
+# * Various settings see also: http://elinux.org/RPi_config.txt                *
+# * to obtain keys visit the shop at http://www.raspberrypi.com                *
+# ******************************************************************************
+
+# Enables turbo mode from boot for the given value in seconds (up to 60) or
+# until cpufreq sets a frequency. Default 0
+initial_turbo=3
+
+# Force HDMI even if unplugged or powered off
+hdmi_force_hotplug=0
+
+# Pretends HDMI hotplug signal is not asserted so it appears a HDMI display
+# is not attached. Use composite mode even if HDMI monitor is detected
+hdmi_ignore_hotplug=0
+
+# Doesn't sent initial active source message.
+# Avoids bringing CEC (enabled TV) out of standby and channel switch when
+# rebooting.
+hdmi_ignore_cec_init=1
+
+# Pretends CEC is not supported at all by TV. No CEC functions will
+# be supported.
+hdmi_ignore_cec=0
+
+# Make display smaller to stop text spilling off the screen
+# see also http://www.raspberrypi.org/phpBB3/viewto...67&t=15700
+# overscan_scale=1
+disable_overscan=1
+
+# Avoids the rainbow splash screen on boot
+disable_splash=1
+
+# When adding this line the USB power manager will change its output current
+# limit (for all 4 USB ports combined) from 600mA to double that, 1200mA.
+# Obsolete and enabled per default on newer kernels
+max_usb_current=1
+
+
+# ******************************************************************************
+# * License keys to enable GPU hardware decoding for various codecs            *
+# * to obtain keys visit the shop at http://www.raspberrypi.com                *
+# ******************************************************************************
+
+decode_MPG2=0x00000000
+decode_WVC1=0x00000000
+
+
+# ******************************************************************************
+# * Overlays. For more information please read                                 *
+# *           /boot/README.overlays                                            *
+# ******************************************************************************
+
+# This parameter enables onboard sound via module snd_bcm2835.
+# Module will be loaded automatically, an entry in
+# /etc/modules[.xbian] has no effect and is not longer needed/
+# necessary with kernel 4.4 and above.
+# Please note, this setting should be commented out or set to off
+# if a Hifiberry or any other I2S based sound device is used
+dtparam=audio=on
+
+
+# ******************************************************************************
+# * GPIO LIRC                                                                  *
+# *   Please note:                                                             *
+# *   GPIO input pin has to be remapped for working together                   *
+# *   with I2S sound cards, like Hifiberry. For example                        *
+# *   dtoverlay=lirc-rpi,gpio_in_pin=22,debug for kernels <= 4.14 or           *
+# *   dtoverlay=gpio-ir,gpio_pin=22 for kernels >= 4.14                        *
+# ******************************************************************************
+
+dtoverlay=gpio-ir
+
+
+# ******************************************************************************
+# * Hifiberry and compatible sound cards (I2S interface)                       *
+# * May conflict with LIRC. See note above                                     *
+# ******************************************************************************
+
+#dtoverlay=hifiberry-amp
+#dtoverlay=hifiberry-dac
+#dtoverlay=hifiberry-dacplus
+#dtoverlay=hifiberry-digi
+
+
+# ******************************************************************************
+# * Raspberry Pi3/Pi3B+ onboard Bluetooth                                      *
+# ******************************************************************************
+
+# This parameter enables usage of miniuart (ttyS0) for BT.
+# Please note that BT may not work properly if CPUFREQ_GOVERNOR
+# is set to something else than performance (see also
+# /etc/default/xbian-module-init-tools).
+#dtoverlay=pi3-miniuart-bt
+
+# Disables onboard Bluetooth
+#dtoverlay=pi3-disable-bt
+
+
+#DS18b20 : w1_therm w1_gpio
+dtoverlay=w1-GPIO,gpiopin=4

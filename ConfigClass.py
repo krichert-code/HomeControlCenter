@@ -68,6 +68,12 @@ class ConfigClass(object):
     def getDailyWeatherForecastReq(self):
         return ConfigClass.__xmldoc.getElementsByTagName('weather')[0].getElementsByTagName('daily')[0].getAttribute('url')
 
+    def getDS18B20file(self):
+	return ConfigClass.__xmldoc.getElementsByTagName('ds18b20')[0].getElementsByTagName('device')[0].getAttribute('file')
+
+    def getDS18B20offset(self):
+	return ConfigClass.__xmldoc.getElementsByTagName('ds18b20')[0].getElementsByTagName('offset')[0].getAttribute('value')
+
     def getEvent(self, name):
         xmldoc = minidom.parse('data/config.xml')
         eventData = None

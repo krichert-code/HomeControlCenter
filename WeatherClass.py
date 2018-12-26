@@ -2,6 +2,7 @@ from xml.dom import minidom
 import ConfigClass
 import requests
 import csv
+from datetime import datetime
 
 class WeatherForecaset(object):
     time = ""
@@ -125,28 +126,26 @@ class WeatherClass(object):
 
 
     def getCurrentTemperatureInside(self):
-        with open("data/heater.csv", "rb") as csvfile:
-            reader = csv.DictReader(csvfile,['temp','state','mode','time','icon'])
-            #reader = csv.reader(csvfile, delimiter=",", quotechar="|")
-            for row in reader:
-                pass
+        config = ConfigClass.ConfigClass()
 
-            self.__heater['temp'] = row['temp']
-            self.__heater['state'] = row['state']
-            self.__heater['mode'] = row['mode']
-            self.__heater['time'] = row['time']            
-  
-            if self.__heater['state'] == "1":
-                self.__heater['heat_state_icon'] = "img/piec_on1.gif"
-            else:
-                self.__heater['heat_state_icon'] = ""
+	offset = config.getDS18B20offset()
+        file = open(config.getDS18B20file(), "rb")
+        for line in file:
+	    pass
+
+	temp = int(line[line.find("=")+1:])/1000.0
+	temp = temp + int(offset)
+
+        self.__heater['temp'] = "%.1f" % temp
+        self.__heater['state'] = "0"
+        self.__heater['mode'] = "1"
+        self.__heater['time'] = datetime.now().strftime('%H:%M:%S')
+        self.__heater['heat_state_icon'] = "img/piec_on1.gif"
+        self.__heater['icon'] = "img/day.gif"
+        return self.__heater
+
                 
-            if self.__heater['mode'] == "1":
-                self.__heater['icon'] = "img/day.gif"
-            else:
-                self.__heater['icon'] = "img/night.gif"
-                
-            return self.__heater
+
             
 
 

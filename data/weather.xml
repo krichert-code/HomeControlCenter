@@ -38,11 +38,11 @@
 		<estimated>
 		</estimated>
 		<station_id>EPGD</station_id>
-		<observation_time>Last Updated on December 26, 8:00 PM CET</observation_time>
-		<observation_time_rfc822>Wed, 26 Dec 2018 20:00:00 +0100</observation_time_rfc822>
-		<observation_epoch>1545850800</observation_epoch>
-		<local_time_rfc822>Wed, 26 Dec 2018 20:10:15 +0100</local_time_rfc822>
-		<local_epoch>1545851415</local_epoch>
+		<observation_time>Last Updated on December 26, 9:00 PM CET</observation_time>
+		<observation_time_rfc822>Wed, 26 Dec 2018 21:00:00 +0100</observation_time_rfc822>
+		<observation_epoch>1545854400</observation_epoch>
+		<local_time_rfc822>Wed, 26 Dec 2018 22:03:26 +0100</local_time_rfc822>
+		<local_epoch>1545858206</local_epoch>
 		<local_tz_short>CET</local_tz_short>
 		<local_tz_long>Europe/Warsaw</local_tz_long>
 		<local_tz_offset>+0100</local_tz_offset>
@@ -51,12 +51,12 @@
 		<temp_f>37</temp_f>
 		<temp_c>3</temp_c>
 		<relative_humidity>87%</relative_humidity>
-		<wind_string>From the WNW at 14 MPH</wind_string>
+		<wind_string>From the WNW at 15 MPH</wind_string>
 		<wind_dir>WNW</wind_dir>
 		<wind_degrees>290</wind_degrees>
-		<wind_mph>14</wind_mph>
+		<wind_mph>15</wind_mph>
 		<wind_gust_mph>0</wind_gust_mph>
-		<wind_kph>22</wind_kph>
+		<wind_kph>24</wind_kph>
 		<wind_gust_kph>0</wind_gust_kph>
 		<pressure_mb>1019</pressure_mb>
 		<pressure_in>30.09</pressure_in>
@@ -72,12 +72,12 @@
 		<heat_index_c>NA</heat_index_c>
 		
 		
-		<windchill_string>29 F (-2 C)</windchill_string>
-		<windchill_f>29</windchill_f>
+		<windchill_string>28 F (-2 C)</windchill_string>
+		<windchill_f>28</windchill_f>
 		<windchill_c>-2</windchill_c>
 		
-        <feelslike_string>29 F (-2 C)</feelslike_string>
-        <feelslike_f>29</feelslike_f>
+        <feelslike_string>28 F (-2 C)</feelslike_string>
+        <feelslike_f>28</feelslike_f>
         <feelslike_c>-2</feelslike_c>
 		<visibility_mi>6.2</visibility_mi>
 		<visibility_km>10.0</visibility_km>
