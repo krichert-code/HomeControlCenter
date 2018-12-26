@@ -113,42 +113,20 @@ class ActionClass(object):
 	
 
     def actionOnPlay(self, param = ""):
-        threadTask = ActionThread.ActionThread()
         radio = RadioClass.RadioClass()
-        radio_req = radio.getRadioPlayRequest(param)
-        threadTask.addTask("request",radio_req)
-        threadTask.addTask("delay",1)
-        threadTask.addTask("notify")
-        threadTask.start()
-	threadTask.suspend()
-
+        radio.getRadioPlayRequest(param)
 
     def actionOnStop(self, param = ""):
-        threadTask = ActionThread.ActionThread()
-
         radio = RadioClass.RadioClass()
-        radio_req = radio.getRadioStopRequest()
-        threadTask.addTask("request",radio_req)            
-        threadTask.addTask("delay",1)
-        threadTask.addTask("notify")
-        threadTask.start()
-        threadTask.suspend()
+        radio.getRadioStopRequest()
 
     def actionOnVolumeUp(self, param = ""):
-        threadTask = ActionThread.ActionThread()
-
         radio = RadioClass.RadioClass()
-        radio_req = radio.getRadioVolumeUpRequest() 
-        threadTask.addTask("request",radio_req)        
-        threadTask.start()
+        radio.getRadioVolumeUpRequest() 
 
     def actionOnVolumeDown(self, param = ""):
-        threadTask = ActionThread.ActionThread()
-
         radio = RadioClass.RadioClass()
-        radio_req = radio.getRadioVolumeDownRequest() 
-        threadTask.addTask("request",radio_req)        
-        threadTask.start()
+        radio.getRadioVolumeDownRequest() 
 
     def actionOnGetActiveEvents(self, param = ""):
         # get only activate events
