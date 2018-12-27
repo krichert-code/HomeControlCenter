@@ -3,6 +3,7 @@ import EventClass
 import requests
 import json
 import time
+import copy
 
 class StationClass:
     def __init__(self, id, name, post_data):
@@ -14,7 +15,7 @@ class StationClass:
 class RadioClass(object):
     __stations = []
     __settings = ""    
-    __headers = {'content-type': 'application/json'}
+    __headers        = {'content-type': 'application/json'}
     __play_req       = {"jsonrpc":"2.0","id":"1","method":"Player.Open","params":{"item":{"file":"PLAY_REQUEST"}}}
     __stop_req       = {"jsonrpc":"2.0","method":"Player.Stop","params":{"playerid":1},"id":"1"}
     __get_volume_req = {"jsonrpc":"2.0", "method":"Application.GetProperties","params":{"properties":["volume"]},"id":1}
@@ -37,7 +38,8 @@ class RadioClass(object):
 	    
             for name in config.getRadioStationsName():
                 req = config.getRadioURL(name)
-		post_data = RadioClass.__play_req
+
+		post_data = copy.deepcopy(RadioClass.__play_req)
 		post_data['params']['item']['file'] = req
                 station = StationClass(id, name, post_data)
                 RadioClass.__stations.append( station )
@@ -59,7 +61,7 @@ class RadioClass(object):
     def __getRadioStation(self,name):
         for station in RadioClass.__stations:
             if station.name == name:
-                break        
+		break
         return station
             
     def getRadioStations(self):        
@@ -70,9 +72,9 @@ class RadioClass(object):
         station = self.__getRadioStation(name)
         try:
             req = self.__getRadioDevice() + "/jsonrpc"
-            requests.post(req, data=json.dumps(station.post_data), headers=RadioClass.__headers, verify = False, timeout = 3)            
-	    time.sleep(5)
-        except requests.exceptions.RequestException as e:
+            requests.post(req, data=json.dumps(station.post_data), headers=RadioClass.__headers, verify = False, timeout = 10)            
+	    time.sleep(1)	    
+        except:
             req = None                
 
     def getRadioStopRequest(self):
@@ -80,7 +82,7 @@ class RadioClass(object):
             req = self.__getRadioDevice() + "/jsonrpc"
 	    payload = RadioClass.__stop_req
             requests.post(req, data=json.dumps(payload), headers=RadioClass.__headers, verify = False, timeout = 3)            
-	    time.sleep(2)
+	    time.sleep(1)
         except requests.exceptions.RequestException as e:
             req = None                
 
