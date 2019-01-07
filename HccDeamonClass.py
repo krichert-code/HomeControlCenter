@@ -38,18 +38,16 @@ class Alarm:
 
 	if  self.__compareTime(self.__start_time) == True and self.__playing == False and playRadio == True:
 	    try:
-		req = radio.getRadioPlayRequest(self.__radio)
-		requests.get(req , verify = False)
-		req = radio.setRadioVolume(int(self.__volume))
+		radio.getRadioPlayRequest(self.__radio)
+		radio.setRadioVolume(int(self.__volume))
 		self.__playing = True
             except requests.exceptions.RequestException as e:
 		self.__playing = False
 
 	if self.__compareTime(self.__stop_time) == True and self.__playing == True:
 	    try:
-		req = radio.getRadioStopRequest()
-		requests.get(req , verify = False)
-		req = radio.setRadioVolume(50)
+		radio.getRadioStopRequest()
+		radio.setRadioVolume(50)
                 self.__playing = False
             except requests.exceptions.RequestException as e:
 		self.__playing = True
