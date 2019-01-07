@@ -55,7 +55,7 @@
 
 <script type="text/javascript">
 
-function updateContent(id, page)
+function updateContent(id, page, bufferMsg = false)
 {
 	var xmlhttp;
 	
@@ -73,7 +73,12 @@ function updateContent(id, page)
     	    if(xmlhttp.readyState==4 && xmlhttp.status == 200)
     	    {
     		document.getElementById(id).innerHTML=xmlhttp.responseText;
+		document.getElementById('bufforInformation').style.display = 'none';
 	    }
+	}
+	if (bufferMsg == true)
+	{
+	    document.getElementById('bufforInformation').style.display = 'block';
 	}
 	xmlhttp.open("GET",page,true);
 	xmlhttp.send(null);
