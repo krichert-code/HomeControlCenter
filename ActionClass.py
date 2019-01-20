@@ -116,6 +116,10 @@ class ActionClass(object):
         radio = RadioClass.RadioClass()
         radio.getRadioPlayRequest(param)
 
+    def actionOnPlayMp3(self, param = ""):
+        player = RadioClass.RadioClass()
+        player.playMp3File(param)
+
     def actionOnStop(self, param = ""):
         radio = RadioClass.RadioClass()
         radio.getRadioStopRequest()

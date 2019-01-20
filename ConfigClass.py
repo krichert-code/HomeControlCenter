@@ -74,6 +74,9 @@ class ConfigClass(object):
     def getDS18B20offset(self):
 	return ConfigClass.__xmldoc.getElementsByTagName('ds18b20')[0].getElementsByTagName('offset')[0].getAttribute('value')
 
+    def getMp3Directory(self):
+	return ConfigClass.__xmldoc.getElementsByTagName('radio')[0].getAttribute('mp3_directory')
+
     def getEvent(self, name):
         xmldoc = minidom.parse('data/config.xml')
         eventData = None

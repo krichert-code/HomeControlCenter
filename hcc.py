@@ -58,6 +58,25 @@ def radio(actionName=""):
 		action = ActionClass.ActionClass()
 		return render_template('events.html', events = action.getEventsData(actionName, stationName, action.ActionEventRadio))
 
+@app.route("/mp3", methods=['GET', 'POST'])
+@app.route("/mp3/<actionName>", methods=['GET', 'POST'])
+def mp3(actionName=""):
+	radio = RadioClass.RadioClass()
+	if len(actionName) == 0:
+		return render_template('mp3.html', files = radio.getFiles())
+	elif actionName == "ChdirUp":
+		return render_template('mp3.html', files = radio.getFiles(radio.getParentDirectory()))
+	elif actionName == "Chdir":
+		path = request.args.get('param')
+		return render_template('mp3.html', files = radio.getFiles(path))
+	else:
+		mp3File = request.args.get('param')		
+		if (mp3File == None):
+		    # this is directory intead of single mp3 file
+		    mp3File = radio.getCurrentDirectory()
+		action = ActionClass.ActionClass()
+		return render_template('events.html', events = action.getEventsData(actionName, mp3File, action.ActionEventRadio))
+
 @app.route("/train_schedule")
 @app.route("/train_schedule/<direction>")
 def train_schedule(direction="A"):
