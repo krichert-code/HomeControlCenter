@@ -7,6 +7,7 @@ class ConfigClass(object):
     
     
     def __init__(self):
+        self.iterator = 0
         if ConfigClass.__xmldoc == None:
             ConfigClass.__xmldoc = minidom.parse('data/config.xml')
             
@@ -73,6 +74,19 @@ class ConfigClass(object):
 
     def getDS18B20offset(self):
 	return ConfigClass.__xmldoc.getElementsByTagName('ds18b20')[0].getElementsByTagName('offset')[0].getAttribute('value')
+
+    def getThermMode(self):
+        return ConfigClass.__xmldoc.getElementsByTagName('heater')[0].getElementsByTagName('thermometer')[0.getAttribute('mode')
+
+    def getFirstThermDevices(self):
+        self.iterator = 0
+        return ConfigClass.__xmldoc.getElementsByTagName('heater')[0].getElementsByTagName('thermometer')[0].getElementsByTagName('ds18b20')[0].getAttribute('file'),
+        ConfigClass.__xmldoc.getElementsByTagName('heater')[0].getElementsByTagName('thermometer')[0].getElementsByTagName('ds18b20')[0].getAttribute('offset')
+
+    def getNextThermDevices(self):
+        self.iterator = self.iterator + 1
+        return ConfigClass.__xmldoc.getElementsByTagName('heater')[0].getElementsByTagName('thermometer')[0].getElementsByTagName('ds18b20')[self.iterator].getAttribute('file'),
+        ConfigClass.__xmldoc.getElementsByTagName('heater')[0].getElementsByTagName('thermometer')[0].getElementsByTagName('ds18b20')[self.iterator].getAttribute('offset')
 
     def getMp3Directory(self):
 	return ConfigClass.__xmldoc.getElementsByTagName('radio')[0].getAttribute('mp3_directory')
