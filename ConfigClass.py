@@ -75,8 +75,17 @@ class ConfigClass(object):
     def getDS18B20offset(self):
 	return ConfigClass.__xmldoc.getElementsByTagName('ds18b20')[0].getElementsByTagName('offset')[0].getAttribute('value')
 
+    def getDS18B20offset(self):
+	return ConfigClass.__xmldoc.getElementsByTagName('ds18b20')[0].getElementsByTagName('offset')[0].getAttribute('value')
+
+    def getlocalIPmask(self):
+	return ConfigClass.__xmldoc.getElementsByTagName('passwd')[0].getAttribute('localIPmask')
+
+    def getmd5passwd(self):
+	return ConfigClass.__xmldoc.getElementsByTagName('passwd')[0].getAttribute('value')
+
     def getThermMode(self):
-        return ConfigClass.__xmldoc.getElementsByTagName('heater')[0].getElementsByTagName('thermometer')[0.getAttribute('mode')
+        return ConfigClass.__xmldoc.getElementsByTagName('heater')[0].getElementsByTagName('thermometer')[0].getAttribute('mode')
 
     def getFirstThermDevices(self):
         self.iterator = 0
