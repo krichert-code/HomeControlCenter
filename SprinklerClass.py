@@ -57,7 +57,7 @@ class SprinklerClass(object):
 	ret_val = 0
 	# getting status have to be perform by ActionThread class because switch may handle only one request in the same time
         config = ConfigClass.ConfigClass()
-	status_url = config.getSwitchURL("SprinklerStatus")
+	status_url = config.getSwitchURL("Status")
 	threadStatus = ActionThread.ActionThread()
 	threadStatus.addTask("request",status_url)
 	threadStatus.addTask("notify")

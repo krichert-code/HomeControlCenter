@@ -8,6 +8,7 @@ import ActionClass
 import ConfigClass
 import RadioClass
 import SprinklerClass
+import HeaterClass
 import ScheduleClass
 import HccDeamonClass
 import os

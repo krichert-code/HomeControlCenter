@@ -6,6 +6,7 @@ import ConfigClass
 import RadioClass
 import CalendarClass
 import WeatherClass
+import HeaterClass
 import RPi.GPIO as GPIO
 
         
@@ -105,6 +106,17 @@ class Calendar:
 	except:
 	    pass
 
+class Heater:
+	def __inti__(self):
+	    pass
+
+	def timeEvent(self):
+	    heater = HeaterClass.HeaterClass()
+	    curr_week_day = datetime.datetime.today().weekday()
+	    curr_hour = int(datetime.datetime.now().strftime('%H'))
+	    heater.manageHeaterState(curr_week_day, curr_hour)
+	    
+	    
 class Weather:
 	def __init__(self):
 		weather = WeatherClass.WeatherClass()
@@ -112,7 +124,7 @@ class Weather:
 		self.__hour = 0
 		self.__weatherFiles = 0;
 		# Below counter is needed to generate weather files not exactly when new day/hour,
-        # but some time later because data are not available.
+    		# but some time later because data are not available.
 		self.__counter = 0
 		weather.generateFiles(weather.WeatherDailyFile | weather.WeatherHourlyFile | weather.WeatherCurrentFile)
 
@@ -159,12 +171,14 @@ class HccDeamonClass(threading.Thread):
 	alarm = Alarm()
 	calendar = Calendar()
 	weather = Weather()
+	heater = Heater()
 
 	while (not self.__stopEvent):
 		alarm.timeEvent()
 		speaker.timeEvent()
 		calendar.timeEvent()
 		weather.timeEvent()
+		heater.timeEvent()
 	    
 		time.sleep(1)
 

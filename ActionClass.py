@@ -5,6 +5,7 @@ import ConfigClass
 import CalendarClass
 import RadioClass
 import SprinklerClass
+import HeaterClass
 
 
 
@@ -154,6 +155,7 @@ class ActionClass(object):
 
         if self.__isEventEnable(filters, ActionClass.ActionEventSprinkler) == True:
             events = events + sprinklerEvent.getEventsData(self.ActionEventSprinkler)
+
 
         if self.__isEventEnable(filters, ActionClass.ActionEventGeneric) == True:
             events = events + self.__config.getEvents(self.ActionEventGeneric)
