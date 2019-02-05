@@ -69,7 +69,7 @@ def weatherForecast():
 @app.route("/tempInside")
 def temperatureInside():
 	if (isAuthNeed() == False):
-	    obj = WeatherClass.WeatherClass()	
+	    obj = HeaterClass.HeaterClass()	
 	    return render_template('heater.html', heater = obj.getCurrentTemperatureInside())
 
 @app.route("/action/<actionName>")

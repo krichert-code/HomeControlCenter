@@ -1,17 +1,27 @@
 import ConfigClass
+import WeatherClass
 import EventClass
 import ActionThread
-import time
+from datetime import datetime
+
+
+class HeaterParam(object):
+
+    def __init__(self, tempInside, tempOutside, mode):
+	self.tempInside = tempInside
+	self.tempOutside = tempOutside
+	self.mode = mode
 
 class HeaterClass(object):
-
     __lastState = -1
+    __dayMode = False
+    __data = []
 
     def __init__(self):
         pass
 
 
-    def getTemperatureFromDevice(self):
+    def __getTemperatureFromDevice(self):
 	config = ConfigClass.ConfigClass()
 
 	#todo: get temperature depands on mode (min,max)
@@ -26,8 +36,24 @@ class HeaterClass(object):
 	return temp
 
 
+    def getCurrentTemperatureInside(self):
+	heater = {}
+	temp = self.__getTemperatureFromDevice()
+
+        heater['temp'] = "%.1f" % temp
+#        heater['state'] = "0"
+#        heater['mode'] = "1"
+        heater['time'] = datetime.now().strftime('%H:%M:%S')
+#        heater['heat_state_icon'] = "img/piec_on1.gif"
+        heater['icon'] = "img/day.gif"
+	if HeaterClass.dayMode == False:
+	    heater['icon'] = "img/night.gif"
+        return heater
+
+
     def manageHeaterState(self, dayOfWeek, hour):
 		config = ConfigClass.ConfigClass()
+		weather = WeatherClass.WeatherClass()
 		threadTask = None
 
 		dayTemp = float(config.getDayTemp())
@@ -36,8 +62,9 @@ class HeaterClass(object):
 
 		isDayMode = config.isDayMode(dayOfWeek, hour)
 
-		temp = self.getTemperatureFromDevice()
+		temp = self.__getTemperatureFromDevice()
 
+		HeaterClass.dayMode = isDayMode
 
 		if (isDayMode == True and temp + threshold <= dayTemp) or (isDayMode == False and temp + threshold <= nightTemp):
 			#turn on heater
@@ -66,6 +93,11 @@ class HeaterClass(object):
 			threadTask.start()
 			threadTask.suspend()
 			print "_____PIEC zmiana stanu"
+
+		weatherData = weather.getCurrentWeather()
+		HeaterClass.__data.append(HeaterParam(temp, weatherData['temp'], HeaterClass.__lastState))
+		if (len(HeaterClass.__data) > 10000):
+		    HeaterClass.__data.pop(0)
 
 		print "_____________TEMP = " + str(temp)
 		print "_____________DEY_TEMP " + str(dayTemp)

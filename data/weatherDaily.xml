@@ -7,79 +7,79 @@
 	</features>
 	<forecast>
 		<txt_forecast>
-		<date>8:23 PM CET</date>
+		<date>9:05 PM CET</date>
 		<forecastdays>
 		<forecastday>
 		<period>0</period>
-		<icon>mostlycloudy</icon>
-		<icon_url>http://icons.wxug.com/i/c/k/mostlycloudy.gif</icon_url>
-		<title>Monday</title>
-		<fcttext><![CDATA[Considerable cloudiness. Lows overnight in the upper 20s.]]></fcttext>
-		<fcttext_metric><![CDATA[Mainly cloudy. Low -3C.]]></fcttext_metric>
-		<pop>10</pop>
+		<icon>snow</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/snow.gif</icon_url>
+		<title>Tuesday</title>
+		<fcttext><![CDATA[Snow developing overnight. Lows overnight in the low 30s.]]></fcttext>
+		<fcttext_metric><![CDATA[Snow likely late. Low 1C.]]></fcttext_metric>
+		<pop>40</pop>
 		</forecastday>
 		<forecastday>
 		<period>1</period>
-		<icon>nt_mostlycloudy</icon>
-		<icon_url>http://icons.wxug.com/i/c/k/nt_mostlycloudy.gif</icon_url>
-		<title>Monday Night</title>
-		<fcttext><![CDATA[Partly cloudy skies early will give way to cloudy skies late. Widespread frost likely. Low 27F. Winds SSW at 10 to 20 mph.]]></fcttext>
-		<fcttext_metric><![CDATA[Partly cloudy this evening, then becoming cloudy after midnight. Widespread frost likely. Low -3C. Winds SSW at 15 to 30 km/h.]]></fcttext_metric>
-		<pop>10</pop>
+		<icon>nt_snow</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/nt_snow.gif</icon_url>
+		<title>Tuesday Night</title>
+		<fcttext><![CDATA[Cloudy. Snow likely late. Low 33F. Winds W at 10 to 20 mph. Chance of snow 40%.]]></fcttext>
+		<fcttext_metric><![CDATA[Cloudy with periods of snow after midnight. Low 1C. Winds W at 15 to 30 km/h. Chance of snow 40%.]]></fcttext_metric>
+		<pop>40</pop>
 		</forecastday>
 		<forecastday>
 		<period>2</period>
 		<icon>cloudy</icon>
 		<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
-		<title>Tuesday</title>
-		<fcttext><![CDATA[Cloudy. High 33F. Winds SW at 15 to 25 mph.]]></fcttext>
-		<fcttext_metric><![CDATA[Cloudy. High near 0C. Winds SW at 15 to 30 km/h.]]></fcttext_metric>
-		<pop>20</pop>
+		<title>Wednesday</title>
+		<fcttext><![CDATA[Cloudy. Temps nearly steady in the mid 30s. Winds WSW at 10 to 15 mph.]]></fcttext>
+		<fcttext_metric><![CDATA[Cloudy skies. High 2C. Winds WSW at 15 to 25 km/h.]]></fcttext_metric>
+		<pop>10</pop>
 		</forecastday>
 		<forecastday>
 		<period>3</period>
-		<icon>nt_snow</icon>
-		<icon_url>http://icons.wxug.com/i/c/k/nt_snow.gif</icon_url>
-		<title>Tuesday Night</title>
-		<fcttext><![CDATA[Cloudy. Snow likely after midnight. Low 32F. Winds W at 10 to 20 mph. Chance of snow 40%.]]></fcttext>
-		<fcttext_metric><![CDATA[Cloudy. Snow likely after midnight. Low near 0C. Winds W at 15 to 30 km/h. Chance of snow 40%.]]></fcttext_metric>
-		<pop>40</pop>
+		<icon>nt_cloudy</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+		<title>Wednesday Night</title>
+		<fcttext><![CDATA[Cloudy skies. Low 31F. Winds SSW at 10 to 20 mph.]]></fcttext>
+		<fcttext_metric><![CDATA[Overcast. Low around 0C. Winds SSW at 15 to 30 km/h.]]></fcttext_metric>
+		<pop>10</pop>
 		</forecastday>
 		<forecastday>
 		<period>4</period>
 		<icon>cloudy</icon>
 		<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
-		<title>Wednesday</title>
-		<fcttext><![CDATA[Cloudy. Temps nearly steady in the mid 30s. Winds W at 10 to 15 mph.]]></fcttext>
-		<fcttext_metric><![CDATA[Cloudy. High 2C. Winds W at 15 to 25 km/h.]]></fcttext_metric>
-		<pop>10</pop>
+		<title>Thursday</title>
+		<fcttext><![CDATA[Cloudy skies. Temps nearly steady in the low to mid 30s. Winds SSW at 10 to 20 mph.]]></fcttext>
+		<fcttext_metric><![CDATA[Cloudy. High 1C. Winds SSW at 15 to 30 km/h.]]></fcttext_metric>
+		<pop>20</pop>
 		</forecastday>
 		<forecastday>
 		<period>5</period>
 		<icon>nt_cloudy</icon>
 		<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
-		<title>Wednesday Night</title>
-		<fcttext><![CDATA[Overcast. Low 31F. Winds SSW at 10 to 20 mph.]]></fcttext>
-		<fcttext_metric><![CDATA[Overcast. Low -1C. Winds SSW at 15 to 30 km/h.]]></fcttext_metric>
+		<title>Thursday Night</title>
+		<fcttext><![CDATA[Overcast. Low 31F. Winds SW at 10 to 20 mph.]]></fcttext>
+		<fcttext_metric><![CDATA[Overcast. Low around 0C. Winds SW at 15 to 30 km/h.]]></fcttext_metric>
 		<pop>20</pop>
 		</forecastday>
 		<forecastday>
 		<period>6</period>
 		<icon>cloudy</icon>
 		<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
-		<title>Thursday</title>
-		<fcttext><![CDATA[Cloudy. High 36F. Winds SSW at 10 to 20 mph.]]></fcttext>
-		<fcttext_metric><![CDATA[Cloudy. High 2C. Winds SSW at 15 to 30 km/h.]]></fcttext_metric>
-		<pop>10</pop>
+		<title>Friday</title>
+		<fcttext><![CDATA[Cloudy. Temps nearly steady in the mid to upper 30s. Winds SW at 10 to 20 mph.]]></fcttext>
+		<fcttext_metric><![CDATA[Cloudy. High 4C. Winds SW at 15 to 30 km/h.]]></fcttext_metric>
+		<pop>20</pop>
 		</forecastday>
 		<forecastday>
 		<period>7</period>
-		<icon>nt_cloudy</icon>
-		<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
-		<title>Thursday Night</title>
-		<fcttext><![CDATA[Cloudy. Low 33F. Winds SW at 10 to 20 mph.]]></fcttext>
-		<fcttext_metric><![CDATA[Overcast. Low near 0C. Winds SW at 15 to 30 km/h.]]></fcttext_metric>
-		<pop>20</pop>
+		<icon>nt_chancerain</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
+		<title>Friday Night</title>
+		<fcttext><![CDATA[Cloudy with occasional rain showers. Low 36F. Winds SSW at 10 to 20 mph. Chance of rain 50%.]]></fcttext>
+		<fcttext_metric><![CDATA[Cloudy with showers. Low 2C. Winds SSW at 15 to 30 km/h. Chance of rain 50%.]]></fcttext_metric>
+		<pop>50</pop>
 		</forecastday>
 		</forecastdays>
 		</txt_forecast>
@@ -87,83 +87,6 @@
 		<forecastdays>
 		<forecastday>
 		<date>
-  <epoch>1549303200</epoch>
-  <pretty_short>7:00 PM CET</pretty_short>
-  <pretty>7:00 PM CET on February 04, 2019</pretty>
-  <day>4</day>
-  <month>2</month>
-  <year>2019</year>
-  <yday>34</yday>
-  <hour>19</hour>
-  <min>00</min>
-  <sec>0</sec>
-  <isdst>0</isdst>
-  <monthname>February</monthname>
-  <monthname_short>Feb</monthname_short>
-  <weekday_short>Mon</weekday_short>
-  <weekday>Monday</weekday>
-  <ampm>PM</ampm>
-  <tz_short>CET</tz_short>
-  <tz_long>Europe/Warsaw</tz_long>
-</date>
-					<period>1</period>
-					<high>
-						<fahrenheit>33</fahrenheit>
-						<celsius>0</celsius>
-					</high>
-					<low>
-						<fahrenheit>27</fahrenheit>
-						<celsius>-3</celsius>
-					</low>
-					<conditions>Mostly Cloudy</conditions>
-					
-					<icon>mostlycloudy</icon>
-					<icon_url>http://icons.wxug.com/i/c/k/mostlycloudy.gif</icon_url>
-					<skyicon></skyicon>
-					<pop>10</pop>
-					<qpf_allday>
-						<in>0.00</in>
-						<mm>0</mm>
-					</qpf_allday>
-					<qpf_day>
-						<in></in>
-						<mm></mm>
-					</qpf_day>
-					<qpf_night>
-						<in>0.00</in>
-						<mm>0</mm>
-					</qpf_night>
-					<snow_allday>
-						<in>0.0</in>
-						<cm>0.0</cm>
-					</snow_allday>
-					<snow_day>
-						<in></in>
-						<cm></cm>
-					</snow_day>
-					<snow_night>
-						<in>0.0</in>
-						<cm>0.0</cm>
-					</snow_night>
-					<maxwind>
-						<mph>20</mph>
-						<kph>32</kph>
-						<dir>NW</dir>
-						<degrees>0</degrees>
-					</maxwind>
-					<avewind>
-						<mph>10</mph>
-						<kph>16</kph>
-						<dir>WNW</dir>
-						<degrees>0</degrees>
-					</avewind>
-					<avehumidity>88</avehumidity>
-					<maxhumidity>0</maxhumidity>
-					<minhumidity>0</minhumidity>
-				</forecastday>
-				
-				<forecastday>
-					<date>
   <epoch>1549389600</epoch>
   <pretty_short>7:00 PM CET</pretty_short>
   <pretty>7:00 PM CET on February 05, 2019</pretty>
@@ -183,58 +106,58 @@
   <tz_short>CET</tz_short>
   <tz_long>Europe/Warsaw</tz_long>
 </date>
-					<period>2</period>
+					<period>1</period>
 					<high>
 						<fahrenheit>33</fahrenheit>
-						<celsius>1</celsius>
+						<celsius>0</celsius>
 					</high>
 					<low>
-						<fahrenheit>32</fahrenheit>
-						<celsius>0</celsius>
+						<fahrenheit>33</fahrenheit>
+						<celsius>1</celsius>
 					</low>
-					<conditions>Overcast</conditions>
+					<conditions>Snow</conditions>
 					
-					<icon>cloudy</icon>
-					<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
+					<icon>snow</icon>
+					<icon_url>http://icons.wxug.com/i/c/k/snow.gif</icon_url>
 					<skyicon></skyicon>
-					<pop>20</pop>
+					<pop>40</pop>
 					<qpf_allday>
 						<in>0.02</in>
 						<mm>1</mm>
 					</qpf_allday>
 					<qpf_day>
-						<in>0.00</in>
-						<mm>0</mm>
+						<in></in>
+						<mm></mm>
 					</qpf_day>
 					<qpf_night>
-						<in>0.01</in>
-						<mm>0</mm>
+						<in>0.02</in>
+						<mm>1</mm>
 					</qpf_night>
 					<snow_allday>
 						<in>0.2</in>
 						<cm>0.5</cm>
 					</snow_allday>
 					<snow_day>
-						<in>0.0</in>
-						<cm>0.0</cm>
+						<in></in>
+						<cm></cm>
 					</snow_day>
 					<snow_night>
-						<in>0.1</in>
-						<cm>0.3</cm>
+						<in>0.2</in>
+						<cm>0.5</cm>
 					</snow_night>
 					<maxwind>
-						<mph>25</mph>
-						<kph>40</kph>
-						<dir>SW</dir>
-						<degrees>217</degrees>
+						<mph>17</mph>
+						<kph>28</kph>
+						<dir>SSW</dir>
+						<degrees>0</degrees>
 					</maxwind>
 					<avewind>
-						<mph>17</mph>
-						<kph>27</kph>
+						<mph>12</mph>
+						<kph>20</kph>
 						<dir>SW</dir>
-						<degrees>217</degrees>
+						<degrees>0</degrees>
 					</avewind>
-					<avehumidity>87</avehumidity>
+					<avehumidity>94</avehumidity>
 					<maxhumidity>0</maxhumidity>
 					<minhumidity>0</minhumidity>
 				</forecastday>
@@ -260,7 +183,7 @@
   <tz_short>CET</tz_short>
   <tz_long>Europe/Warsaw</tz_long>
 </date>
-					<period>3</period>
+					<period>2</period>
 					<high>
 						<fahrenheit>35</fahrenheit>
 						<celsius>2</celsius>
@@ -302,16 +225,16 @@
 					<maxwind>
 						<mph>15</mph>
 						<kph>24</kph>
-						<dir>W</dir>
-						<degrees>259</degrees>
+						<dir>WSW</dir>
+						<degrees>252</degrees>
 					</maxwind>
 					<avewind>
-						<mph>12</mph>
-						<kph>19</kph>
-						<dir>W</dir>
-						<degrees>259</degrees>
+						<mph>11</mph>
+						<kph>18</kph>
+						<dir>WSW</dir>
+						<degrees>252</degrees>
 					</avewind>
-					<avehumidity>90</avehumidity>
+					<avehumidity>91</avehumidity>
 					<maxhumidity>0</maxhumidity>
 					<minhumidity>0</minhumidity>
 				</forecastday>
@@ -337,21 +260,21 @@
   <tz_short>CET</tz_short>
   <tz_long>Europe/Warsaw</tz_long>
 </date>
-					<period>4</period>
+					<period>3</period>
 					<high>
-						<fahrenheit>36</fahrenheit>
-						<celsius>2</celsius>
+						<fahrenheit>34</fahrenheit>
+						<celsius>1</celsius>
 					</high>
 					<low>
-						<fahrenheit>33</fahrenheit>
-						<celsius>1</celsius>
+						<fahrenheit>31</fahrenheit>
+						<celsius>-1</celsius>
 					</low>
 					<conditions>Overcast</conditions>
 					
 					<icon>cloudy</icon>
 					<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
 					<skyicon></skyicon>
-					<pop>10</pop>
+					<pop>20</pop>
 					<qpf_allday>
 						<in>0.00</in>
 						<mm>0</mm>
@@ -380,15 +303,92 @@
 						<mph>20</mph>
 						<kph>32</kph>
 						<dir>SSW</dir>
-						<degrees>196</degrees>
+						<degrees>198</degrees>
 					</maxwind>
 					<avewind>
 						<mph>14</mph>
 						<kph>23</kph>
 						<dir>SSW</dir>
-						<degrees>196</degrees>
+						<degrees>198</degrees>
 					</avewind>
-					<avehumidity>80</avehumidity>
+					<avehumidity>82</avehumidity>
+					<maxhumidity>0</maxhumidity>
+					<minhumidity>0</minhumidity>
+				</forecastday>
+				
+				<forecastday>
+					<date>
+  <epoch>1549648800</epoch>
+  <pretty_short>7:00 PM CET</pretty_short>
+  <pretty>7:00 PM CET on February 08, 2019</pretty>
+  <day>8</day>
+  <month>2</month>
+  <year>2019</year>
+  <yday>38</yday>
+  <hour>19</hour>
+  <min>00</min>
+  <sec>0</sec>
+  <isdst>0</isdst>
+  <monthname>February</monthname>
+  <monthname_short>Feb</monthname_short>
+  <weekday_short>Fri</weekday_short>
+  <weekday>Friday</weekday>
+  <ampm>PM</ampm>
+  <tz_short>CET</tz_short>
+  <tz_long>Europe/Warsaw</tz_long>
+</date>
+					<period>4</period>
+					<high>
+						<fahrenheit>39</fahrenheit>
+						<celsius>4</celsius>
+					</high>
+					<low>
+						<fahrenheit>36</fahrenheit>
+						<celsius>2</celsius>
+					</low>
+					<conditions>Overcast</conditions>
+					
+					<icon>cloudy</icon>
+					<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
+					<skyicon></skyicon>
+					<pop>20</pop>
+					<qpf_allday>
+						<in>0.05</in>
+						<mm>1</mm>
+					</qpf_allday>
+					<qpf_day>
+						<in>0.00</in>
+						<mm>0</mm>
+					</qpf_day>
+					<qpf_night>
+						<in>0.05</in>
+						<mm>1</mm>
+					</qpf_night>
+					<snow_allday>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_allday>
+					<snow_day>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_day>
+					<snow_night>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_night>
+					<maxwind>
+						<mph>20</mph>
+						<kph>32</kph>
+						<dir>SW</dir>
+						<degrees>226</degrees>
+					</maxwind>
+					<avewind>
+						<mph>15</mph>
+						<kph>24</kph>
+						<dir>SW</dir>
+						<degrees>226</degrees>
+					</avewind>
+					<avehumidity>88</avehumidity>
 					<maxhumidity>0</maxhumidity>
 					<minhumidity>0</minhumidity>
 				</forecastday>

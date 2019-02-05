@@ -107,14 +107,16 @@ class Calendar:
 	    pass
 
 class Heater:
-	def __inti__(self):
-	    pass
+	def __init__(self):
+	    self.__counter = 0
 
 	def timeEvent(self):
-	    heater = HeaterClass.HeaterClass()
-	    curr_week_day = datetime.datetime.today().weekday()
-	    curr_hour = int(datetime.datetime.now().strftime('%H'))
-	    heater.manageHeaterState(curr_week_day, curr_hour)
+	    if (self.__counter % 60 == 0):
+		heater = HeaterClass.HeaterClass()
+		curr_week_day = datetime.datetime.today().weekday()
+		curr_hour = int(datetime.datetime.now().strftime('%H'))
+		heater.manageHeaterState(curr_week_day, curr_hour)
+	    self.__counter = self.__counter + 1
 	    
 	    
 class Weather:

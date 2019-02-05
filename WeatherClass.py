@@ -124,28 +124,6 @@ class WeatherClass(object):
             self.__saveWeatherFile( config.getDailyWeatherForecastReq(), self.__dailyWeatherFile)
 
 
-
-    def getCurrentTemperatureInside(self):
-        config = ConfigClass.ConfigClass()
-
-	offset = config.getDS18B20offset()
-        file = open(config.getDS18B20file(), "rb")
-        for line in file:
-	    pass
-
-	temp = int(line[line.find("=")+1:])/1000.0
-	temp = temp + int(offset)
-
-        self.__heater['temp'] = "%.1f" % temp
-        self.__heater['state'] = "0"
-        self.__heater['mode'] = "1"
-        self.__heater['time'] = datetime.now().strftime('%H:%M:%S')
-        self.__heater['heat_state_icon'] = "img/piec_on1.gif"
-        self.__heater['icon'] = "img/day.gif"
-        return self.__heater
-
-                
-
             
 
 
