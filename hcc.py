@@ -78,6 +78,12 @@ def action(actionName):
 	    action = ActionClass.ActionClass()
 	    return render_template('events.html', events = action.getEventsData(actionName))
 
+@app.route("/heater", methods=['GET', 'POST'])	
+def heater(actionName=""):
+	if (isAuthNeed() == False):
+	    #rinkler = SprinklerClass.SprinklerClass()
+	    return render_template('heater_stat.html')
+
 @app.route("/sprinkler", methods=['GET', 'POST'])	
 @app.route("/sprinkler/<actionName>", methods=['GET', 'POST'])
 def sprinkler(actionName=""):

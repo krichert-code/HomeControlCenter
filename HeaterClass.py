@@ -16,9 +16,12 @@ class HeaterClass(object):
     __lastState = -1
     __dayMode = False
     __data = []
+    __StateOn      =  1
+    __StateOff     =  0
+    __StateUnknown = -1
 
     def __init__(self):
-        pass
+	pass
 
 
     def __getTemperatureFromDevice(self):
@@ -41,12 +44,9 @@ class HeaterClass(object):
 	temp = self.__getTemperatureFromDevice()
 
         heater['temp'] = "%.1f" % temp
-#        heater['state'] = "0"
-#        heater['mode'] = "1"
         heater['time'] = datetime.now().strftime('%H:%M:%S')
-#        heater['heat_state_icon'] = "img/piec_on1.gif"
         heater['icon'] = "img/day.gif"
-	if HeaterClass.dayMode == False:
+	if HeaterClass.__dayMode == False:
 	    heater['icon'] = "img/night.gif"
         return heater
 
@@ -64,27 +64,37 @@ class HeaterClass(object):
 
 		temp = self.__getTemperatureFromDevice()
 
-		HeaterClass.dayMode = isDayMode
+		if HeaterClass.__dayMode != isDayMode:
+			#if mode has changed set heater state as 'unknown'(-1)
+			HeaterClass.__lastState = HeaterClass.__StateUnknown
 
+		HeaterClass.__dayMode = isDayMode
+
+		print "________State = " + str(HeaterClass.__lastState)
+		print "Temp curr = " + str(temp) + "  Threshold " + str(threshold)
+		print "DatMode = " + str(isDayMode)
+		print "TEMP = " + str(dayTemp) + "  ;  " + str(nightTemp)
 		if (isDayMode == True and temp + threshold <= dayTemp) or (isDayMode == False and temp + threshold <= nightTemp):
 			#turn on heater
 			url = config.getSwitchURL("HeaterOn")
-			if isDayMode:
-				desc = "Piec w trybie dziennym"
+			if isDayMode == True:
+				val = dayTemp + threshold
+				desc = "Piec w trybie dziennym ["+ str(val) +"]"
 			else:
-				desc = "Piec w trybie nocnym"
+				val = nightTemp + threshold
+				desc = "Piec w trybie nocnym ["+ str(val) +"]"
 			status = "set"
-			if HeaterClass.__lastState == 0 or HeaterClass.__lastState == -1:
+			if HeaterClass.__lastState == HeaterClass.__StateOff or HeaterClass.__StateUnknown:
 				threadTask = ActionThread.ActionThread()
-			HeaterClass.__lastState = 1
-		elif (isDayMode == True and temp >= dayTemp + threshold) or (isDayMode == False and temp >= nightTemp + threshold):
+			HeaterClass.__lastState = HeaterClass.__StateOn
+		elif (isDayMode == True and temp >= dayTemp + threshold) or (isDayMode == False and temp >= nightTemp + threshold) or (HeaterClass.__lastState == HeaterClass.__StateUnknown):
 			#turn off heater
 			url = config.getSwitchURL("HeaterOff")
 			desc = "No action"
 			status = "clear"
-			if HeaterClass.__lastState == 1 or HeaterClass.__lastState == -1:
+			if HeaterClass.__lastState == HeaterClass.__StateOn or HeaterClass.__lastState == HeaterClass.__StateUnknown:
 				threadTask = ActionThread.ActionThread()
-			HeaterClass.__lastState = 0
+			HeaterClass.__lastState = HeaterClass.__StateOff
 
 		if threadTask <> None :
 			threadTask.addTask("request", url)
@@ -92,17 +102,8 @@ class HeaterClass(object):
 			threadTask.addTask("notify")
 			threadTask.start()
 			threadTask.suspend()
-			print "_____PIEC zmiana stanu"
 
 		weatherData = weather.getCurrentWeather()
 		HeaterClass.__data.append(HeaterParam(temp, weatherData['temp'], HeaterClass.__lastState))
 		if (len(HeaterClass.__data) > 10000):
 		    HeaterClass.__data.pop(0)
-
-		print "_____________TEMP = " + str(temp)
-		print "_____________DEY_TEMP " + str(dayTemp)
-		print "_____________" + str(dayOfWeek) + " " + str(hour)
-		print "________IS DAY MODE " + str(isDayMode)
-
-
-
