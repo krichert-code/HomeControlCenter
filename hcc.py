@@ -11,6 +11,7 @@ import SprinklerClass
 import HeaterClass
 import ScheduleClass
 import HccDeamonClass
+import HeaterClass
 import os
 import hashlib
 
@@ -79,10 +80,22 @@ def action(actionName):
 	    return render_template('events.html', events = action.getEventsData(actionName))
 
 @app.route("/heater", methods=['GET', 'POST'])	
+@app.route("/heater/<actionName>", methods=['GET', 'POST'])	
 def heater(actionName=""):
 	if (isAuthNeed() == False):
-	    #rinkler = SprinklerClass.SprinklerClass()
-	    return render_template('heater_stat.html')
+	    heater = HeaterClass.HeaterClass()
+	    if len(actionName) == 0:
+		return render_template('heater_stat.html')
+	    elif actionName=="pieChart":
+		return heater.getPercentHeatWorkChart()
+	    elif actionName=="lineChart":
+		return heater.getStateHeatWorkChart()
+
+
+@app.route("/heater2", methods=['GET', 'POST'])	
+def heater2(actionName=""):
+	if (isAuthNeed() == False):
+	    return render_template('j1.json')
 
 @app.route("/sprinkler", methods=['GET', 'POST'])	
 @app.route("/sprinkler/<actionName>", methods=['GET', 'POST'])

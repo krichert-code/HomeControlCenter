@@ -3,14 +3,17 @@ import WeatherClass
 import EventClass
 import ActionThread
 from datetime import datetime
+import json
 
 
 class HeaterParam(object):
 
-    def __init__(self, tempInside, tempOutside, mode):
+    def __init__(self, tempInside, tempOutside, mode, isDay):
 	self.tempInside = tempInside
 	self.tempOutside = tempOutside
 	self.mode = mode
+	self.isDay = isDay
+	self.date = datetime.now().strftime('%H:%M %d/%m/%y')
 
 class HeaterClass(object):
     __lastState = -1
@@ -104,6 +107,84 @@ class HeaterClass(object):
 			threadTask.suspend()
 
 		weatherData = weather.getCurrentWeather()
-		HeaterClass.__data.append(HeaterParam(temp, weatherData['temp'], HeaterClass.__lastState))
+		HeaterClass.__data.append(HeaterParam(temp, weatherData['temp'], HeaterClass.__lastState, isDayMode))
 		if (len(HeaterClass.__data) > 10000):
 		    HeaterClass.__data.pop(0)
+
+    def getPercentHeatWorkChart(self):
+	nightItem = 0
+	dayItem = 0
+	notWorkItem = 0
+
+	jsonData = {}
+	jsonData['cols'] = []  
+	jsonData['rows'] = []  
+
+	jsonData['cols'].append({
+	    'id':'',
+	    'label':'Action',
+	    'pattern':'',
+	    'type':'string'
+	})
+
+	jsonData['cols'].append({
+	    'id':'',
+	    'label':'Percent',
+	    'pattern':'',
+	    'type':'number'
+	})
+
+	for item in HeaterClass.__data:
+	    if item.mode == 0 or item.mode == -1:
+		notWorkItem = notWorkItem + 1
+
+	    if item.isDay == True and item.mode == 1:
+		dayItem = dayItem + 1
+
+	    if item.isDay == False and item.mode == 1:
+		nightItem = nightItem + 1
+
+	jsonData['rows'].append({'c':[ {'v':'Tyb dzienny','f':'Tyb dzienny'}, {'v': dayItem,'f':''}]  })
+	jsonData['rows'].append({'c':[ {'v':'Tyb nocny','f':'Tyb nocny'}, {'v': nightItem,'f':''}]  })
+	jsonData['rows'].append({'c':[ {'v':'Brak pracy','f':'Brak pracy'}, {'v': notWorkItem,'f':''}]  })
+
+
+	return json.dumps(jsonData, indent=4)
+
+
+    def getStateHeatWorkChart(self):
+	jsonData = {}
+	jsonData['cols'] = []  
+	jsonData['rows'] = []  
+
+	jsonData['cols'].append({
+	    'id':'',
+	    'label':'Date',
+	    'pattern':'',
+	    'type':'string'
+	})
+
+	jsonData['cols'].append({
+	    'id':'',
+	    'label':'Temp.wew',
+	    'pattern':'',
+	    'type':'number'
+	})
+
+	jsonData['cols'].append({
+	    'id':'',
+	    'label':'Temp.zew',
+	    'pattern':'',
+	    'type':'number'
+	})
+
+	for item in HeaterClass.__data:
+	    jsonData['rows'].append({'c':[ {'v':item.date,'f':item.date}, {'v':item.tempInside,'f':str(item.tempInside)}, {'v':item.tempOutside,'f':str(item.tempOutside)}]  })
+
+#	jsonData['rows'].append({'c':[ {'v':'01.01.2019','f':'01.01.2019'}, {'v':20,'f':'20'}, {'v':5,'f':'5'}]  })
+#	jsonData['rows'].append({'c':[ {'v':'01.01.2019','f':'01.01.2019'}, {'v':21,'f':'21'}, {'v':3,'f':'3'}]  })
+#	jsonData['rows'].append({'c':[ {'v':'01.01.2019','f':'01.01.2019'}, {'v':21,'f':'21'}, {'v':3,'f':'3'}]  })
+#	jsonData['rows'].append({'c':[ {'v':'01.01.2019','f':'01.01.2019'}, {'v':21,'f':'21'}, {'v':3,'f':'3'}]  })
+
+	return json.dumps(jsonData, indent=4)
+

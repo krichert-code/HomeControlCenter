@@ -150,13 +150,10 @@ class ConfigClass(object):
                 break
 
 
-        if item.getAttribute("state") <> value:
-            item.setAttribute("state", value)
-            if len(desc) > 0:
-                item.setAttribute("desc", desc)
-            xmldoc.writexml( open('data/config.xml', 'w'))
-        else:
-            ret_val = "Conf_Change_already_in_progress"
+        item.setAttribute("state", value)
+        if len(desc) > 0:
+            item.setAttribute("desc", desc)
+        xmldoc.writexml( open('data/config.xml', 'w'))
 
         return ret_val
 

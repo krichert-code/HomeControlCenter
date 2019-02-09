@@ -5,6 +5,7 @@
     <title>Domowe Centrum Sterowania</title>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
     <style>
 	td.menu  {padding: 50px; align: center}
@@ -151,42 +152,43 @@ function GetCurrentData()
 }
 
 
-      function drawChart(id) {
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
-        ]);
+ function drawChart(id) {
+      var jsonDataPieChart = $.ajax({
+          url: "heater/pieChart",
+          dataType: "json",
+          async: false
+          }).responseText;
 
-        var options = {
-          title: 'My Daily Activities',
+      var jsonDataLineChart = $.ajax({
+          url: "heater/lineChart",
+          dataType: "json",
+          async: false
+          }).responseText;
+
+      var dataPie  = new google.visualization.DataTable(jsonDataPieChart);
+      var dataLine = new google.visualization.DataTable(jsonDataLineChart);
+
+      var optionsPie = {
+          title: 'Tryby pracy pieca',
           backgroundColor : '#363636',
+          legend: { position: 'right', textStyle: {color : 'black'} },
+	  fontSize : 20,
           is3D: true,
         };
 
-
-       var data1 = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2004',  1000,      400],
-          ['2005',  1170,      460],
-          ['2006',  660,       1120],
-          ['2007',  1030,      540]
-        ]);
-
-        var options1 = {
-          title: 'Company Performance',
+      var optionsLine = {
+          title: 'Temperatury',
           curveType: 'function',
           backgroundColor : '#363636',
-          legend: { position: 'bottom' }
+	  fontSize : 20,
+	  vAxis: { textStyle: {color : 'black'} },
+          legend: { position: 'bottom', textStyle: {color : 'black'} }
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('c1'));
-        var chart1 = new google.visualization.LineChart(document.getElementById('c2'));
-        chart.draw(data, options);
-        chart1.draw(data1, options1);
+        var chartPie  = new google.visualization.PieChart(document.getElementById('c1'));
+        var chartLine = new google.visualization.LineChart(document.getElementById('c2'));
+        chartPie.draw(dataPie, optionsPie);
+        chartLine.draw(dataLine, optionsLine);
       }
 
 
