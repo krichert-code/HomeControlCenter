@@ -108,7 +108,7 @@ class HeaterClass(object):
 
 		weatherData = weather.getCurrentWeather()
 		HeaterClass.__data.append(HeaterParam(temp, weatherData['temp'], HeaterClass.__lastState, isDayMode))
-		if (len(HeaterClass.__data) > 10000):
+		if (len(HeaterClass.__data) > 50000):
 		    HeaterClass.__data.pop(0)
 
     def getPercentHeatWorkChart(self):
@@ -153,6 +153,7 @@ class HeaterClass(object):
 
 
     def getStateHeatWorkChart(self):
+	counter = 0
 	jsonData = {}
 	jsonData['cols'] = []  
 	jsonData['rows'] = []  
@@ -179,7 +180,9 @@ class HeaterClass(object):
 	})
 
 	for item in HeaterClass.__data:
-	    jsonData['rows'].append({'c':[ {'v':item.date,'f':item.date}, {'v':item.tempInside,'f':str(item.tempInside)}, {'v':item.tempOutside,'f':str(item.tempOutside)}]  })
+	    if counter % 24 == 0:
+		jsonData['rows'].append({'c':[ {'v':item.date,'f':item.date}, {'v':item.tempInside,'f':str(item.tempInside)}, {'v':item.tempOutside,'f':str(item.tempOutside)}]  })
+	    counter = counter + 1
 
 #	jsonData['rows'].append({'c':[ {'v':'01.01.2019','f':'01.01.2019'}, {'v':20,'f':'20'}, {'v':5,'f':'5'}]  })
 #	jsonData['rows'].append({'c':[ {'v':'01.01.2019','f':'01.01.2019'}, {'v':21,'f':'21'}, {'v':3,'f':'3'}]  })

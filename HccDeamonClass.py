@@ -111,7 +111,8 @@ class Heater:
 	    self.__counter = 0
 
 	def timeEvent(self):
-	    if (self.__counter % 60 == 0):
+	    # manage heater state once per 10 min
+	    if (self.__counter % (60 * 10) == 0):
 		heater = HeaterClass.HeaterClass()
 		curr_week_day = datetime.datetime.today().weekday()
 		curr_hour = int(datetime.datetime.now().strftime('%H'))

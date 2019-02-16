@@ -38,33 +38,33 @@
 		<estimated>
 		</estimated>
 		<station_id>EPGD</station_id>
-		<observation_time>Last Updated on February 9, 6:30 PM CET</observation_time>
-		<observation_time_rfc822>Sat, 09 Feb 2019 18:30:00 +0100</observation_time_rfc822>
-		<observation_epoch>1549733400</observation_epoch>
-		<local_time_rfc822>Sat, 09 Feb 2019 18:59:37 +0100</local_time_rfc822>
-		<local_epoch>1549735177</local_epoch>
+		<observation_time>Last Updated on February 16, 6:00 PM CET</observation_time>
+		<observation_time_rfc822>Sat, 16 Feb 2019 18:00:00 +0100</observation_time_rfc822>
+		<observation_epoch>1550336400</observation_epoch>
+		<local_time_rfc822>Sat, 16 Feb 2019 18:09:39 +0100</local_time_rfc822>
+		<local_epoch>1550336979</local_epoch>
 		<local_tz_short>CET</local_tz_short>
 		<local_tz_long>Europe/Warsaw</local_tz_long>
 		<local_tz_offset>+0100</local_tz_offset>
 		<weather>Clear</weather>
-		<temperature_string>39 F (4 C)</temperature_string>
-		<temp_f>39</temp_f>
-		<temp_c>4</temp_c>
-		<relative_humidity>87%</relative_humidity>
-		<wind_string>From the SSW at 12 MPH</wind_string>
-		<wind_dir>SSW</wind_dir>
-		<wind_degrees>210</wind_degrees>
-		<wind_mph>12</wind_mph>
+		<temperature_string>48 F (9 C)</temperature_string>
+		<temp_f>48</temp_f>
+		<temp_c>9</temp_c>
+		<relative_humidity>54%</relative_humidity>
+		<wind_string>From the WSW at 8 MPH</wind_string>
+		<wind_dir>WSW</wind_dir>
+		<wind_degrees>240</wind_degrees>
+		<wind_mph>8</wind_mph>
 		<wind_gust_mph>0</wind_gust_mph>
-		<wind_kph>18</wind_kph>
+		<wind_kph>13</wind_kph>
 		<wind_gust_kph>0</wind_gust_kph>
-		<pressure_mb>1002</pressure_mb>
-		<pressure_in>29.59</pressure_in>
+		<pressure_mb>1020</pressure_mb>
+		<pressure_in>30.12</pressure_in>
 		<pressure_trend>0</pressure_trend>
 		
-		<dewpoint_string>36 F (2 C)</dewpoint_string>
-		<dewpoint_f>36</dewpoint_f>
-		<dewpoint_c>2</dewpoint_c>
+		<dewpoint_string>32 F (0 C)</dewpoint_string>
+		<dewpoint_f>32</dewpoint_f>
+		<dewpoint_c>0</dewpoint_c>
 		
 		
 		<heat_index_string>NA</heat_index_string>
@@ -72,13 +72,13 @@
 		<heat_index_c>NA</heat_index_c>
 		
 		
-		<windchill_string>32 F (0 C)</windchill_string>
-		<windchill_f>32</windchill_f>
-		<windchill_c>0</windchill_c>
+		<windchill_string>NA</windchill_string>
+		<windchill_f>NA</windchill_f>
+		<windchill_c>NA</windchill_c>
 		
-        <feelslike_string>32 F (0 C)</feelslike_string>
-        <feelslike_f>32</feelslike_f>
-        <feelslike_c>0</feelslike_c>
+        <feelslike_string>48 F (9 C)</feelslike_string>
+        <feelslike_f>48</feelslike_f>
+        <feelslike_c>9</feelslike_c>
 		<visibility_mi>N/A</visibility_mi>
 		<visibility_km>N/A</visibility_km>
 		<solarradiation></solarradiation>
@@ -96,7 +96,7 @@
 		<icon_url>http://icons.wxug.com/i/c/k/nt_clear.gif</icon_url>
 		<forecast_url>http://www.wunderground.com/global/stations/12150.html</forecast_url>
         
-		<history_url>http://www.wunderground.com/history/airport/EPGD/2019/2/9/DailyHistory.html</history_url>
+		<history_url>http://www.wunderground.com/history/airport/EPGD/2019/2/16/DailyHistory.html</history_url>
 		
 		<ob_url>http://www.wunderground.com/cgi-bin/findweather/getForecast?query=54.38000107,18.46999931</ob_url>
 	</current_observation>

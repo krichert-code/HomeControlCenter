@@ -8,15 +8,442 @@
 	<hourly_forecast>
 		<forecast>
 		<FCTTIME>
-		<hour>20</hour><hour_padded>20</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>9</mday><mday_padded>09</mday_padded><yday>39</yday><isdst>0</isdst><epoch>1549738800</epoch><pretty>8:00 PM CET on February 09, 2019</pretty><civil>8:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+		<hour>19</hour><hour_padded>19</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>16</mday><mday_padded>16</mday_padded><yday>46</yday><isdst>0</isdst><epoch>1550340000</epoch><pretty>7:00 PM CET on February 16, 2019</pretty><civil>7:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
-				<english>39.4</english>
-				<metric>4</metric>
+				<english>46.9</english>
+				<metric>8</metric>
 			</temp>
 			<dewpoint>
-				<english>36.9</english>
-				<metric>3</metric>
+				<english>33.4</english>
+				<metric>1</metric>
+			</dewpoint>
+			<condition>Clear</condition>
+			
+			
+			<icon>clear</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_clear.gif</icon_url>
+			<fctcode>1</fctcode>
+			<sky>10</sky>
+			<wspd>
+				<english>8</english>
+				<metric>13</metric>
+			</wspd>
+			<wdir>
+				<dir>WSW</dir>
+				<degrees>255</degrees>
+			</wdir>
+			<wx>Clear</wx>
+			<uvi>0</uvi>
+			<humidity>59</humidity>
+			<windchill>
+				<english>42</english>
+				<metric>6</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>42</english>
+					<metric>6</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>0</pop>
+			<mslp>
+				<english>30.13</english>
+				<metric>1020</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>20</hour><hour_padded>20</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>16</mday><mday_padded>16</mday_padded><yday>46</yday><isdst>0</isdst><epoch>1550343600</epoch><pretty>8:00 PM CET on February 16, 2019</pretty><civil>8:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>45.9</english>
+				<metric>8</metric>
+			</temp>
+			<dewpoint>
+				<english>33.6</english>
+				<metric>1</metric>
+			</dewpoint>
+			<condition>Clear</condition>
+			
+			
+			<icon>clear</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_clear.gif</icon_url>
+			<fctcode>1</fctcode>
+			<sky>8</sky>
+			<wspd>
+				<english>9</english>
+				<metric>14</metric>
+			</wspd>
+			<wdir>
+				<dir>W</dir>
+				<degrees>260</degrees>
+			</wdir>
+			<wx>Clear</wx>
+			<uvi>0</uvi>
+			<humidity>62</humidity>
+			<windchill>
+				<english>42</english>
+				<metric>6</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>42</english>
+					<metric>6</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>0</pop>
+			<mslp>
+				<english>30.13</english>
+				<metric>1020</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>21</hour><hour_padded>21</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>16</mday><mday_padded>16</mday_padded><yday>46</yday><isdst>0</isdst><epoch>1550347200</epoch><pretty>9:00 PM CET on February 16, 2019</pretty><civil>9:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>45.1</english>
+				<metric>7</metric>
+			</temp>
+			<dewpoint>
+				<english>33.9</english>
+				<metric>1</metric>
+			</dewpoint>
+			<condition>Clear</condition>
+			
+			
+			<icon>clear</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_clear.gif</icon_url>
+			<fctcode>1</fctcode>
+			<sky>9</sky>
+			<wspd>
+				<english>11</english>
+				<metric>18</metric>
+			</wspd>
+			<wdir>
+				<dir>W</dir>
+				<degrees>267</degrees>
+			</wdir>
+			<wx>Clear</wx>
+			<uvi>0</uvi>
+			<humidity>65</humidity>
+			<windchill>
+				<english>39</english>
+				<metric>4</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>39</english>
+					<metric>4</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>0</pop>
+			<mslp>
+				<english>30.12</english>
+				<metric>1020</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>22</hour><hour_padded>22</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>16</mday><mday_padded>16</mday_padded><yday>46</yday><isdst>0</isdst><epoch>1550350800</epoch><pretty>10:00 PM CET on February 16, 2019</pretty><civil>10:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>43.0</english>
+				<metric>6</metric>
+			</temp>
+			<dewpoint>
+				<english>34.0</english>
+				<metric>1</metric>
+			</dewpoint>
+			<condition>Clear</condition>
+			
+			
+			<icon>clear</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_clear.gif</icon_url>
+			<fctcode>1</fctcode>
+			<sky>9</sky>
+			<wspd>
+				<english>17</english>
+				<metric>27</metric>
+			</wspd>
+			<wdir>
+				<dir>W</dir>
+				<degrees>270</degrees>
+			</wdir>
+			<wx>Clear</wx>
+			<uvi>0</uvi>
+			<humidity>70</humidity>
+			<windchill>
+				<english>35</english>
+				<metric>2</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>35</english>
+					<metric>2</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>0</pop>
+			<mslp>
+				<english>30.12</english>
+				<metric>1020</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>23</hour><hour_padded>23</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>16</mday><mday_padded>16</mday_padded><yday>46</yday><isdst>0</isdst><epoch>1550354400</epoch><pretty>11:00 PM CET on February 16, 2019</pretty><civil>11:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>42.4</english>
+				<metric>6</metric>
+			</temp>
+			<dewpoint>
+				<english>34.7</english>
+				<metric>2</metric>
+			</dewpoint>
+			<condition>Clear</condition>
+			
+			
+			<icon>clear</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_clear.gif</icon_url>
+			<fctcode>1</fctcode>
+			<sky>10</sky>
+			<wspd>
+				<english>17</english>
+				<metric>27</metric>
+			</wspd>
+			<wdir>
+				<dir>W</dir>
+				<degrees>273</degrees>
+			</wdir>
+			<wx>Clear</wx>
+			<uvi>0</uvi>
+			<humidity>74</humidity>
+			<windchill>
+				<english>35</english>
+				<metric>2</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>35</english>
+					<metric>2</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>2</pop>
+			<mslp>
+				<english>30.12</english>
+				<metric>1020</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>0</hour><hour_padded>00</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>17</mday><mday_padded>17</mday_padded><yday>47</yday><isdst>0</isdst><epoch>1550358000</epoch><pretty>12:00 AM CET on February 17, 2019</pretty><civil>12:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>42.1</english>
+				<metric>6</metric>
+			</temp>
+			<dewpoint>
+				<english>35.1</english>
+				<metric>2</metric>
+			</dewpoint>
+			<condition>Clear</condition>
+			
+			
+			<icon>clear</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_clear.gif</icon_url>
+			<fctcode>1</fctcode>
+			<sky>13</sky>
+			<wspd>
+				<english>17</english>
+				<metric>27</metric>
+			</wspd>
+			<wdir>
+				<dir>W</dir>
+				<degrees>275</degrees>
+			</wdir>
+			<wx>Clear</wx>
+			<uvi>0</uvi>
+			<humidity>76</humidity>
+			<windchill>
+				<english>35</english>
+				<metric>2</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>35</english>
+					<metric>2</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>3</pop>
+			<mslp>
+				<english>30.12</english>
+				<metric>1020</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>1</hour><hour_padded>01</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>17</mday><mday_padded>17</mday_padded><yday>47</yday><isdst>0</isdst><epoch>1550361600</epoch><pretty>1:00 AM CET on February 17, 2019</pretty><civil>1:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>41.5</english>
+				<metric>5</metric>
+			</temp>
+			<dewpoint>
+				<english>35.8</english>
+				<metric>2</metric>
+			</dewpoint>
+			<condition>Clear</condition>
+			
+			
+			<icon>clear</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_clear.gif</icon_url>
+			<fctcode>1</fctcode>
+			<sky>16</sky>
+			<wspd>
+				<english>16</english>
+				<metric>26</metric>
+			</wspd>
+			<wdir>
+				<dir>W</dir>
+				<degrees>276</degrees>
+			</wdir>
+			<wx>Clear</wx>
+			<uvi>0</uvi>
+			<humidity>80</humidity>
+			<windchill>
+				<english>33</english>
+				<metric>0</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>33</english>
+					<metric>0</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>5</pop>
+			<mslp>
+				<english>30.12</english>
+				<metric>1020</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>2</hour><hour_padded>02</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>17</mday><mday_padded>17</mday_padded><yday>47</yday><isdst>0</isdst><epoch>1550365200</epoch><pretty>2:00 AM CET on February 17, 2019</pretty><civil>2:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>41.0</english>
+				<metric>5</metric>
+			</temp>
+			<dewpoint>
+				<english>36.5</english>
+				<metric>2</metric>
 			</dewpoint>
 			<condition>Partly Cloudy</condition>
 			
@@ -24,18 +451,323 @@
 			<icon>partlycloudy</icon>
 			<icon_url>http://icons.wxug.com/i/c/k/nt_partlycloudy.gif</icon_url>
 			<fctcode>2</fctcode>
-			<sky>30</sky>
+			<sky>37</sky>
+			<wspd>
+				<english>15</english>
+				<metric>24</metric>
+			</wspd>
+			<wdir>
+				<dir>W</dir>
+				<degrees>278</degrees>
+			</wdir>
+			<wx>Partly Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>84</humidity>
+			<windchill>
+				<english>33</english>
+				<metric>1</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>33</english>
+					<metric>1</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>6</pop>
+			<mslp>
+				<english>30.12</english>
+				<metric>1020</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>3</hour><hour_padded>03</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>17</mday><mday_padded>17</mday_padded><yday>47</yday><isdst>0</isdst><epoch>1550368800</epoch><pretty>3:00 AM CET on February 17, 2019</pretty><civil>3:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>40.8</english>
+				<metric>5</metric>
+			</temp>
+			<dewpoint>
+				<english>37.2</english>
+				<metric>3</metric>
+			</dewpoint>
+			<condition>Mostly Cloudy</condition>
+			
+			
+			<icon>mostlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_mostlycloudy.gif</icon_url>
+			<fctcode>3</fctcode>
+			<sky>70</sky>
+			<wspd>
+				<english>15</english>
+				<metric>24</metric>
+			</wspd>
+			<wdir>
+				<dir>W</dir>
+				<degrees>280</degrees>
+			</wdir>
+			<wx>Mostly Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>87</humidity>
+			<windchill>
+				<english>33</english>
+				<metric>1</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>33</english>
+					<metric>1</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>7</pop>
+			<mslp>
+				<english>30.12</english>
+				<metric>1020</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>4</hour><hour_padded>04</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>17</mday><mday_padded>17</mday_padded><yday>47</yday><isdst>0</isdst><epoch>1550372400</epoch><pretty>4:00 AM CET on February 17, 2019</pretty><civil>4:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>40.6</english>
+				<metric>5</metric>
+			</temp>
+			<dewpoint>
+				<english>37.8</english>
+				<metric>3</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>88</sky>
+			<wspd>
+				<english>14</english>
+				<metric>23</metric>
+			</wspd>
+			<wdir>
+				<dir>WNW</dir>
+				<degrees>284</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>90</humidity>
+			<windchill>
+				<english>33</english>
+				<metric>1</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>33</english>
+					<metric>1</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>8</pop>
+			<mslp>
+				<english>30.12</english>
+				<metric>1020</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>5</hour><hour_padded>05</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>17</mday><mday_padded>17</mday_padded><yday>47</yday><isdst>0</isdst><epoch>1550376000</epoch><pretty>5:00 AM CET on February 17, 2019</pretty><civil>5:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>40.5</english>
+				<metric>5</metric>
+			</temp>
+			<dewpoint>
+				<english>38.3</english>
+				<metric>3</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>91</sky>
+			<wspd>
+				<english>14</english>
+				<metric>23</metric>
+			</wspd>
+			<wdir>
+				<dir>WNW</dir>
+				<degrees>285</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>92</humidity>
+			<windchill>
+				<english>33</english>
+				<metric>1</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>33</english>
+					<metric>1</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>8</pop>
+			<mslp>
+				<english>30.12</english>
+				<metric>1020</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>6</hour><hour_padded>06</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>17</mday><mday_padded>17</mday_padded><yday>47</yday><isdst>0</isdst><epoch>1550379600</epoch><pretty>6:00 AM CET on February 17, 2019</pretty><civil>6:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>40.3</english>
+				<metric>5</metric>
+			</temp>
+			<dewpoint>
+				<english>38.5</english>
+				<metric>4</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>95</sky>
+			<wspd>
+				<english>13</english>
+				<metric>21</metric>
+			</wspd>
+			<wdir>
+				<dir>WNW</dir>
+				<degrees>285</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>93</humidity>
+			<windchill>
+				<english>34</english>
+				<metric>1</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>34</english>
+					<metric>1</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>9</pop>
+			<mslp>
+				<english>30.13</english>
+				<metric>1020</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>7</hour><hour_padded>07</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>17</mday><mday_padded>17</mday_padded><yday>47</yday><isdst>0</isdst><epoch>1550383200</epoch><pretty>7:00 AM CET on February 17, 2019</pretty><civil>7:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>40.1</english>
+				<metric>4</metric>
+			</temp>
+			<dewpoint>
+				<english>38.5</english>
+				<metric>4</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>96</sky>
 			<wspd>
 				<english>12</english>
 				<metric>19</metric>
 			</wspd>
 			<wdir>
-				<dir>SW</dir>
-				<degrees>217</degrees>
+				<dir>WNW</dir>
+				<degrees>286</degrees>
 			</wdir>
-			<wx>Partly Cloudy</wx>
+			<wx>Cloudy</wx>
 			<uvi>0</uvi>
-			<humidity>90</humidity>
+			<humidity>94</humidity>
 			<windchill>
 				<english>32</english>
 				<metric>-0</metric>
@@ -60,8 +792,8 @@
 			</snow>
 			<pop>9</pop>
 			<mslp>
-				<english>29.62</english>
-				<metric>1003</metric>
+				<english>30.15</english>
+				<metric>1021</metric>
 			</mslp>
 		</forecast>
 		
@@ -69,34 +801,95 @@
 		
 		<forecast>
 			<FCTTIME>
-				<hour>21</hour><hour_padded>21</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>9</mday><mday_padded>09</mday_padded><yday>39</yday><isdst>0</isdst><epoch>1549742400</epoch><pretty>9:00 PM CET on February 09, 2019</pretty><civil>9:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+				<hour>8</hour><hour_padded>08</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>17</mday><mday_padded>17</mday_padded><yday>47</yday><isdst>0</isdst><epoch>1550386800</epoch><pretty>8:00 AM CET on February 17, 2019</pretty><civil>8:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
-				<english>39.6</english>
+				<english>39.9</english>
 				<metric>4</metric>
 			</temp>
 			<dewpoint>
-				<english>36.3</english>
-				<metric>2</metric>
+				<english>38.3</english>
+				<metric>3</metric>
 			</dewpoint>
-			<condition>Partly Cloudy</condition>
+			<condition>Overcast</condition>
 			
 			
-			<icon>partlycloudy</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_partlycloudy.gif</icon_url>
-			<fctcode>2</fctcode>
-			<sky>50</sky>
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>97</sky>
 			<wspd>
-				<english>14</english>
-				<metric>23</metric>
+				<english>11</english>
+				<metric>18</metric>
 			</wspd>
 			<wdir>
-				<dir>SW</dir>
-				<degrees>217</degrees>
+				<dir>WNW</dir>
+				<degrees>288</degrees>
 			</wdir>
-			<wx>Partly Cloudy</wx>
+			<wx>Cloudy</wx>
 			<uvi>0</uvi>
-			<humidity>88</humidity>
+			<humidity>94</humidity>
+			<windchill>
+				<english>32</english>
+				<metric>0</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>32</english>
+					<metric>0</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>14</pop>
+			<mslp>
+				<english>30.16</english>
+				<metric>1021</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>9</hour><hour_padded>09</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>17</mday><mday_padded>17</mday_padded><yday>47</yday><isdst>0</isdst><epoch>1550390400</epoch><pretty>9:00 AM CET on February 17, 2019</pretty><civil>9:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>40.1</english>
+				<metric>4</metric>
+			</temp>
+			<dewpoint>
+				<english>38.1</english>
+				<metric>3</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>97</sky>
+			<wspd>
+				<english>13</english>
+				<metric>21</metric>
+			</wspd>
+			<wdir>
+				<dir>WNW</dir>
+				<degrees>286</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>93</humidity>
 			<windchill>
 				<english>31</english>
 				<metric>-0</metric>
@@ -119,10 +912,10 @@
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>3</pop>
+			<pop>8</pop>
 			<mslp>
-				<english>29.62</english>
-				<metric>1003</metric>
+				<english>30.16</english>
+				<metric>1021</metric>
 			</mslp>
 		</forecast>
 		
@@ -130,37 +923,37 @@
 		
 		<forecast>
 			<FCTTIME>
-				<hour>22</hour><hour_padded>22</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>9</mday><mday_padded>09</mday_padded><yday>39</yday><isdst>0</isdst><epoch>1549746000</epoch><pretty>10:00 PM CET on February 09, 2019</pretty><civil>10:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+				<hour>10</hour><hour_padded>10</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>17</mday><mday_padded>17</mday_padded><yday>47</yday><isdst>0</isdst><epoch>1550394000</epoch><pretty>10:00 AM CET on February 17, 2019</pretty><civil>10:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
-				<english>39.7</english>
-				<metric>4</metric>
+				<english>40.6</english>
+				<metric>5</metric>
 			</temp>
 			<dewpoint>
-				<english>36.0</english>
-				<metric>2</metric>
+				<english>37.9</english>
+				<metric>3</metric>
 			</dewpoint>
-			<condition>Mostly Cloudy</condition>
+			<condition>Overcast</condition>
 			
 			
-			<icon>mostlycloudy</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_mostlycloudy.gif</icon_url>
-			<fctcode>3</fctcode>
-			<sky>64</sky>
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>96</sky>
 			<wspd>
-				<english>15</english>
-				<metric>24</metric>
+				<english>14</english>
+				<metric>23</metric>
 			</wspd>
 			<wdir>
-				<dir>SW</dir>
-				<degrees>219</degrees>
+				<dir>WNW</dir>
+				<degrees>286</degrees>
 			</wdir>
-			<wx>Mostly Cloudy</wx>
+			<wx>Cloudy</wx>
 			<uvi>0</uvi>
-			<humidity>87</humidity>
+			<humidity>90</humidity>
 			<windchill>
-				<english>31</english>
-				<metric>-1</metric>
+				<english>33</english>
+				<metric>1</metric>
 			</windchill>
 			<heatindex>
 				<english>-9999</english>
@@ -168,8 +961,8 @@
 			</heatindex>
 			
 				<feelslike>
-					<english>31</english>
-					<metric>-1</metric>
+					<english>33</english>
+					<metric>1</metric>
 				</feelslike>
 			
 			<qpf>
@@ -180,10 +973,10 @@
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>0</pop>
+			<pop>8</pop>
 			<mslp>
-				<english>29.62</english>
-				<metric>1003</metric>
+				<english>30.18</english>
+				<metric>1022</metric>
 			</mslp>
 		</forecast>
 		
@@ -191,37 +984,37 @@
 		
 		<forecast>
 			<FCTTIME>
-				<hour>23</hour><hour_padded>23</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>9</mday><mday_padded>09</mday_padded><yday>39</yday><isdst>0</isdst><epoch>1549749600</epoch><pretty>11:00 PM CET on February 09, 2019</pretty><civil>11:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Saturday</weekday_name><weekday_name_night>Saturday Night</weekday_name_night><weekday_name_abbrev>Sat</weekday_name_abbrev><weekday_name_unlang>Saturday</weekday_name_unlang><weekday_name_night_unlang>Saturday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+				<hour>11</hour><hour_padded>11</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>17</mday><mday_padded>17</mday_padded><yday>47</yday><isdst>0</isdst><epoch>1550397600</epoch><pretty>11:00 AM CET on February 17, 2019</pretty><civil>11:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
-				<english>39.6</english>
-				<metric>4</metric>
+				<english>41.0</english>
+				<metric>5</metric>
 			</temp>
 			<dewpoint>
-				<english>34.9</english>
-				<metric>2</metric>
+				<english>37.6</english>
+				<metric>3</metric>
 			</dewpoint>
-			<condition>Mostly Cloudy</condition>
+			<condition>Overcast</condition>
 			
 			
-			<icon>mostlycloudy</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_mostlycloudy.gif</icon_url>
-			<fctcode>3</fctcode>
-			<sky>66</sky>
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>95</sky>
 			<wspd>
-				<english>18</english>
-				<metric>29</metric>
+				<english>14</english>
+				<metric>23</metric>
 			</wspd>
 			<wdir>
-				<dir>SW</dir>
-				<degrees>224</degrees>
+				<dir>WNW</dir>
+				<degrees>285</degrees>
 			</wdir>
-			<wx>Mostly Cloudy</wx>
+			<wx>Cloudy</wx>
 			<uvi>0</uvi>
-			<humidity>83</humidity>
+			<humidity>87</humidity>
 			<windchill>
-				<english>30</english>
-				<metric>-1</metric>
+				<english>33</english>
+				<metric>1</metric>
 			</windchill>
 			<heatindex>
 				<english>-9999</english>
@@ -229,8 +1022,130 @@
 			</heatindex>
 			
 				<feelslike>
-					<english>30</english>
-					<metric>-1</metric>
+					<english>33</english>
+					<metric>1</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>7</pop>
+			<mslp>
+				<english>30.19</english>
+				<metric>1022</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>12</hour><hour_padded>12</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>17</mday><mday_padded>17</mday_padded><yday>47</yday><isdst>0</isdst><epoch>1550401200</epoch><pretty>12:00 PM CET on February 17, 2019</pretty><civil>12:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>41.2</english>
+				<metric>5</metric>
+			</temp>
+			<dewpoint>
+				<english>37.9</english>
+				<metric>3</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>94</sky>
+			<wspd>
+				<english>14</english>
+				<metric>23</metric>
+			</wspd>
+			<wdir>
+				<dir>WNW</dir>
+				<degrees>285</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>88</humidity>
+			<windchill>
+				<english>33</english>
+				<metric>1</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>33</english>
+					<metric>1</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>7</pop>
+			<mslp>
+				<english>30.19</english>
+				<metric>1022</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>13</hour><hour_padded>13</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>17</mday><mday_padded>17</mday_padded><yday>47</yday><isdst>0</isdst><epoch>1550404800</epoch><pretty>1:00 PM CET on February 17, 2019</pretty><civil>1:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>41.7</english>
+				<metric>5</metric>
+			</temp>
+			<dewpoint>
+				<english>37.8</english>
+				<metric>3</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>93</sky>
+			<wspd>
+				<english>13</english>
+				<metric>21</metric>
+			</wspd>
+			<wdir>
+				<dir>WNW</dir>
+				<degrees>287</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>86</humidity>
+			<windchill>
+				<english>34</english>
+				<metric>1</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>34</english>
+					<metric>1</metric>
 				</feelslike>
 			
 			<qpf>
@@ -243,8 +1158,8 @@
 			</snow>
 			<pop>6</pop>
 			<mslp>
-				<english>29.63</english>
-				<metric>1003</metric>
+				<english>30.2</english>
+				<metric>1023</metric>
 			</mslp>
 		</forecast>
 		
@@ -252,37 +1167,37 @@
 		
 		<forecast>
 			<FCTTIME>
-				<hour>0</hour><hour_padded>00</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>10</mday><mday_padded>10</mday_padded><yday>40</yday><isdst>0</isdst><epoch>1549753200</epoch><pretty>12:00 AM CET on February 10, 2019</pretty><civil>12:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+				<hour>14</hour><hour_padded>14</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>17</mday><mday_padded>17</mday_padded><yday>47</yday><isdst>0</isdst><epoch>1550408400</epoch><pretty>2:00 PM CET on February 17, 2019</pretty><civil>2:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
-				<english>39.4</english>
-				<metric>4</metric>
+				<english>41.9</english>
+				<metric>6</metric>
 			</temp>
 			<dewpoint>
-				<english>34.9</english>
-				<metric>2</metric>
+				<english>37.4</english>
+				<metric>3</metric>
 			</dewpoint>
-			<condition>Partly Cloudy</condition>
+			<condition>Overcast</condition>
 			
 			
-			<icon>partlycloudy</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_partlycloudy.gif</icon_url>
-			<fctcode>2</fctcode>
-			<sky>59</sky>
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>90</sky>
 			<wspd>
-				<english>18</english>
-				<metric>29</metric>
+				<english>13</english>
+				<metric>21</metric>
 			</wspd>
 			<wdir>
-				<dir>SW</dir>
-				<degrees>228</degrees>
+				<dir>WNW</dir>
+				<degrees>287</degrees>
 			</wdir>
-			<wx>Partly Cloudy</wx>
+			<wx>Cloudy</wx>
 			<uvi>0</uvi>
 			<humidity>84</humidity>
 			<windchill>
-				<english>30</english>
-				<metric>-1</metric>
+				<english>36</english>
+				<metric>2</metric>
 			</windchill>
 			<heatindex>
 				<english>-9999</english>
@@ -290,8 +1205,8 @@
 			</heatindex>
 			
 				<feelslike>
-					<english>30</english>
-					<metric>-1</metric>
+					<english>36</english>
+					<metric>2</metric>
 				</feelslike>
 			
 			<qpf>
@@ -302,10 +1217,10 @@
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>10</pop>
+			<pop>6</pop>
 			<mslp>
-				<english>29.64</english>
-				<metric>1004</metric>
+				<english>30.2</english>
+				<metric>1023</metric>
 			</mslp>
 		</forecast>
 		
@@ -313,37 +1228,37 @@
 		
 		<forecast>
 			<FCTTIME>
-				<hour>1</hour><hour_padded>01</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>10</mday><mday_padded>10</mday_padded><yday>40</yday><isdst>0</isdst><epoch>1549756800</epoch><pretty>1:00 AM CET on February 10, 2019</pretty><civil>1:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+				<hour>15</hour><hour_padded>15</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>17</mday><mday_padded>17</mday_padded><yday>47</yday><isdst>0</isdst><epoch>1550412000</epoch><pretty>3:00 PM CET on February 17, 2019</pretty><civil>3:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
-				<english>39.4</english>
-				<metric>4</metric>
+				<english>41.5</english>
+				<metric>5</metric>
 			</temp>
 			<dewpoint>
-				<english>35.4</english>
-				<metric>2</metric>
+				<english>36.9</english>
+				<metric>3</metric>
 			</dewpoint>
-			<condition>Chance of Rain</condition>
+			<condition>Overcast</condition>
 			
 			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>50</sky>
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>86</sky>
 			<wspd>
-				<english>18</english>
-				<metric>29</metric>
+				<english>12</english>
+				<metric>19</metric>
 			</wspd>
 			<wdir>
-				<dir>SW</dir>
-				<degrees>232</degrees>
+				<dir>WNW</dir>
+				<degrees>289</degrees>
 			</wdir>
-			<wx>Showers</wx>
+			<wx>Cloudy</wx>
 			<uvi>0</uvi>
-			<humidity>86</humidity>
+			<humidity>83</humidity>
 			<windchill>
-				<english>30</english>
-				<metric>-1</metric>
+				<english>34</english>
+				<metric>1</metric>
 			</windchill>
 			<heatindex>
 				<english>-9999</english>
@@ -351,8 +1266,8 @@
 			</heatindex>
 			
 				<feelslike>
-					<english>30</english>
-					<metric>-1</metric>
+					<english>34</english>
+					<metric>1</metric>
 				</feelslike>
 			
 			<qpf>
@@ -363,10 +1278,10 @@
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>35</pop>
+			<pop>6</pop>
 			<mslp>
-				<english>29.64</english>
-				<metric>1004</metric>
+				<english>30.2</english>
+				<metric>1023</metric>
 			</mslp>
 		</forecast>
 		
@@ -374,37 +1289,37 @@
 		
 		<forecast>
 			<FCTTIME>
-				<hour>2</hour><hour_padded>02</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>10</mday><mday_padded>10</mday_padded><yday>40</yday><isdst>0</isdst><epoch>1549760400</epoch><pretty>2:00 AM CET on February 10, 2019</pretty><civil>2:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+				<hour>16</hour><hour_padded>16</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>17</mday><mday_padded>17</mday_padded><yday>47</yday><isdst>0</isdst><epoch>1550415600</epoch><pretty>4:00 PM CET on February 17, 2019</pretty><civil>4:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
-				<english>39.4</english>
-				<metric>4</metric>
+				<english>41.2</english>
+				<metric>5</metric>
 			</temp>
 			<dewpoint>
-				<english>35.8</english>
-				<metric>2</metric>
+				<english>36.7</english>
+				<metric>3</metric>
 			</dewpoint>
-			<condition>Chance of Rain</condition>
+			<condition>Mostly Cloudy</condition>
 			
 			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>59</sky>
+			<icon>mostlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/mostlycloudy.gif</icon_url>
+			<fctcode>3</fctcode>
+			<sky>75</sky>
 			<wspd>
-				<english>18</english>
-				<metric>29</metric>
+				<english>10</english>
+				<metric>16</metric>
 			</wspd>
 			<wdir>
-				<dir>SW</dir>
-				<degrees>233</degrees>
+				<dir>WNW</dir>
+				<degrees>292</degrees>
 			</wdir>
-			<wx>Showers</wx>
+			<wx>Mostly Cloudy</wx>
 			<uvi>0</uvi>
-			<humidity>87</humidity>
+			<humidity>84</humidity>
 			<windchill>
-				<english>30</english>
-				<metric>-1</metric>
+				<english>35</english>
+				<metric>2</metric>
 			</windchill>
 			<heatindex>
 				<english>-9999</english>
@@ -412,69 +1327,8 @@
 			</heatindex>
 			
 				<feelslike>
-					<english>30</english>
-					<metric>-1</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.01</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>46</pop>
-			<mslp>
-				<english>29.64</english>
-				<metric>1004</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>3</hour><hour_padded>03</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>10</mday><mday_padded>10</mday_padded><yday>40</yday><isdst>0</isdst><epoch>1549764000</epoch><pretty>3:00 AM CET on February 10, 2019</pretty><civil>3:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>39.4</english>
-				<metric>4</metric>
-			</temp>
-			<dewpoint>
-				<english>35.6</english>
-				<metric>2</metric>
-			</dewpoint>
-			<condition>Partly Cloudy</condition>
-			
-			
-			<icon>partlycloudy</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_partlycloudy.gif</icon_url>
-			<fctcode>2</fctcode>
-			<sky>53</sky>
-			<wspd>
-				<english>18</english>
-				<metric>29</metric>
-			</wspd>
-			<wdir>
-				<dir>SW</dir>
-				<degrees>236</degrees>
-			</wdir>
-			<wx>Partly Cloudy</wx>
-			<uvi>0</uvi>
-			<humidity>86</humidity>
-			<windchill>
-				<english>30</english>
-				<metric>-1</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>30</english>
-					<metric>-1</metric>
+					<english>35</english>
+					<metric>2</metric>
 				</feelslike>
 			
 			<qpf>
@@ -485,10 +1339,10 @@
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>17</pop>
+			<pop>6</pop>
 			<mslp>
-				<english>29.64</english>
-				<metric>1004</metric>
+				<english>30.21</english>
+				<metric>1023</metric>
 			</mslp>
 		</forecast>
 		
@@ -496,37 +1350,37 @@
 		
 		<forecast>
 			<FCTTIME>
-				<hour>4</hour><hour_padded>04</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>10</mday><mday_padded>10</mday_padded><yday>40</yday><isdst>0</isdst><epoch>1549767600</epoch><pretty>4:00 AM CET on February 10, 2019</pretty><civil>4:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+				<hour>17</hour><hour_padded>17</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>17</mday><mday_padded>17</mday_padded><yday>47</yday><isdst>0</isdst><epoch>1550419200</epoch><pretty>5:00 PM CET on February 17, 2019</pretty><civil>5:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
-				<english>39.0</english>
+				<english>40.1</english>
 				<metric>4</metric>
 			</temp>
 			<dewpoint>
-				<english>35.4</english>
-				<metric>2</metric>
+				<english>36.9</english>
+				<metric>3</metric>
 			</dewpoint>
-			<condition>Clear</condition>
+			<condition>Mostly Cloudy</condition>
 			
 			
-			<icon>clear</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_clear.gif</icon_url>
-			<fctcode>1</fctcode>
-			<sky>21</sky>
+			<icon>mostlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_mostlycloudy.gif</icon_url>
+			<fctcode>3</fctcode>
+			<sky>72</sky>
 			<wspd>
-				<english>17</english>
-				<metric>27</metric>
+				<english>9</english>
+				<metric>14</metric>
 			</wspd>
 			<wdir>
-				<dir>SW</dir>
-				<degrees>237</degrees>
+				<dir>WNW</dir>
+				<degrees>296</degrees>
 			</wdir>
-			<wx>Mostly Clear</wx>
+			<wx>Mostly Cloudy</wx>
 			<uvi>0</uvi>
-			<humidity>87</humidity>
+			<humidity>88</humidity>
 			<windchill>
-				<english>30</english>
-				<metric>-1</metric>
+				<english>33</english>
+				<metric>1</metric>
 			</windchill>
 			<heatindex>
 				<english>-9999</english>
@@ -534,8 +1388,8 @@
 			</heatindex>
 			
 				<feelslike>
-					<english>30</english>
-					<metric>-1</metric>
+					<english>33</english>
+					<metric>1</metric>
 				</feelslike>
 			
 			<qpf>
@@ -548,8 +1402,8 @@
 			</snow>
 			<pop>7</pop>
 			<mslp>
-				<english>29.64</english>
-				<metric>1004</metric>
+				<english>30.21</english>
+				<metric>1023</metric>
 			</mslp>
 		</forecast>
 		
@@ -557,11 +1411,377 @@
 		
 		<forecast>
 			<FCTTIME>
-				<hour>5</hour><hour_padded>05</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>10</mday><mday_padded>10</mday_padded><yday>40</yday><isdst>0</isdst><epoch>1549771200</epoch><pretty>5:00 AM CET on February 10, 2019</pretty><civil>5:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+				<hour>18</hour><hour_padded>18</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>17</mday><mday_padded>17</mday_padded><yday>47</yday><isdst>0</isdst><epoch>1550422800</epoch><pretty>6:00 PM CET on February 17, 2019</pretty><civil>6:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>39.6</english>
+				<metric>4</metric>
+			</temp>
+			<dewpoint>
+				<english>37.0</english>
+				<metric>3</metric>
+			</dewpoint>
+			<condition>Mostly Cloudy</condition>
+			
+			
+			<icon>mostlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_mostlycloudy.gif</icon_url>
+			<fctcode>3</fctcode>
+			<sky>76</sky>
+			<wspd>
+				<english>8</english>
+				<metric>13</metric>
+			</wspd>
+			<wdir>
+				<dir>WNW</dir>
+				<degrees>300</degrees>
+			</wdir>
+			<wx>Mostly Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>90</humidity>
+			<windchill>
+				<english>34</english>
+				<metric>1</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>34</english>
+					<metric>1</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>8</pop>
+			<mslp>
+				<english>30.22</english>
+				<metric>1023</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>19</hour><hour_padded>19</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>17</mday><mday_padded>17</mday_padded><yday>47</yday><isdst>0</isdst><epoch>1550426400</epoch><pretty>7:00 PM CET on February 17, 2019</pretty><civil>7:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>38.7</english>
+				<metric>4</metric>
+			</temp>
+			<dewpoint>
+				<english>36.9</english>
+				<metric>3</metric>
+			</dewpoint>
+			<condition>Overcast</condition>
+			
+			
+			<icon>cloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
+			<fctcode>4</fctcode>
+			<sky>81</sky>
+			<wspd>
+				<english>7</english>
+				<metric>11</metric>
+			</wspd>
+			<wdir>
+				<dir>WNW</dir>
+				<degrees>296</degrees>
+			</wdir>
+			<wx>Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>93</humidity>
+			<windchill>
+				<english>34</english>
+				<metric>1</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>34</english>
+					<metric>1</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>8</pop>
+			<mslp>
+				<english>30.23</english>
+				<metric>1024</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>20</hour><hour_padded>20</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>17</mday><mday_padded>17</mday_padded><yday>47</yday><isdst>0</isdst><epoch>1550430000</epoch><pretty>8:00 PM CET on February 17, 2019</pretty><civil>8:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
 				<english>38.5</english>
 				<metric>4</metric>
+			</temp>
+			<dewpoint>
+				<english>36.5</english>
+				<metric>2</metric>
+			</dewpoint>
+			<condition>Mostly Cloudy</condition>
+			
+			
+			<icon>mostlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_mostlycloudy.gif</icon_url>
+			<fctcode>3</fctcode>
+			<sky>75</sky>
+			<wspd>
+				<english>6</english>
+				<metric>10</metric>
+			</wspd>
+			<wdir>
+				<dir>WNW</dir>
+				<degrees>292</degrees>
+			</wdir>
+			<wx>Mostly Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>92</humidity>
+			<windchill>
+				<english>35</english>
+				<metric>2</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>35</english>
+					<metric>2</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>8</pop>
+			<mslp>
+				<english>30.24</english>
+				<metric>1024</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>21</hour><hour_padded>21</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>17</mday><mday_padded>17</mday_padded><yday>47</yday><isdst>0</isdst><epoch>1550433600</epoch><pretty>9:00 PM CET on February 17, 2019</pretty><civil>9:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>37.9</english>
+				<metric>3</metric>
+			</temp>
+			<dewpoint>
+				<english>36.3</english>
+				<metric>2</metric>
+			</dewpoint>
+			<condition>Mostly Cloudy</condition>
+			
+			
+			<icon>mostlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_mostlycloudy.gif</icon_url>
+			<fctcode>3</fctcode>
+			<sky>61</sky>
+			<wspd>
+				<english>5</english>
+				<metric>8</metric>
+			</wspd>
+			<wdir>
+				<dir>WNW</dir>
+				<degrees>287</degrees>
+			</wdir>
+			<wx>Mostly Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>94</humidity>
+			<windchill>
+				<english>33</english>
+				<metric>1</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>33</english>
+					<metric>1</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>9</pop>
+			<mslp>
+				<english>30.24</english>
+				<metric>1024</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>22</hour><hour_padded>22</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>17</mday><mday_padded>17</mday_padded><yday>47</yday><isdst>0</isdst><epoch>1550437200</epoch><pretty>10:00 PM CET on February 17, 2019</pretty><civil>10:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>37.8</english>
+				<metric>3</metric>
+			</temp>
+			<dewpoint>
+				<english>36.0</english>
+				<metric>2</metric>
+			</dewpoint>
+			<condition>Partly Cloudy</condition>
+			
+			
+			<icon>partlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_partlycloudy.gif</icon_url>
+			<fctcode>2</fctcode>
+			<sky>51</sky>
+			<wspd>
+				<english>5</english>
+				<metric>8</metric>
+			</wspd>
+			<wdir>
+				<dir>W</dir>
+				<degrees>276</degrees>
+			</wdir>
+			<wx>Partly Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>93</humidity>
+			<windchill>
+				<english>33</english>
+				<metric>1</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>33</english>
+					<metric>1</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>9</pop>
+			<mslp>
+				<english>30.24</english>
+				<metric>1024</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>23</hour><hour_padded>23</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>17</mday><mday_padded>17</mday_padded><yday>47</yday><isdst>0</isdst><epoch>1550440800</epoch><pretty>11:00 PM CET on February 17, 2019</pretty><civil>11:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>37.2</english>
+				<metric>3</metric>
+			</temp>
+			<dewpoint>
+				<english>35.8</english>
+				<metric>2</metric>
+			</dewpoint>
+			<condition>Partly Cloudy</condition>
+			
+			
+			<icon>partlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_partlycloudy.gif</icon_url>
+			<fctcode>2</fctcode>
+			<sky>52</sky>
+			<wspd>
+				<english>5</english>
+				<metric>8</metric>
+			</wspd>
+			<wdir>
+				<dir>W</dir>
+				<degrees>270</degrees>
+			</wdir>
+			<wx>Partly Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>95</humidity>
+			<windchill>
+				<english>33</english>
+				<metric>1</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>33</english>
+					<metric>1</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>9</pop>
+			<mslp>
+				<english>30.24</english>
+				<metric>1024</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>0</hour><hour_padded>00</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>18</mday><mday_padded>18</mday_padded><yday>48</yday><isdst>0</isdst><epoch>1550444400</epoch><pretty>12:00 AM CET on February 18, 2019</pretty><civil>12:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Monday</weekday_name><weekday_name_night>Monday Night</weekday_name_night><weekday_name_abbrev>Mon</weekday_name_abbrev><weekday_name_unlang>Monday</weekday_name_unlang><weekday_name_night_unlang>Monday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>37.0</english>
+				<metric>3</metric>
 			</temp>
 			<dewpoint>
 				<english>35.2</english>
@@ -573,21 +1793,21 @@
 			<icon>partlycloudy</icon>
 			<icon_url>http://icons.wxug.com/i/c/k/nt_partlycloudy.gif</icon_url>
 			<fctcode>2</fctcode>
-			<sky>38</sky>
+			<sky>59</sky>
 			<wspd>
-				<english>17</english>
-				<metric>27</metric>
+				<english>5</english>
+				<metric>8</metric>
 			</wspd>
 			<wdir>
-				<dir>SW</dir>
-				<degrees>234</degrees>
+				<dir>W</dir>
+				<degrees>261</degrees>
 			</wdir>
 			<wx>Partly Cloudy</wx>
 			<uvi>0</uvi>
-			<humidity>88</humidity>
+			<humidity>93</humidity>
 			<windchill>
-				<english>30</english>
-				<metric>-1</metric>
+				<english>33</english>
+				<metric>1</metric>
 			</windchill>
 			<heatindex>
 				<english>-9999</english>
@@ -595,8 +1815,8 @@
 			</heatindex>
 			
 				<feelslike>
-					<english>30</english>
-					<metric>-1</metric>
+					<english>33</english>
+					<metric>1</metric>
 				</feelslike>
 			
 			<qpf>
@@ -607,10 +1827,10 @@
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>7</pop>
+			<pop>9</pop>
 			<mslp>
-				<english>29.65</english>
-				<metric>1004</metric>
+				<english>30.24</english>
+				<metric>1024</metric>
 			</mslp>
 		</forecast>
 		
@@ -618,37 +1838,98 @@
 		
 		<forecast>
 			<FCTTIME>
-				<hour>6</hour><hour_padded>06</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>10</mday><mday_padded>10</mday_padded><yday>40</yday><isdst>0</isdst><epoch>1549774800</epoch><pretty>6:00 AM CET on February 10, 2019</pretty><civil>6:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+				<hour>1</hour><hour_padded>01</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>18</mday><mday_padded>18</mday_padded><yday>48</yday><isdst>0</isdst><epoch>1550448000</epoch><pretty>1:00 AM CET on February 18, 2019</pretty><civil>1:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Monday</weekday_name><weekday_name_night>Monday Night</weekday_name_night><weekday_name_abbrev>Mon</weekday_name_abbrev><weekday_name_unlang>Monday</weekday_name_unlang><weekday_name_night_unlang>Monday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
-				<english>37.9</english>
+				<english>36.7</english>
 				<metric>3</metric>
+			</temp>
+			<dewpoint>
+				<english>35.2</english>
+				<metric>2</metric>
+			</dewpoint>
+			<condition>Mostly Cloudy</condition>
+			
+			
+			<icon>mostlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_mostlycloudy.gif</icon_url>
+			<fctcode>3</fctcode>
+			<sky>63</sky>
+			<wspd>
+				<english>5</english>
+				<metric>8</metric>
+			</wspd>
+			<wdir>
+				<dir>WSW</dir>
+				<degrees>249</degrees>
+			</wdir>
+			<wx>Mostly Cloudy</wx>
+			<uvi>0</uvi>
+			<humidity>95</humidity>
+			<windchill>
+				<english>33</english>
+				<metric>1</metric>
+			</windchill>
+			<heatindex>
+				<english>-9999</english>
+				<metric>-9999</metric>
+			</heatindex>
+			
+				<feelslike>
+					<english>33</english>
+					<metric>1</metric>
+				</feelslike>
+			
+			<qpf>
+				<english>0.0</english>
+				<metric>0</metric>
+			</qpf>
+			<snow>
+				<english>0.0</english>
+				<metric>0</metric>
+			</snow>
+			<pop>9</pop>
+			<mslp>
+				<english>30.24</english>
+				<metric>1024</metric>
+			</mslp>
+		</forecast>
+		
+	
+		
+		<forecast>
+			<FCTTIME>
+				<hour>2</hour><hour_padded>02</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>18</mday><mday_padded>18</mday_padded><yday>48</yday><isdst>0</isdst><epoch>1550451600</epoch><pretty>2:00 AM CET on February 18, 2019</pretty><civil>2:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Monday</weekday_name><weekday_name_night>Monday Night</weekday_name_night><weekday_name_abbrev>Mon</weekday_name_abbrev><weekday_name_unlang>Monday</weekday_name_unlang><weekday_name_night_unlang>Monday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+			</FCTTIME>
+			<temp>
+				<english>36.1</english>
+				<metric>2</metric>
 			</temp>
 			<dewpoint>
 				<english>34.9</english>
 				<metric>2</metric>
 			</dewpoint>
-			<condition>Partly Cloudy</condition>
+			<condition>Mostly Cloudy</condition>
 			
 			
-			<icon>partlycloudy</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_partlycloudy.gif</icon_url>
-			<fctcode>2</fctcode>
-			<sky>57</sky>
+			<icon>mostlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_mostlycloudy.gif</icon_url>
+			<fctcode>3</fctcode>
+			<sky>63</sky>
 			<wspd>
-				<english>16</english>
-				<metric>26</metric>
+				<english>5</english>
+				<metric>8</metric>
 			</wspd>
 			<wdir>
 				<dir>SW</dir>
-				<degrees>232</degrees>
+				<degrees>235</degrees>
 			</wdir>
-			<wx>Partly Cloudy</wx>
+			<wx>Mostly Cloudy</wx>
 			<uvi>0</uvi>
-			<humidity>89</humidity>
+			<humidity>95</humidity>
 			<windchill>
-				<english>28</english>
-				<metric>-2</metric>
+				<english>31</english>
+				<metric>-0</metric>
 			</windchill>
 			<heatindex>
 				<english>-9999</english>
@@ -656,8 +1937,8 @@
 			</heatindex>
 			
 				<feelslike>
-					<english>28</english>
-					<metric>-2</metric>
+					<english>31</english>
+					<metric>-0</metric>
 				</feelslike>
 			
 			<qpf>
@@ -668,10 +1949,10 @@
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>7</pop>
+			<pop>9</pop>
 			<mslp>
-				<english>29.65</english>
-				<metric>1004</metric>
+				<english>30.24</english>
+				<metric>1024</metric>
 			</mslp>
 		</forecast>
 		
@@ -679,11 +1960,11 @@
 		
 		<forecast>
 			<FCTTIME>
-				<hour>7</hour><hour_padded>07</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>10</mday><mday_padded>10</mday_padded><yday>40</yday><isdst>0</isdst><epoch>1549778400</epoch><pretty>7:00 AM CET on February 10, 2019</pretty><civil>7:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+				<hour>3</hour><hour_padded>03</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>18</mday><mday_padded>18</mday_padded><yday>48</yday><isdst>0</isdst><epoch>1550455200</epoch><pretty>3:00 AM CET on February 18, 2019</pretty><civil>3:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Monday</weekday_name><weekday_name_night>Monday Night</weekday_name_night><weekday_name_abbrev>Mon</weekday_name_abbrev><weekday_name_unlang>Monday</weekday_name_unlang><weekday_name_night_unlang>Monday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
-				<english>37.6</english>
-				<metric>3</metric>
+				<english>35.8</english>
+				<metric>2</metric>
 			</temp>
 			<dewpoint>
 				<english>34.7</english>
@@ -697,19 +1978,19 @@
 			<fctcode>3</fctcode>
 			<sky>62</sky>
 			<wspd>
-				<english>14</english>
-				<metric>23</metric>
+				<english>5</english>
+				<metric>8</metric>
 			</wspd>
 			<wdir>
 				<dir>SW</dir>
-				<degrees>229</degrees>
+				<degrees>227</degrees>
 			</wdir>
 			<wx>Mostly Cloudy</wx>
 			<uvi>0</uvi>
-			<humidity>89</humidity>
+			<humidity>96</humidity>
 			<windchill>
-				<english>29</english>
-				<metric>-2</metric>
+				<english>31</english>
+				<metric>-0</metric>
 			</windchill>
 			<heatindex>
 				<english>-9999</english>
@@ -717,8 +1998,8 @@
 			</heatindex>
 			
 				<feelslike>
-					<english>29</english>
-					<metric>-2</metric>
+					<english>31</english>
+					<metric>-0</metric>
 				</feelslike>
 			
 			<qpf>
@@ -729,10 +2010,10 @@
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>7</pop>
+			<pop>9</pop>
 			<mslp>
-				<english>29.66</english>
-				<metric>1004</metric>
+				<english>30.23</english>
+				<metric>1024</metric>
 			</mslp>
 		</forecast>
 		
@@ -740,37 +2021,37 @@
 		
 		<forecast>
 			<FCTTIME>
-				<hour>8</hour><hour_padded>08</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>10</mday><mday_padded>10</mday_padded><yday>40</yday><isdst>0</isdst><epoch>1549782000</epoch><pretty>8:00 AM CET on February 10, 2019</pretty><civil>8:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+				<hour>4</hour><hour_padded>04</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>18</mday><mday_padded>18</mday_padded><yday>48</yday><isdst>0</isdst><epoch>1550458800</epoch><pretty>4:00 AM CET on February 18, 2019</pretty><civil>4:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Monday</weekday_name><weekday_name_night>Monday Night</weekday_name_night><weekday_name_abbrev>Mon</weekday_name_abbrev><weekday_name_unlang>Monday</weekday_name_unlang><weekday_name_night_unlang>Monday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
-				<english>37.8</english>
-				<metric>3</metric>
+				<english>35.4</english>
+				<metric>2</metric>
 			</temp>
 			<dewpoint>
-				<english>35.2</english>
-				<metric>2</metric>
+				<english>34.3</english>
+				<metric>1</metric>
 			</dewpoint>
 			<condition>Mostly Cloudy</condition>
 			
 			
 			<icon>mostlycloudy</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/mostlycloudy.gif</icon_url>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_mostlycloudy.gif</icon_url>
 			<fctcode>3</fctcode>
-			<sky>70</sky>
+			<sky>63</sky>
 			<wspd>
-				<english>14</english>
-				<metric>23</metric>
+				<english>5</english>
+				<metric>8</metric>
 			</wspd>
 			<wdir>
 				<dir>SW</dir>
-				<degrees>223</degrees>
+				<degrees>221</degrees>
 			</wdir>
 			<wx>Mostly Cloudy</wx>
 			<uvi>0</uvi>
-			<humidity>90</humidity>
+			<humidity>96</humidity>
 			<windchill>
-				<english>29</english>
-				<metric>-2</metric>
+				<english>31</english>
+				<metric>-0</metric>
 			</windchill>
 			<heatindex>
 				<english>-9999</english>
@@ -778,8 +2059,8 @@
 			</heatindex>
 			
 				<feelslike>
-					<english>29</english>
-					<metric>-2</metric>
+					<english>31</english>
+					<metric>-0</metric>
 				</feelslike>
 			
 			<qpf>
@@ -790,10 +2071,10 @@
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>7</pop>
+			<pop>9</pop>
 			<mslp>
-				<english>29.66</english>
-				<metric>1004</metric>
+				<english>30.22</english>
+				<metric>1023</metric>
 			</mslp>
 		</forecast>
 		
@@ -801,522 +2082,34 @@
 		
 		<forecast>
 			<FCTTIME>
-				<hour>9</hour><hour_padded>09</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>10</mday><mday_padded>10</mday_padded><yday>40</yday><isdst>0</isdst><epoch>1549785600</epoch><pretty>9:00 AM CET on February 10, 2019</pretty><civil>9:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+				<hour>5</hour><hour_padded>05</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>18</mday><mday_padded>18</mday_padded><yday>48</yday><isdst>0</isdst><epoch>1550462400</epoch><pretty>5:00 AM CET on February 18, 2019</pretty><civil>5:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Monday</weekday_name><weekday_name_night>Monday Night</weekday_name_night><weekday_name_abbrev>Mon</weekday_name_abbrev><weekday_name_unlang>Monday</weekday_name_unlang><weekday_name_night_unlang>Monday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
-				<english>38.5</english>
-				<metric>4</metric>
-			</temp>
-			<dewpoint>
 				<english>35.6</english>
 				<metric>2</metric>
+			</temp>
+			<dewpoint>
+				<english>34.3</english>
+				<metric>1</metric>
 			</dewpoint>
 			<condition>Mostly Cloudy</condition>
 			
 			
 			<icon>mostlycloudy</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/mostlycloudy.gif</icon_url>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_mostlycloudy.gif</icon_url>
 			<fctcode>3</fctcode>
-			<sky>75</sky>
+			<sky>64</sky>
 			<wspd>
-				<english>13</english>
-				<metric>21</metric>
+				<english>6</english>
+				<metric>10</metric>
 			</wspd>
 			<wdir>
 				<dir>SSW</dir>
-				<degrees>213</degrees>
+				<degrees>209</degrees>
 			</wdir>
 			<wx>Mostly Cloudy</wx>
 			<uvi>0</uvi>
-			<humidity>89</humidity>
-			<windchill>
-				<english>31</english>
-				<metric>-0</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>31</english>
-					<metric>-0</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.0</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>7</pop>
-			<mslp>
-				<english>29.65</english>
-				<metric>1004</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>10</hour><hour_padded>10</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>10</mday><mday_padded>10</mday_padded><yday>40</yday><isdst>0</isdst><epoch>1549789200</epoch><pretty>10:00 AM CET on February 10, 2019</pretty><civil>10:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>39.6</english>
-				<metric>4</metric>
-			</temp>
-			<dewpoint>
-				<english>36.1</english>
-				<metric>2</metric>
-			</dewpoint>
-			<condition>Mostly Cloudy</condition>
-			
-			
-			<icon>mostlycloudy</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/mostlycloudy.gif</icon_url>
-			<fctcode>3</fctcode>
-			<sky>78</sky>
-			<wspd>
-				<english>13</english>
-				<metric>21</metric>
-			</wspd>
-			<wdir>
-				<dir>SSW</dir>
-				<degrees>207</degrees>
-			</wdir>
-			<wx>Mostly Cloudy</wx>
-			<uvi>0</uvi>
-			<humidity>87</humidity>
-			<windchill>
-				<english>31</english>
-				<metric>-0</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>31</english>
-					<metric>-0</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.0</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>6</pop>
-			<mslp>
-				<english>29.64</english>
-				<metric>1004</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>11</hour><hour_padded>11</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>10</mday><mday_padded>10</mday_padded><yday>40</yday><isdst>0</isdst><epoch>1549792800</epoch><pretty>11:00 AM CET on February 10, 2019</pretty><civil>11:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>40.5</english>
-				<metric>5</metric>
-			</temp>
-			<dewpoint>
-				<english>36.5</english>
-				<metric>2</metric>
-			</dewpoint>
-			<condition>Mostly Cloudy</condition>
-			
-			
-			<icon>mostlycloudy</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/mostlycloudy.gif</icon_url>
-			<fctcode>3</fctcode>
-			<sky>78</sky>
-			<wspd>
-				<english>14</english>
-				<metric>23</metric>
-			</wspd>
-			<wdir>
-				<dir>SSW</dir>
-				<degrees>199</degrees>
-			</wdir>
-			<wx>Mostly Cloudy</wx>
-			<uvi>0</uvi>
-			<humidity>86</humidity>
-			<windchill>
-				<english>33</english>
-				<metric>1</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>33</english>
-					<metric>1</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.0</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>6</pop>
-			<mslp>
-				<english>29.62</english>
-				<metric>1003</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>12</hour><hour_padded>12</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>10</mday><mday_padded>10</mday_padded><yday>40</yday><isdst>0</isdst><epoch>1549796400</epoch><pretty>12:00 PM CET on February 10, 2019</pretty><civil>12:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>40.8</english>
-				<metric>5</metric>
-			</temp>
-			<dewpoint>
-				<english>36.3</english>
-				<metric>2</metric>
-			</dewpoint>
-			<condition>Overcast</condition>
-			
-			
-			<icon>cloudy</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
-			<fctcode>4</fctcode>
-			<sky>89</sky>
-			<wspd>
-				<english>15</english>
-				<metric>24</metric>
-			</wspd>
-			<wdir>
-				<dir>SSW</dir>
-				<degrees>196</degrees>
-			</wdir>
-			<wx>Cloudy</wx>
-			<uvi>0</uvi>
-			<humidity>84</humidity>
-			<windchill>
-				<english>33</english>
-				<metric>1</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>33</english>
-					<metric>1</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.0</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>5</pop>
-			<mslp>
-				<english>29.6</english>
-				<metric>1002</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>13</hour><hour_padded>13</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>10</mday><mday_padded>10</mday_padded><yday>40</yday><isdst>0</isdst><epoch>1549800000</epoch><pretty>1:00 PM CET on February 10, 2019</pretty><civil>1:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>41.0</english>
-				<metric>5</metric>
-			</temp>
-			<dewpoint>
-				<english>36.3</english>
-				<metric>2</metric>
-			</dewpoint>
-			<condition>Overcast</condition>
-			
-			
-			<icon>cloudy</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/cloudy.gif</icon_url>
-			<fctcode>4</fctcode>
-			<sky>93</sky>
-			<wspd>
-				<english>15</english>
-				<metric>24</metric>
-			</wspd>
-			<wdir>
-				<dir>S</dir>
-				<degrees>190</degrees>
-			</wdir>
-			<wx>Cloudy</wx>
-			<uvi>0</uvi>
-			<humidity>83</humidity>
-			<windchill>
-				<english>33</english>
-				<metric>1</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>33</english>
-					<metric>1</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.0</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>5</pop>
-			<mslp>
-				<english>29.56</english>
-				<metric>1001</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>14</hour><hour_padded>14</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>10</mday><mday_padded>10</mday_padded><yday>40</yday><isdst>0</isdst><epoch>1549803600</epoch><pretty>2:00 PM CET on February 10, 2019</pretty><civil>2:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>41.4</english>
-				<metric>5</metric>
-			</temp>
-			<dewpoint>
-				<english>36.1</english>
-				<metric>2</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>97</sky>
-			<wspd>
-				<english>17</english>
-				<metric>27</metric>
-			</wspd>
-			<wdir>
-				<dir>S</dir>
-				<degrees>183</degrees>
-			</wdir>
-			<wx>Showers</wx>
-			<uvi>0</uvi>
-			<humidity>81</humidity>
-			<windchill>
-				<english>33</english>
-				<metric>0</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>33</english>
-					<metric>0</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.0</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>35</pop>
-			<mslp>
-				<english>29.52</english>
-				<metric>1000</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>15</hour><hour_padded>15</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>10</mday><mday_padded>10</mday_padded><yday>40</yday><isdst>0</isdst><epoch>1549807200</epoch><pretty>3:00 PM CET on February 10, 2019</pretty><civil>3:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>41.0</english>
-				<metric>5</metric>
-			</temp>
-			<dewpoint>
-				<english>36.3</english>
-				<metric>2</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>100</sky>
-			<wspd>
-				<english>16</english>
-				<metric>26</metric>
-			</wspd>
-			<wdir>
-				<dir>S</dir>
-				<degrees>173</degrees>
-			</wdir>
-			<wx>Showers</wx>
-			<uvi>0</uvi>
-			<humidity>83</humidity>
-			<windchill>
-				<english>33</english>
-				<metric>0</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>33</english>
-					<metric>0</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.01</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>52</pop>
-			<mslp>
-				<english>29.47</english>
-				<metric>998</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>16</hour><hour_padded>16</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>10</mday><mday_padded>10</mday_padded><yday>40</yday><isdst>0</isdst><epoch>1549810800</epoch><pretty>4:00 PM CET on February 10, 2019</pretty><civil>4:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>40.3</english>
-				<metric>5</metric>
-			</temp>
-			<dewpoint>
-				<english>36.5</english>
-				<metric>2</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>100</sky>
-			<wspd>
-				<english>16</english>
-				<metric>26</metric>
-			</wspd>
-			<wdir>
-				<dir>S</dir>
-				<degrees>170</degrees>
-			</wdir>
-			<wx>Showers</wx>
-			<uvi>0</uvi>
-			<humidity>86</humidity>
-			<windchill>
-				<english>33</english>
-				<metric>0</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>33</english>
-					<metric>0</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.01</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>52</pop>
-			<mslp>
-				<english>29.43</english>
-				<metric>997</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>17</hour><hour_padded>17</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>10</mday><mday_padded>10</mday_padded><yday>40</yday><isdst>0</isdst><epoch>1549814400</epoch><pretty>5:00 PM CET on February 10, 2019</pretty><civil>5:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>40.1</english>
-				<metric>4</metric>
-			</temp>
-			<dewpoint>
-				<english>36.9</english>
-				<metric>3</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>100</sky>
-			<wspd>
-				<english>16</english>
-				<metric>26</metric>
-			</wspd>
-			<wdir>
-				<dir>S</dir>
-				<degrees>174</degrees>
-			</wdir>
-			<wx>Showers</wx>
-			<uvi>0</uvi>
-			<humidity>88</humidity>
+			<humidity>95</humidity>
 			<windchill>
 				<english>31</english>
 				<metric>-1</metric>
@@ -1332,433 +2125,6 @@
 				</feelslike>
 			
 			<qpf>
-				<english>0.01</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>45</pop>
-			<mslp>
-				<english>29.39</english>
-				<metric>995</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>18</hour><hour_padded>18</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>10</mday><mday_padded>10</mday_padded><yday>40</yday><isdst>0</isdst><epoch>1549818000</epoch><pretty>6:00 PM CET on February 10, 2019</pretty><civil>6:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>40.3</english>
-				<metric>5</metric>
-			</temp>
-			<dewpoint>
-				<english>37.0</english>
-				<metric>3</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>100</sky>
-			<wspd>
-				<english>16</english>
-				<metric>26</metric>
-			</wspd>
-			<wdir>
-				<dir>S</dir>
-				<degrees>179</degrees>
-			</wdir>
-			<wx>Showers</wx>
-			<uvi>0</uvi>
-			<humidity>88</humidity>
-			<windchill>
-				<english>33</english>
-				<metric>0</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>33</english>
-					<metric>0</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.01</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>43</pop>
-			<mslp>
-				<english>29.35</english>
-				<metric>994</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>19</hour><hour_padded>19</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>10</mday><mday_padded>10</mday_padded><yday>40</yday><isdst>0</isdst><epoch>1549821600</epoch><pretty>7:00 PM CET on February 10, 2019</pretty><civil>7:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>40.5</english>
-				<metric>5</metric>
-			</temp>
-			<dewpoint>
-				<english>37.2</english>
-				<metric>3</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>100</sky>
-			<wspd>
-				<english>16</english>
-				<metric>26</metric>
-			</wspd>
-			<wdir>
-				<dir>S</dir>
-				<degrees>182</degrees>
-			</wdir>
-			<wx>Light Rain</wx>
-			<uvi>0</uvi>
-			<humidity>88</humidity>
-			<windchill>
-				<english>33</english>
-				<metric>0</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>33</english>
-					<metric>0</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.01</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>61</pop>
-			<mslp>
-				<english>29.31</english>
-				<metric>993</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>20</hour><hour_padded>20</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>10</mday><mday_padded>10</mday_padded><yday>40</yday><isdst>0</isdst><epoch>1549825200</epoch><pretty>8:00 PM CET on February 10, 2019</pretty><civil>8:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>41.0</english>
-				<metric>5</metric>
-			</temp>
-			<dewpoint>
-				<english>37.4</english>
-				<metric>3</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>100</sky>
-			<wspd>
-				<english>17</english>
-				<metric>27</metric>
-			</wspd>
-			<wdir>
-				<dir>S</dir>
-				<degrees>190</degrees>
-			</wdir>
-			<wx>Showers</wx>
-			<uvi>0</uvi>
-			<humidity>87</humidity>
-			<windchill>
-				<english>33</english>
-				<metric>0</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>33</english>
-					<metric>0</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.01</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>59</pop>
-			<mslp>
-				<english>29.28</english>
-				<metric>992</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>21</hour><hour_padded>21</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>10</mday><mday_padded>10</mday_padded><yday>40</yday><isdst>0</isdst><epoch>1549828800</epoch><pretty>9:00 PM CET on February 10, 2019</pretty><civil>9:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>41.5</english>
-				<metric>5</metric>
-			</temp>
-			<dewpoint>
-				<english>37.8</english>
-				<metric>3</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>100</sky>
-			<wspd>
-				<english>17</english>
-				<metric>27</metric>
-			</wspd>
-			<wdir>
-				<dir>SSW</dir>
-				<degrees>195</degrees>
-			</wdir>
-			<wx>Showers</wx>
-			<uvi>0</uvi>
-			<humidity>87</humidity>
-			<windchill>
-				<english>33</english>
-				<metric>0</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>33</english>
-					<metric>0</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.01</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>56</pop>
-			<mslp>
-				<english>29.25</english>
-				<metric>991</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>22</hour><hour_padded>22</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>10</mday><mday_padded>10</mday_padded><yday>40</yday><isdst>0</isdst><epoch>1549832400</epoch><pretty>10:00 PM CET on February 10, 2019</pretty><civil>10:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>41.9</english>
-				<metric>6</metric>
-			</temp>
-			<dewpoint>
-				<english>37.8</english>
-				<metric>3</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>100</sky>
-			<wspd>
-				<english>17</english>
-				<metric>27</metric>
-			</wspd>
-			<wdir>
-				<dir>SSW</dir>
-				<degrees>199</degrees>
-			</wdir>
-			<wx>Showers</wx>
-			<uvi>0</uvi>
-			<humidity>85</humidity>
-			<windchill>
-				<english>35</english>
-				<metric>2</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>35</english>
-					<metric>2</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.01</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>53</pop>
-			<mslp>
-				<english>29.22</english>
-				<metric>990</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>23</hour><hour_padded>23</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>10</mday><mday_padded>10</mday_padded><yday>40</yday><isdst>0</isdst><epoch>1549836000</epoch><pretty>11:00 PM CET on February 10, 2019</pretty><civil>11:00 PM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>41.9</english>
-				<metric>6</metric>
-			</temp>
-			<dewpoint>
-				<english>37.9</english>
-				<metric>3</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>98</sky>
-			<wspd>
-				<english>17</english>
-				<metric>27</metric>
-			</wspd>
-			<wdir>
-				<dir>SSW</dir>
-				<degrees>203</degrees>
-			</wdir>
-			<wx>Showers</wx>
-			<uvi>0</uvi>
-			<humidity>86</humidity>
-			<windchill>
-				<english>35</english>
-				<metric>2</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>35</english>
-					<metric>2</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.01</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>48</pop>
-			<mslp>
-				<english>29.21</english>
-				<metric>989</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>0</hour><hour_padded>00</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>11</mday><mday_padded>11</mday_padded><yday>41</yday><isdst>0</isdst><epoch>1549839600</epoch><pretty>12:00 AM CET on February 11, 2019</pretty><civil>12:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Monday</weekday_name><weekday_name_night>Monday Night</weekday_name_night><weekday_name_abbrev>Mon</weekday_name_abbrev><weekday_name_unlang>Monday</weekday_name_unlang><weekday_name_night_unlang>Monday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>42.1</english>
-				<metric>6</metric>
-			</temp>
-			<dewpoint>
-				<english>38.3</english>
-				<metric>3</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>99</sky>
-			<wspd>
-				<english>15</english>
-				<metric>24</metric>
-			</wspd>
-			<wdir>
-				<dir>SSW</dir>
-				<degrees>205</degrees>
-			</wdir>
-			<wx>Few Showers</wx>
-			<uvi>0</uvi>
-			<humidity>87</humidity>
-			<windchill>
-				<english>35</english>
-				<metric>2</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>35</english>
-					<metric>2</metric>
-				</feelslike>
-			
-			<qpf>
 				<english>0.0</english>
 				<metric>0</metric>
 			</qpf>
@@ -1766,10 +2132,10 @@
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>34</pop>
+			<pop>9</pop>
 			<mslp>
-				<english>29.2</english>
-				<metric>989</metric>
+				<english>30.21</english>
+				<metric>1023</metric>
 			</mslp>
 		</forecast>
 		
@@ -1777,403 +2143,37 @@
 		
 		<forecast>
 			<FCTTIME>
-				<hour>1</hour><hour_padded>01</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>11</mday><mday_padded>11</mday_padded><yday>41</yday><isdst>0</isdst><epoch>1549843200</epoch><pretty>1:00 AM CET on February 11, 2019</pretty><civil>1:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Monday</weekday_name><weekday_name_night>Monday Night</weekday_name_night><weekday_name_abbrev>Mon</weekday_name_abbrev><weekday_name_unlang>Monday</weekday_name_unlang><weekday_name_night_unlang>Monday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
+				<hour>6</hour><hour_padded>06</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>18</mday><mday_padded>18</mday_padded><yday>48</yday><isdst>0</isdst><epoch>1550466000</epoch><pretty>6:00 AM CET on February 18, 2019</pretty><civil>6:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Monday</weekday_name><weekday_name_night>Monday Night</weekday_name_night><weekday_name_abbrev>Mon</weekday_name_abbrev><weekday_name_unlang>Monday</weekday_name_unlang><weekday_name_night_unlang>Monday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
-				<english>42.1</english>
-				<metric>6</metric>
-			</temp>
-			<dewpoint>
-				<english>38.7</english>
-				<metric>4</metric>
-			</dewpoint>
-			<condition>Overcast</condition>
-			
-			
-			<icon>cloudy</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
-			<fctcode>4</fctcode>
-			<sky>98</sky>
-			<wspd>
-				<english>14</english>
-				<metric>23</metric>
-			</wspd>
-			<wdir>
-				<dir>SSW</dir>
-				<degrees>209</degrees>
-			</wdir>
-			<wx>Cloudy</wx>
-			<uvi>0</uvi>
-			<humidity>87</humidity>
-			<windchill>
-				<english>36</english>
-				<metric>2</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>36</english>
-					<metric>2</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.0</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>22</pop>
-			<mslp>
-				<english>29.19</english>
-				<metric>988</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>2</hour><hour_padded>02</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>11</mday><mday_padded>11</mday_padded><yday>41</yday><isdst>0</isdst><epoch>1549846800</epoch><pretty>2:00 AM CET on February 11, 2019</pretty><civil>2:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Monday</weekday_name><weekday_name_night>Monday Night</weekday_name_night><weekday_name_abbrev>Mon</weekday_name_abbrev><weekday_name_unlang>Monday</weekday_name_unlang><weekday_name_night_unlang>Monday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>41.9</english>
-				<metric>6</metric>
-			</temp>
-			<dewpoint>
-				<english>38.8</english>
-				<metric>4</metric>
-			</dewpoint>
-			<condition>Overcast</condition>
-			
-			
-			<icon>cloudy</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
-			<fctcode>4</fctcode>
-			<sky>97</sky>
-			<wspd>
-				<english>13</english>
-				<metric>21</metric>
-			</wspd>
-			<wdir>
-				<dir>SSW</dir>
-				<degrees>212</degrees>
-			</wdir>
-			<wx>Cloudy</wx>
-			<uvi>0</uvi>
-			<humidity>89</humidity>
-			<windchill>
-				<english>36</english>
-				<metric>2</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>36</english>
-					<metric>2</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.0</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>24</pop>
-			<mslp>
-				<english>29.17</english>
-				<metric>988</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>3</hour><hour_padded>03</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>11</mday><mday_padded>11</mday_padded><yday>41</yday><isdst>0</isdst><epoch>1549850400</epoch><pretty>3:00 AM CET on February 11, 2019</pretty><civil>3:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Monday</weekday_name><weekday_name_night>Monday Night</weekday_name_night><weekday_name_abbrev>Mon</weekday_name_abbrev><weekday_name_unlang>Monday</weekday_name_unlang><weekday_name_night_unlang>Monday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>41.7</english>
-				<metric>5</metric>
-			</temp>
-			<dewpoint>
-				<english>38.7</english>
-				<metric>4</metric>
-			</dewpoint>
-			<condition>Overcast</condition>
-			
-			
-			<icon>cloudy</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
-			<fctcode>4</fctcode>
-			<sky>96</sky>
-			<wspd>
-				<english>12</english>
-				<metric>19</metric>
-			</wspd>
-			<wdir>
-				<dir>SW</dir>
-				<degrees>218</degrees>
-			</wdir>
-			<wx>Cloudy</wx>
-			<uvi>0</uvi>
-			<humidity>89</humidity>
-			<windchill>
-				<english>34</english>
-				<metric>1</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>34</english>
-					<metric>1</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.0</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>11</pop>
-			<mslp>
-				<english>29.16</english>
-				<metric>987</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>4</hour><hour_padded>04</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>11</mday><mday_padded>11</mday_padded><yday>41</yday><isdst>0</isdst><epoch>1549854000</epoch><pretty>4:00 AM CET on February 11, 2019</pretty><civil>4:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Monday</weekday_name><weekday_name_night>Monday Night</weekday_name_night><weekday_name_abbrev>Mon</weekday_name_abbrev><weekday_name_unlang>Monday</weekday_name_unlang><weekday_name_night_unlang>Monday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>41.2</english>
-				<metric>5</metric>
-			</temp>
-			<dewpoint>
-				<english>38.3</english>
-				<metric>3</metric>
-			</dewpoint>
-			<condition>Overcast</condition>
-			
-			
-			<icon>cloudy</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
-			<fctcode>4</fctcode>
-			<sky>99</sky>
-			<wspd>
-				<english>12</english>
-				<metric>19</metric>
-			</wspd>
-			<wdir>
-				<dir>SW</dir>
-				<degrees>224</degrees>
-			</wdir>
-			<wx>Cloudy</wx>
-			<uvi>0</uvi>
-			<humidity>90</humidity>
-			<windchill>
-				<english>34</english>
-				<metric>1</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>34</english>
-					<metric>1</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.0</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>20</pop>
-			<mslp>
-				<english>29.16</english>
-				<metric>987</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>5</hour><hour_padded>05</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>11</mday><mday_padded>11</mday_padded><yday>41</yday><isdst>0</isdst><epoch>1549857600</epoch><pretty>5:00 AM CET on February 11, 2019</pretty><civil>5:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Monday</weekday_name><weekday_name_night>Monday Night</weekday_name_night><weekday_name_abbrev>Mon</weekday_name_abbrev><weekday_name_unlang>Monday</weekday_name_unlang><weekday_name_night_unlang>Monday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>40.3</english>
-				<metric>5</metric>
-			</temp>
-			<dewpoint>
-				<english>37.8</english>
-				<metric>3</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>96</sky>
-			<wspd>
-				<english>11</english>
-				<metric>18</metric>
-			</wspd>
-			<wdir>
-				<dir>SW</dir>
-				<degrees>231</degrees>
-			</wdir>
-			<wx>Few Showers</wx>
-			<uvi>0</uvi>
-			<humidity>90</humidity>
-			<windchill>
-				<english>34</english>
-				<metric>1</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>34</english>
-					<metric>1</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.0</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>33</pop>
-			<mslp>
-				<english>29.16</english>
-				<metric>987</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>6</hour><hour_padded>06</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>11</mday><mday_padded>11</mday_padded><yday>41</yday><isdst>0</isdst><epoch>1549861200</epoch><pretty>6:00 AM CET on February 11, 2019</pretty><civil>6:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Monday</weekday_name><weekday_name_night>Monday Night</weekday_name_night><weekday_name_abbrev>Mon</weekday_name_abbrev><weekday_name_unlang>Monday</weekday_name_unlang><weekday_name_night_unlang>Monday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>39.7</english>
-				<metric>4</metric>
-			</temp>
-			<dewpoint>
-				<english>36.9</english>
-				<metric>3</metric>
-			</dewpoint>
-			<condition>Chance of Rain</condition>
-			
-			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>98</sky>
-			<wspd>
-				<english>13</english>
-				<metric>21</metric>
-			</wspd>
-			<wdir>
-				<dir>WSW</dir>
-				<degrees>238</degrees>
-			</wdir>
-			<wx>Showers</wx>
-			<uvi>0</uvi>
-			<humidity>89</humidity>
-			<windchill>
-				<english>31</english>
-				<metric>-0</metric>
-			</windchill>
-			<heatindex>
-				<english>-9999</english>
-				<metric>-9999</metric>
-			</heatindex>
-			
-				<feelslike>
-					<english>31</english>
-					<metric>-0</metric>
-				</feelslike>
-			
-			<qpf>
-				<english>0.01</english>
-				<metric>0</metric>
-			</qpf>
-			<snow>
-				<english>0.0</english>
-				<metric>0</metric>
-			</snow>
-			<pop>36</pop>
-			<mslp>
-				<english>29.17</english>
-				<metric>988</metric>
-			</mslp>
-		</forecast>
-		
-	
-		
-		<forecast>
-			<FCTTIME>
-				<hour>7</hour><hour_padded>07</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>2</mon><mon_padded>02</mon_padded><mon_abbrev>Feb</mon_abbrev><mday>11</mday><mday_padded>11</mday_padded><yday>41</yday><isdst>0</isdst><epoch>1549864800</epoch><pretty>7:00 AM CET on February 11, 2019</pretty><civil>7:00 AM</civil><month_name>February</month_name><month_name_abbrev>Feb</month_name_abbrev><weekday_name>Monday</weekday_name><weekday_name_night>Monday Night</weekday_name_night><weekday_name_abbrev>Mon</weekday_name_abbrev><weekday_name_unlang>Monday</weekday_name_unlang><weekday_name_night_unlang>Monday Night</weekday_name_night_unlang><ampm>AM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
-			</FCTTIME>
-			<temp>
-				<english>38.8</english>
-				<metric>4</metric>
-			</temp>
-			<dewpoint>
 				<english>36.0</english>
 				<metric>2</metric>
+			</temp>
+			<dewpoint>
+				<english>34.7</english>
+				<metric>2</metric>
 			</dewpoint>
-			<condition>Chance of Rain</condition>
+			<condition>Mostly Cloudy</condition>
 			
 			
-			<icon>chancerain</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
-			<fctcode>12</fctcode>
-			<sky>99</sky>
+			<icon>mostlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_mostlycloudy.gif</icon_url>
+			<fctcode>3</fctcode>
+			<sky>68</sky>
 			<wspd>
-				<english>13</english>
-				<metric>21</metric>
+				<english>6</english>
+				<metric>10</metric>
 			</wspd>
 			<wdir>
-				<dir>WSW</dir>
-				<degrees>252</degrees>
+				<dir>SSW</dir>
+				<degrees>196</degrees>
 			</wdir>
-			<wx>Showers</wx>
+			<wx>Mostly Cloudy</wx>
 			<uvi>0</uvi>
-			<humidity>89</humidity>
+			<humidity>95</humidity>
 			<windchill>
 				<english>31</english>
-				<metric>-0</metric>
+				<metric>-1</metric>
 			</windchill>
 			<heatindex>
 				<english>-9999</english>
@@ -2182,21 +2182,21 @@
 			
 				<feelslike>
 					<english>31</english>
-					<metric>-0</metric>
+					<metric>-1</metric>
 				</feelslike>
 			
 			<qpf>
-				<english>0.01</english>
+				<english>0.0</english>
 				<metric>0</metric>
 			</qpf>
 			<snow>
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>40</pop>
+			<pop>9</pop>
 			<mslp>
-				<english>29.19</english>
-				<metric>988</metric>
+				<english>30.21</english>
+				<metric>1023</metric>
 			</mslp>
 		</forecast>
 		
