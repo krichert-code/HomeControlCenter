@@ -28,13 +28,12 @@ class HeaterClass(object):
     __storeDataInterval = 10
     # How many data should be used to generate 'WorkHeatChart' (every __lineChartInterval sample will be used) - more data means that chart will be generated slower
     __lineChartInterval = 24
-    # todo: move to private no-static data - first change HccDemonClas to use HeaterClass as a one time declare class (now is used as local variable)
-    __storeDataCounter = 0
-    __lastState = -1
-    __dayMode = False
 
     def __init__(self):
-	pass
+	self.__storeDataCounter = 0
+	self.__lastState = -1
+	self.__dayMode = False
+
 
 
     def __getTemperatureFromDevice(self):
@@ -87,7 +86,7 @@ class HeaterClass(object):
 		print "________State = " + str(HeaterClass.__lastState)
 		print "Temp curr = " + str(temp) + "  Threshold " + str(threshold)
 		print "DatMode = " + str(isDayMode)
-		print "TEMP = " + str(dayTemp) + "  ;  " + str(nightTemp)
+		print "TEMP (day;night) = " + str(dayTemp) + "  ;  " + str(nightTemp)
 		if (isDayMode == True and temp + threshold <= dayTemp) or (isDayMode == False and temp + threshold <= nightTemp):
 			#turn on heater
 			url = config.getSwitchURL("HeaterOn")
