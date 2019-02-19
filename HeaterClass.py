@@ -16,12 +16,22 @@ class HeaterParam(object):
 	self.date = datetime.now().strftime('%H:%M %d/%m/%y')
 
 class HeaterClass(object):
-    __lastState = -1
-    __dayMode = False
+    # static data
     __data = []
+    # State defines
     __StateOn      =  1
     __StateOff     =  0
     __StateUnknown = -1
+    # Stored data buffer size - data to generate charts
+    __maxDataBuffer = 50000
+    # How offent data should be stored in buffer (more offten means shorter period displayed on chart)
+    __storeDataInterval = 10
+    # How many data should be used to generate 'WorkHeatChart' (every __lineChartInterval sample will be used) - more data means that chart will be generated slower
+    __lineChartInterval = 24
+    # todo: move to private no-static data - first change HccDemonClas to use HeaterClass as a one time declare class (now is used as local variable)
+    __storeDataCounter = 0
+    __lastState = -1
+    __dayMode = False
 
     def __init__(self):
 	pass
@@ -71,6 +81,7 @@ class HeaterClass(object):
 			#if mode has changed set heater state as 'unknown'(-1)
 			HeaterClass.__lastState = HeaterClass.__StateUnknown
 
+		HeaterClass.__storeDataCounter = HeaterClass.__storeDataCounter + 1
 		HeaterClass.__dayMode = isDayMode
 
 		print "________State = " + str(HeaterClass.__lastState)
@@ -106,10 +117,12 @@ class HeaterClass(object):
 			threadTask.start()
 			threadTask.suspend()
 
-		weatherData = weather.getCurrentWeather()
-		HeaterClass.__data.append(HeaterParam(temp, weatherData['temp'], HeaterClass.__lastState, isDayMode))
-		if (len(HeaterClass.__data) > 50000):
-		    HeaterClass.__data.pop(0)
+		# store data once per defined invokes (currently it means once per 10min) - not need so many data
+		if HeaterClass.__storeDataCounter % HeaterClass.__storeDataInterval == 0:
+		    weatherData = weather.getCurrentWeather()
+		    HeaterClass.__data.append(HeaterParam(temp, weatherData['temp'], HeaterClass.__lastState, isDayMode))
+		    if (len(HeaterClass.__data) > HeaterClass.__maxDataBuffer):
+			HeaterClass.__data.pop(0)
 
     def getPercentHeatWorkChart(self):
 	nightItem = 0
@@ -180,7 +193,7 @@ class HeaterClass(object):
 	})
 
 	for item in HeaterClass.__data:
-	    if counter % 24 == 0:
+	    if counter % HeaterClass.__lineChartInterval == 0:
 		jsonData['rows'].append({'c':[ {'v':item.date,'f':item.date}, {'v':item.tempInside,'f':str(item.tempInside)}, {'v':item.tempOutside,'f':str(item.tempOutside)}]  })
 	    counter = counter + 1
 

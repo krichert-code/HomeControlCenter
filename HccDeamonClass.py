@@ -109,14 +109,14 @@ class Calendar:
 class Heater:
 	def __init__(self):
 	    self.__counter = 0
+	    self.__heater = HeaterClass.HeaterClass()
 
 	def timeEvent(self):
-	    # manage heater state once per 10 min
-	    if (self.__counter % (60 * 10) == 0):
-		heater = HeaterClass.HeaterClass()
+	    # manage heater state once per 60 sec
+	    if (self.__counter % 60  == 0):
 		curr_week_day = datetime.datetime.today().weekday()
 		curr_hour = int(datetime.datetime.now().strftime('%H'))
-		heater.manageHeaterState(curr_week_day, curr_hour)
+		self.__heater.manageHeaterState(curr_week_day, curr_hour)
 	    self.__counter = self.__counter + 1
 	    
 	    
