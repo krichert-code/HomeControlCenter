@@ -20,3 +20,14 @@
       1.cd /HomeControlCenter && python hcc.py &
       2.start-stop-daemon -b -S --chdir /HomeControlCenter -x hcc.py
 
+
+TODO list:
+1. czujnik szamba
+2. settings
+3. zraszacze raportuja status jak piec
+4. radio zamien na player (nazwa klasy i pliku)
+5. rozklad jazdy pkm dodaj tez regionalne
+6. wysylanie zdarzen przez sms
+7. wspolpraca z alarmem
+8. kamera 
+9. oddzielna klasa dla info 
