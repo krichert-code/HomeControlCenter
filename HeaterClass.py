@@ -18,6 +18,8 @@ class HeaterParam(object):
 class HeaterClass(object):
     # static data
     __data = []
+    __dayMode = False
+    __lastState = -1
     # State defines
     __StateOn      =  1
     __StateOff     =  0
@@ -31,10 +33,6 @@ class HeaterClass(object):
 
     def __init__(self):
 	self.__storeDataCounter = 0
-	self.__lastState = -1
-	self.__dayMode = False
-
-
 
     def __getTemperatureFromDevice(self):
 	config = ConfigClass.ConfigClass()
@@ -80,7 +78,7 @@ class HeaterClass(object):
 			#if mode has changed set heater state as 'unknown'(-1)
 			HeaterClass.__lastState = HeaterClass.__StateUnknown
 
-		HeaterClass.__storeDataCounter = HeaterClass.__storeDataCounter + 1
+		self.__storeDataCounter = self.__storeDataCounter + 1
 		HeaterClass.__dayMode = isDayMode
 
 		print "________State = " + str(HeaterClass.__lastState)
@@ -97,7 +95,7 @@ class HeaterClass(object):
 				val = nightTemp + threshold
 				desc = "Piec w trybie nocnym ["+ str(val) +"]"
 			status = "set"
-			if HeaterClass.__lastState == HeaterClass.__StateOff or HeaterClass.__StateUnknown:
+			if HeaterClass.__lastState == HeaterClass.__StateOff or HeaterClass.__lastState == HeaterClass.__StateUnknown:
 				threadTask = ActionThread.ActionThread()
 			HeaterClass.__lastState = HeaterClass.__StateOn
 		elif (isDayMode == True and temp >= dayTemp + threshold) or (isDayMode == False and temp >= nightTemp + threshold) or (HeaterClass.__lastState == HeaterClass.__StateUnknown):
@@ -117,7 +115,7 @@ class HeaterClass(object):
 			threadTask.suspend()
 
 		# store data once per defined invokes (currently it means once per 10min) - not need so many data
-		if HeaterClass.__storeDataCounter % HeaterClass.__storeDataInterval == 0:
+		if self.__storeDataCounter % HeaterClass.__storeDataInterval == 0:
 		    weatherData = weather.getCurrentWeather()
 		    HeaterClass.__data.append(HeaterParam(temp, weatherData['temp'], HeaterClass.__lastState, isDayMode))
 		    if (len(HeaterClass.__data) > HeaterClass.__maxDataBuffer):
