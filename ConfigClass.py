@@ -1,6 +1,47 @@
 from xml.dom import minidom
 import EventClass
 
+class SettingElementClass(object):
+    def __init__(self,name, title, type, choice, value):
+	xml = ""
+	self.name = name
+	self.title = title
+	self.type = type
+	self.value = value
+	self.choice = choice
+
+	if type=="text":
+	    doc = minidom.Document()
+	    element = doc.createElement('input')
+	    element.setAttribute("name", name)
+	    element.setAttribute("type", "text")
+	    element.setAttribute("value", value)
+	    doc.appendChild(element)
+	    
+	if type=="select":
+	    doc = minidom.Document()
+	    select = doc.createElement('select')
+	    while len(choice) > 0:
+		idx = choice.find(";")
+		idx_desc = choice.find(",")
+		if idx_desc == -1:
+		    idx_desc=len(choice)
+		choice_element = choice[:idx]
+		choice_desc = choice[idx+1:idx_desc]
+		choice = choice[idx_desc+1:]
+		option = doc.createElement('option')
+		option.setAttribute("value", choice_element)
+		option.appendChild(doc.createTextNode(choice_desc))
+		select.appendChild(option)
+	    doc.appendChild(select)
+	    
+	xml = doc.toxml()
+	self.xml = xml[xml.find("?>")+2:]
+
+
+
+
+
 
 class ConfigClass(object):
     __xmldoc = None
@@ -112,6 +153,40 @@ class ConfigClass(object):
 	else:
 	    return False
 #-------------------------- Heater settings -----------------------------
+
+#---------------------------Settings method -----------------------------
+    def getSettingsData(self, pageId):
+	data = {}
+	#pageId = 0 ; alarm
+	#pageId = 1 ; heater
+	#pageId = 2 ; sprinkler
+	#pageId = 3 ; calendars
+	#pageId = 4 ; player
+	#pageId = 5 ; weather
+	#pageId = 6 ; switch (port/address)
+	#pageId = 7 ; passwords
+
+	icons_img  = ['alarm.png','piec.png', 'garden.png', 'calendar.png', 'mp3.png', 'weather.png', 'switch.png', 'gate.png']
+	icons_size = [30, 30, 30, 30, 30, 30, 30, 30]
+	elements   = []
+
+	if pageId==0:
+	    nodes = ['start_time', 'stop_time', 'radio', 'day_policy' ,'volume']
+
+	icons_size[pageId] = 60
+        for node_name in nodes:
+	    node = ConfigClass.__xmldoc.getElementsByTagName('alarm')[0].getElementsByTagName(node_name)[0]
+	    elements.append(SettingElementClass(node_name, node.getAttribute('title'), node.getAttribute('type'), node.getAttribute('choice'), node.getAttribute('value')) )
+
+	data['icon_img']  = icons_img
+	data['icon_size'] = icons_size
+	data['elements']  = elements
+
+	return data
+
+
+
+#---------------------------Settings method -----------------------------
 
     def getMp3Directory(self):
 	return ConfigClass.__xmldoc.getElementsByTagName('radio')[0].getAttribute('mp3_directory')

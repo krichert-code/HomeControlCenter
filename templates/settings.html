@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<br>
+
+
+<table align="center" border="0" width="80%">
+
+<tr>
+	<td>
+    	<div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/home.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('content', 'menu')"/>
+	</td>
+</tr>
+<br><br>
+<tr>
+{% for item in elements['icon_img'] %}
+	<td>
+    	    <div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/' + item ) }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('content', 'menu')"/>
+	</td>
+{% endfor %}
+</tr>
+
+<tr>
+{% for item in elements['elements'] %}
+<tr>
+	<td>
+	    <div> {{ item.title }} </div>
+	</td>
+	<td>
+	    {{ item.xml|safe }}
+	</td>
+</tr>
+{% endfor %}
+
+
+</table>
+<br>
+
+</body>

@@ -92,11 +92,6 @@ def heater(actionName=""):
 		return heater.getStateHeatWorkChart()
 
 
-@app.route("/heater2", methods=['GET', 'POST'])	
-def heater2(actionName=""):
-	if (isAuthNeed() == False):
-	    return render_template('j1.json')
-
 @app.route("/sprinkler", methods=['GET', 'POST'])	
 @app.route("/sprinkler/<actionName>", methods=['GET', 'POST'])
 def sprinkler(actionName=""):
@@ -140,6 +135,13 @@ def mp3(actionName=""):
 		    mp3File = radio.getCurrentDirectory()
 		action = ActionClass.ActionClass()
 		return render_template('events.html', events = action.getEventsData(actionName, mp3File, action.ActionEventRadio))
+
+@app.route("/settings")
+@app.route("/settings/<pageId>")
+def settings(pageId=0):
+	if (isAuthNeed() == False):
+	    config = ConfigClass.ConfigClass()
+	    return render_template('settings.html', elements = config.getSettingsData(pageId))
 
 @app.route("/train_schedule")
 @app.route("/train_schedule/<direction>")
