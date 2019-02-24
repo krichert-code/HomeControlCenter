@@ -156,9 +156,18 @@ class ConfigClass(object):
 #-------------------------- Heater settings -----------------------------
 
 #---------------------------Settings method -----------------------------
+    def getSettingPage(self, pageId):
+	settings = ['alarm', 'heater', 'sprinkler', 'calendars', 'player', 'weather', 'switch','password']
+	return settings[pageId]
+
+    def getSettingNodes(self, pageId):
+	nodes = ['start_time', 'stop_time', 'radio', 'day_policy' ,'volume']
+	return nodes
+
+
     def saveSettingsData(self, pageId, data):
 	for key, value in data.iteritems():
-	    item = ConfigClass.__xmldoc.getElementsByTagName('alarm')[0].getElementsByTagName(key)[0]
+	    item = ConfigClass.__xmldoc.getElementsByTagName(self.getSettingPage(pageId))[0].getElementsByTagName(key)[0]
 	    item.setAttribute("value", value)
 	ConfigClass.__xmldoc.writexml( open('data/config.xml', 'w'))
 
@@ -177,12 +186,9 @@ class ConfigClass(object):
 	icons_size = [30, 30, 30, 30, 30, 30, 30, 30]
 	elements   = []
 
-	if pageId==0:
-	    nodes = ['start_time', 'stop_time', 'radio', 'day_policy' ,'volume']
-
 	icons_size[pageId] = 60
-        for node_name in nodes:
-	    node = ConfigClass.__xmldoc.getElementsByTagName('alarm')[0].getElementsByTagName(node_name)[0]
+        for node_name in self.getSettingNodes(pageId):
+	    node = ConfigClass.__xmldoc.getElementsByTagName(self.getSettingPage(pageId))[0].getElementsByTagName(node_name)[0]
 	    elements.append(SettingElementClass(node_name, node.getAttribute('title'), node.getAttribute('type'), node.getAttribute('choice'), node.getAttribute('value')) )
 
 	data['icon_img']  = icons_img

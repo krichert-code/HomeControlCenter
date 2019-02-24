@@ -15,30 +15,30 @@
 				<metric>4</metric>
 			</temp>
 			<dewpoint>
-				<english>29.7</english>
-				<metric>-1</metric>
+				<english>28.5</english>
+				<metric>-2</metric>
 			</dewpoint>
-			<condition>Partly Cloudy</condition>
+			<condition>Clear</condition>
 			
 			
-			<icon>partlycloudy</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_partlycloudy.gif</icon_url>
-			<fctcode>2</fctcode>
-			<sky>42</sky>
+			<icon>clear</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_clear.gif</icon_url>
+			<fctcode>1</fctcode>
+			<sky>20</sky>
 			<wspd>
-				<english>10</english>
-				<metric>16</metric>
+				<english>12</english>
+				<metric>19</metric>
 			</wspd>
 			<wdir>
 				<dir>WNW</dir>
 				<degrees>296</degrees>
 			</wdir>
-			<wx>Partly Cloudy</wx>
+			<wx>Mostly Clear</wx>
 			<uvi>0</uvi>
-			<humidity>70</humidity>
+			<humidity>67</humidity>
 			<windchill>
-				<english>33</english>
-				<metric>0</metric>
+				<english>32</english>
+				<metric>-0</metric>
 			</windchill>
 			<heatindex>
 				<english>-9999</english>
@@ -46,8 +46,8 @@
 			</heatindex>
 			
 				<feelslike>
-					<english>33</english>
-					<metric>0</metric>
+					<english>32</english>
+					<metric>-0</metric>
 				</feelslike>
 			
 			<qpf>
@@ -76,8 +76,8 @@
 				<metric>3</metric>
 			</temp>
 			<dewpoint>
-				<english>31.5</english>
-				<metric>-0</metric>
+				<english>30.5</english>
+				<metric>-1</metric>
 			</dewpoint>
 			<condition>Partly Cloudy</condition>
 			
@@ -85,10 +85,10 @@
 			<icon>partlycloudy</icon>
 			<icon_url>http://icons.wxug.com/i/c/k/nt_partlycloudy.gif</icon_url>
 			<fctcode>2</fctcode>
-			<sky>50</sky>
+			<sky>31</sky>
 			<wspd>
-				<english>10</english>
-				<metric>16</metric>
+				<english>11</english>
+				<metric>18</metric>
 			</wspd>
 			<wdir>
 				<dir>WNW</dir>
@@ -96,7 +96,7 @@
 			</wdir>
 			<wx>Partly Cloudy</wx>
 			<uvi>0</uvi>
-			<humidity>76</humidity>
+			<humidity>73</humidity>
 			<windchill>
 				<english>30</english>
 				<metric>-1</metric>
@@ -137,8 +137,8 @@
 				<metric>3</metric>
 			</temp>
 			<dewpoint>
-				<english>32.6</english>
-				<metric>0</metric>
+				<english>31.8</english>
+				<metric>-0</metric>
 			</dewpoint>
 			<condition>Fog</condition>
 			
@@ -146,10 +146,10 @@
 			<icon>fog</icon>
 			<icon_url>http://icons.wxug.com/i/c/k/nt_fog.gif</icon_url>
 			<fctcode>6</fctcode>
-			<sky>55</sky>
+			<sky>40</sky>
 			<wspd>
-				<english>8</english>
-				<metric>13</metric>
+				<english>10</english>
+				<metric>16</metric>
 			</wspd>
 			<wdir>
 				<dir>WNW</dir>
@@ -157,10 +157,10 @@
 			</wdir>
 			<wx>Foggy</wx>
 			<uvi>0</uvi>
-			<humidity>82</humidity>
+			<humidity>79</humidity>
 			<windchill>
-				<english>31</english>
-				<metric>-0</metric>
+				<english>30</english>
+				<metric>-1</metric>
 			</windchill>
 			<heatindex>
 				<english>-9999</english>
@@ -168,8 +168,8 @@
 			</heatindex>
 			
 				<feelslike>
-					<english>31</english>
-					<metric>-0</metric>
+					<english>30</english>
+					<metric>-1</metric>
 				</feelslike>
 			
 			<qpf>
@@ -302,7 +302,7 @@
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>4</pop>
+			<pop>5</pop>
 			<mslp>
 				<english>30.48</english>
 				<metric>1032</metric>
@@ -397,7 +397,7 @@
 			</wspd>
 			<wdir>
 				<dir>WNW</dir>
-				<degrees>296</degrees>
+				<degrees>297</degrees>
 			</wdir>
 			<wx>Foggy</wx>
 			<uvi>0</uvi>
@@ -424,7 +424,7 @@
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>8</pop>
+			<pop>10</pop>
 			<mslp>
 				<english>30.48</english>
 				<metric>1032</metric>
@@ -2199,8 +2199,6 @@
 				<metric>1027</metric>
 			</mslp>
 		</forecast>
-		
-	
 		
 	
 		
