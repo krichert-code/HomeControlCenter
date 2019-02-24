@@ -32,3 +32,4 @@ TODO list:
 8. kamera 
 9. oddzielna klasa dla info 
 11. Tryb autopodlewania (wykrywanie deszczu i zalaczanie zraszaczy wg konfiguracji)
+12. usunac strone 'auth' - wykrywanie autoryzacji w '/'

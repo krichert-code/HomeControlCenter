@@ -4,7 +4,6 @@
 
 <br>
 
-
 <table align="center" border="0" width="80%">
 
 <tr>
@@ -33,8 +32,12 @@
 </tr>
 {% endfor %}
 
+<tr>
+    <td>
+	<input style="font-size: 20px" type="button" value="Zapisz" onClick="sendPostForm('/settings/'+ {{ page }});"/>
+    </td>
+</tr>
 
 </table>
-<br>
 
 </body>

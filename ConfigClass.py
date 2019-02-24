@@ -16,6 +16,7 @@ class SettingElementClass(object):
 	    element.setAttribute("name", name)
 	    element.setAttribute("type", "text")
 	    element.setAttribute("value", value)
+	    element.setAttribute("class", "form")
 	    doc.appendChild(element)
 	    
 	if type=="select":
@@ -155,6 +156,12 @@ class ConfigClass(object):
 #-------------------------- Heater settings -----------------------------
 
 #---------------------------Settings method -----------------------------
+    def saveSettingsData(self, pageId, data):
+	for key, value in data.iteritems():
+	    item = ConfigClass.__xmldoc.getElementsByTagName('alarm')[0].getElementsByTagName(key)[0]
+	    item.setAttribute("value", value)
+	ConfigClass.__xmldoc.writexml( open('data/config.xml', 'w'))
+
     def getSettingsData(self, pageId):
 	data = {}
 	#pageId = 0 ; alarm

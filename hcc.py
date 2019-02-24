@@ -136,12 +136,14 @@ def mp3(actionName=""):
 		action = ActionClass.ActionClass()
 		return render_template('events.html', events = action.getEventsData(actionName, mp3File, action.ActionEventRadio))
 
-@app.route("/settings")
-@app.route("/settings/<pageId>")
+@app.route("/settings", methods=['GET', 'POST'])
+@app.route("/settings/<pageId>", methods=['GET', 'POST'])
 def settings(pageId=0):
 	if (isAuthNeed() == False):
 	    config = ConfigClass.ConfigClass()
-	    return render_template('settings.html', elements = config.getSettingsData(pageId))
+	    if request.content_length > 0:
+		config.saveSettingsData(int(pageId), request.form)
+	    return render_template('settings.html', page = pageId,  elements = config.getSettingsData(int(pageId)))
 
 @app.route("/train_schedule")
 @app.route("/train_schedule/<direction>")

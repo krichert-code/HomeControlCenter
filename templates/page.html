@@ -90,6 +90,38 @@ function clearCallback()
 	document.getElementById('bufforInformation').style.display = 'block';
 }
 
+function sendPostForm(page)
+{
+	var xmlhttp;
+	var formData = new FormData();
+	var formElements = document.getElementsByClassName('form');
+
+	if (window.XMLHttpRequest)
+	{
+	  //code for IE7+, Firefox, Chrome, Opera, Safari
+	  xmlhttp=new XMLHttpRequest();
+        }
+	else
+	{
+  		alert("Your browser does not support XMLHTTP!");
+	}
+	xmlhttp.onreadystatechange=function()
+	{
+    	 if(xmlhttp.readyState==4 && xmlhttp.status == 200)
+    	 {
+		alert("Ustawienia zapisane");
+    		document.getElementById(id).innerHTML=xmlhttp.responseText;
+	    }
+	}
+
+	for (var i=0; i < formElements.length; i ++)
+	{
+	    formData.append(formElements[i].getAttribute("name"), formElements[i].value);
+	}
+	xmlhttp.open("POST",page,true);
+	xmlhttp.send(formData);
+}
+
 function updateContent(id, page, bufferMsg = false)
 {
 	var xmlhttp;
