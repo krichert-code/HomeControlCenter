@@ -95,6 +95,7 @@ function sendPostForm(page)
 	var xmlhttp;
 	var formData = new FormData();
 	var formElements = document.getElementsByClassName('form');
+	var value = NaN;
 
 	if (window.XMLHttpRequest)
 	{
@@ -116,6 +117,15 @@ function sendPostForm(page)
 
 	for (var i=0; i < formElements.length; i ++)
 	{
+	    if (formElements[i].nodeName == "SELECT")
+	    {
+		value = formElements[i].options[formElements[i].selectedIndex].value;
+	    }
+	    else
+	    {
+		value = formElements[i].value;
+	    }
+
 	    formData.append(formElements[i].getAttribute("name"), formElements[i].value);
 	}
 	xmlhttp.open("POST",page,true);

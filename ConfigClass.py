@@ -22,6 +22,8 @@ class SettingElementClass(object):
 	if type=="select":
 	    doc = minidom.Document()
 	    select = doc.createElement('select')
+	    select.setAttribute("class", "form")
+	    select.setAttribute("name", name)
 	    while len(choice) > 0:
 		idx = choice.find(";")
 		idx_desc = choice.find(",")
@@ -32,6 +34,8 @@ class SettingElementClass(object):
 		choice = choice[idx_desc+1:]
 		option = doc.createElement('option')
 		option.setAttribute("value", choice_element)
+		if (value == choice_element):
+		    option.setAttribute("selected", "selected")
 		option.appendChild(doc.createTextNode(choice_desc))
 		select.appendChild(option)
 	    doc.appendChild(select)
@@ -46,7 +50,6 @@ class SettingElementClass(object):
 
 class ConfigClass(object):
     __xmldoc = None
-    
     
     def __init__(self):
         self.iterator = 0
