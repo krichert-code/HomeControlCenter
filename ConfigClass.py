@@ -184,14 +184,25 @@ class ConfigClass(object):
 	#pageId = 5 ; weather
 	#pageId = 6 ; switch (port/address)
 	#pageId = 7 ; passwords
+	#data1 = {}
+	data1['settings'] = ['alarm', 'heater']
+	data1['element']['alarm']['icon'] = 'alarm.png'
+	data1['element']['alarm']['nodes'] = ['start_time', 'stop_time', 'radio', 'day_policy' ,'volume']
+	data1['element']['alarm']['icon_size'] = 30
+	data1['element']['heater']['icon'] = 'heater.png'
+	data1['element']['heater']['nodes'] = ['start_time', 'stop_time', 'radio', 'day_policy' ,'volume']
+	data1['element']['heater']['icon_size'] = 30
 
 	icons_img  = ['alarm.png','piec.png', 'garden.png', 'calendar.png', 'mp3.png', 'weather.png', 'switch.png', 'gate.png']
-	icons_size = [30, 30, 30, 30, 30, 30, 30, 30]
+	icons_size = [20, 20, 20, 20, 20, 20, 20, 20]
 	elements   = []
 
-	icons_size[pageId] = 60
-        for node_name in self.getSettingNodes(pageId):
-	    node = ConfigClass.__xmldoc.getElementsByTagName(self.getSettingPage(pageId))[0].getElementsByTagName(node_name)[0]
+	icons_size[pageId] = 30
+        for node_name in data1['settings']:
+	    #self.getSettingNodes(pageId):
+	    #node = ConfigClass.__xmldoc.getElementsByTagName(self.getSettingPage(pageId))[0].getElementsByTagName(node_name)[0]
+	    #elements.append(SettingElementClass(node_name, node.getAttribute('title'), node.getAttribute('type'), node.getAttribute('choice'), node.getAttribute('value')) )
+	    node = ConfigClass.__xmldoc.getElementsByTagName(data1['settings'][pageId])[0].getElementsByTagName(node_name)[0]
 	    elements.append(SettingElementClass(node_name, node.getAttribute('title'), node.getAttribute('type'), node.getAttribute('choice'), node.getAttribute('value')) )
 
 	data['icon_img']  = icons_img

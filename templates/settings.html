@@ -11,33 +11,35 @@
     	<div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/home.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('content', 'menu')"/>
 	</td>
 </tr>
-<br><br>
+
 <tr>
 {% for item in elements['icon_img'] %}
 	<td>
-    	    <div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/' + item ) }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('content', 'menu')"/>
+    	    <div style="height:30px;width:30px;background-image:url({{ url_for('static', filename = 'img/' + item ) }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('content', 'menu')"/>
 	</td>
 {% endfor %}
 </tr>
+</table>
 
-<tr>
+<hr width="80%">
+<br>
+
+<table align="center" border="0" width="80%">
 {% for item in elements['elements'] %}
 <tr>
 	<td>
-	    <div> {{ item.title }} </div>
+	    <div class="title"> {{ item.title }} </div>
 	</td>
 	<td>
 	    {{ item.xml|safe }}
 	</td>
 </tr>
 {% endfor %}
-
-<tr>
-    <td>
-	<input style="font-size: 20px" type="button" value="Zapisz" onClick="sendPostForm('/settings/'+ {{ page }});"/>
-    </td>
-</tr>
-
 </table>
 
+<hr width="80%">
+<br>
+<input style="font-size: 20px" type="button" value="Zapisz" onClick="sendPostForm('/settings/'+ {{ page }});"/>
+<br>
+<br>
 </body>
