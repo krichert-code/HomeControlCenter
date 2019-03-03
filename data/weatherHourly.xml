@@ -11,34 +11,34 @@
 		<hour>18</hour><hour_padded>18</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>3</mon><mon_padded>03</mon_padded><mon_abbrev>Mar</mon_abbrev><mday>3</mday><mday_padded>03</mday_padded><yday>61</yday><isdst>0</isdst><epoch>1551632400</epoch><pretty>6:00 PM CET on March 03, 2019</pretty><civil>6:00 PM</civil><month_name>March</month_name><month_name_abbrev>Mar</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
-				<english>44.6</english>
-				<metric>7</metric>
+				<english>46.3</english>
+				<metric>8</metric>
 			</temp>
 			<dewpoint>
-				<english>42.2</english>
+				<english>42.8</english>
 				<metric>6</metric>
 			</dewpoint>
-			<condition>Overcast</condition>
+			<condition>Mostly Cloudy</condition>
 			
 			
-			<icon>cloudy</icon>
-			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
-			<fctcode>4</fctcode>
-			<sky>82</sky>
+			<icon>mostlycloudy</icon>
+			<icon_url>http://icons.wxug.com/i/c/k/nt_mostlycloudy.gif</icon_url>
+			<fctcode>3</fctcode>
+			<sky>75</sky>
 			<wspd>
-				<english>13</english>
-				<metric>21</metric>
+				<english>11</english>
+				<metric>18</metric>
 			</wspd>
 			<wdir>
 				<dir>W</dir>
 				<degrees>260</degrees>
 			</wdir>
-			<wx>Cloudy</wx>
+			<wx>Mostly Cloudy</wx>
 			<uvi>0</uvi>
-			<humidity>91</humidity>
+			<humidity>88</humidity>
 			<windchill>
-				<english>38</english>
-				<metric>4</metric>
+				<english>41</english>
+				<metric>5</metric>
 			</windchill>
 			<heatindex>
 				<english>-9999</english>
@@ -46,8 +46,8 @@
 			</heatindex>
 			
 				<feelslike>
-					<english>38</english>
-					<metric>4</metric>
+					<english>41</english>
+					<metric>5</metric>
 				</feelslike>
 			
 			<qpf>
@@ -58,7 +58,7 @@
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>14</pop>
+			<pop>18</pop>
 			<mslp>
 				<english>29.49</english>
 				<metric>999</metric>
@@ -72,11 +72,11 @@
 				<hour>19</hour><hour_padded>19</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>3</mon><mon_padded>03</mon_padded><mon_abbrev>Mar</mon_abbrev><mday>3</mday><mday_padded>03</mday_padded><yday>61</yday><isdst>0</isdst><epoch>1551636000</epoch><pretty>7:00 PM CET on March 03, 2019</pretty><civil>7:00 PM</civil><month_name>March</month_name><month_name_abbrev>Mar</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
-				<english>44.4</english>
-				<metric>7</metric>
+				<english>45.8</english>
+				<metric>8</metric>
 			</temp>
 			<dewpoint>
-				<english>41.9</english>
+				<english>42.4</english>
 				<metric>6</metric>
 			</dewpoint>
 			<condition>Overcast</condition>
@@ -85,10 +85,10 @@
 			<icon>cloudy</icon>
 			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
 			<fctcode>4</fctcode>
-			<sky>84</sky>
+			<sky>80</sky>
 			<wspd>
-				<english>12</english>
-				<metric>19</metric>
+				<english>11</english>
+				<metric>18</metric>
 			</wspd>
 			<wdir>
 				<dir>W</dir>
@@ -96,10 +96,10 @@
 			</wdir>
 			<wx>Cloudy</wx>
 			<uvi>0</uvi>
-			<humidity>91</humidity>
+			<humidity>88</humidity>
 			<windchill>
-				<english>39</english>
-				<metric>4</metric>
+				<english>41</english>
+				<metric>5</metric>
 			</windchill>
 			<heatindex>
 				<english>-9999</english>
@@ -107,8 +107,8 @@
 			</heatindex>
 			
 				<feelslike>
-					<english>39</english>
-					<metric>4</metric>
+					<english>41</english>
+					<metric>5</metric>
 				</feelslike>
 			
 			<qpf>
@@ -133,12 +133,12 @@
 				<hour>20</hour><hour_padded>20</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>3</mon><mon_padded>03</mon_padded><mon_abbrev>Mar</mon_abbrev><mday>3</mday><mday_padded>03</mday_padded><yday>61</yday><isdst>0</isdst><epoch>1551639600</epoch><pretty>8:00 PM CET on March 03, 2019</pretty><civil>8:00 PM</civil><month_name>March</month_name><month_name_abbrev>Mar</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
-				<english>44.2</english>
+				<english>45.3</english>
 				<metric>7</metric>
 			</temp>
 			<dewpoint>
-				<english>41.7</english>
-				<metric>5</metric>
+				<english>42.2</english>
+				<metric>6</metric>
 			</dewpoint>
 			<condition>Overcast</condition>
 			
@@ -146,10 +146,10 @@
 			<icon>cloudy</icon>
 			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
 			<fctcode>4</fctcode>
-			<sky>86</sky>
+			<sky>81</sky>
 			<wspd>
-				<english>10</english>
-				<metric>16</metric>
+				<english>9</english>
+				<metric>14</metric>
 			</wspd>
 			<wdir>
 				<dir>W</dir>
@@ -157,9 +157,9 @@
 			</wdir>
 			<wx>Cloudy</wx>
 			<uvi>0</uvi>
-			<humidity>91</humidity>
+			<humidity>89</humidity>
 			<windchill>
-				<english>39</english>
+				<english>40</english>
 				<metric>4</metric>
 			</windchill>
 			<heatindex>
@@ -168,7 +168,7 @@
 			</heatindex>
 			
 				<feelslike>
-					<english>39</english>
+					<english>40</english>
 					<metric>4</metric>
 				</feelslike>
 			
@@ -180,7 +180,7 @@
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>4</pop>
+			<pop>3</pop>
 			<mslp>
 				<english>29.5</english>
 				<metric>999</metric>
@@ -194,11 +194,11 @@
 				<hour>21</hour><hour_padded>21</hour_padded><min>00</min><min_unpadded>0</min_unpadded><sec>0</sec><year>2019</year><mon>3</mon><mon_padded>03</mon_padded><mon_abbrev>Mar</mon_abbrev><mday>3</mday><mday_padded>03</mday_padded><yday>61</yday><isdst>0</isdst><epoch>1551643200</epoch><pretty>9:00 PM CET on March 03, 2019</pretty><civil>9:00 PM</civil><month_name>March</month_name><month_name_abbrev>Mar</month_name_abbrev><weekday_name>Sunday</weekday_name><weekday_name_night>Sunday Night</weekday_name_night><weekday_name_abbrev>Sun</weekday_name_abbrev><weekday_name_unlang>Sunday</weekday_name_unlang><weekday_name_night_unlang>Sunday Night</weekday_name_night_unlang><ampm>PM</ampm><tz></tz><age></age><UTCDATE></UTCDATE>
 			</FCTTIME>
 			<temp>
-				<english>44.2</english>
+				<english>44.7</english>
 				<metric>7</metric>
 			</temp>
 			<dewpoint>
-				<english>40.8</english>
+				<english>41.8</english>
 				<metric>5</metric>
 			</dewpoint>
 			<condition>Overcast</condition>
@@ -207,10 +207,10 @@
 			<icon>cloudy</icon>
 			<icon_url>http://icons.wxug.com/i/c/k/nt_cloudy.gif</icon_url>
 			<fctcode>4</fctcode>
-			<sky>96</sky>
+			<sky>82</sky>
 			<wspd>
-				<english>11</english>
-				<metric>18</metric>
+				<english>9</english>
+				<metric>14</metric>
 			</wspd>
 			<wdir>
 				<dir>W</dir>
@@ -218,9 +218,9 @@
 			</wdir>
 			<wx>Cloudy</wx>
 			<uvi>0</uvi>
-			<humidity>88</humidity>
+			<humidity>90</humidity>
 			<windchill>
-				<english>39</english>
+				<english>40</english>
 				<metric>4</metric>
 			</windchill>
 			<heatindex>
@@ -229,7 +229,7 @@
 			</heatindex>
 			
 				<feelslike>
-					<english>39</english>
+					<english>40</english>
 					<metric>4</metric>
 				</feelslike>
 			
@@ -302,7 +302,7 @@
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>24</pop>
+			<pop>18</pop>
 			<mslp>
 				<english>29.5</english>
 				<metric>999</metric>
@@ -329,7 +329,7 @@
 			<icon>chancerain</icon>
 			<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
 			<fctcode>12</fctcode>
-			<sky>98</sky>
+			<sky>97</sky>
 			<wspd>
 				<english>9</english>
 				<metric>14</metric>
@@ -363,7 +363,7 @@
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>50</pop>
+			<pop>49</pop>
 			<mslp>
 				<english>29.49</english>
 				<metric>999</metric>
@@ -424,7 +424,7 @@
 				<english>0.0</english>
 				<metric>0</metric>
 			</snow>
-			<pop>59</pop>
+			<pop>58</pop>
 			<mslp>
 				<english>29.48</english>
 				<metric>998</metric>

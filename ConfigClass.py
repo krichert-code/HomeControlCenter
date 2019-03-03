@@ -12,12 +12,12 @@ class SettingElementClass(object):
 	self.value = value
 	self.param = param
 
-	if type=="text" or type=="text_md5":
+	if type=="text":
 	    doc = minidom.Document()
 	    element = doc.createElement('input')
 	    element.setAttribute("name", name)
 	    element.setAttribute("type", "text")
-	    if type=="text":
+	    if param <> "md5":
 		element.setAttribute("value", value)
 	    element.setAttribute("class", "form")
 	    doc.appendChild(element)
@@ -27,17 +27,16 @@ class SettingElementClass(object):
 	    element = doc.createElement('root')
 	    doc.appendChild(element)
 	    bits = int(value)
-	    hour = 0
-	    while hour < int(param):
+	    bit_number = 0
+	    while bit_number < int(param):
 		element = doc.createElement('input')
 		element.setAttribute("name", name)
 		element.setAttribute("type", "checkbox")
-		if bits & (1 << hour) != 0:
+		if bits & (1 << bit_number) != 0:
 		    element.setAttribute("checked", "1")
 		element.setAttribute("class", "form")
 		doc.firstChild.appendChild(element)
-		hour=hour+1
-
+		bit_number=bit_number+1
 
 	    
 	if type=="select":
@@ -224,7 +223,7 @@ class ConfigClass(object):
 	element_name,settingElement = self.__getSettingPage(pageId)
 	for key, value in data.iteritems():
 	    item = ConfigClass.__xmldoc.getElementsByTagName(element_name)[0].getElementsByTagName(key)[0]
-	    if item.getAttribute('type') == "text_md5":
+	    if item.getAttribute('param') == "md5":
 		value = hashlib.md5(value).hexdigest()
 	    item.setAttribute("value", value)
 	ConfigClass.__xmldoc.writexml( open('data/config.xml', 'w'))

@@ -38,11 +38,11 @@
 		<estimated>
 		</estimated>
 		<station_id>EPGD</station_id>
-		<observation_time>Last Updated on March 3, 5:30 PM CET</observation_time>
-		<observation_time_rfc822>Sun, 03 Mar 2019 17:30:00 +0100</observation_time_rfc822>
-		<observation_epoch>1551630600</observation_epoch>
-		<local_time_rfc822>Sun, 03 Mar 2019 17:48:43 +0100</local_time_rfc822>
-		<local_epoch>1551631723</local_epoch>
+		<observation_time>Last Updated on March 3, 6:00 PM CET</observation_time>
+		<observation_time_rfc822>Sun, 03 Mar 2019 18:00:00 +0100</observation_time_rfc822>
+		<observation_epoch>1551632400</observation_epoch>
+		<local_time_rfc822>Sun, 03 Mar 2019 18:14:50 +0100</local_time_rfc822>
+		<local_epoch>1551633290</local_epoch>
 		<local_tz_short>CET</local_tz_short>
 		<local_tz_long>Europe/Warsaw</local_tz_long>
 		<local_tz_offset>+0100</local_tz_offset>
@@ -51,12 +51,12 @@
 		<temp_f>46</temp_f>
 		<temp_c>8</temp_c>
 		<relative_humidity>87%</relative_humidity>
-		<wind_string>From the West at 12 MPH</wind_string>
+		<wind_string>From the West at 15 MPH</wind_string>
 		<wind_dir>West</wind_dir>
 		<wind_degrees>260</wind_degrees>
-		<wind_mph>12</wind_mph>
+		<wind_mph>15</wind_mph>
 		<wind_gust_mph>0</wind_gust_mph>
-		<wind_kph>18</wind_kph>
+		<wind_kph>24</wind_kph>
 		<wind_gust_kph>0</wind_gust_kph>
 		<pressure_mb>998</pressure_mb>
 		<pressure_in>29.47</pressure_in>
@@ -72,13 +72,13 @@
 		<heat_index_c>NA</heat_index_c>
 		
 		
-		<windchill_string>41 F (5 C)</windchill_string>
-		<windchill_f>41</windchill_f>
-		<windchill_c>5</windchill_c>
+		<windchill_string>40 F (4 C)</windchill_string>
+		<windchill_f>40</windchill_f>
+		<windchill_c>4</windchill_c>
 		
-        <feelslike_string>41 F (5 C)</feelslike_string>
-        <feelslike_f>41</feelslike_f>
-        <feelslike_c>5</feelslike_c>
+        <feelslike_string>40 F (4 C)</feelslike_string>
+        <feelslike_f>40</feelslike_f>
+        <feelslike_c>4</feelslike_c>
 		<visibility_mi>6.2</visibility_mi>
 		<visibility_km>10.0</visibility_km>
 		<solarradiation></solarradiation>
