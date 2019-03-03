@@ -1,37 +1,58 @@
 from xml.dom import minidom
+from collections import OrderedDict
 import EventClass
+import hashlib
 
 class SettingElementClass(object):
-    def __init__(self,name, title, type, choice, value):
+    def __init__(self,name, title, type, param, value):
 	xml = ""
 	self.name = name
 	self.title = title
 	self.type = type
 	self.value = value
-	self.choice = choice
+	self.param = param
 
-	if type=="text":
+	if type=="text" or type=="text_md5":
 	    doc = minidom.Document()
 	    element = doc.createElement('input')
 	    element.setAttribute("name", name)
 	    element.setAttribute("type", "text")
-	    element.setAttribute("value", value)
+	    if type=="text":
+		element.setAttribute("value", value)
 	    element.setAttribute("class", "form")
 	    doc.appendChild(element)
+
+	if type=="bitfield":
+	    doc = minidom.Document()
+	    element = doc.createElement('root')
+	    doc.appendChild(element)
+	    bits = int(value)
+	    hour = 0
+	    while hour < int(param):
+		element = doc.createElement('input')
+		element.setAttribute("name", name)
+		element.setAttribute("type", "checkbox")
+		if bits & (1 << hour) != 0:
+		    element.setAttribute("checked", "1")
+		element.setAttribute("class", "form")
+		doc.firstChild.appendChild(element)
+		hour=hour+1
+
+
 	    
 	if type=="select":
 	    doc = minidom.Document()
 	    select = doc.createElement('select')
 	    select.setAttribute("class", "form")
 	    select.setAttribute("name", name)
-	    while len(choice) > 0:
-		idx = choice.find(";")
-		idx_desc = choice.find(",")
+	    while len(param) > 0:
+		idx = param.find(";")
+		idx_desc = param.find(",")
 		if idx_desc == -1:
-		    idx_desc=len(choice)
-		choice_element = choice[:idx]
-		choice_desc = choice[idx+1:idx_desc]
-		choice = choice[idx_desc+1:]
+		    idx_desc=len(param)
+		choice_element = param[:idx]
+		choice_desc = param[idx+1:idx_desc]
+		param = param[idx_desc+1:]
 		option = doc.createElement('option')
 		option.setAttribute("value", choice_element)
 		if (value == choice_element):
@@ -126,7 +147,7 @@ class ConfigClass(object):
 	return ConfigClass.__xmldoc.getElementsByTagName('passwd')[0].getAttribute('localIPmask')
 
     def getmd5passwd(self):
-	return ConfigClass.__xmldoc.getElementsByTagName('passwd')[0].getAttribute('value')
+	return ConfigClass.__xmldoc.getElementsByTagName('passwd')[0].getElementsByTagName('md5')[0].getAttribute('value')
 
 #-------------------------- Heater settings -----------------------------
     def getThermMode(self):
@@ -151,7 +172,8 @@ class ConfigClass(object):
 	return ConfigClass.__xmldoc.getElementsByTagName('heater')[0].getElementsByTagName('night_temperature')[0].getAttribute('value')
 
     def isDayMode(self,dayNumber, hour):
-	hours = int(ConfigClass.__xmldoc.getElementsByTagName('heater')[0].getElementsByTagName('days')[0].getElementsByTagName('element')[dayNumber].getAttribute('hours'))
+	tag = "day"+ str(dayNumber+1)
+	hours = int(ConfigClass.__xmldoc.getElementsByTagName('heater')[0].getElementsByTagName(tag)[0].getAttribute('value'))
 	if (hours & (1 << hour) != 0):
 	    return True
 	else:
@@ -159,55 +181,62 @@ class ConfigClass(object):
 #-------------------------- Heater settings -----------------------------
 
 #---------------------------Settings method -----------------------------
-    def getSettingPage(self, pageId):
-	settings = ['alarm', 'heater', 'sprinkler', 'calendars', 'player', 'weather', 'switch','password']
-	return settings[pageId]
+    def __getSettings(self, pageId = -1):
+	settingsData = OrderedDict()
+	settingsData['alarm']     = { "id":"0", "icon":"alarm.png", "icon_size":"30", "nodes":['start_time', 'stop_time', 'radio', 'day_policy' ,'volume'] }
+	settingsData['heater']    = { "id":"1", "icon":"piec.png", "icon_size":"30", "nodes":['day_temperature', 'night_temperature', 'threshold', 'day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'day7'] }
+	settingsData['autowater'] = { "id":"2", "icon":"garden.png", "icon_size":"30", "nodes":['state','start_time', 'duration', 'rain', 'day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'day7'] }
+	settingsData['calendar'] = { "id":"3", "icon":"calendar.png", "icon_size":"30", "nodes":['range'] }
+	settingsData['passwd'] = { "id":"4", "icon":"gate.png", "icon_size":"30", "nodes":['md5'] }
 
-    def getSettingNodes(self, pageId):
-	nodes = ['start_time', 'stop_time', 'radio', 'day_policy' ,'volume']
-	return nodes
+	#change icon size for active page setting
+	for element_name in settingsData:
+	    settingElement = settingsData[element_name]
+	    if int(settingElement['id']) == pageId:
+		settingElement['icon_size'] = "60"
+		break
+
+	return settingsData
+
+    def __getSettingPage(self,pageId):
+	#find element by pageId
+	settingsData = self.__getSettings()
+	settingElement = None
+
+	for element_name in settingsData:
+	    settingElement = settingsData[element_name]
+	    if int(settingElement['id']) == pageId:
+		break;
+	return element_name, settingElement
+
+    def __getSettingElements(self,pageId):
+	elements = []
+	element_name,settingElement = self.__getSettingPage(pageId)
+	if settingElement <> None:
+	    for node_name in settingElement['nodes']:
+		node = ConfigClass.__xmldoc.getElementsByTagName(element_name)[0].getElementsByTagName(node_name)[0]
+		elements.append(SettingElementClass(node_name, node.getAttribute('title'), node.getAttribute('type'), node.getAttribute('param'), node.getAttribute('value') ))
+	return elements
+
 
 
     def saveSettingsData(self, pageId, data):
+	element_name,settingElement = self.__getSettingPage(pageId)
 	for key, value in data.iteritems():
-	    item = ConfigClass.__xmldoc.getElementsByTagName(self.getSettingPage(pageId))[0].getElementsByTagName(key)[0]
+	    item = ConfigClass.__xmldoc.getElementsByTagName(element_name)[0].getElementsByTagName(key)[0]
+	    if item.getAttribute('type') == "text_md5":
+		value = hashlib.md5(value).hexdigest()
 	    item.setAttribute("value", value)
 	ConfigClass.__xmldoc.writexml( open('data/config.xml', 'w'))
 
     def getSettingsData(self, pageId):
 	data = {}
-	#pageId = 0 ; alarm
-	#pageId = 1 ; heater
-	#pageId = 2 ; sprinkler
-	#pageId = 3 ; calendars
-	#pageId = 4 ; player
-	#pageId = 5 ; weather
-	#pageId = 6 ; switch (port/address)
-	#pageId = 7 ; passwords
-	#data1 = {}
-	data1['settings'] = ['alarm', 'heater']
-	data1['element']['alarm']['icon'] = 'alarm.png'
-	data1['element']['alarm']['nodes'] = ['start_time', 'stop_time', 'radio', 'day_policy' ,'volume']
-	data1['element']['alarm']['icon_size'] = 30
-	data1['element']['heater']['icon'] = 'heater.png'
-	data1['element']['heater']['nodes'] = ['start_time', 'stop_time', 'radio', 'day_policy' ,'volume']
-	data1['element']['heater']['icon_size'] = 30
 
-	icons_img  = ['alarm.png','piec.png', 'garden.png', 'calendar.png', 'mp3.png', 'weather.png', 'switch.png', 'gate.png']
-	icons_size = [20, 20, 20, 20, 20, 20, 20, 20]
-	elements   = []
+	settingsData = self.__getSettings(pageId)
+	elements   = self.__getSettingElements(pageId)
 
-	icons_size[pageId] = 30
-        for node_name in data1['settings']:
-	    #self.getSettingNodes(pageId):
-	    #node = ConfigClass.__xmldoc.getElementsByTagName(self.getSettingPage(pageId))[0].getElementsByTagName(node_name)[0]
-	    #elements.append(SettingElementClass(node_name, node.getAttribute('title'), node.getAttribute('type'), node.getAttribute('choice'), node.getAttribute('value')) )
-	    node = ConfigClass.__xmldoc.getElementsByTagName(data1['settings'][pageId])[0].getElementsByTagName(node_name)[0]
-	    elements.append(SettingElementClass(node_name, node.getAttribute('title'), node.getAttribute('type'), node.getAttribute('choice'), node.getAttribute('value')) )
-
-	data['icon_img']  = icons_img
-	data['icon_size'] = icons_size
-	data['elements']  = elements
+	data['settings'] = settingsData
+	data['html_elements']  = elements
 
 	return data
 

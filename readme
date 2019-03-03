@@ -23,7 +23,7 @@
 
 TODO list:
 1. czujnik szamba
-2. settings
+2. ---------------settings
 3. zraszacze raportuja status jak piec
 4. radio zamien na player (nazwa klasy i pliku)
 5. rozklad jazdy pkm dodaj tez regionalne
@@ -34,3 +34,4 @@ TODO list:
 11. Tryb autopodlewania (wykrywanie deszczu i zalaczanie zraszaczy wg konfiguracji)
 12. usunac strone 'auth' - wykrywanie autoryzacji w '/'
 13. hccDeamon dodac lapanie wyjatkow i wazdym wywolaniu timerEvent - dodac klase logowanie wyjatkow (wyswietlana w SystemInfo)
+14. zapisywanie aktualnej historii - w wykresach pieca dodac klawisz 'zapisz'

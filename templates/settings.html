@@ -5,17 +5,19 @@
 <br>
 
 <table align="center" border="0" width="80%">
-
 <tr>
 	<td>
     	<div style="height:80px;width:80px;background-image:url({{ url_for('static', filename = 'img/home.png') }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('content', 'menu')"/>
 	</td>
 </tr>
+</table>
+<br><br>
 
+<table align="center" border="0" width="80%">
 <tr>
-{% for item in elements['icon_img'] %}
+{% for item in elements['settings'] %}
 	<td>
-    	    <div style="height:30px;width:30px;background-image:url({{ url_for('static', filename = 'img/' + item ) }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('content', 'menu')"/>
+    	    <div style="height:{{ elements['settings'][item]['icon_size'] }}px;width:{{ elements['settings'][item]['icon_size'] }}px;background-image:url({{ url_for('static', filename = 'img/' + elements['settings'][item]['icon'] ) }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('content', 'settings/{{ elements['settings'][item]['id'] }}')"/>
 	</td>
 {% endfor %}
 </tr>
@@ -25,7 +27,7 @@
 <br>
 
 <table align="center" border="0" width="80%">
-{% for item in elements['elements'] %}
+{% for item in elements['html_elements'] %}
 <tr>
 	<td>
 	    <div class="title"> {{ item.title }} </div>

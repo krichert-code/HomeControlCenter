@@ -96,6 +96,8 @@ function sendPostForm(page)
 	var formData = new FormData();
 	var formElements = document.getElementsByClassName('form');
 	var value = NaN;
+	var bit = 0;
+	var lastName = NaN;
 
 	if (window.XMLHttpRequest)
 	{
@@ -121,12 +123,28 @@ function sendPostForm(page)
 	    {
 		value = formElements[i].options[formElements[i].selectedIndex].value;
 	    }
+	    else if (formElements[i].getAttribute("type") == "checkbox")
+	    {
+		if (lastName != formElements[i].getAttribute("name"))
+		{
+		    bit = 0;
+		    lastName = formElements[i].getAttribute("name");
+		}
+		value = formData.get(formElements[i].getAttribute("name"));
+		if (value == null) value = 0;
+		if (formElements[i].checked) value = value | (1 << bit);
+		bit++;
+	    }
+	    else if (formElements[i].getAttribute("type") == "text_md5")
+	    {
+
+	    }
 	    else
 	    {
 		value = formElements[i].value;
 	    }
 
-	    formData.append(formElements[i].getAttribute("name"), formElements[i].value);
+	    formData.set(formElements[i].getAttribute("name"), value);
 	}
 	xmlhttp.open("POST",page,true);
 	xmlhttp.send(formData);
