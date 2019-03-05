@@ -238,14 +238,15 @@ class ConfigClass(object):
 	data['html_elements']  = elements
 
 	return data
-
-
-
 #---------------------------Settings method -----------------------------
 
+#---------------------------MP3 method ----------------------------------
     def getMp3Directory(self):
 	return ConfigClass.__xmldoc.getElementsByTagName('radio')[0].getAttribute('mp3_directory')
+#---------------------------MP3 method ----------------------------------
 
+
+#---------------------------Generic config methods ----------------------
     def getEvent(self, name):
         xmldoc = minidom.parse('data/config.xml')
         eventData = None
@@ -279,11 +280,46 @@ class ConfigClass(object):
             if item.getAttribute('name') == name:
                 break
 
+	if value <> item.getAttribute("state"):
+    	    item.setAttribute("state", value)
+    	    if len(desc) > 0:
+        	item.setAttribute("desc", desc)
+	    else:
+		item.setAttribute("desc", "No action")
 
-        item.setAttribute("state", value)
-        if len(desc) > 0:
-            item.setAttribute("desc", desc)
-        xmldoc.writexml( open('data/config.xml', 'w'))
-
+    	    xmldoc.writexml( open('data/config.xml', 'w'))
         return ret_val
 
+
+    def updateEvents(self, switchStatus):
+	sprinklerStatus1 = (1 << 3)
+	sprinklerStatus2 = (1 << 2)
+	sprinklerStatus3 = (1 << 1)
+	heater           = (1 << 6)
+	inputAux         = (1 << 0)
+	desc = ""
+	state = 0
+
+	if switchStatus <> -1:
+	    self.changeStatus("error", 0)
+
+	    # sprinkler status
+	    state = 1
+	    if (switchStatus & sprinklerStatus1 <> 0):
+		desc = "Zraszacze w polu 1 aktywne"
+	    elif (switchStatus & sprinklerStatus2 <> 0):
+		desc = "Zraszacze w polu 2 aktywne"
+	    elif (switchStatus & sprinklerStatus3 <> 0):
+		desc = "Zraszacze w polu 3 aktywne"
+	    else:
+		desc = "No action"
+		state = 0
+	    self.changeStatus("sprinkler", state, desc)
+
+	    # heater status
+
+    	    # inputAux status
+	else:
+	    self.changeStatus("error", 1, "Blad krytyczny sterownika")
+
+#---------------------------Generic config methods ----------------------

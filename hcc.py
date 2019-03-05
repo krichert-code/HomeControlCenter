@@ -98,11 +98,11 @@ def sprinkler(actionName=""):
 	if (isAuthNeed() == False):
 	    sprinkler = SprinklerClass.SprinklerClass()
 	    if len(actionName) == 0:
-		return render_template('sprinkler.html', sprinklerElements = sprinkler.getSprinklerEvents())
+		return render_template('sprinkler.html', sprinklerElements = sprinkler.getSprinklerItems())
 	    else:
-		sprinklerName = request.args.get('param')		
 		action = ActionClass.ActionClass()
-		return render_template('events.html', events = action.getEventsData(actionName, sprinklerName, action.ActionEventSprinkler))
+		sprinklerName = request.args.get('param')		
+		return render_template('events.html', events = action.getEventsData(actionName, sprinklerName))
 
 @app.route("/radio", methods=['GET', 'POST'])
 @app.route("/radio/<actionName>", methods=['GET', 'POST'])

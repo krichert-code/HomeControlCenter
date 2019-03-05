@@ -9,45 +9,24 @@ class SprinklerClass(object):
         pass
 
 
-    def getSprinklerEvents(self):
+    def getSprinklerItems(self):
         events = []
-	status = self.getSprinklerStatus()
-        config = ConfigClass.ConfigClass()
-        desc = config.getSwitchItemDesc("Sprinkler1")
+        desc = "Zraszacze w polu 1"
 	item = EventClass.EventClass(desc)
 	item.setEventName("1")
-	if status == 1:
-	    item.setEventIcon("img/on_mobile.png")
-	else:
-	    item.setEventIcon("img/off_mobile.png")
         events.append(item)
 
-        desc = config.getSwitchItemDesc("Sprinkler2")
+        desc = "Zraszacze w polu 2"
 	item = EventClass.EventClass(desc)
 	item.setEventName("2")
-	if status == 2:
-	    item.setEventIcon("img/on_mobile.png")
-	else:
-	    item.setEventIcon("img/off_mobile.png")
         events.append(item)
 
-        desc = config.getSwitchItemDesc("Sprinkler3")
+        desc = "Zraszacze w polu 3"
 	item = EventClass.EventClass(desc)
 	item.setEventName("3")
-	if status == 3:
-	    item.setEventIcon("img/on_mobile.png")
-	else:
-	    item.setEventIcon("img/off_mobile.png")
         events.append(item)
-        return events
 
-    def getSprinklersOffRequest(self):
-        config = ConfigClass.ConfigClass()
-        return config.getSwitchURL("SprinklerOff")
-	
-    def getSprinklerOnRequest(self,sprinklerId):
-        config = ConfigClass.ConfigClass()
-        return config.getSwitchURL("Sprinkler"+sprinklerId)
+        return events
 
 
     def getSprinklerStatus(self):

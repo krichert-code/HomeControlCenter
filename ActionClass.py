@@ -14,7 +14,6 @@ class ActionClass(object):
     ActionEventGeneric   = 1 << 1
     ActionEventCalendar  = 1 << 2
     ActionEventRadio     = 1 << 3
-    ActionEventSprinkler = 1 << 4
 
     def __init__(self):
         self.__config = ConfigClass.ConfigClass()
@@ -78,8 +77,6 @@ class ActionClass(object):
         threadTask.start()
         threadTask.suspend()
 
-        
-
     def actionOnGate1Perm(self, param = ""):
         url = self.__config.getSwitchURL("mainGate")
         threadTask = ActionThread.ActionThread()
@@ -97,21 +94,24 @@ class ActionClass(object):
                 
     def actionOnSprinklerOn(self, param = ""):
 	threadTask = ActionThread.ActionThread()
-	sprinkler = SprinklerClass.SprinklerClass()
-
-	url_off = sprinkler.getSprinklersOffRequest()
-	url = sprinkler.getSprinklerOnRequest(param)
-	status_val = sprinkler.getSprinklerStatus()
-        threadTask.addTask("request", url_off)
-	threadTask.addTask("delay", 1)
-	if status_val <> int(param) and status_val >= 0:
-    	    threadTask.addTask("request", url)
-    	    threadTask.addTask("delay", 2)
-        threadTask.addTask("notify")
+        config = ConfigClass.ConfigClass()
+	print "___________________SprinklerON="+param
+	url_on = config.getSwitchURL("Sprinkler"+param)
+        threadTask.addTask("request",url_on)
+        threadTask.addTask("delay",2)
         threadTask.start()
 	threadTask.suspend()
 
-	
+
+    def actionOnSprinklerOff(self, param = ""):
+	threadTask = ActionThread.ActionThread()
+        config = ConfigClass.ConfigClass()
+
+	url_off = config.getSwitchURL("SprinklerOff")
+        threadTask.addTask("request", url_off)
+	threadTask.addTask("delay", 2)
+        threadTask.start()
+	threadTask.suspend()
 
     def actionOnPlay(self, param = ""):
         radio = RadioClass.RadioClass()
@@ -135,7 +135,21 @@ class ActionClass(object):
 
     def actionOnGetActiveEvents(self, param = ""):
         # get only activate events
-	pass
+	# read Status from switch and update 'generic events' (xml->status)
+	try:
+	    status = -1
+	    config = ConfigClass.ConfigClass()
+	    status_url = config.getSwitchURL("Status")
+	    threadStatus = ActionThread.ActionThread()
+	    threadStatus.addTask("request",status_url)
+    	    threadStatus.addTask("delay",1)
+	    threadStatus.start()
+	    threadStatus.suspend()
+	    status = int(threadStatus.getResponse())
+	except:
+	    # report error
+	    status = -1
+	self.__config.updateEvents(status)
 
 #---------------------------------------------------------------------------------------------------------------
     def getEventsData(self,actionName, param = "", filters = ActionEventAll, returnOnlyRequestedEvents = False):
@@ -143,22 +157,17 @@ class ActionClass(object):
 
         calendarEvents = CalendarClass.CalendarClass()
         radioEvents = RadioClass.RadioClass()
-        sprinklerEvent = SprinklerClass.SprinklerClass()
 
         if actionName <> None:
             method_name = 'actionOn' + actionName
             method = getattr(self, method_name)
             method(param)
 
-        if self.__isEventEnable(filters, ActionClass.ActionEventRadio) == True:
-            events = events + radioEvents.getEventsData(self.ActionEventRadio)
-
-        if self.__isEventEnable(filters, ActionClass.ActionEventSprinkler) == True:
-            events = events + sprinklerEvent.getEventsData(self.ActionEventSprinkler)
-
-
         if self.__isEventEnable(filters, ActionClass.ActionEventGeneric) == True:
             events = events + self.__config.getEvents(self.ActionEventGeneric)
+
+        if self.__isEventEnable(filters, ActionClass.ActionEventRadio) == True:
+            events = events + radioEvents.getEventsData(self.ActionEventRadio)
 
         if self.__isEventEnable(filters, ActionClass.ActionEventCalendar) == True:
             events = events + calendarEvents.getEventsData(self.ActionEventCalendar)

@@ -13,15 +13,18 @@
 	</td>
 </tr>
 
-{% for event in sprinklerElements %}
-    <tr>
-	<td><div style="height:60px;width:60px;background-image:url({{ url_for('static', filename = event.icon ) }}); background-repeat: no-repeat;background-position: left top;  background-size:cover;" onClick="updateContent('infoBox', 'sprinkler/SprinklerOn?param={{ event.name }}')"/></td>
-	<td class="menu"><div class="{{ event.style }}">{{ event.desc }}</div></td>
-    </tr>
+{% for item in sprinklerElements %}
+<tr>
+    <td> <button type="button" onclick="updateContent('infoBox', 'sprinkler/SprinklerOn?param={{ item.name }}')"> {{ item.desc }} </button></td>
+</tr>
 {% endfor %}
 
+<tr>
+    <td> <button type="button" onclick="updateContent('infoBox', 'sprinkler/SprinklerOff')">S T O P</button></td>
+</tr>
 
 </table>
 <br>
 
 </body>
+
