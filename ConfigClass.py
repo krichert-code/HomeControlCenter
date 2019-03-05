@@ -278,7 +278,7 @@ class ConfigClass(object):
             if item.getAttribute('name') == name:
                 break
 
-	if value != item.getAttribute("state"):
+	if value != item.getAttribute("state") or desc != item.getAttribute("desc"):
     	    item.setAttribute("state", value)
     	    if len(desc) > 0:
         	item.setAttribute("desc", desc)
