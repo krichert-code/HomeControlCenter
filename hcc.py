@@ -170,10 +170,10 @@ def info():
 		infoObj['alarm_state'] = "Alarm wlaczony"
 	    infoObj['alarm_start'] = config.getAlarmSetting('start_time')
 
-	    if config.getEvent('rain').state == "0":
-		infoObj['rain'] = "Dzisiaj nie zanotowano opadow"
-	    else:
-		infoObj['rain'] = "Dzisiaj zanotowano opady"
+	    #if config.getEvent('rain').state == "0":
+	    #	infoObj['rain'] = "Dzisiaj nie zanotowano opadow"
+	    #else:
+	    #	infoObj['rain'] = "Dzisiaj zanotowano opady"
 	    return render_template('info.html', info = infoObj)
 
 @app.route("/menu")

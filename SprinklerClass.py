@@ -28,51 +28,25 @@ class SprinklerClass(object):
 
         return events
 
-
-    def getSprinklerStatus(self):
-	sprinklerStatus3 = (1 << 1)
-	sprinklerStatus2 = (1 << 2)
-	sprinklerStatus1 = (1 << 3)
-	ret_val = 0
-	# getting status have to be perform by ActionThread class because switch may handle only one request in the same time
-        config = ConfigClass.ConfigClass()
-	status_url = config.getSwitchURL("Status")
-	threadStatus = ActionThread.ActionThread()
-	threadStatus.addTask("request",status_url)
-	threadStatus.addTask("notify")
-	threadStatus.start()
-	threadStatus.suspend()
-	try:
-	    status = int(threadStatus.getResponse())
-	    if (status & sprinklerStatus1 <> 0):
-		ret_val = 1
-	    if (status & sprinklerStatus2 <> 0):
-		ret_val = 2
-	    if (status & sprinklerStatus3 <> 0):
-		ret_val = 3
-	except:
-	    ret_val = -1
-	    
-	return ret_val
+    def setSprinklerOn(self, param = ""):
+	threadTask = ActionThread.ActionThread()
+	config = ConfigClass.ConfigClass()
+	url_on = config.getSwitchURL("Sprinkler"+param)
+        threadTask.addTask("request",url_on)
+        threadTask.addTask("delay",2)
+	threadTask.addTask("notify")
+        threadTask.start()
+	threadTask.suspend()
 
 
-    def getEventsData(self, id):
-        events = []
-	status = self.getSprinklerStatus()
-	event = None
+    def setSprinklerOff(self):
+	threadTask = ActionThread.ActionThread()
+	config = ConfigClass.ConfigClass()
 
-	if status == -1:
-	    event = EventClass.EventClass("System zraszaczy - Blad krytyczny", "", id)
-	elif status == 1:
-	    event = EventClass.EventClass("System zraszaczy 1 jest wlaczony", "", id)
-	elif status == 2:
-	    event =EventClass.EventClass("System zraszaczy 2 jest wlaczony", "", id)
-	elif status == 3:
-    	    event = EventClass.EventClass("System zraszaczy 3 jest wlaczony", "", id)
-	    
-	if event <> None:
-	    event.setEventIcon('garden')
-	    events.append(event)
-        return events
-
+	url_off = config.getSwitchURL("SprinklerOff")
+        threadTask.addTask("request", url_off)
+	threadTask.addTask("delay", 2)
+	threadTask.addTask("notify")
+        threadTask.start()
+	threadTask.suspend()
 

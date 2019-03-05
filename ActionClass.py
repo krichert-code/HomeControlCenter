@@ -93,25 +93,12 @@ class ActionClass(object):
 
                 
     def actionOnSprinklerOn(self, param = ""):
-	threadTask = ActionThread.ActionThread()
-        config = ConfigClass.ConfigClass()
-	print "___________________SprinklerON="+param
-	url_on = config.getSwitchURL("Sprinkler"+param)
-        threadTask.addTask("request",url_on)
-        threadTask.addTask("delay",2)
-        threadTask.start()
-	threadTask.suspend()
-
+	sprinkler = SprinklerClass.SprinklerClass()
+	sprinkler.setSprinklerOn(param)
 
     def actionOnSprinklerOff(self, param = ""):
-	threadTask = ActionThread.ActionThread()
-        config = ConfigClass.ConfigClass()
-
-	url_off = config.getSwitchURL("SprinklerOff")
-        threadTask.addTask("request", url_off)
-	threadTask.addTask("delay", 2)
-        threadTask.start()
-	threadTask.suspend()
+	sprinkler = SprinklerClass.SprinklerClass()
+	sprinkler.setSprinklerOff()
 
     def actionOnPlay(self, param = ""):
         radio = RadioClass.RadioClass()
@@ -134,8 +121,11 @@ class ActionClass(object):
         radio.getRadioVolumeDownRequest() 
 
     def actionOnGetActiveEvents(self, param = ""):
-        # get only activate events
-	# read Status from switch and update 'generic events' (xml->status)
+        # perform on timer tick from browser - currently do nothing
+	pass
+
+#---------------------------------------------------------------------------------------------------------------
+    def __getSwitchEvents(self):
 	try:
 	    status = -1
 	    config = ConfigClass.ConfigClass()
@@ -143,6 +133,7 @@ class ActionClass(object):
 	    threadStatus = ActionThread.ActionThread()
 	    threadStatus.addTask("request",status_url)
     	    threadStatus.addTask("delay",1)
+	    threadStatus.addTask("notify")
 	    threadStatus.start()
 	    threadStatus.suspend()
 	    status = int(threadStatus.getResponse())
@@ -151,19 +142,19 @@ class ActionClass(object):
 	    status = -1
 	self.__config.updateEvents(status)
 
-#---------------------------------------------------------------------------------------------------------------
-    def getEventsData(self,actionName, param = "", filters = ActionEventAll, returnOnlyRequestedEvents = False):
+    def getEventsData(self,actionName="", param = "", filters = ActionEventAll, returnOnlyRequestedEvents = False):
         events = []
 
         calendarEvents = CalendarClass.CalendarClass()
         radioEvents = RadioClass.RadioClass()
 
-        if actionName <> None:
+        if actionName <> "":
             method_name = 'actionOn' + actionName
             method = getattr(self, method_name)
             method(param)
 
         if self.__isEventEnable(filters, ActionClass.ActionEventGeneric) == True:
+	    self.__getSwitchEvents()
             events = events + self.__config.getEvents(self.ActionEventGeneric)
 
         if self.__isEventEnable(filters, ActionClass.ActionEventRadio) == True:

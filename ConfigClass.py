@@ -247,19 +247,17 @@ class ConfigClass(object):
 
 
 #---------------------------Generic config methods ----------------------
-    def getEvent(self, name):
-        xmldoc = minidom.parse('data/config.xml')
-        eventData = None
-        itemsList = xmldoc.getElementsByTagName('status')[0].getElementsByTagName('element')        
-        for item in itemsList:
-	    if item.getAttribute('name') == name:
-		break
-	return EventClass.EventClass(item.getAttribute('desc'),"",item.getAttribute('name'), item.getAttribute('state'))
+#    def getEvent(self, name):
+#        eventData = None
+#        itemsList = ConfigClass.__xmldoc.getElementsByTagName('status')[0].getElementsByTagName('element')        
+#        for item in itemsList:
+#	    if item.getAttribute('name') == name:
+#		break
+#	return EventClass.EventClass(item.getAttribute('desc'),"",item.getAttribute('name'), item.getAttribute('state'))
 
     def getEvents(self, id, onlyActiveEvents = True):
-        xmldoc = minidom.parse('data/config.xml')
         eventsData = []
-        itemsList = xmldoc.getElementsByTagName('status')[0].getElementsByTagName('element')        
+        itemsList = ConfigClass.__xmldoc.getElementsByTagName('status')[0].getElementsByTagName('element')        
         for item in itemsList:
             if (item.getAttribute('state') == "1" and onlyActiveEvents == True) or (onlyActiveEvents == False):
                 event = EventClass.EventClass(item.getAttribute('desc'),"",id, item.getAttribute('state'))
@@ -268,26 +266,26 @@ class ConfigClass(object):
                 except:
                     event.setEventIcon('gate')
                 eventsData.append(event)
+
         return eventsData
 
 
     def changeStatus(self, name, value, desc = ""):
         ret_val = "Conf_Change_ok"
 
-        xmldoc = minidom.parse('data/config.xml')
-        itemsList = xmldoc.getElementsByTagName('status')[0].getElementsByTagName('element')
+        itemsList = ConfigClass.__xmldoc.getElementsByTagName('status')[0].getElementsByTagName('element')
         for item in itemsList:
             if item.getAttribute('name') == name:
                 break
 
-	if value <> item.getAttribute("state"):
+	if value != item.getAttribute("state"):
     	    item.setAttribute("state", value)
     	    if len(desc) > 0:
         	item.setAttribute("desc", desc)
 	    else:
 		item.setAttribute("desc", "No action")
+    	    ConfigClass.__xmldoc.writexml( open('data/config.xml', 'w'))
 
-    	    xmldoc.writexml( open('data/config.xml', 'w'))
         return ret_val
 
 
@@ -298,13 +296,13 @@ class ConfigClass(object):
 	heater           = (1 << 6)
 	inputAux         = (1 << 0)
 	desc = ""
-	state = 0
+	state = "0"
 
 	if switchStatus <> -1:
-	    self.changeStatus("error", 0)
+	    self.changeStatus("error", "0")
 
 	    # sprinkler status
-	    state = 1
+	    state = "1"
 	    if (switchStatus & sprinklerStatus1 <> 0):
 		desc = "Zraszacze w polu 1 aktywne"
 	    elif (switchStatus & sprinklerStatus2 <> 0):
@@ -313,13 +311,13 @@ class ConfigClass(object):
 		desc = "Zraszacze w polu 3 aktywne"
 	    else:
 		desc = "No action"
-		state = 0
+		state = "0"
 	    self.changeStatus("sprinkler", state, desc)
 
 	    # heater status
 
     	    # inputAux status
 	else:
-	    self.changeStatus("error", 1, "Blad krytyczny sterownika")
+	    self.changeStatus("error", "1", "Blad krytyczny sterownika")
 
 #---------------------------Generic config methods ----------------------
