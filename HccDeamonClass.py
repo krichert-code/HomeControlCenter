@@ -180,7 +180,6 @@ class Messages:
 	def timeEvent(self,tick):
 	    # check if message should be send once per 5min
 	    if (tick % 60 * 5) == 0:
-		print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!_"+str(tick)
     		items = self.events.getEventsData("GetActiveEvents", "", self.events.ActionEventGeneric, True, False)
 		try:
 		    for item in items:
@@ -192,9 +191,11 @@ class Messages:
 			    phones = self.config.getPhoneNumbers()
 			    text = self.config.getSmsMessage(item.messageId, item.state)
 			    token = self.config.getSmsToken()
-			    print text
 			    #send message
 			    client = SmsApiPlClient(access_token=token)
+			    r = client.account.balance()
+			    if r.eco_count < 10:
+				text = text + "(limit:"+str(r.eco_count)+")"
 			    client.sms.send(to=phones, message=text)
 		except:
 		    print "__________message excetion"
