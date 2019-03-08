@@ -27,21 +27,21 @@ class ActionClass(object):
 
     def __updateEvents(self, events, filters):
         if (filters & ActionClass.ActionEventAll <> 0):
-            ActionClass.__actionEvents = events
+            self.__actionEvents = events
         elif len(events) > 0:
             # find events in global event list and update them, if not exist then add
             for item in events:                
                 exist = False
-                for global_event_item in ActionClass.__actionEvents:
+                for global_event_item in self.__actionEvents:
                     if global_event_item.id == item.id:                                                
-                        ActionClass.__actionEvents.remove(global_event_item)                        
+                        self.__actionEvents.remove(global_event_item)                        
                         break                    
                                                             
-                ActionClass.__actionEvents.insert(0, item)
+                self.__actionEvents.insert(0, item)
         else:
-            for global_event_item in ActionClass.__actionEvents:
+            for global_event_item in self.__actionEvents:
                 if global_event_item.id & filters <> 0:
-                    ActionClass.__actionEvents.remove(global_event_item)
+                    self.__actionEvents.remove(global_event_item)
                     
 
     def actionOnDoor(self, param = ""):
@@ -142,7 +142,7 @@ class ActionClass(object):
 	    status = -1
 	self.__config.updateEvents(status)
 
-    def getEventsData(self,actionName="", param = "", filters = ActionEventAll, returnOnlyRequestedEvents = False):
+    def getEventsData(self,actionName="", param = "", filters = ActionEventAll, returnOnlyRequestedEvents = False, returnOnlyActivateEvents = True):
         events = []
 
         calendarEvents = CalendarClass.CalendarClass()
@@ -155,7 +155,7 @@ class ActionClass(object):
 
         if self.__isEventEnable(filters, ActionClass.ActionEventGeneric) == True:
 	    self.__getSwitchEvents()
-            events = events + self.__config.getEvents(self.ActionEventGeneric)
+            events = events + self.__config.getEvents(self.ActionEventGeneric, returnOnlyActivateEvents)
 
         if self.__isEventEnable(filters, ActionClass.ActionEventRadio) == True:
             events = events + radioEvents.getEventsData(self.ActionEventRadio)
@@ -168,6 +168,6 @@ class ActionClass(object):
         if returnOnlyRequestedEvents == True:
             return events
         else:
-            return ActionClass.__actionEvents
+            return self.__actionEvents
 
 

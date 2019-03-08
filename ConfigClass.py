@@ -246,6 +246,30 @@ class ConfigClass(object):
 #---------------------------MP3 method ----------------------------------
 
 
+#---------------------------text message method --------------------------
+    def getPhoneNumbers(self):
+	phones = []
+	for item in ConfigClass.__xmldoc.getElementsByTagName('text_messages')[0].getElementsByTagName('phones')[0].getElementsByTagName('element'):
+	    phones.append(item.getAttribute('number'))
+	return phones
+
+    def getSmsToken(self):
+	return ConfigClass.__xmldoc.getElementsByTagName('text_messages')[0].getElementsByTagName('token')[0].getAttribute('value')
+
+    def getSmsMessage(self, id, state):
+	message = ""
+	tag = "active"
+	if state == "0":
+	    tag = "inactive"
+	for item in ConfigClass.__xmldoc.getElementsByTagName('text_messages')[0].getElementsByTagName('text')[0].getElementsByTagName('element'):
+	    if item.getAttribute('id') == id:
+		message = item.getElementsByTagName(tag)[0].getAttribute('message')
+		break
+	return message
+#---------------------------text message method --------------------------
+
+
+
 #---------------------------Generic config methods ----------------------
 #    def getEvent(self, name):
 #        eventData = None
@@ -261,8 +285,10 @@ class ConfigClass(object):
         for item in itemsList:
             if (item.getAttribute('state') == "1" and onlyActiveEvents == True) or (onlyActiveEvents == False):
                 event = EventClass.EventClass(item.getAttribute('desc'),"",id, item.getAttribute('state'))
+		event.setEventName(item.getAttribute('name'))
                 try:
                     event.setEventIcon(item.getAttribute('icon'))
+                    event.setEventMessageId(item.getAttribute('messageId'))
                 except:
                     event.setEventIcon('gate')
                 eventsData.append(event)
@@ -285,6 +311,8 @@ class ConfigClass(object):
 	    else:
 		item.setAttribute("desc", "No action")
     	    ConfigClass.__xmldoc.writexml( open('data/config.xml', 'w'))
+	elif value == item.getAttribute("state") and desc == item.getAttribute("desc"):
+	    ret_val = "in_progress"
 
         return ret_val
 
@@ -293,8 +321,8 @@ class ConfigClass(object):
 	sprinklerStatus1 = (1 << 3)
 	sprinklerStatus2 = (1 << 2)
 	sprinklerStatus3 = (1 << 1)
-	heater           = (1 << 6)
-	inputAux         = (1 << 0)
+	heaterStatus     = (1 << 6)
+	cesspitStatus    = (1 << 0)
 	desc = ""
 	state = "0"
 
@@ -315,8 +343,30 @@ class ConfigClass(object):
 	    self.changeStatus("sprinkler", state, desc)
 
 	    # heater status
+	    if (switchStatus & heaterStatus <> 0):
+		dayTemp = float(self.getDayTemp())
+		nightTemp = float(self.getNightTemp())
+		threshold = float(self.geTempThreshold())
+		isDayMode = self.isDayMode(datetime.datetime.today().weekday(), int(datetime.datetime.now().strftime('%H')))
+		if (isDayMode == True):
+		    desc = "Piec w trybie dziennym ["+ str(dayTemp+threshold) +"]"
+		else:
+		    desc = "Piec w trybie dziennym ["+ str(nightTemp+threshold) +"]"
+		state = "1"
+	    else:
+		desc = "No action"
+		state = "0"
+	    self.changeStatus("heater", state, desc)
 
-    	    # inputAux status
+    	    # cesspit status
+	    if (cesspitStatus & heaterStatus <> 0):
+		desc  = "Szambo pelne [tel:0501024804]"
+		state = "1"
+	    else:
+		desc = "No action"
+		state = "0"
+	    self.changeStatus("cesspit", state, desc)
+
 	else:
 	    self.changeStatus("error", "1", "Blad krytyczny sterownika")
 

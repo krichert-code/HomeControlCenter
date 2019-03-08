@@ -51,13 +51,16 @@ class HeaterClass(object):
 
     def getCurrentTemperatureInside(self):
 	heater = {}
-	temp = self.__getTemperatureFromDevice()
+	try:
+	    temp = self.__getTemperatureFromDevice()
 
-        heater['temp'] = "%.1f" % temp
-        heater['time'] = datetime.now().strftime('%H:%M:%S')
-        heater['icon'] = "img/day.gif"
-	if HeaterClass.__dayMode == False:
-	    heater['icon'] = "img/night.gif"
+    	    heater['temp'] = "%.1f" % temp
+    	    heater['time'] = datetime.now().strftime('%H:%M:%S')
+    	    heater['icon'] = "img/day.gif"
+	    if HeaterClass.__dayMode == False:
+		heater['icon'] = "img/night.gif"
+	except:
+	    print "___________heater exception" 
         return heater
 
 
@@ -88,28 +91,19 @@ class HeaterClass(object):
 		if (isDayMode == True and temp + threshold <= dayTemp) or (isDayMode == False and temp + threshold <= nightTemp):
 			#turn on heater
 			url = config.getSwitchURL("HeaterOn")
-			if isDayMode == True:
-				val = dayTemp + threshold
-				desc = "Piec w trybie dziennym ["+ str(val) +"]"
-			else:
-				val = nightTemp + threshold
-				desc = "Piec w trybie nocnym ["+ str(val) +"]"
-			status = "set"
 			if HeaterClass.__lastState == HeaterClass.__StateOff or HeaterClass.__lastState == HeaterClass.__StateUnknown:
 				threadTask = ActionThread.ActionThread()
 			HeaterClass.__lastState = HeaterClass.__StateOn
 		elif (isDayMode == True and temp >= dayTemp + threshold) or (isDayMode == False and temp >= nightTemp + threshold) or (HeaterClass.__lastState == HeaterClass.__StateUnknown):
 			#turn off heater
 			url = config.getSwitchURL("HeaterOff")
-			desc = "No action"
-			status = "clear"
 			if HeaterClass.__lastState == HeaterClass.__StateOn or HeaterClass.__lastState == HeaterClass.__StateUnknown:
 				threadTask = ActionThread.ActionThread()
 			HeaterClass.__lastState = HeaterClass.__StateOff
 
 		if threadTask <> None :
 			threadTask.addTask("request", url)
-			threadTask.addTask(status, "heater", desc)
+			threadTask.addTask("delay", 2)
 			threadTask.addTask("notify")
 			threadTask.start()
 			threadTask.suspend()

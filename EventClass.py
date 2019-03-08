@@ -5,6 +5,7 @@ class EventClass:
         self.desc = desc
         self.date = date
         self.state = state
+	self.messageId = ""
         self.icon = 'gate'
 	self.style= "text"
 
@@ -16,3 +17,6 @@ class EventClass:
 
     def setStyle(self, style):
 	self.style = style
+
+    def setEventMessageId(self, id):
+        self.messageId = id

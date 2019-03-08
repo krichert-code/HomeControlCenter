@@ -14,7 +14,10 @@
     d. Alternative to above is to use pip (still installing python-dev is required)
 	pip install RPi.GPIO
 
-3. Run application (as a service)
+5. Install smsapi library (https://github.com/smsapi/smsapi-python-client)
+    a. sudo pip install smsapi-client
+
+5. Run application (as a service)
       Add one of below entry to /etc/rc.local file
 
       1.cd /HomeControlCenter && python hcc.py &
@@ -27,7 +30,7 @@ TODO list:
 3. ---------------zraszacze raportuja status jak piec
 4. radio zamien na player (nazwa klasy i pliku)
 5. rozklad jazdy pkm dodaj tez regionalne
-6. wysylanie zdarzen przez sms
+6. ---------------wysylanie zdarzen przez sms
 7. wspolpraca z alarmem
 8. kamera 
 9. oddzielna klasa dla info 
@@ -35,4 +38,4 @@ TODO list:
 12. usunac strone 'auth' - wykrywanie autoryzacji w '/'
 13. hccDeamon dodac lapanie wyjatkow i wazdym wywolaniu timerEvent - dodac klase logowanie wyjatkow (wyswietlana w SystemInfo)
 14. zapisywanie aktualnej historii - w wykresach pieca dodac klawisz 'zapisz'
-15. piec nie powinien zapisywac statusu - robi to ActionClass
+15. ---------------piec nie powinien zapisywac statusu - robi to ActionClass

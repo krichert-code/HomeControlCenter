@@ -7,7 +7,9 @@ import RadioClass
 import CalendarClass
 import WeatherClass
 import HeaterClass
+import ActionClass
 import RPi.GPIO as GPIO
+from smsapi.client import SmsApiPlClient
 
         
 class Alarm:
@@ -61,14 +63,16 @@ class Speaker:
     __no_activeCounter = 0
 
     def __init__(self):
-	GPIO.setwarnings(False)
-	GPIO.setmode(GPIO.BCM)
-	GPIO.setup(self.__powerPin, GPIO.OUT)
-	GPIO.setup(self.__activatePin, GPIO.OUT)
+	try:
+	    GPIO.setwarnings(False)
+	    GPIO.setmode(GPIO.BCM)
+	    GPIO.setup(self.__powerPin, GPIO.OUT)
+	    GPIO.setup(self.__activatePin, GPIO.OUT)
 
-	GPIO.output(self.__powerPin, GPIO.LOW)
-	GPIO.output(self.__activatePin, GPIO.LOW)
-	pass
+	    GPIO.output(self.__powerPin, GPIO.LOW)
+	    GPIO.output(self.__activatePin, GPIO.LOW)
+	except:
+	    print "__________speaker excetion"
 
     def timeEvent(self):
 	try:
@@ -90,7 +94,8 @@ class Speaker:
 		GPIO.output(self.__activatePin, GPIO.LOW)
 		self.__no_activeCounter = 0
 	except:
-	    pass
+	    print "__________speaker excetion"
+
 
 class Calendar:
     def __init__(self):
@@ -104,24 +109,26 @@ class Calendar:
 		self.__day = curr_day
 		calendar.generateFiles()
 	except:
-	    pass
+	    print "__________calendar excetion"
 
 class Heater:
 	def __init__(self):
 	    self.__counter = 0
 	    self.__heater = HeaterClass.HeaterClass()
 
-	def timeEvent(self):
-	    # manage heater state once per 60 sec
-	    if (self.__counter % 60  == 0):
-		curr_week_day = datetime.datetime.today().weekday()
-		curr_hour = int(datetime.datetime.now().strftime('%H'))
-		self.__heater.manageHeaterState(curr_week_day, curr_hour)
-	    self.__counter = self.__counter + 1
+	def timeEvent(self, tick):
+	    try:
+		# manage heater state once per 60 sec
+		if (tick % 60  == 0):
+		    curr_week_day = datetime.datetime.today().weekday()
+		    curr_hour = int(datetime.datetime.now().strftime('%H'))
+		    self.__heater.manageHeaterState(curr_week_day, curr_hour)
+	    except:
+		print "__________heater excetion"
 	    
 	    
 class Weather:
-	def __init__(self):
+	def __init__(self):    
 		weather = WeatherClass.WeatherClass()
 		self.__day = 0
 		self.__hour = 0
@@ -129,7 +136,10 @@ class Weather:
 		# Below counter is needed to generate weather files not exactly when new day/hour,
     		# but some time later because data are not available.
 		self.__counter = 0
-		weather.generateFiles(weather.WeatherDailyFile | weather.WeatherHourlyFile | weather.WeatherCurrentFile)
+		try:
+		    weather.generateFiles(weather.WeatherDailyFile | weather.WeatherHourlyFile | weather.WeatherCurrentFile)
+		except:
+		    print "__________wather excetion"
 
 	def timeEvent(self):
 		try:
@@ -149,13 +159,45 @@ class Weather:
 			    self.__counter = 200
 
 		    if self.__weatherFiles <> 0 and self.__counter == 0:
-			    weather.generateFiles(self.__weatherFiles)
-			    self.__weatherFiles = 0
+			weather.generateFiles(self.__weatherFiles)
+			self.__weatherFiles = 0
 
 		    if self.__counter > 0 :
-			    self.__counter = self.__counter - 1
+			self.__counter = self.__counter - 1
 		except:
-		    pass
+		    self.__day = curr_day
+		    self.__hour = curr_hour
+		    self.__weatherFiles = 0
+		    self.__counter = 200
+		    print "__________weather excetion"
+
+class Messages:
+	def __init__(self):
+	    self.events = ActionClass.ActionClass()
+	    self.config = ConfigClass.ConfigClass()
+	    self.lastStates = {}
+
+	def timeEvent(self,tick):
+	    # check if message should be send once per 5min
+	    if (tick % 60 * 5) == 0:
+		print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!_"+str(tick)
+    		items = self.events.getEventsData("GetActiveEvents", "", self.events.ActionEventGeneric, True, False)
+		try:
+		    for item in items:
+			if item.name not in self.lastStates:
+			    self.lastStates[item.name] = "0"
+
+			if item.state != self.lastStates[item.name] and len(item.messageId) > 0:
+		    	    self.lastStates[item.name] = item.state
+			    phones = self.config.getPhoneNumbers()
+			    text = self.config.getSmsMessage(item.messageId, item.state)
+			    token = self.config.getSmsToken()
+			    print text
+			    #send message
+			    client = SmsApiPlClient(access_token=token)
+			    client.sms.send(to=phones, message=text)
+		except:
+		    print "__________message excetion"
 
 #------------------------------------------------------------------------------------------------------------------------
 class HccDeamonClass(threading.Thread):
@@ -163,26 +205,26 @@ class HccDeamonClass(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
 	self.__stopEvent = False
-	pass        
 
     def stop(self):
 	self.__stopEvent = True
 
     def run(self):
+	timerTick = 0;
 	config = ConfigClass.ConfigClass()
 	speaker = Speaker()
 	alarm = Alarm()
 	calendar = Calendar()
 	weather = Weather()
 	heater = Heater()
+	messages = Messages()
 
 	while (not self.__stopEvent):
 		alarm.timeEvent()
 		speaker.timeEvent()
 		calendar.timeEvent()
 		weather.timeEvent()
-		heater.timeEvent()
-	    
+		heater.timeEvent(timerTick)
+		messages.timeEvent(timerTick)
 		time.sleep(1)
-
-
+		timerTick = timerTick + 1
