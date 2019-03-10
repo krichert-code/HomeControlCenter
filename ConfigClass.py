@@ -359,7 +359,7 @@ class ConfigClass(object):
 	    self.changeStatus("heater", state, desc)
 
     	    # cesspit status
-	    if (cesspitStatus & cesspitStatus <> 0):
+	    if (switchStatus & cesspitStatus <> 0):
 		desc  = "Szambo pelne [tel:0501024804]"
 		state = "1"
 	    else:
