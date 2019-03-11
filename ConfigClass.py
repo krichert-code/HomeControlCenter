@@ -2,6 +2,7 @@ from xml.dom import minidom
 from collections import OrderedDict
 import EventClass
 import hashlib
+import datetime
 
 class SettingElementClass(object):
     def __init__(self,name, title, type, param, value):

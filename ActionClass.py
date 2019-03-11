@@ -6,7 +6,7 @@ import CalendarClass
 import RadioClass
 import SprinklerClass
 import HeaterClass
-
+import threading
 
 
 class ActionClass(object):
@@ -15,9 +15,12 @@ class ActionClass(object):
     ActionEventCalendar  = 1 << 2
     ActionEventRadio     = 1 << 3
     __actionEvents = []
+    __mutex = None
 
     def __init__(self):
         self.__config = ConfigClass.ConfigClass()
+        if ActionClass.__mutex == None:
+            ActionClass.__mutex = threading.Lock()
 
     def __isEventEnable(self, events, eventID):
         if (events & eventID <> 0) or (events & ActionClass.ActionEventAll <> 0):
@@ -142,8 +145,10 @@ class ActionClass(object):
 	    status = -1
 	self.__config.updateEvents(status)
 
-    def getEventsData(self,actionName="", param = "", filters = ActionEventAll, returnOnlyRequestedEvents = False, returnOnlyActivateEvents = True):
+    def getEventsData(self,actionName="", param = "", filters = ActionEventAll, returnOnlyRequestedEvents = False, returnOnlyActiveEvents = True):
         events = []
+
+	ActionClass.__mutex.acquire()
 
         calendarEvents = CalendarClass.CalendarClass()
         radioEvents = RadioClass.RadioClass()
@@ -155,7 +160,7 @@ class ActionClass(object):
 
         if self.__isEventEnable(filters, ActionClass.ActionEventGeneric) == True:
 	    self.__getSwitchEvents()
-            events = events + self.__config.getEvents(self.ActionEventGeneric, returnOnlyActivateEvents)
+            events = events + self.__config.getEvents(self.ActionEventGeneric, returnOnlyActiveEvents)
 
         if self.__isEventEnable(filters, ActionClass.ActionEventRadio) == True:
             events = events + radioEvents.getEventsData(self.ActionEventRadio)
@@ -164,6 +169,8 @@ class ActionClass(object):
             events = events + calendarEvents.getEventsData(self.ActionEventCalendar)
 
         self.__updateEvents(events, filters)
+
+	ActionClass.__mutex.release()
 
         if returnOnlyRequestedEvents == True:
             return events

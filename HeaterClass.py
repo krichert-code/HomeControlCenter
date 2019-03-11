@@ -111,7 +111,12 @@ class HeaterClass(object):
 		# store data once per defined invokes (currently it means once per 10min) - not need so many data
 		if self.__storeDataCounter % HeaterClass.__storeDataInterval == 0:
 		    weatherData = weather.getCurrentWeather()
-		    HeaterClass.__data.append(HeaterParam(temp, weatherData['temp'], HeaterClass.__lastState, isDayMode))
+		    if not weatherData:
+			tempOutside = 0
+		    else:
+			tempOutside = weatherData['temp']
+
+		    HeaterClass.__data.append(HeaterParam(temp, tempOutside, HeaterClass.__lastState, isDayMode))
 		    if (len(HeaterClass.__data) > HeaterClass.__maxDataBuffer):
 			HeaterClass.__data.pop(0)
 

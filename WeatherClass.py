@@ -60,7 +60,7 @@ class WeatherClass(object):
     	    item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('wind_dir')        
     	    weatherData['wind_dir']=item[0].childNodes[0].nodeValue
 	except:
-	    print "_____________weather exception"
+	    print "_____________weather exception1"
         return weatherData
     
     def getWeatherHourlyForecast(self):
@@ -107,7 +107,7 @@ class WeatherClass(object):
         	if id > 2:
             	    break
 	except:
-	    print "_____________weather exception"
+	    print "_____________weather exception2"
 
         return weatherForecast
 
@@ -117,7 +117,7 @@ class WeatherClass(object):
             with open(name, 'w') as f:
                 f.write(resp.text)
         except requests.exceptions.RequestException as e:
-            print "_____________weather exception"
+            print "_____________weather exception3"
 
 
     def generateFiles(self, files):
