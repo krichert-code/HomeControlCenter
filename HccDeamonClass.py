@@ -13,12 +13,7 @@ import RPi.GPIO as GPIO
         
 class Alarm:
     def __init__(self):
-	config = ConfigClass.ConfigClass()
-	self.__start_time = config.getAlarmSetting("start_time")
-	self.__stop_time = config.getAlarmSetting("stop_time")
-	self.__radio = config.getAlarmSetting("radio")
-	self.__volume = config.getAlarmSetting("volume")
-	self.__policy = config.getAlarmSetting("day_policy")
+	self.__config = ConfigClass.ConfigClass()
 	self.__playing = False
 
     def __compareTime(self, date):
@@ -33,26 +28,35 @@ class Alarm:
 
     def timeEvent(self):
     	radio = RadioClass.RadioClass()
+
+	start_time = self.__config.getAlarmSetting("start_time")
+	stop_time = self.__config.getAlarmSetting("stop_time")
+	radioName = self.__config.getAlarmSetting("radio")
+	volume = self.__config.getAlarmSetting("volume")
+	policy = self.__config.getAlarmSetting("day_policy")
+
+
 	playRadio = True
 	#disable alarm if value is = 'disable' or alarm is set on 'week_day' and now is weekend
-	if (self.__policy == "disabled") or (self.__policy == "week_day" and datetime.datetime.today().weekday() >= 5):
+	if (policy == "disabled") or (policy == "week_day" and datetime.datetime.today().weekday() >= 5):
 	    playRadio = False
 
-	if  self.__compareTime(self.__start_time) == True and self.__playing == False and playRadio == True:
+	if  self.__compareTime(start_time) == True and self.__playing == False and playRadio == True:
 	    try:
-		radio.getRadioPlayRequest(self.__radio)
-		radio.setRadioVolume(int(self.__volume))
+		radio.getRadioPlayRequest(radioName)
+		radio.setRadioVolume(int(volume))
 		self.__playing = True
-            except requests.exceptions.RequestException as e:
+            except:
 		self.__playing = False
-
-	if self.__compareTime(self.__stop_time) == True and self.__playing == True:
+		print "____________radio error1"
+	elif self.__compareTime(stop_time) == True and self.__playing == True:
 	    try:
 		radio.getRadioStopRequest()
 		radio.setRadioVolume(50)
                 self.__playing = False
-            except requests.exceptions.RequestException as e:
+            except:
 		self.__playing = True
+		print "____________radio error2"
 
 
 class Speaker:
@@ -82,6 +86,7 @@ class Speaker:
 
 	    if False == isPlayerEnabled:
 		self.__no_activeCounter = self.__no_activeCounter + 1
+	    
 	    if self.__no_activeCounter > 60 and 1 == isSpeakerActivated:
 		GPIO.output(self.__powerPin, GPIO.LOW)
 
