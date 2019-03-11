@@ -9,7 +9,6 @@ import WeatherClass
 import HeaterClass
 import ActionClass
 import RPi.GPIO as GPIO
-from smsapi.client import SmsApiPlClient
 
         
 class Alarm:
@@ -177,6 +176,15 @@ class Messages:
 	    self.config = ConfigClass.ConfigClass()
 	    self.lastStates = {}
 
+	def sendSms(self,apiKey, number, message):
+	    try:
+    		headers = {'content-type': 'application/json', 'App-Key':apiKey}
+    		req = "https://justsend.pl/api/rest/v2/message/send/"+number+"/"+message
+    		r = requests.get(req, headers=headers, timeout = 5 )
+	    except:
+    		print "__________message excetion___send sms error"
+
+
 	def timeEvent(self,tick):
 	    # check if message should be send once per 5min
 	    if (tick % 60 * 5) == 0:
@@ -192,11 +200,8 @@ class Messages:
 			    text = self.config.getSmsMessage(item.messageId, item.state)
 			    token = self.config.getSmsToken()
 			    #send message
-			    client = SmsApiPlClient(access_token=token)
-			    r = client.account.balance()
-			    if r.eco_count < 10:
-				text = text + "(limit:"+str(r.eco_count)+")"
-			    client.sms.send(to=phones, message=text)
+			    for to in phones:
+				self.sendSms(token, to, text)
 		except:
 		    print "__________message excetion"
 

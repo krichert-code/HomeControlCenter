@@ -5,7 +5,7 @@
 	<features>
 	</features>
 		<error>
-		<type>invalidkey</type>
-		<description>this key is not valid due to exceeding rate plan</description>
+		<type>keynotfound</type>
+		<description>this key does not exist</description>
 	</error>
 </response>

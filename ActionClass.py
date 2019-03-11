@@ -14,10 +14,10 @@ class ActionClass(object):
     ActionEventGeneric   = 1 << 1
     ActionEventCalendar  = 1 << 2
     ActionEventRadio     = 1 << 3
+    __actionEvents = []
 
     def __init__(self):
         self.__config = ConfigClass.ConfigClass()
-        self.__actionEvents = []
 
     def __isEventEnable(self, events, eventID):
         if (events & eventID <> 0) or (events & ActionClass.ActionEventAll <> 0):
@@ -27,21 +27,21 @@ class ActionClass(object):
 
     def __updateEvents(self, events, filters):
         if (filters & ActionClass.ActionEventAll <> 0):
-            self.__actionEvents = events
+            ActionClass.__actionEvents = events
         elif len(events) > 0:
             # find events in global event list and update them, if not exist then add
             for item in events:                
                 exist = False
-                for global_event_item in self.__actionEvents:
+                for global_event_item in ActionClass.__actionEvents:
                     if global_event_item.id == item.id:                                                
-                        self.__actionEvents.remove(global_event_item)                        
+                        ActionClass.__actionEvents.remove(global_event_item)                        
                         break                    
                                                             
-                self.__actionEvents.insert(0, item)
+                ActionClass.__actionEvents.insert(0, item)
         else:
-            for global_event_item in self.__actionEvents:
+            for global_event_item in ActionClass.__actionEvents:
                 if global_event_item.id & filters <> 0:
-                    self.__actionEvents.remove(global_event_item)
+                    ActionClass.__actionEvents.remove(global_event_item)
                     
 
     def actionOnDoor(self, param = ""):
@@ -168,6 +168,6 @@ class ActionClass(object):
         if returnOnlyRequestedEvents == True:
             return events
         else:
-            return self.__actionEvents
+            return ActionClass.__actionEvents
 
 

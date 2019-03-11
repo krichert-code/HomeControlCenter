@@ -14,15 +14,13 @@
     d. Alternative to above is to use pip (still installing python-dev is required)
 	pip install RPi.GPIO
 
-5. Install smsapi library (https://github.com/smsapi/smsapi-python-client)
-    a. sudo pip install smsapi-client
-
-5. Run application (as a service)
+4. Run application (as a service)
       Add one of below entry to /etc/rc.local file
 
       1.cd /HomeControlCenter && python hcc.py &
       2.start-stop-daemon -b -S --chdir /HomeControlCenter -x hcc.py
 
+5. Sms API - https://justsend.pl/
 
 TODO list:
 1. ---------------czujnik szamba
