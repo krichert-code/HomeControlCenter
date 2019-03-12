@@ -181,32 +181,52 @@ class Messages:
 	    self.config = ConfigClass.ConfigClass()
 	    self.lastStates = {}
 
+
 	def sendSms(self,apiKey, number, message):
-	    try:
-    		headers = {'content-type': 'application/json', 'App-Key':apiKey}
-    		req = "https://justsend.pl/api/rest/v2/message/send/"+number+"/"+message
-    		r = requests.get(req, headers=headers, timeout = 5 )
-	    except:
-    		print "__________message excetion___send sms error"
+    	    headers = {'content-type': 'application/json', 'App-Key':apiKey}
+    	    sms={ "to": number, "from" :"DOM", "message": message, "bulkVariant": "ECO", "doubleEncode": True}
+    	    status = "ERROR"
+
+    	    try:
+        	req = "https://justsend.pl/api/rest/v2/message/send"
+        	r = requests.post(req, data =json.dumps(sms), headers=headers )
+        	resp = json.loads(r.text)
+        	status = resp['responseCode']
+    	    except:
+        	status = "ERROR"
+
+    	    return status
 
 
 	def timeEvent(self,tick):
 	    # check if message should be send once per 5min
+	    update = False
+
 	    if (tick % 60 * 5) == 0:
+		# get all generic event (active and inactive)
     		items = self.events.getEventsData("GetActiveEvents", "", self.events.ActionEventGeneric, True, False)
 		try:
 		    for item in items:
+			update = False
+			# add item if not exist in "last state" list
 			if item.name not in self.lastStates:
 			    self.lastStates[item.name] = "0"
 
+			# if state has changed then send message (if needed) and then update last state
 			if item.state != self.lastStates[item.name] and len(item.messageId) > 0:
-		    	    self.lastStates[item.name] = item.state
+			    #send message
 			    phones = self.config.getPhoneNumbers()
 			    text = self.config.getSmsMessage(item.messageId, item.state)
 			    token = self.config.getSmsToken()
-			    #send message
+
 			    for to in phones:
-				self.sendSms(token, to, text)
+				result = self.sendSms(token, to, text)
+				if result == "OK":
+				    update = True
+
+			    # update last state if at least one message was send succesfully 
+			    if update == True:
+		    		self.lastStates[item.name] = item.state
 		except:
 		    print "__________message excetion"
 

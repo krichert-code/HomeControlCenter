@@ -3,6 +3,7 @@ import ConfigClass
 import requests
 import csv
 from datetime import datetime
+import json
 
 class WeatherForecaset(object):
     time = ""
@@ -25,9 +26,9 @@ class WeatherClass(object):
     WeatherHourlyFile   =  1 << 1
     WeatherDailyFile    =  1 << 2
 
-    __currWeatherFile = "data/weather.xml"
-    __hourlyWeatherFile = "data/weatherHourly.xml"
-    __dailyWeatherFile = "data/weatherDaily.xml"
+    __currWeatherFile = "data/weatherCurrent.json"
+    __hourlyWeatherFile = "data/weatherHourly.json"
+    __dailyWeatherFile = "data/weatherDaily.json"
     
     # The class "constructor" - It's actually an initializer
     def __init__(self):
@@ -35,33 +36,48 @@ class WeatherClass(object):
         
     def getCurrentWeather(self):
         weatherData = {}
-	try:
-    	    xmldoc = minidom.parse(WeatherClass.__currWeatherFile)
+#	try:
+	    #wunderweather
+#    	    xmldoc = minidom.parse(WeatherClass.__currWeatherFile)
         
-    	    item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('icon_url')        
-    	    weatherData['icon']=item[0].childNodes[0].nodeValue
+#    	    item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('icon_url')        
+#    	    weatherData['icon']=item[0].childNodes[0].nodeValue
         
-    	    item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('temp_c')        
-    	    weatherData['temp']=item[0].childNodes[0].nodeValue
+#    	    item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('temp_c')        
+#    	    weatherData['temp']=item[0].childNodes[0].nodeValue
 
-    	    item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('local_time_rfc822')        
-    	    weatherData['date']=item[0].childNodes[0].nodeValue
-    	    time = weatherData['date']
-    	    time = time[:time.rfind(" ")]
-    	    time = time[time.rfind(" "):]
-    	    weatherData['time'] = time
+#    	    item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('local_time_rfc822')        
+#    	    weatherData['date']=item[0].childNodes[0].nodeValue
+#    	    time = weatherData['date']
+#    	    time = time[:time.rfind(" ")]
+#    	    time = time[time.rfind(" "):]
+#    	    weatherData['time'] = time
         
-    	    item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('pressure_mb')        
-    	    weatherData['pressure']=item[0].childNodes[0].nodeValue
+#    	    item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('pressure_mb')        
+#    	    weatherData['pressure']=item[0].childNodes[0].nodeValue
         
-    	    item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('wind_kph')        
-    	    weatherData['wind']=item[0].childNodes[0].nodeValue
+#    	    item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('wind_kph')        
+#    	    weatherData['wind']=item[0].childNodes[0].nodeValue
         
-    	    item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('wind_dir')        
-    	    weatherData['wind_dir']=item[0].childNodes[0].nodeValue
-	except:
-	    print "_____________weather exception1"
-        return weatherData
+#    	    item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('wind_dir')        
+#    	    weatherData['wind_dir']=item[0].childNodes[0].nodeValue
+
+	    #openwathermap
+        with open(WeatherClass.__currWeatherFile) as f:
+            data = json.load(f)
+    
+        weatherData['icon'] = "https://openweathermap.org/img/w/"+data['weather'][0]['icon']+".png"
+        weatherData['temp'] = data['main']['temp']
+        weatherData['date'] = "434343"
+        weatherData['time'] = "11111"
+        weatherData['pressure'] = data['main']['pressure']
+        weatherData['wind']= data['wind']['speed']
+        weatherData['wind_dir']=""
+
+
+#	except:
+#	    print "_____________weather exception1"
+    	return weatherData
     
     def getWeatherHourlyForecast(self):
         id = 0
@@ -112,11 +128,11 @@ class WeatherClass(object):
         return weatherForecast
 
     def __saveWeatherFile(self, url, name):
-        try:
-            resp = requests.get(url, verify=False, timeout=10)
-            with open(name, 'w') as f:
-                f.write(resp.text)
-        except requests.exceptions.RequestException as e:
+#        try:
+#            resp = requests.get(url, verify=False, timeout=10)
+#            with open(name, 'w') as f:
+#                f.write(resp.text)
+#        except requests.exceptions.RequestException as e:
             print "_____________weather exception3"
 
 
