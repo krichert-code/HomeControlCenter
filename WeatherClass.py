@@ -5,6 +5,7 @@ import csv
 from datetime import datetime
 import json
 
+
 class WeatherForecaset(object):
     time = ""
     wind = ""
@@ -36,103 +37,75 @@ class WeatherClass(object):
         
     def getCurrentWeather(self):
         weatherData = {}
-#	try:
-	    #wunderweather
-#    	    xmldoc = minidom.parse(WeatherClass.__currWeatherFile)
-        
-#    	    item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('icon_url')        
-#    	    weatherData['icon']=item[0].childNodes[0].nodeValue
-        
-#    	    item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('temp_c')        
-#    	    weatherData['temp']=item[0].childNodes[0].nodeValue
+	try:
+    	    with open(WeatherClass.__currWeatherFile) as f:
+        	data = json.load(f)
 
-#    	    item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('local_time_rfc822')        
-#    	    weatherData['date']=item[0].childNodes[0].nodeValue
-#    	    time = weatherData['date']
-#    	    time = time[:time.rfind(" ")]
-#    	    time = time[time.rfind(" "):]
-#    	    weatherData['time'] = time
-        
-#    	    item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('pressure_mb')        
-#    	    weatherData['pressure']=item[0].childNodes[0].nodeValue
-        
-#    	    item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('wind_kph')        
-#    	    weatherData['wind']=item[0].childNodes[0].nodeValue
-        
-#    	    item = xmldoc.getElementsByTagName('current_observation')[0].getElementsByTagName('wind_dir')        
-#    	    weatherData['wind_dir']=item[0].childNodes[0].nodeValue
+    	    weatherData['icon'] = "https://openweathermap.org/img/w/"+data['weather'][0]['icon']+".png"
+    	    weatherData['temp'] = "%.1f" % data['main']['temp']
+    	    weatherData['date'] = datetime.fromtimestamp(data['dt']).strftime('%Y-%m-%d')
+    	    weatherData['time'] = datetime.fromtimestamp(data['dt']).strftime('%H:%M:%S')
+    	    weatherData['pressure'] = "%.1f" % data['main']['pressure']
+    	    weatherData['wind']= "%.1f" % data['wind']['speed']
+    	    weatherData['wind_dir']=""
+	except:
+	    print "_____________weather exception1"
 
-	    #openwathermap
-        with open(WeatherClass.__currWeatherFile) as f:
-            data = json.load(f)
-    
-        weatherData['icon'] = "https://openweathermap.org/img/w/"+data['weather'][0]['icon']+".png"
-        weatherData['temp'] = data['main']['temp']
-        weatherData['date'] = "434343"
-        weatherData['time'] = "11111"
-        weatherData['pressure'] = data['main']['pressure']
-        weatherData['wind']= data['wind']['speed']
-        weatherData['wind_dir']=""
-
-
-#	except:
-#	    print "_____________weather exception1"
     	return weatherData
     
     def getWeatherHourlyForecast(self):
         id = 0
-        skip = -1
         weatherForecast = []
 	try:
-    	    xmldoc = minidom.parse(WeatherClass.__hourlyWeatherFile)
+    	    with open(WeatherClass.__hourlyWeatherFile) as f:
+        	data = json.load(f)
         
-    	    itemlist = xmldoc.getElementsByTagName('forecast')
-        
-    	    for item in itemlist:
-        	skip = skip + 1
+    	    for item in data['list']:
+        	id = id + 1
         	# skip weather forecast between 1am to 5am, and display only temperature on every 3 hours
-        	if skip % 3 == 0 and skip > 5:
-            	    icon = item.getElementsByTagName('icon_url')[0].childNodes[0].nodeValue
-            	    time = item.getElementsByTagName('FCTTIME')[0].getElementsByTagName('hour')[0].childNodes[0].nodeValue + " : 00"
-            	    temp = item.getElementsByTagName('temp')[0].getElementsByTagName('metric')[0].childNodes[0].nodeValue
-            	    wind = item.getElementsByTagName('wspd')[0].getElementsByTagName('metric')[0].childNodes[0].nodeValue
-            	    presure = item.getElementsByTagName('mslp')[0].getElementsByTagName('metric')[0].childNodes[0].nodeValue
+        	if id > 2:
+            	    icon = "https://openweathermap.org/img/w/"+item['weather'][0]['icon']+".png"
+            	    time = datetime.fromtimestamp(item['dt']).strftime('%H:%M')
+            	    temp = "%.1f" % item['main']['temp']
+            	    wind = "%.1f" % item['wind']['speed']
+            	    presure = "%.1f" % item['main']['pressure']
             	    weatherForecast.append(WeatherForecaset(id,time,temp,wind,presure,icon))
-            	    id = id + 1
-            	    if id > 5:
+            	    if id > 7:
                 	break
 	except:
 	    print "_____________weather exception"
         return weatherForecast
 
+
     def getWeatherDailyForecast(self):
         id = 0
         weatherForecast = []
 	try:
-    	    xmldoc = minidom.parse(WeatherClass.__dailyWeatherFile)
-    	    itemlist = xmldoc.getElementsByTagName('simpleforecast')[0].getElementsByTagName('forecastdays')[0].getElementsByTagName('forecastday')
-    	    for item in itemlist:
-        	icon = item.getElementsByTagName('icon_url')[0].childNodes[0].nodeValue
-        	time = item.getElementsByTagName('date')[0].getElementsByTagName('day')[0].childNodes[0].nodeValue + " " + \
-            	    item.getElementsByTagName('date')[0].getElementsByTagName('monthname_short')[0].childNodes[0].nodeValue
-        	temp = temp = item.getElementsByTagName('low')[0].getElementsByTagName('celsius')[0].childNodes[0].nodeValue + \
-                      "/" + item.getElementsByTagName('high')[0].getElementsByTagName('celsius')[0].childNodes[0].nodeValue
-        	wind = item.getElementsByTagName('avewind')[0].getElementsByTagName('kph')[0].childNodes[0].nodeValue
-        	weatherForecast.append(WeatherForecaset(id,time,temp,wind,"",icon))
-        	id = id + 1
-        	if id > 2:
-            	    break
+    	    with open(WeatherClass.__hourlyWeatherFile) as f:
+        	data = json.load(f)
+        
+    	    for item in data['list']:
+		if (item['dt_txt'].find('12:00') != -1):
+        	    id = id + 1
+            	    icon = "https://openweathermap.org/img/w/"+item['weather'][0]['icon']+".png"
+            	    time = datetime.fromtimestamp(item['dt']).strftime('%Y-%m-%d')
+            	    temp = "%.1f" % item['main']['temp']
+            	    wind = "%.1f" % item['wind']['speed']
+            	    presure = "%.1f" % item['main']['pressure']
+            	    weatherForecast.append(WeatherForecaset(id,time,temp,wind,presure,icon))
+            	    if id > 2:
+                	break
 	except:
-	    print "_____________weather exception2"
-
+	    print "_____________weather exception"
         return weatherForecast
 
+
     def __saveWeatherFile(self, url, name):
-#        try:
-#            resp = requests.get(url, verify=False, timeout=10)
-#            with open(name, 'w') as f:
-#                f.write(resp.text)
-#        except requests.exceptions.RequestException as e:
+        try:
+            resp = requests.get(url, verify=False, timeout=10)
+            with open(name, 'w') as f:
+                f.write(resp.text.encode('utf-8'))
+	except Exception as e:
             print "_____________weather exception3"
 
 
@@ -145,11 +118,6 @@ class WeatherClass(object):
         if (files & WeatherClass.WeatherHourlyFile) <> 0:
             self.__saveWeatherFile( config.getHourlyWeatherForecastReq(), self.__hourlyWeatherFile)
 
-        if (files & WeatherClass.WeatherDailyFile) <> 0:
-            self.__saveWeatherFile( config.getDailyWeatherForecastReq(), self.__dailyWeatherFile)
+#        if (files & WeatherClass.WeatherDailyFile) <> 0:
+#            self.__saveWeatherFile( config.getDailyWeatherForecastReq(), self.__dailyWeatherFile)
 
-
-            
-
-
-        
