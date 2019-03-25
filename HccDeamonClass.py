@@ -178,8 +178,8 @@ class Weather:
 
 class Messages:
 	def __init__(self):
-	    self.events = ActionClass.ActionClass()
-	    self.config = ConfigClass.ConfigClass()
+	    #self.events = ActionClass.ActionClass()
+	    #self.config = ConfigClass.ConfigClass()
 	    self.lastStates = {}
 
 
@@ -200,12 +200,14 @@ class Messages:
 
 
 	def timeEvent(self,tick):
-	    # check if message should be send once per 5min
+	    # check if message should be send once per 1min
 	    update = False
+	    events = ActionClass.ActionClass()
+	    config = ConfigClass.ConfigClass()
 
-	    if (tick % 60 * 5) == 0:
+	    if (tick % 60) == 0:
 		# get all generic event (active and inactive)
-    		items = self.events.getEventsData("GetActiveEvents", "", self.events.ActionEventGeneric, True, False)
+    		items = events.getEventsData("GetActiveEvents", "", events.ActionEventGeneric, True, False)
 		try:
 		    for item in items:
 			update = False
@@ -216,9 +218,9 @@ class Messages:
 			# if state has changed then send message (if needed) and then update last state
 			if item.state != self.lastStates[item.name] and len(item.messageId) > 0:
 			    #send message
-			    phones = self.config.getPhoneNumbers()
-			    text = self.config.getSmsMessage(item.messageId, item.state)
-			    token = self.config.getSmsToken()
+			    phones = config.getPhoneNumbers()
+			    text = config.getSmsMessage(item.messageId, item.state)
+			    token = config.getSmsToken()
 
 			    for to in phones:
 				result = self.sendSms(token, to, text)
