@@ -178,3 +178,23 @@ class ActionClass(object):
             return ActionClass.__actionEvents
 
 
+    def getEvents(self, filters = ActionEventAll, returnOnlyActiveEvents = True):
+        events = []
+        calendarEvents = CalendarClass.CalendarClass()
+        radioEvents = RadioClass.RadioClass()
+
+	ActionClass.__mutex.acquire()
+
+        if self.__isEventEnable(filters, ActionClass.ActionEventGeneric) == True:
+	    self.__getSwitchEvents()
+            events = events + self.__config.getEvents(self.ActionEventGeneric, returnOnlyActiveEvents)
+
+        if self.__isEventEnable(filters, ActionClass.ActionEventRadio) == True:
+            events = events + radioEvents.getEventsData(self.ActionEventRadio)
+
+        if self.__isEventEnable(filters, ActionClass.ActionEventCalendar) == True:
+            events = events + calendarEvents.getEventsData(self.ActionEventCalendar)
+
+	ActionClass.__mutex.release()
+
+	return events
