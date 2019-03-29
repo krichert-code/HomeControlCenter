@@ -77,7 +77,8 @@ def temperatureInside():
 def action(actionName):
 	if (isAuthNeed() == False):
 	    action = ActionClass.ActionClass()
-	    return render_template('events.html', events = action.getEventsData(actionName))
+	    action.performAction(actionName)
+	    return render_template('events.html', events = action.getEvents())
 
 @app.route("/heater", methods=['GET', 'POST'])	
 @app.route("/heater/<actionName>", methods=['GET', 'POST'])	
@@ -101,8 +102,9 @@ def sprinkler(actionName=""):
 		return render_template('sprinkler.html', sprinklerElements = sprinkler.getSprinklerItems())
 	    else:
 		action = ActionClass.ActionClass()
-		sprinklerName = request.args.get('param')		
-		return render_template('events.html', events = action.getEventsData(actionName, sprinklerName))
+		sprinklerName = request.args.get('param')
+		action.performAction(actionName, sprinklerName)
+		return render_template('events.html', events = action.getEvents(action.ActionEventGeneric))
 
 @app.route("/radio", methods=['GET', 'POST'])
 @app.route("/radio/<actionName>", methods=['GET', 'POST'])
@@ -114,7 +116,8 @@ def radio(actionName=""):
 	    else:
 		stationName = request.args.get('param')		
 		action = ActionClass.ActionClass()
-		return render_template('events.html', events = action.getEventsData(actionName, stationName, action.ActionEventRadio))
+		action.performAction(actionName, stationName)
+		return render_template('events.html', events = action.getEvents(action.ActionEventRadio))
 
 @app.route("/mp3", methods=['GET', 'POST'])
 @app.route("/mp3/<actionName>", methods=['GET', 'POST'])
@@ -134,7 +137,8 @@ def mp3(actionName=""):
 		    # this is directory intead of single mp3 file
 		    mp3File = radio.getCurrentDirectory()
 		action = ActionClass.ActionClass()
-		return render_template('events.html', events = action.getEventsData(actionName, mp3File, action.ActionEventRadio))
+		action.performAction(actionName, mp3File)
+		return render_template('events.html', events = action.getEventsData(action.ActionEventRadio))
 
 @app.route("/settings", methods=['GET', 'POST'])
 @app.route("/settings/<pageId>", methods=['GET', 'POST'])

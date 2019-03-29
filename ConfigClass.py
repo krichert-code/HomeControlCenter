@@ -3,6 +3,7 @@ from collections import OrderedDict
 import EventClass
 import hashlib
 import datetime
+import ActionThread
 
 class SettingElementClass(object):
     def __init__(self,name, title, type, param, value):
@@ -279,46 +280,7 @@ class ConfigClass(object):
 #	    if item.getAttribute('name') == name:
 #		break
 #	return EventClass.EventClass(item.getAttribute('desc'),"",item.getAttribute('name'), item.getAttribute('state'))
-
-    def getEvents(self, id, onlyActiveEvents = True):
-        eventsData = []
-        itemsList = ConfigClass.__xmldoc.getElementsByTagName('status')[0].getElementsByTagName('element')        
-        for item in itemsList:
-            if (item.getAttribute('state') == "1" and onlyActiveEvents == True) or (onlyActiveEvents == False):
-                event = EventClass.EventClass(item.getAttribute('desc'),"",id, item.getAttribute('state'))
-		event.setEventName(item.getAttribute('name'))
-                try:
-                    event.setEventIcon(item.getAttribute('icon'))
-                    event.setEventMessageId(item.getAttribute('messageId'))
-                except:
-                    event.setEventIcon('gate')
-                eventsData.append(event)
-
-        return eventsData
-
-
-    def changeStatus(self, name, value, desc = ""):
-        ret_val = "Conf_Change_ok"
-
-        itemsList = ConfigClass.__xmldoc.getElementsByTagName('status')[0].getElementsByTagName('element')
-        for item in itemsList:
-            if item.getAttribute('name') == name:
-                break
-
-	if value != item.getAttribute("state") or desc != item.getAttribute("desc"):
-    	    item.setAttribute("state", value)
-    	    if len(desc) > 0:
-        	item.setAttribute("desc", desc)
-	    else:
-		item.setAttribute("desc", "No action")
-    	    ConfigClass.__xmldoc.writexml( open('data/config.xml', 'w'))
-	elif value == item.getAttribute("state") and desc == item.getAttribute("desc"):
-	    ret_val = "in_progress"
-
-        return ret_val
-
-
-    def updateEvents(self, switchStatus):
+    def __updateEvents(self):
 	sprinklerStatus1 = (1 << 3)
 	sprinklerStatus2 = (1 << 2)
 	sprinklerStatus3 = (1 << 1)
@@ -326,6 +288,18 @@ class ConfigClass(object):
 	cesspitStatus    = (1 << 0)
 	desc = ""
 	state = "0"
+
+	try:
+	    status_url = self.getSwitchURL("Status")
+	    threadStatus = ActionThread.ActionThread()
+	    threadStatus.addTask("request",status_url)
+	    threadStatus.addTask("delay",1)
+	    threadStatus.addTask("notify")
+	    threadStatus.start()
+	    threadStatus.suspend()
+	    switchStatus = int(threadStatus.getResponse())
+	except:
+	    switchStatus = -1
 
 	if switchStatus <> -1:
 	    self.changeStatus("error", "0")
@@ -370,5 +344,48 @@ class ConfigClass(object):
 
 	else:
 	    self.changeStatus("error", "1", "Blad krytyczny sterownika")
+
+
+
+    def getEvents(self, id, onlyActiveEvents = True):
+        eventsData = []
+
+	self.__updateEvents()
+
+        itemsList = ConfigClass.__xmldoc.getElementsByTagName('status')[0].getElementsByTagName('element')        
+        for item in itemsList:
+            if (item.getAttribute('state') == "1" and onlyActiveEvents == True) or (onlyActiveEvents == False):
+                event = EventClass.EventClass(item.getAttribute('desc'),"",id, item.getAttribute('state'))
+		event.setEventName(item.getAttribute('name'))
+                try:
+                    event.setEventIcon(item.getAttribute('icon'))
+                    event.setEventMessageId(item.getAttribute('messageId'))
+                except:
+                    event.setEventIcon('gate')
+                eventsData.append(event)
+
+        return eventsData
+
+
+    def changeStatus(self, name, value, desc = ""):
+        ret_val = "Conf_Change_ok"
+
+        itemsList = ConfigClass.__xmldoc.getElementsByTagName('status')[0].getElementsByTagName('element')
+        for item in itemsList:
+            if item.getAttribute('name') == name:
+                break
+
+	if value != item.getAttribute("state") or desc != item.getAttribute("desc"):
+    	    item.setAttribute("state", value)
+    	    if len(desc) > 0:
+        	item.setAttribute("desc", desc)
+	    else:
+		item.setAttribute("desc", "No action")
+    	    ConfigClass.__xmldoc.writexml( open('data/config.xml', 'w'))
+	elif value == item.getAttribute("state") and desc == item.getAttribute("desc"):
+	    ret_val = "in_progress"
+
+        return ret_val
+
 
 #---------------------------Generic config methods ----------------------

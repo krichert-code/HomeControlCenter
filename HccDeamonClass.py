@@ -207,8 +207,7 @@ class Messages:
 
 	    if (tick % 60) == 0:
 		# get all generic event (active and inactive)
-    		#items = events.getEventsData("GetActiveEvents", "", events.ActionEventGeneric, True, False)
-		items = events.getEvents( events.ActionEventGeneric, True )
+		items = events.getEvents( events.ActionEventGeneric, True, False )
 		try:
 		    for item in items:
 			update = False

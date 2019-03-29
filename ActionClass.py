@@ -7,6 +7,7 @@ import RadioClass
 import SprinklerClass
 import HeaterClass
 import threading
+import copy
 
 
 class ActionClass(object):
@@ -128,57 +129,18 @@ class ActionClass(object):
 	pass
 
 #---------------------------------------------------------------------------------------------------------------
-    def __getSwitchEvents(self):
-	try:
-	    status = -1
-	    config = ConfigClass.ConfigClass()
-	    status_url = config.getSwitchURL("Status")
-	    threadStatus = ActionThread.ActionThread()
-	    threadStatus.addTask("request",status_url)
-    	    threadStatus.addTask("delay",1)
-	    threadStatus.addTask("notify")
-	    threadStatus.start()
-	    threadStatus.suspend()
-	    status = int(threadStatus.getResponse())
-	except:
-	    # report error
-	    status = -1
-	self.__config.updateEvents(status)
-
-    def getEventsData(self,actionName="", param = "", filters = ActionEventAll, returnOnlyRequestedEvents = False, returnOnlyActiveEvents = True):
-        events = []
-
+    def performAction(self,actionName="", param = ""):
 	ActionClass.__mutex.acquire()
-
-        calendarEvents = CalendarClass.CalendarClass()
-        radioEvents = RadioClass.RadioClass()
 
         if actionName <> "":
             method_name = 'actionOn' + actionName
             method = getattr(self, method_name)
             method(param)
 
-        if self.__isEventEnable(filters, ActionClass.ActionEventGeneric) == True:
-	    self.__getSwitchEvents()
-            events = events + self.__config.getEvents(self.ActionEventGeneric, returnOnlyActiveEvents)
-
-        if self.__isEventEnable(filters, ActionClass.ActionEventRadio) == True:
-            events = events + radioEvents.getEventsData(self.ActionEventRadio)
-
-        if self.__isEventEnable(filters, ActionClass.ActionEventCalendar) == True:
-            events = events + calendarEvents.getEventsData(self.ActionEventCalendar)
-
-        self.__updateEvents(events, filters)
-
 	ActionClass.__mutex.release()
 
-        if returnOnlyRequestedEvents == True:
-            return events
-        else:
-            return ActionClass.__actionEvents
 
-
-    def getEvents(self, filters = ActionEventAll, returnOnlyActiveEvents = True):
+    def getEvents(self, filters = ActionEventAll, returnOnlyRequestedEvents = False, returnOnlyActiveEvents = True):
         events = []
         calendarEvents = CalendarClass.CalendarClass()
         radioEvents = RadioClass.RadioClass()
@@ -186,7 +148,6 @@ class ActionClass(object):
 	ActionClass.__mutex.acquire()
 
         if self.__isEventEnable(filters, ActionClass.ActionEventGeneric) == True:
-	    self.__getSwitchEvents()
             events = events + self.__config.getEvents(self.ActionEventGeneric, returnOnlyActiveEvents)
 
         if self.__isEventEnable(filters, ActionClass.ActionEventRadio) == True:
@@ -195,6 +156,9 @@ class ActionClass(object):
         if self.__isEventEnable(filters, ActionClass.ActionEventCalendar) == True:
             events = events + calendarEvents.getEventsData(self.ActionEventCalendar)
 
-	ActionClass.__mutex.release()
+        if returnOnlyRequestedEvents == False:
+    	    self.__updateEvents(events, filters)
+	    events = copy.deepcopy(ActionClass.__actionEvents)
 
-	return events
+	ActionClass.__mutex.release()
+        return events
