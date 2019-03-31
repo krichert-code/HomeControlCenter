@@ -32,7 +32,36 @@ def getRadio():
         req = None
 
 
-getRadio()
+def stations():
+        req = "https://koleo.pl/api/v2/main/stations"
+	h = {'X-KOLEO-Version': '1', 'X-KOLEO-Client': 'Node-1'}
+	r = requests.get(req, headers = h)
+	print r.text.encode(encoding='UTF-8',errors='strict')
+
+def j():
+	warszawa = { 'type': 'station', 'id': '33605', 'slug': 'warszawa-centralna' }
+	wroclaw = { 'type': 'station', 'id': '60103', 'slug': 'wroclaw-glowny' }
+
+        req = "https://koleo.pl/api/v2/main/connections"
+	h = {'X-KOLEO-Version': '1', 'X-KOLEO-Client': 'Node-1'}
+#	d = {'query[start_station]': 'gdansk-rebiechowo', 'query[end_station]': 'gdansk-wrzeszcz', 'query[date]': '31-03-2019+10:45:00'}
+	d = {'query[start_station]': 'gdansk-rebiechowo', 'query[end_station]': 'gdynia-glowna', 'query[date]': '31-03-2019+10:45:00'}
+	r = requests.get(req, headers = h, data = d)
+	print r.text.encode(encoding='UTF-8',errors='strict')
+	res = json.loads(r.text)
+	for con in res['connections']:
+	    t = con['departure']
+	    t = t[t.find('T')+1:]
+	    hour = t[:t.find(':')]
+	    t = t[t.find(':')+1:]
+	    minute = t[:t.find(':')]
+	    print hour + "-" + minute
+
+	
+
+#getRadio()
+#stations()
+j()
 
 
 
