@@ -40,7 +40,9 @@ class ScheduleClass:
 		time = time[time.find(':')+1:]
 		minute = time[:time.find(':')]
 		event_day_ts = int(hour) * 60 + int(minute)
-		self.events.append(EventClass.EventClass("Odjazd za " + str(event_day_ts - current_day_ts) + "min", hour+":"+minute))
+		departure_time = event_day_ts - current_day_ts
+		if departure_time > 0:
+		    self.events.append(EventClass.EventClass("Odjazd za " + str(departure_time) + "min", hour+":"+minute))
 	except:
 	    self.events.append(EventClass.EventClass("Blad sieci/parsera", date))
 
