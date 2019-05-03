@@ -1,6 +1,6 @@
 #include "etherShield.h"
 #include "ETHER_28J60.h"
-#include <avr/wdt.h> //should be in any adruino IDE
+#include <avr/wdt.h>
 
 
 #define TRAFO        A0
@@ -20,8 +20,11 @@ static uint8_t mac[6] = {0x54, 0x55, 0x58, 0x10, 0x00, 0x24};
 static uint8_t ip[4] = {192, 168, 1, 2};                       
 static uint16_t port = 80;                                     
 static uint8_t status;
-static unsigned long httpTime = 0;
-static unsigned long currentTime = 0;
+static unsigned long  httpTime = 0;
+static unsigned long  currentTime = 0;
+
+//time without http request (1000*60 * minues)
+static unsigned long  maxIntervalWihoutHttpReq = 1000L *60 * 15; //15min
 
 ETHER_28J60 e;
 void(* resetFunc) (void) = 0; //declare reset function @ address 0
@@ -52,21 +55,22 @@ void setup()
      digitalWrite(TRAFO, LOW);
     
      e.setup(mac, ip, port);
-     wdt_enable(WDTO_8S); //enable it, and set it to 8s
-     
+
      //only for debug purpose
 #ifdef DEBUG     
      Serial.begin(9600);      // open the serial port at 9600 bps:
      Serial.println("Debug");
 #endif     
+
+     wdt_enable(WDTO_8S); //enable it, and set it to 8s
  }
  
  void loop()
  {
    char* params;
    int   in;
+   unsigned long timeDiff = 0;
    
-        
    /* read input and update status */
    //-------------------------------------------------------------------------   
    in = digitalRead(AUX);
@@ -80,9 +84,6 @@ void setup()
    else
    {     
       status = status & (~(1 << (AUX-OFFSET)));       
-#ifdef DEBUG        
-      Serial.println("disable");
-#endif         
    }
    //-------------------------------------------------------------------------   
        
@@ -192,23 +193,34 @@ void setup()
    //watchdog handling
    //-------------------------------------------------------------------------
    currentTime = millis();
-   
+
    //timer overlap - reset timer
-   if (currentTime-httpTime < 0 )
+   if (currentTime < httpTime)
    {
       httpTime = millis();
       currentTime = millis();
    }
+
+   timeDiff = currentTime-httpTime;
    
-   //on each 30min should appear at least on http request else reset system
-   if (currentTime-httpTime > 1000*60*30)
+   //on each define interval should appear at least on http request else reset system
+#ifdef DEBUG        
+     Serial.println(timeDiff);
+#endif      
+
+   if (timeDiff > maxIntervalWihoutHttpReq)
    {
+#ifdef DEBUG        
+     Serial.println("--RESET--");
+     delay(20000);
+     Serial.println("--WD RESET DOESN'T OCCUR, DO IT MANUALLY--");
+#endif           
      //call NULL function - dirty trick
      resetFunc();
-   }   
-   
+    }   
+
    //reset watchdog - it prevents to infinity loop
-   wdt_reset();
+   wdt_reset();   
    //-------------------------------------------------------------------------   
  }
  
