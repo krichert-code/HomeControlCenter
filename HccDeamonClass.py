@@ -83,16 +83,15 @@ class Speaker:
 	    # power is activated by LOW
 	    player = RadioClass.RadioClass()
 	    isPlayerEnabled = player.isPlayerEnabled()
-
 	    isSpeakerActivated = GPIO.input(self.__powerPin)
 
 	    if False == isPlayerEnabled:
 		self.__no_activeCounter = self.__no_activeCounter + 1
 	    
-	    if self.__no_activeCounter > 60 and 1 == isSpeakerActivated:
+	    if self.__no_activeCounter > 60 and 0 == isSpeakerActivated:
 		GPIO.output(self.__powerPin, GPIO.HIGH)
 
-	    if True == isPlayerEnabled and 0 == isSpeakerActivated:
+	    if True == isPlayerEnabled and 1 == isSpeakerActivated:
 		GPIO.output(self.__powerPin, GPIO.LOW)
 		time.sleep(1)
 		GPIO.output(self.__activatePin, GPIO.HIGH)
