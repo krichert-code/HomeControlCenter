@@ -15,12 +15,12 @@
 
 {% for item in sprinklerElements %}
 <tr>
-    <td> <button type="button" onclick="updateContent('infoBox', 'sprinkler/SprinklerOn?param={{ item.name }}')"> {{ item.desc }} </button></td>
+    <td> <button type="button" style="height:100px; width:100px" onclick="updateContent('infoBox', 'sprinkler/SprinklerOn?param={{ item.name }}')"> {{ item.desc }} </button></td>
 </tr>
 {% endfor %}
 
 <tr>
-    <td> <button type="button" onclick="updateContent('infoBox', 'sprinkler/SprinklerOff')">S T O P</button></td>
+    <td> <button type="button" style="height:100px; width:100px" onclick="updateContent('infoBox', 'sprinkler/SprinklerOff')">S T O P</button></td>
 </tr>
 
 </table>

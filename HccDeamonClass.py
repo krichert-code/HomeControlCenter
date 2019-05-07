@@ -73,13 +73,14 @@ class Speaker:
 	    GPIO.setup(self.__powerPin, GPIO.OUT)
 	    GPIO.setup(self.__activatePin, GPIO.OUT)
 
-	    GPIO.output(self.__powerPin, GPIO.LOW)
+	    GPIO.output(self.__powerPin, GPIO.HIGH)
 	    GPIO.output(self.__activatePin, GPIO.LOW)
 	except:
 	    print "__________speaker excetion"
 
     def timeEvent(self):
 	try:
+	    # power is activated by LOW
 	    player = RadioClass.RadioClass()
 	    isPlayerEnabled = player.isPlayerEnabled()
 
@@ -89,10 +90,10 @@ class Speaker:
 		self.__no_activeCounter = self.__no_activeCounter + 1
 	    
 	    if self.__no_activeCounter > 60 and 1 == isSpeakerActivated:
-		GPIO.output(self.__powerPin, GPIO.LOW)
+		GPIO.output(self.__powerPin, GPIO.HIGH)
 
 	    if True == isPlayerEnabled and 0 == isSpeakerActivated:
-		GPIO.output(self.__powerPin, GPIO.HIGH)
+		GPIO.output(self.__powerPin, GPIO.LOW)
 		time.sleep(1)
 		GPIO.output(self.__activatePin, GPIO.HIGH)
 		time.sleep(1)
@@ -176,6 +177,13 @@ class Weather:
 		    self.__counter = 200
 		    print "__________weather excetion"
 
+class Sprinkler:
+	def __init__(self):
+	    pass
+
+	def timeEvent(self):
+	    pass
+
 class Messages:
 	def __init__(self):
 	    #self.events = ActionClass.ActionClass()
@@ -252,6 +260,7 @@ class HccDeamonClass(threading.Thread):
 	weather = Weather()
 	heater = Heater()
 	messages = Messages()
+	sprinkler = Sprinkler()
 
 	while (not self.__stopEvent):
 		alarm.timeEvent()
@@ -260,5 +269,6 @@ class HccDeamonClass(threading.Thread):
 		weather.timeEvent()
 		heater.timeEvent(timerTick)
 		messages.timeEvent(timerTick)
+		sprinkler.timeEvent()
 		time.sleep(1)
 		timerTick = timerTick + 1
