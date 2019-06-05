@@ -20,7 +20,11 @@ class CalendarClass:
         events = data['items']
                
         for element in events:
-	    event = EventClass.EventClass(element['summary'], element['start']['date'], id)
+	    try:
+		event = EventClass.EventClass(element['summary'], element['start']['date'], id)
+	    except:
+		event = EventClass.EventClass(element['summary'], element['start']['dateTime'], id)
+
 	    event.setEventIcon('calendar')
             self.__eventsData.append(event)
                 
