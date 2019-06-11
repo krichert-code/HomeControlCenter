@@ -252,7 +252,7 @@ class Messages:
 		print "__________message excetion"
 
 
-	def __calendarEventmessage(self):
+	def __calendarEventMessage(self):
 	    calendar = CalendarClass.CalendarClass()
 	    config = ConfigClass.ConfigClass()
 	    curr_time = datetime.datetime.now().strftime('%H:%M')

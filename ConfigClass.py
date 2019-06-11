@@ -174,11 +174,9 @@ class ConfigClass(object):
 
 	try:
 	    if (globalEnableState == "disable" or (globalEnableState == "enable" and activeDay == "False")):
-		print "NOT ACTIVE"
 		result = False
 	    else:
 		if hour == int(start_time[:start_time.find(':')]) and minute == int(start_time[start_time.find(':')+1:]):
-    		    print "ACTIVE"
 	    	    result = True
 		else:
 		    result = False
