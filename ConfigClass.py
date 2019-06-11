@@ -150,6 +150,33 @@ class ConfigClass(object):
     def getmd5passwd(self):
 	return ConfigClass.__xmldoc.getElementsByTagName('passwd')[0].getElementsByTagName('md5')[0].getAttribute('value')
 
+
+#-------------------------- Sprinkler settings --------------------------
+    def getDurationTime(self):
+	return ConfigClass.__xmldoc.getElementsByTagName('autowater')[0].getElementsByTagName('duration')[0].getAttribute('value')
+
+    def isStartTime(self, dayNumber, hour, minute):
+	globalEnableState = ConfigClass.__xmldoc.getElementsByTagName('autowater')[0].getElementsByTagName('state')[0].getAttribute('value')
+	tag = "day"+ str(dayNumber+1)
+	activeDay = ConfigClass.__xmldoc.getElementsByTagName('autowater')[0].getElementsByTagName(tag)[0].getAttribute('value')
+	start_time = ConfigClass.__xmldoc.getElementsByTagName('autowater')[0].getElementsByTagName('start_time')[0].getAttribute('value')
+
+	try:
+	    if (globalEnableState == "disable" or (globalEnableState == "enable" and activeDay == "False")):
+		print "NOT ACTIVE"
+		result = False
+	    else:
+		if hour == int(start_time[:start_time.find(':')]) and minute == int(start_time[start_time.find(':')+1:]):
+    		    print "ACTIVE"
+	    	    result = True
+		else:
+		    result = False
+	except:
+	    result = False
+	
+	return result
+#-------------------------- Sprinkler settings --------------------------
+
 #-------------------------- Heater settings -----------------------------
     def getThermMode(self):
         return ConfigClass.__xmldoc.getElementsByTagName('heater')[0].getElementsByTagName('thermometer')[0].getAttribute('mode')

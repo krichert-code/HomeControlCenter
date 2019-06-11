@@ -8,6 +8,7 @@ import CalendarClass
 import WeatherClass
 import HeaterClass
 import ActionClass
+import SprinklerClass
 import RPi.GPIO as GPIO
 import json
 
@@ -178,10 +179,19 @@ class Weather:
 
 class Sprinkler:
 	def __init__(self):
-	    pass
+	    self.__sprinkler = SprinklerClass.SprinklerClass()
 
-	def timeEvent(self):
-	    pass
+	def timeEvent(self, tick):
+	    try:
+		# manage sprinkler state once per 60 sec
+		if (tick % 60  == 0):
+		    curr_week_day = datetime.datetime.today().weekday()
+		    curr_hour = int(datetime.datetime.now().strftime('%H'))
+		    curr_min = int(datetime.datetime.now().strftime('%M'))
+		    self.__sprinkler.manageSprinklerState(curr_week_day, curr_hour, curr_min)
+	    except:
+		print "__________sprinkler excetion"
+
 
 class Messages:
 	def __init__(self):
@@ -268,6 +278,6 @@ class HccDeamonClass(threading.Thread):
 		weather.timeEvent()
 		heater.timeEvent(timerTick)
 		messages.timeEvent(timerTick)
-		sprinkler.timeEvent()
+		sprinkler.timeEvent(timerTick)
 		time.sleep(1)
 		timerTick = timerTick + 1

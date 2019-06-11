@@ -3,10 +3,14 @@ import EventClass
 import ActionThread
 import time
 
+
 class SprinklerClass(object):
+    __Max_num_of_sprinklers = 3
 
     def __init__(self):
-        pass
+	self.__autowater = False
+	self.__state = 0
+	self.__timestamp = 0
 
 
     def getSprinklerItems(self):
@@ -49,4 +53,29 @@ class SprinklerClass(object):
 	threadTask.addTask("notify")
         threadTask.start()
 	threadTask.suspend()
+
+    def manageSprinklerState(self, curr_week_day, curr_hour, curr_min):
+	config = ConfigClass.ConfigClass()
+	duration = int(config.getDurationTime()) * 60
+	currentTS = time.time()
+
+
+	if self.__autowater == False:	    
+	    self.__state = 0
+	    self.__autowater = config.isStartTime(curr_week_day, curr_hour, curr_min)
+	    self.__timestamp = currentTS
+
+	
+	if self.__autowater == True and ( currentTS >= self.__timestamp + (self.__state * duration) ):
+	    self.__state = self.__state + 1
+	    if self.__state <= SprinklerClass.__Max_num_of_sprinklers:
+		#print "---------------ON :" + str(self.__state)
+		self.setSprinklerOn(str(self.__state))
+	    else:
+		self.setSprinklerOff()
+		#print "---------------OFF------------"
+		self.__autowater = False
+		self.__state = 0
+
+	    
 

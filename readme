@@ -37,3 +37,4 @@ TODO list:
 13. hccDeamon dodac lapanie wyjatkow i wazdym wywolaniu timerEvent - dodac klase logowanie wyjatkow (wyswietlana w SystemInfo)
 14. zapisywanie aktualnej historii - w wykresach pieca dodac klawisz 'zapisz'
 15. ---------------piec nie powinien zapisywac statusu - robi to ActionClass
+16. wysylanie sms o zdarzeniach ktore sa jutro
