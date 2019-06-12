@@ -116,6 +116,7 @@ class ConfigClass(object):
     def getAlarmSetting(self, name):
         return ConfigClass.__xmldoc.getElementsByTagName('alarm')[0].getElementsByTagName(name)[0].getAttribute('value')
 
+#-------------------------- Calendar settings --------------------------
     def getCalendarKey(self):
         return ConfigClass.__xmldoc.getElementsByTagName('calendar')[0].getElementsByTagName('key')[0].getAttribute('value')
 
@@ -127,6 +128,16 @@ class ConfigClass(object):
 
     def getCalendarRange(self):
         return int(ConfigClass.__xmldoc.getElementsByTagName('calendar')[0].getElementsByTagName('range')[0].getAttribute('value'))
+
+    def getCalendarReminderTime(self):
+        return ConfigClass.__xmldoc.getElementsByTagName('calendar')[0].getElementsByTagName('sms')[0].getAttribute('sendTime')
+
+    def getCalendarReminderEnabled(self):
+        if ConfigClass.__xmldoc.getElementsByTagName('calendar')[0].getElementsByTagName('sms')[0].getAttribute('value') == "True":
+	    return True
+	else:
+	    return False
+#-------------------------- Calendar settings --------------------------
 
     def getCurrentWeatherReq(self):
         return ConfigClass.__xmldoc.getElementsByTagName('weather')[0].getElementsByTagName('current')[0].getAttribute('url')

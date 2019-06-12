@@ -194,10 +194,13 @@ class Sprinkler:
 
 
 class Messages:
+	__diff_calendar_timestamp = 86400
 	def __init__(self):
 	    #self.events = ActionClass.ActionClass()
 	    #self.config = ConfigClass.ConfigClass()
 	    self.lastStates = {}
+	    self.lastSendEventDate = ""
+	    self.currSendEventDate = ""
 
 
 	def sendSms(self,apiKey, number, message):
@@ -215,40 +218,77 @@ class Messages:
 
     	    return status
 
-
-	def timeEvent(self,tick):
+	def __genericEventMessage(self, tick):
 	    # check if message should be send once per 1min
 	    update = False
 	    events = ActionClass.ActionClass()
 	    config = ConfigClass.ConfigClass()
 
-	    if (tick % 60) == 0:
-		# get all generic event (active and inactive)
-		items = events.getEvents( events.ActionEventGeneric, True, False )
-		try:
-		    for item in items:
-			update = False
-			# add item if not exist in "last state" list
-			if item.name not in self.lastStates:
-			    self.lastStates[item.name] = "0"
+	    # get all generic event (active and inactive)
+	    items = events.getEvents( events.ActionEventGeneric, True, False )
+	    try:
+		for item in items:
+		    update = False
+		    # add item if not exist in "last state" list
+		    if item.name not in self.lastStates:
+		        self.lastStates[item.name] = "0"
 
-			# if state has changed then send message (if needed) and then update last state
-			if item.state != self.lastStates[item.name] and len(item.messageId) > 0:
-			    #send message
-			    phones = config.getPhoneNumbers()
-			    text = config.getSmsMessage(item.messageId, item.state)
-			    token = config.getSmsToken()
+		    # if state has changed then send message (if needed) and then update last state
+		    if item.state != self.lastStates[item.name] and len(item.messageId) > 0:
+		        #send message
+		        phones = config.getPhoneNumbers()
+		        text = config.getSmsMessage(item.messageId, item.state)
+		        token = config.getSmsToken()
 
-			    for to in phones:
-				result = self.sendSms(token, to, text)
-				if result == "OK":
-				    update = True
+			for to in phones:
+			    result = self.sendSms(token, to, text)
+			    if result == "OK":
+			        update = True
 
-			    # update last state if at least one message was send succesfully 
-			    if update == True:
-		    		self.lastStates[item.name] = item.state
-		except:
-		    print "__________message excetion"
+			# update last state if at least one message was send succesfully 
+			if update == True:
+		    	    self.lastStates[item.name] = item.state
+	    except:
+		print "__________message excetion"
+
+
+	def __calendarEventmessage(self):
+	    calendar = CalendarClass.CalendarClass()
+	    config = ConfigClass.ConfigClass()
+	    curr_time = datetime.datetime.now().strftime('%H:%M')
+	    sendMessage = False
+
+	    if config.getCalendarReminderEnabled() == True and curr_time == config.getCalendarReminderTime():
+	        events = calendar.getEventsData(ActionClass.ActionEventCalendar)
+		currTS = time.time()
+		text = ""
+
+	        for event in events:
+		    eventTS = time.mktime(datetime.datetime.strptime(event.date, "%Y-%m-%d").timetuple())
+		    # if event is tomorrow then send it
+		    if (eventTS - currTS <= self.__diff_calendar_timestamp):
+		        if sendMessage == True:
+			    text = text + " , "
+		    else:
+			text = event.date + ": "
+
+		    self.currSendEventDate = event.date
+		    text = text + event.desc
+		    sendMessage = True
+
+		if sendMessage == True and self.currSendEventDate <> self.lastSendEventDate:
+		    self.lastSendEventDate = self.currSendEventDate
+		    phones = config.getPhoneNumbers()
+		    token = config.getSmsToken()
+		    for to in phones:
+		        result = self.sendSms(token, to, text)
+
+	def timeEvent(self,tick):
+	    if (tick % 30) == 0:
+		self.__genericEventMessage(tick)
+		self.__calendarEventMessage()
+
+
 
 #------------------------------------------------------------------------------------------------------------------------
 class HccDeamonClass(threading.Thread):

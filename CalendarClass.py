@@ -55,9 +55,8 @@ class CalendarClass:
             pass
 
 
-    def getEventsData(self,id ):
+    def getEventsData(self,id):
 	fileList = glob.glob("data/*_calendar.json")
 	for name in fileList:
 	    self.__getDataFromFile(name, id)
         return self.__eventsData
-        
