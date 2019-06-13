@@ -259,7 +259,7 @@ class Messages:
 	    sendMessage = False
 
 	    if config.getCalendarReminderEnabled() == True and curr_time == config.getCalendarReminderTime():
-	        events = calendar.getEventsData(ActionClass.ActionEventCalendar)
+	        events = calendar.getEventsData()
 		currTS = time.time()
 		text = ""
 
@@ -269,15 +269,16 @@ class Messages:
 		    if (eventTS - currTS <= self.__diff_calendar_timestamp):
 		        if sendMessage == True:
 			    text = text + " , "
-		    else:
-			text = event.date + ": "
+			else:
+			    text = event.date + ": "
 
-		    self.currSendEventDate = event.date
-		    text = text + event.desc
-		    sendMessage = True
+			self.currSendEventDate = event.date
+			text = text + event.desc
+			sendMessage = True
 
 		if sendMessage == True and self.currSendEventDate <> self.lastSendEventDate:
 		    self.lastSendEventDate = self.currSendEventDate
+		    sendMessage = False
 		    phones = config.getPhoneNumbers()
 		    token = config.getSmsToken()
 		    for to in phones:
