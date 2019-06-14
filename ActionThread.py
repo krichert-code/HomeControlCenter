@@ -36,16 +36,19 @@ class ActionThread(threading.Thread):
     def run(self):
         exit = False
         forceClean = False
+        ActionThread.__mutex.acquire()
         
         for task in self.__taskList:
             
-            ActionThread.__mutex.acquire()
 
             if task.type == "request":
                 try:
                     # Wait up to 3 second for response
                     # If no response then initialize 'cleaning' - set forceClean
-                    req = requests.get(task.value, verify = False, timeout = 10)
+		    # dirty workaround - don't why it helps on stucking FW
+		    print "****************** " + task.value
+                    req = requests.get(task.value)
+		    #WO , verify = False, timeout = 10)
 		    self.__response = req.text
                 except requests.exceptions.RequestException as e:
                     req = None                
@@ -69,7 +72,6 @@ class ActionThread(threading.Thread):
                 config = ConfigClass.ConfigClass()
                 ret_val = config.changeStatus(task.value, "0", task.desc)
 
-            ActionThread.__mutex.release()
             
             # Below events don't need to be in critical section 
             if task.type == "delay" and forceClean == False:
@@ -81,5 +83,6 @@ class ActionThread(threading.Thread):
             if exit == True:
                 break
     
+        ActionThread.__mutex.release()
 
 
