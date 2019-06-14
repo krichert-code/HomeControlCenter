@@ -266,7 +266,7 @@ class Messages:
 	        for event in events:
 		    eventTS = time.mktime(datetime.datetime.strptime(event.date, "%Y-%m-%d").timetuple())
 		    # if event is tomorrow then send it
-		    if (eventTS - currTS <= self.__diff_calendar_timestamp):
+		    if (eventTS - currTS <= self.__diff_calendar_timestamp) and (eventTS - currTS > 0):
 		        if sendMessage == True:
 			    text = text + " , "
 			else:
