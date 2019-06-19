@@ -45,8 +45,6 @@ class ActionThread(threading.Thread):
                 try:
                     # Wait up to 3 second for response
                     # If no response then initialize 'cleaning' - set forceClean
-		    # dirty workaround - don't why it helps on stucking FW
-		    print "****************** " + task.value
                     req = requests.get(task.value, verify = False, timeout = 10)
 		    self.__response = req.text
                 except requests.exceptions.RequestException as e:
