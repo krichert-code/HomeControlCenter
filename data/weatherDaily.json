@@ -1,11 +1,1 @@
-
-<response>
-	<version>0.1</version>
-	<termsofService>http://www.wunderground.com/weather/api/d/terms.html</termsofService>
-	<features>
-	</features>
-		<error>
-		<type>keynotfound</type>
-		<description>this key does not exist</description>
-	</error>
-</response>
+{"data":[{"moonrise_ts":1562670213,"wind_cdir":"PNZ","rh":91,"pres":993.336,"sunset_ts":1562700426,"ozone":366.154,"moon_phase":0.558122,"wind_gust_spd":12.9984,"clouds":100,"ts":1562623260,"sunrise_ts":1562638956,"app_min_temp":12.4,"wind_spd":4.99948,"pop":30,"wind_cdir_full":"północWest","slp":1011.28,"app_max_temp":14,"vis":0,"dewpt":11.6,"snow":0,"uv":1.1348,"valid_date":"2019-07-09","wind_dir":315,"clouds_hi":70,"precip":2.03418,"weather":{"icon":"c04d","code":804,"description":"Pochmurnie"},"max_temp":14,"moonset_ts":1562626210,"datetime":"2019-07-09","temp":13.1,"min_temp":12.4,"clouds_mid":99,"clouds_low":83},{"moonrise_ts":1562761504,"wind_cdir":"PNZ","rh":79,"pres":993.454,"sunset_ts":1562786771,"ozone":363.348,"moon_phase":0.667151,"wind_gust_spd":17.2183,"clouds":92,"ts":1562709660,"sunrise_ts":1562725426,"app_min_temp":11.4,"wind_spd":5.0671,"pop":15,"wind_cdir_full":"północWest","slp":1011.38,"app_max_temp":16.3,"vis":0,"dewpt":9.9,"snow":0,"uv":3.59506,"valid_date":"2019-07-10","wind_dir":319,"clouds_hi":62,"precip":0.015625,"weather":{"icon":"c04d","code":804,"description":"Pochmurnie"},"max_temp":16.3,"moonset_ts":1562713715,"datetime":"2019-07-10","temp":13.6,"min_temp":11.4,"clouds_mid":75,"clouds_low":63},{"moonrise_ts":1562852708,"wind_cdir":"PNZ","rh":73,"pres":993.38,"sunset_ts":1562873113,"ozone":361.541,"moon_phase":0.76586,"wind_gust_spd":10.7954,"clouds":44,"ts":1562796060,"sunrise_ts":1562811900,"app_min_temp":9.8,"wind_spd":3.40614,"pop":0,"wind_cdir_full":"północWest","slp":1011.24,"app_max_temp":19,"vis":0,"dewpt":9.7,"snow":0,"uv":7.3502,"valid_date":"2019-07-11","wind_dir":310,"clouds_hi":22,"precip":0,"weather":{"icon":"c03d","code":803,"description":"Silne zachmurzenie"},"max_temp":19.8,"moonset_ts":1562801354,"datetime":"2019-07-11","temp":15.1,"min_temp":9.8,"clouds_mid":2,"clouds_low":20}],"city_name":"Rębiechowo","lon":"18.42562","timezone":"Europe\/Warsaw","lat":"54.38606","country_code":"PL","state_code":"82"}

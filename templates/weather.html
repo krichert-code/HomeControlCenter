@@ -2,11 +2,10 @@
 <div style="font-size:20px;">Pomiar o {{ weather['time'] }}</div>
 <br>
 
-<div style="background-image:url({{ weather['icon'] }}); background-repeat: no-repeat;background-position: left top;">
-	<div style="margin-left:55px;font-size:40px;">
+	<div style="margin-left:0px;font-size:40px;">
+		<img src="{{ weather['icon'] }}" style="vertical-align:middle" width="50">
 		{{ weather['temp'] }}<sup>o</sup>C 
 	</div>
-</div>
 <br>
 
 <div style="font-size:18px;">
