@@ -150,7 +150,6 @@ class Weather:
 	def timeEvent(self):
 		try:
 		    weather = WeatherClass.WeatherClass()
-
 		    curr_day = datetime.datetime.now().strftime('%d')
 		    curr_hour = datetime.datetime.now().strftime('%H')
 
@@ -158,6 +157,7 @@ class Weather:
 			    self.__day = curr_day
 			    self.__weatherFiles = self.__weatherFiles | weather.WeatherDailyFile | weather.WeatherHourlyFile
 			    self.__counter = 200
+			    weather.clearRainIndicator()
 
 		    if self.__hour <> curr_hour:
 			    self.__hour = curr_hour
@@ -167,19 +167,23 @@ class Weather:
 		    if self.__weatherFiles <> 0 and self.__counter == 0:
 			weather.generateFiles(self.__weatherFiles)
 			self.__weatherFiles = 0
+			weather.updateRainIndicator()
 
 		    if self.__counter > 0 :
 			self.__counter = self.__counter - 1
-		except:
+
+		except Exception as e:
+		    print e.message
 		    self.__day = curr_day
 		    self.__hour = curr_hour
 		    self.__weatherFiles = 0
 		    self.__counter = 200
-		    print "__________weather excetion"
+
 
 class Sprinkler:
 	def __init__(self):
 	    self.__sprinkler = SprinklerClass.SprinklerClass()
+	    self.__config = ConfigClass.ConfigClass()
 
 	def timeEvent(self, tick):
 	    try:
@@ -189,7 +193,8 @@ class Sprinkler:
 		    curr_hour = int(datetime.datetime.now().strftime('%H'))
 		    curr_min = int(datetime.datetime.now().strftime('%M'))
 		    self.__sprinkler.manageSprinklerState(curr_week_day, curr_hour, curr_min)
-	    except:
+	    except Exception as e:
+		print e.message
 		print "__________sprinkler excetion"
 
 

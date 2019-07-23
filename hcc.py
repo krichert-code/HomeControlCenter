@@ -165,6 +165,8 @@ def train_schedule(direction="A"):
 def info():
 	if (isAuthNeed() == False):
 	    config = ConfigClass.ConfigClass()
+	    weather = WeatherClass.WeatherClass()
+
 	    infoObj = {}
 	    if config.getAlarmSetting('day_policy') == 'disabled':
 		infoObj['alarm_state'] = "Alarm wylaczony"
@@ -174,10 +176,10 @@ def info():
 		infoObj['alarm_state'] = "Alarm wlaczony"
 	    infoObj['alarm_start'] = config.getAlarmSetting('start_time')
 
-	    #if config.getEvent('rain').state == "0":
-	    #	infoObj['rain'] = "Dzisiaj nie zanotowano opadow"
-	    #else:
-	    #	infoObj['rain'] = "Dzisiaj zanotowano opady"
+	    if weather.rainOccured() == False:
+	    	infoObj['rain'] = "Dzisiaj nie zanotowano opadow"
+	    else:
+	    	infoObj['rain'] = "Dzisiaj zanotowano opady"
 	    return render_template('info.html', info = infoObj)
 
 @app.route("/menu")

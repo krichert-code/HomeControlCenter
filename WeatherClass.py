@@ -30,12 +30,32 @@ class WeatherClass(object):
     __currWeatherFile = "data/weatherCurrent.json"
     __hourlyWeatherFile = "data/weatherHourly.json"
     __dailyWeatherFile = "data/weatherDaily.json"
+    __rainStringIndicator = "eszcz"
+    __rainIndicator = False
     
     # The class "constructor" - It's actually an initializer
     def __init__(self):
         self.__heater = {}
-
         
+    def clearRainIndicator(self):
+	WeatherClass.__rainIndicator = False
+	pass
+
+    def rainOccured(self):
+	return WeatherClass.__rainIndicator
+
+    def updateRainIndicator(self):
+	try:
+    	    with open(WeatherClass.__currWeatherFile) as f:
+		data = json.load(f)
+
+    	    if data['data'][0]['weather']['description'].find(self.__rainStringIndicator) <> -1:
+		WeatherClass.__rainIndicator = True
+
+	except:
+	    print "_____________weather exception!!!"
+
+
     def getCurrentWeather(self):
         weatherData = {}
 	try:
@@ -123,4 +143,6 @@ class WeatherClass(object):
 
         if (files & WeatherClass.WeatherDailyFile) <> 0:
             self.__saveWeatherFile( config.getDailyWeatherForecastReq(), self.__dailyWeatherFile)
+
+
 

@@ -1,6 +1,7 @@
 import ConfigClass
 import EventClass
 import ActionThread
+import WeatherClass
 import time
 
 
@@ -56,9 +57,14 @@ class SprinklerClass(object):
 
     def manageSprinklerState(self, curr_week_day, curr_hour, curr_min):
 	config = ConfigClass.ConfigClass()
+	weather = WeatherClass.WeatherClass()
+
+	rainOccured = False
 	duration = int(config.getDurationTime()) * 60
 	currentTS = time.time()
 
+	if (weather.rainOccured() == True and config.checkRainOccured() == True) or config.checkRainOccured() == False:
+	    rainOccured = True
 
 	if self.__autowater == False:	    
 	    self.__state = 0
@@ -68,7 +74,7 @@ class SprinklerClass(object):
 	
 	if self.__autowater == True and ( currentTS >= self.__timestamp + (self.__state * duration) ):
 	    self.__state = self.__state + 1
-	    if self.__state <= SprinklerClass.__Max_num_of_sprinklers:
+	    if self.__state <= SprinklerClass.__Max_num_of_sprinklers and rainOccured == False:
 		#print "---------------ON :" + str(self.__state)
 		self.setSprinklerOn(str(self.__state))
 	    else:
