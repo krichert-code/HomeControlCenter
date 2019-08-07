@@ -65,7 +65,7 @@ class SprinklerClass(object):
 	duration = int(config.getDurationTime()) * 60
 	currentTS = time.time()
 
-	if (weather.rainOccured() == True and config.checkRainOccured() == True) or config.checkRainOccured() == False:
+	if (weather.rainOccured() == True and config.checkRainOccured() == True):
 	    rainOccured = True
 
 	if self.__autowater == False:	    
