@@ -21,7 +21,11 @@ class CalendarClass:
                
         for element in events:
 	    try:
-		event = EventClass.EventClass(element['summary'], element['start']['date'], id)
+		date = element['start']['date']
+		year = datetime.now().strftime('%Y')
+		# update 'year' in case if its recursive event - warrining only yearly events are supported right now!
+		date = year + date[date.find("-"):]
+		event = EventClass.EventClass(element['summary'], date , id)
 	    except:
 		event = EventClass.EventClass(element['summary'], element['start']['dateTime'], id)
 
@@ -40,7 +44,6 @@ class CalendarClass:
 	    stop_date = (datetime.now() + delta).strftime('%Y-%m-%d')
 	    req = req.replace("START_DATE", start_date)
 	    req = req.replace("STOP_DATE", stop_date)
-
 	    calNames = config.getCalendarsList()
 
 	    for name in calNames:
