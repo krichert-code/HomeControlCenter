@@ -23,18 +23,10 @@
 5. Sms API - https://justsend.pl/
 
 TODO list:
-1. ---------------czujnik szamba
-2. ---------------settings
-3. ---------------zraszacze raportuja status jak piec
-4. radio zamien na player (nazwa klasy i pliku)
-5. ---------------rozklad jazdy pkm dodaj tez regionalne
-6. ---------------wysylanie zdarzen przez sms
-7. wspolpraca z alarmem
-8. kamera 
-9. oddzielna klasa dla info 
-11. ---------------Tryb autopodlewania (wykrywanie deszczu i zalaczanie zraszaczy wg konfiguracji)
-12. usunac strone 'auth' - wykrywanie autoryzacji w '/'
-13. hccDeamon dodac lapanie wyjatkow i wazdym wywolaniu timerEvent - dodac klase logowanie wyjatkow (wyswietlana w SystemInfo)
-14. zapisywanie aktualnej historii - w wykresach pieca dodac klawisz 'zapisz'
-15. ---------------piec nie powinien zapisywac statusu - robi to ActionClass
-16. ---------------wysylanie sms o zdarzeniach ktore sa jutro
+1. Change class name for radio component (player is more generic)
+2. Alarm implementation
+3. Camera implementation
+4. Separate class for 'info' data (currently implemented as a part of hcc)
+5. 'Auth' page seems to be not needed - authentication shall be done on '/'
+6. Exception logger in  hccDeamon - exceptions shall be displayed in info view
+7. Saving and restoring history of temperature data
