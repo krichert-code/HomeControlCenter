@@ -167,7 +167,10 @@ class ConfigClass(object):
 	return ConfigClass.__xmldoc.getElementsByTagName('autowater')[0].getElementsByTagName('duration')[0].getAttribute('value')
 
     def checkRainOccured(self):
-	return ConfigClass.__xmldoc.getElementsByTagName('autowater')[0].getElementsByTagName('rain')[0].getAttribute('value')
+        if ConfigClass.__xmldoc.getElementsByTagName('autowater')[0].getElementsByTagName('rain')[0].getAttribute('value') == "True":
+	    return True
+	else:
+	    return False
 
     def isStartTime(self, dayNumber, hour, minute):
 	globalEnableState = ConfigClass.__xmldoc.getElementsByTagName('autowater')[0].getElementsByTagName('state')[0].getAttribute('value')
