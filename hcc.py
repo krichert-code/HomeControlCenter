@@ -151,15 +151,18 @@ def settings(pageId=0):
 
 @app.route("/train_schedule")
 @app.route("/train_schedule/<direction>")
-def train_schedule(direction="A"):
+@app.route("/train_schedule/<direction>/<offset>")
+def train_schedule(direction="A", offset=0):
 	if (isAuthNeed() == False):
 	    obj = ScheduleClass.ScheduleClass()
 	    switch_url = "train_schedule/"
+
 	    if direction=="A":
 		switch_url = switch_url + "B"
 	    else:
 		switch_url = switch_url + "A"
-	    return render_template('train_schedule.html', eventsDirA = obj.getTimetoDirection(direction), url = switch_url)
+
+	    return render_template('train_schedule.html', eventsDirA = obj.getTimetoDirection(direction, offset), url = switch_url, next_url = "train_schedule/" + direction)
 
 @app.route("/info")
 def info():
