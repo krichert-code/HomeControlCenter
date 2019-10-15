@@ -51,7 +51,7 @@ class ScheduleClass:
 		event_day_ts = int(hour) * 60 + int(minute)
 		departure_time = event_day_ts - current_day_ts
 		if departure_time > 0:
-		    self.events.append(EventClass.EventClass("Odjazd za " + str(departure_time) + "min", hour+":"+minute))
+		    self.events.append(EventClass.EventClass("Odjazd za " + str(departure_time + (60*ScheduleClass.__offset)) + "min", hour+":"+minute))
 	except:
 	    self.events.append(EventClass.EventClass("Blad sieci/parsera", date))
 
