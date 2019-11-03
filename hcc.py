@@ -197,10 +197,13 @@ if (__name__ == "__main__"):
 	config = ConfigClass.ConfigClass()
 	config.initializeConfigData()
 
-	hccDeamon = HccDeamonClass.HccDeamonClass()
-	hccDeamon.start()
+	try:
+	    hccDeamon = HccDeamonClass.HccDeamonClass()
+	    hccDeamon.start()
 
-	app.run(host="0.0.0.0", port = 80)
+	    app.run(host="0.0.0.0", port = 80)
+	except Exception as e:
+	    print "Cannot run application ! Critical error"
 
 	hccDeamon.stop()
 	hccDeamon.join()
