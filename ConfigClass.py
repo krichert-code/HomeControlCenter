@@ -368,7 +368,7 @@ class ConfigClass(object):
 		if (isDayMode == True):
 		    desc = "Piec w trybie dziennym ["+ str(dayTemp+threshold) +"]"
 		else:
-		    desc = "Piec w trybie dziennym ["+ str(nightTemp+threshold) +"]"
+		    desc = "Piec w trybie nocnym ["+ str(nightTemp+threshold) +"]"
 		state = "1"
 	    else:
 		desc = "No action"
