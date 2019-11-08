@@ -11,7 +11,6 @@ import SprinklerClass
 import HeaterClass
 import ScheduleClass
 import HccDeamonClass
-import HeaterClass
 import os
 import hashlib
 
@@ -169,6 +168,7 @@ def info():
 	if (isAuthNeed() == False):
 	    config = ConfigClass.ConfigClass()
 	    weather = WeatherClass.WeatherClass()
+	    heater = HeaterClass.HeaterClass()
 
 	    infoObj = {}
 	    if config.getAlarmSetting('day_policy') == 'disabled':
@@ -183,6 +183,9 @@ def info():
 	    	infoObj['rain'] = "Dzisiaj nie zanotowano opadow"
 	    else:
 	    	infoObj['rain'] = "Dzisiaj zanotowano opady"
+
+	    infoObj['heater_time'] = heater.getHeaterStatistic()
+
 	    return render_template('info.html', info = infoObj)
 
 @app.route("/menu")

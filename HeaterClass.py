@@ -20,6 +20,8 @@ class HeaterClass(object):
     __data = []
     __dayMode = False
     __lastState = -1
+    # statistic - how long heater is on today
+    __heaterOnToday = 0
     # State defines
     __StateOn      =  1
     __StateOff     =  0
@@ -63,8 +65,14 @@ class HeaterClass(object):
 	    print "___________heater exception" 
         return heater
 
+    def getHeaterStatistic(self):
+	try:
+    	    heaterStats = str(int(self.__heaterOnToday / 60)) + "h " + str(self.__heaterOnToday % 60) + "min"
+	except:
+	    print "___________heater exception" 
+        return heaterStats
 
-    def manageHeaterState(self, dayOfWeek, hour):
+    def manageHeaterState(self, dayOfWeek, hour, minute):
 		config = ConfigClass.ConfigClass()
 		weather = WeatherClass.WeatherClass()
 		threadTask = None
@@ -76,6 +84,12 @@ class HeaterClass(object):
 		isDayMode = config.isDayMode(dayOfWeek, hour)
 
 		temp = self.__getTemperatureFromDevice()
+
+		# new day - reset statistics
+		if (hour == 0 and minute == 0):
+		    self.__heaterOnToday = 0
+		if (HeaterClass.__lastState == HeaterClass.__StateOn):
+		    self.__heaterOnToday = self.__heaterOnToday + 1
 
 		if HeaterClass.__dayMode != isDayMode:
 			#if mode has changed set heater state as 'unknown'(-1)

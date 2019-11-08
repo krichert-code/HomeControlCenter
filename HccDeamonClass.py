@@ -128,7 +128,8 @@ class Heater:
 		if (tick % 60  == 0):
 		    curr_week_day = datetime.datetime.today().weekday()
 		    curr_hour = int(datetime.datetime.now().strftime('%H'))
-		    self.__heater.manageHeaterState(curr_week_day, curr_hour)
+		    curr_min = int(datetime.datetime.now().strftime('%M'))
+		    self.__heater.manageHeaterState(curr_week_day, curr_hour, curr_min)
 	    except:
 		print "__________heater excetion"
 	    
