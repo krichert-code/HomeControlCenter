@@ -67,7 +67,7 @@ class HeaterClass(object):
 
     def getHeaterStatistic(self):
 	try:
-    	    heaterStats = str(int(self.__heaterOnToday / 60)) + "h " + str(self.__heaterOnToday % 60) + "min"
+    	    heaterStats = str(int(HeaterClass.__heaterOnToday / 60)) + "h " + str(HeaterClass.__heaterOnToday % 60) + "min"
 	except:
 	    print "___________heater exception" 
         return heaterStats
@@ -87,9 +87,9 @@ class HeaterClass(object):
 
 		# new day - reset statistics
 		if (hour == 0 and minute == 0):
-		    self.__heaterOnToday = 0
+		    HeaterClass.__heaterOnToday = 0
 		if (HeaterClass.__lastState == HeaterClass.__StateOn):
-		    self.__heaterOnToday = self.__heaterOnToday + 1
+		    HeaterClass.__heaterOnToday = HeaterClass.__heaterOnToday + 1
 
 		if HeaterClass.__dayMode != isDayMode:
 			#if mode has changed set heater state as 'unknown'(-1)
