@@ -61,6 +61,7 @@ class ActionClass(object):
 	response = {}
 	response['action'] = "Door"
 	response['description'] = "Otwieranie furtki"
+	response['duration'] = "2"
 	response['icon'] = "gate0"
 	return response
 
@@ -78,6 +79,7 @@ class ActionClass(object):
 	response['action'] = "Gate0"
 	response['description'] = "Otwieranie/Zamykanie bramy garazowej"
 	response['icon'] = "gate0"
+	response['duration'] = "20"
 	return response
         
     def actionOnGate1(self, param = ""):
@@ -93,6 +95,7 @@ class ActionClass(object):
 	response = {}
 	response['action'] = "Gate1"
 	response['description'] = "Otwieranie bramy wjazdowej"
+	response['duration'] = "20"
 	response['icon'] = "gate1"
 	return response
 
@@ -112,6 +115,7 @@ class ActionClass(object):
 	response = {}
 	response['action'] = "Gate1"
 	response['description'] = "Otwieranie bramy wjazdowej"
+	response['duration'] = "27"
 	response['icon'] = "gate1"
 	return response
 
@@ -123,6 +127,7 @@ class ActionClass(object):
 	response = {}
 	response['action'] = "Sprinkler" + param
 	response['description'] = "Zraszacze " + param
+	response['duration'] = "0"
 	response['icon'] = "sprinkler"
 	return response
 
@@ -133,6 +138,7 @@ class ActionClass(object):
 	response['action'] = "SprinklerOff"
 	response['description'] = "Zraszacze"
 	response['icon'] = "sprinkler"
+	response['duration'] = "0"
 	return response
 
     def actionOnPlay(self, param = ""):
