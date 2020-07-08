@@ -54,15 +54,15 @@ class ActionClass(object):
 
         threadTask.addTask("set","door", "Otwieranie furtki")
         threadTask.addTask("request",url)
-        threadTask.addTask("delay",2)
+        threadTask.addTask("delay",5)
         threadTask.addTask("clear","door", "No action")
         threadTask.start()
         threadTask.suspend()
 	response = {}
 	response['action'] = "Door"
 	response['description'] = "Otwieranie furtki"
-	response['duration'] = "2"
-	response['icon'] = "gate0"
+	response['duration'] = "5"
+	response['icon'] = "door"
 	return response
 
     def actionOnGate0(self, param = ""):
