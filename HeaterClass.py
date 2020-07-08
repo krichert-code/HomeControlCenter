@@ -59,8 +59,10 @@ class HeaterClass(object):
     	    heater['temp'] = "%.1f" % temp
     	    heater['time'] = datetime.now().strftime('%H:%M:%S')
     	    heater['icon'] = "img/day.gif"
+	    heater['mode'] = "day"
 	    if HeaterClass.__dayMode == False:
 		heater['icon'] = "img/night.gif"
+		heater['mode'] = "night"
 	except:
 	    print "___________heater exception" 
         return heater

@@ -13,6 +13,7 @@ import ScheduleClass
 import HccDeamonClass
 import os
 import hashlib
+import json
 
 app = Flask(__name__)
 
@@ -193,6 +194,31 @@ def menu():
 	if (isAuthNeed() == False):
 	    return render_template('menu.html')
 
+
+@app.route("/restApi/<cmd>")
+@app.route("/restApi/<cmd>/<param>")
+def restApi(cmd="version", param=""):
+	if (cmd=="version"):
+	    response = {}
+	    response['name'] = "Home Control Center"
+	    response['version'] = "1.0"
+	elif (cmd=="temperature"):
+	    obj = HeaterClass.HeaterClass()
+	    response = obj.getCurrentTemperatureInside()
+	elif (cmd=="events"):
+	    obj = ActionClass.ActionClass()
+	    events = obj.getEvents()
+	    response = {}
+	    for event in events:
+		response['eventType'] = event.id
+		response['eventDesc'] = event.desc
+		response['eventIcon'] = event.icon
+		response['eventDate'] = event.date
+	else:
+	    action = ActionClass.ActionClass()
+	    response = action.performAction(cmd,param)
+
+	return json.dumps(response)
 
 
 

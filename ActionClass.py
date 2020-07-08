@@ -54,10 +54,15 @@ class ActionClass(object):
 
         threadTask.addTask("set","door", "Otwieranie furtki")
         threadTask.addTask("request",url)
-        threadTask.addTask("delay",5)
+        threadTask.addTask("delay",2)
         threadTask.addTask("clear","door", "No action")
         threadTask.start()
         threadTask.suspend()
+	response = {}
+	response['action'] = "Door"
+	response['description'] = "Otwieranie furtki"
+	response['icon'] = "gate0"
+	return response
 
     def actionOnGate0(self, param = ""):
         url = self.__config.getSwitchURL("garage")
@@ -69,6 +74,11 @@ class ActionClass(object):
         threadTask.addTask("clear","garage", "No action")
         threadTask.start()
         threadTask.suspend()
+	response = {}
+	response['action'] = "Gate0"
+	response['description'] = "Otwieranie/Zamykanie bramy garazowej"
+	response['icon'] = "gate0"
+	return response
         
     def actionOnGate1(self, param = ""):
         url = self.__config.getSwitchURL("mainGate")
@@ -80,6 +90,11 @@ class ActionClass(object):
         threadTask.addTask("clear","mainGate", "No action")
         threadTask.start()
         threadTask.suspend()
+	response = {}
+	response['action'] = "Gate1"
+	response['description'] = "Otwieranie bramy wjazdowej"
+	response['icon'] = "gate1"
+	return response
 
     def actionOnGate1Perm(self, param = ""):
         url = self.__config.getSwitchURL("mainGate")
@@ -94,51 +109,82 @@ class ActionClass(object):
         threadTask.addTask("clear","mainGate", "No action")
         threadTask.start()
 	threadTask.suspend()
+	response = {}
+	response['action'] = "Gate1"
+	response['description'] = "Otwieranie bramy wjazdowej"
+	response['icon'] = "gate1"
+	return response
+
 
                 
     def actionOnSprinklerOn(self, param = ""):
 	sprinkler = SprinklerClass.SprinklerClass()
 	sprinkler.setSprinklerOn(param)
+	response = {}
+	response['action'] = "Sprinkler" + param
+	response['description'] = "Zraszacze " + param
+	response['icon'] = "sprinkler"
+	return response
 
     def actionOnSprinklerOff(self, param = ""):
 	sprinkler = SprinklerClass.SprinklerClass()
 	sprinkler.setSprinklerOff()
+	response = {}
+	response['action'] = "SprinklerOff"
+	response['description'] = "Zraszacze"
+	response['icon'] = "sprinkler"
+	return response
 
     def actionOnPlay(self, param = ""):
         radio = RadioClass.RadioClass()
         radio.getRadioPlayRequest(param)
+	response = {}
+	return response
 
     def actionOnPlayMp3(self, param = ""):
         player = RadioClass.RadioClass()
         player.playMp3File(param)
+	response = {}
+	return response
 
     def actionOnStop(self, param = ""):
         radio = RadioClass.RadioClass()
         radio.getRadioStopRequest()
+	response = {}
+	return response
 
     def actionOnVolumeUp(self, param = ""):
         radio = RadioClass.RadioClass()
         radio.getRadioVolumeUpRequest() 
+	response = {}
+	return response
 
     def actionOnVolumeDown(self, param = ""):
         radio = RadioClass.RadioClass()
         radio.getRadioVolumeDownRequest() 
+	response = {}
+	return response
 
     def actionOnGetActiveEvents(self, param = ""):
         # perform on timer tick from browser - currently do nothing
-	pass
+	response = {}
+	return response
+
 
 #---------------------------------------------------------------------------------------------------------------
     def performAction(self,actionName="", param = ""):
 	ActionClass.__mutex.acquire()
 
-        if actionName <> "":
+	try:
             method_name = 'actionOn' + actionName
             method = getattr(self, method_name)
-            method(param)
+            response = method(param)
+	except:
+	    response = {}
+	    response['error'] = "invalid command"
 
 	ActionClass.__mutex.release()
-
+	return response
 
     def getEvents(self, filters = ActionEventAll, returnOnlyRequestedEvents = False, returnOnlyActiveEvents = True):
         events = []
