@@ -205,15 +205,22 @@ def restApi(cmd="version", param=""):
 	elif (cmd=="temperature"):
 	    obj = HeaterClass.HeaterClass()
 	    response = obj.getCurrentTemperatureInside()
+	elif (cmd=="weather"):
+	    obj = WeatherClass.WeatherClass()
+	    response = obj.getCurrentWeather()
 	elif (cmd=="events"):
 	    obj = ActionClass.ActionClass()
 	    events = obj.getEvents()
 	    response = {}
+	    resEvents = []
 	    for event in events:
-		response['eventType'] = event.id
-		response['eventDesc'] = event.desc
-		response['eventIcon'] = event.icon
-		response['eventDate'] = event.date
+		row = {}
+		row['eventType'] = event.id
+		row['eventDesc'] = event.desc
+		row['eventIcon'] = event.icon
+		row['eventDate'] = event.date
+		resEvents.append(row)
+	    response['events'] = resEvents
 	else:
 	    action = ActionClass.ActionClass()
 	    response = action.performAction(cmd,param)
