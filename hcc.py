@@ -208,7 +208,12 @@ def restApi(cmd="version", param=""):
 	elif (cmd=="weather"):
 	    obj = WeatherClass.WeatherClass()
 	    response = obj.getCurrentWeather()
-	elif (cmd=="events"):
+	else:
+	    duration = 0
+	    if (cmd <> "events"):
+		action = ActionClass.ActionClass()
+		duration = action.performAction(cmd,param)
+
 	    obj = ActionClass.ActionClass()
 	    events = obj.getEvents()
 	    response = {}
@@ -221,9 +226,7 @@ def restApi(cmd="version", param=""):
 		row['eventDate'] = event.date
 		resEvents.append(row)
 	    response['events'] = resEvents
-	else:
-	    action = ActionClass.ActionClass()
-	    response = action.performAction(cmd,param)
+	    response['eventDuration'] = duration
 
 	return json.dumps(response)
 

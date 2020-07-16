@@ -58,12 +58,7 @@ class ActionClass(object):
         threadTask.addTask("clear","door", "No action")
         threadTask.start()
         threadTask.suspend()
-	response = {}
-	response['action'] = "Door"
-	response['description'] = "Otwieranie furtki"
-	response['duration'] = "5"
-	response['icon'] = "door"
-	return response
+	return 5
 
     def actionOnGate0(self, param = ""):
         url = self.__config.getSwitchURL("garage")
@@ -75,12 +70,7 @@ class ActionClass(object):
         threadTask.addTask("clear","garage", "No action")
         threadTask.start()
         threadTask.suspend()
-	response = {}
-	response['action'] = "Gate0"
-	response['description'] = "Otwieranie/Zamykanie bramy garazowej"
-	response['icon'] = "gate0"
-	response['duration'] = "20"
-	return response
+	return 20
         
     def actionOnGate1(self, param = ""):
         url = self.__config.getSwitchURL("mainGate")
@@ -92,12 +82,7 @@ class ActionClass(object):
         threadTask.addTask("clear","mainGate", "No action")
         threadTask.start()
         threadTask.suspend()
-	response = {}
-	response['action'] = "Gate1"
-	response['description'] = "Otwieranie bramy wjazdowej"
-	response['duration'] = "20"
-	response['icon'] = "gate1"
-	return response
+	return 20
 
     def actionOnGate1Perm(self, param = ""):
         url = self.__config.getSwitchURL("mainGate")
@@ -112,69 +97,48 @@ class ActionClass(object):
         threadTask.addTask("clear","mainGate", "No action")
         threadTask.start()
 	threadTask.suspend()
-	response = {}
-	response['action'] = "Gate1"
-	response['description'] = "Otwieranie bramy wjazdowej"
-	response['duration'] = "27"
-	response['icon'] = "gate1"
-	return response
+	return 27
 
 
                 
     def actionOnSprinklerOn(self, param = ""):
 	sprinkler = SprinklerClass.SprinklerClass()
 	sprinkler.setSprinklerOn(param)
-	response = {}
-	response['action'] = "Sprinkler" + param
-	response['description'] = "Zraszacze " + param
-	response['duration'] = "0"
-	response['icon'] = "sprinkler"
-	return response
+	return 0
 
     def actionOnSprinklerOff(self, param = ""):
 	sprinkler = SprinklerClass.SprinklerClass()
 	sprinkler.setSprinklerOff()
-	response = {}
-	response['action'] = "SprinklerOff"
-	response['description'] = "Zraszacze"
-	response['icon'] = "sprinkler"
-	response['duration'] = "0"
-	return response
+	return 0
 
     def actionOnPlay(self, param = ""):
         radio = RadioClass.RadioClass()
         radio.getRadioPlayRequest(param)
-	response = {}
-	return response
+	return 0
 
     def actionOnPlayMp3(self, param = ""):
         player = RadioClass.RadioClass()
         player.playMp3File(param)
-	response = {}
-	return response
+	return 0
 
     def actionOnStop(self, param = ""):
         radio = RadioClass.RadioClass()
         radio.getRadioStopRequest()
-	response = {}
-	return response
+	return 0
 
     def actionOnVolumeUp(self, param = ""):
         radio = RadioClass.RadioClass()
         radio.getRadioVolumeUpRequest() 
-	response = {}
-	return response
+	return 0
 
     def actionOnVolumeDown(self, param = ""):
         radio = RadioClass.RadioClass()
         radio.getRadioVolumeDownRequest() 
-	response = {}
-	return response
+	return 0
 
     def actionOnGetActiveEvents(self, param = ""):
         # perform on timer tick from browser - currently do nothing
-	response = {}
-	return response
+	return 0
 
 
 #---------------------------------------------------------------------------------------------------------------
