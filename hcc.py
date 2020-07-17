@@ -11,6 +11,7 @@ import SprinklerClass
 import HeaterClass
 import ScheduleClass
 import HccDeamonClass
+import InfoClass
 import os
 import hashlib
 import json
@@ -167,27 +168,8 @@ def train_schedule(direction="A", offset=0):
 @app.route("/info")
 def info():
 	if (isAuthNeed() == False):
-	    config = ConfigClass.ConfigClass()
-	    weather = WeatherClass.WeatherClass()
-	    heater = HeaterClass.HeaterClass()
-
-	    infoObj = {}
-	    if config.getAlarmSetting('day_policy') == 'disabled':
-		infoObj['alarm_state'] = "Alarm wylaczony"
-	    elif config.getAlarmSetting('day_policy') == 'week_day':
-		infoObj['alarm_state'] = "Alarm wlaczony na dni tygodnia"
-	    else:
-		infoObj['alarm_state'] = "Alarm wlaczony"
-	    infoObj['alarm_start'] = config.getAlarmSetting('start_time')
-
-	    if weather.rainOccured() == False:
-	    	infoObj['rain'] = "Dzisiaj nie zanotowano opadow"
-	    else:
-	    	infoObj['rain'] = "Dzisiaj zanotowano opady"
-
-	    infoObj['heater_time'] = heater.getHeaterStatistic()
-
-	    return render_template('info.html', info = infoObj)
+	    infoObj = InfoClass.InfoClass()
+	    return render_template('info.html', info = infoObj.getInfoData())
 
 @app.route("/menu")
 def menu():	
@@ -205,6 +187,9 @@ def restApi(cmd="version", param=""):
 	elif (cmd=="temperature"):
 	    obj = HeaterClass.HeaterClass()
 	    response = obj.getCurrentTemperatureInside()
+	elif (cmd=="info"):
+	    infoObj = InfoClass.InfoClass()
+	    response = infoObj.getInfoData()
 	elif (cmd=="weather"):
 	    obj = WeatherClass.WeatherClass()
 	    response = obj.getCurrentWeather()
