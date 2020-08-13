@@ -193,6 +193,11 @@ def restApi(cmd="version", param=""):
 	elif (cmd=="weather"):
 	    obj = WeatherClass.WeatherClass()
 	    response = obj.getCurrentWeather()
+	elif (cmd=="schedule"):
+	    obj = ScheduleClass.ScheduleClass()
+	    response = {}
+	    response['DirectionA'] = obj.getJsonFromKoleo('A', 0)
+	    response['DirectionB'] = obj.getJsonFromKoleo('B', 0)
 	else:
 	    duration = 0
 	    if (cmd <> "events"):
