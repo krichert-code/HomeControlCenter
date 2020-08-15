@@ -36,7 +36,7 @@ class SprinklerClass(object):
 
         return events
 
-    def setForceAutoWater(self):
+    def setSprinklerForceAuto(self):
 	SprinklerClass.__force_auto_water = True
 
     def setSprinklerOn(self, param = ""):

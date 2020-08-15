@@ -111,6 +111,11 @@ class ActionClass(object):
 	sprinkler.setSprinklerOff()
 	return 0
 
+    def actionOnSprinklerForceAuto(self, param = ""):
+	sprinkler = SprinklerClass.SprinklerClass()
+	sprinkler.setSprinklerForceAuto()
+	return 5
+
     def actionOnPlay(self, param = ""):
         radio = RadioClass.RadioClass()
         radio.getRadioPlayRequest(param)
