@@ -198,6 +198,14 @@ def restApi(cmd="version", param=""):
 	    response = {}
 	    response['DirectionA'] = obj.getJsonFromKoleo('A', 0)
 	    response['DirectionB'] = obj.getJsonFromKoleo('B', 0)
+	elif (cmd=="heaterCharts"):
+	    obj = HeaterClass.HeaterClass()
+	    response = {}
+	    response = obj.getCharts()
+	elif (cmd=="autoWater"):
+	    obj = SprinklerClass.SprinklerClass()
+	    response = {}
+	    response = obj.setForceAutoWater()
 	else:
 	    duration = 0
 	    if (cmd <> "events"):

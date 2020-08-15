@@ -8,6 +8,7 @@ import time
 class SprinklerClass(object):
     __Max_num_of_sprinklers = 3
     __break_auto_water = False
+    __force_auto_water = False
 
     def __init__(self):
 	self.__autowater = False
@@ -35,6 +36,9 @@ class SprinklerClass(object):
 
         return events
 
+    def setForceAutoWater(self):
+	SprinklerClass.__force_auto_water = True
+
     def setSprinklerOn(self, param = ""):
 	threadTask = ActionThread.ActionThread()
 	config = ConfigClass.ConfigClass()
@@ -50,6 +54,7 @@ class SprinklerClass(object):
 	threadTask = ActionThread.ActionThread()
 	config = ConfigClass.ConfigClass()
 	SprinklerClass.__break_auto_water = True
+	SprinklerClass.__force_auto_water = False
 	url_off = config.getSwitchURL("SprinklerOff")
         threadTask.addTask("request", url_off)
 	threadTask.addTask("delay", 2)
@@ -70,7 +75,11 @@ class SprinklerClass(object):
 
 	if self.__autowater == False:	    
 	    self.__state = 0
-	    self.__autowater = config.isStartTime(curr_week_day, curr_hour, curr_min)
+	    if (config.isStartTime(curr_week_day, curr_hour, curr_min) or SprinklerClass.__force_auto_water):
+		self.__autowater = True
+	    else:
+		self.__autowater = False
+
 	    self.__timestamp = currentTS
 	    SprinklerClass.__break_auto_water = False
 	
@@ -85,6 +94,7 @@ class SprinklerClass(object):
 		#print "---------------OFF------------"
 		self.__autowater = False
 		self.__state = 0
+		SprinklerClass.__force_auto_water = False
 
 	    
 

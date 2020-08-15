@@ -216,3 +216,41 @@ class HeaterClass(object):
 
 	return json.dumps(jsonData, indent=4)
 
+
+    def getCharts(self):
+	nightItem = 0
+	dayItem = 0
+	notWorkItem = 0
+	counter = 0
+
+	jsonData = {}
+	percentage = {}
+
+	for item in HeaterClass.__data:
+	    if item.mode == 0 or item.mode == -1:
+		notWorkItem = notWorkItem + 1
+
+	    if item.isDay == True and item.mode == 1:
+		dayItem = dayItem + 1
+
+	    if item.isDay == False and item.mode == 1:
+		nightItem = nightItem + 1
+
+	percentage['day'] = dayItem
+	percentage['night'] = nightItem
+	percentage['off'] = notWorkItem
+	jsonData['percentage'] = percentage
+
+	temp = []
+	for item in HeaterClass.__data:
+	    if counter % HeaterClass.__lineChartInterval == 0:
+		#jsonData['rows'].append({'c':[ {'v':item.date,'f':item.date}, {'v':item.tempInside,'f':str(item.tempInside)}, {'v':item.tempOutside,'f':str(item.tempOutside)}]  })
+		value = {}
+		value['inside'] = item.tempInside
+		value['outside'] = item.tempOutside
+		value['date'] = item.date
+		temp.append(value)
+	    counter = counter + 1
+	jsonData['temp'] = temp
+
+	return jsonData

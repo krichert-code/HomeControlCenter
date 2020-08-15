@@ -84,4 +84,6 @@ http://31.192.216.10/RMFCLASSIC48
 #EXTINF:-1,,tvg-logo="http://image.noelshack.com/minis/2017/02/1484272726-somafm.png" group-title="radio" radio="true",CALM
 http://31.192.216.10/RMF5
 #EXTINF:-1,group-title="radio" radio="true",Polskie Radio
-http://stream3.polskieradio.pl:8480/listen.pls
+http://stream3.polskieradio.pl:8900
+#EXTINF:-1,group-title="radio" radio="true",AntyRadio
+https://an.cdn.eurozet.pl/ant-waw.mp3
