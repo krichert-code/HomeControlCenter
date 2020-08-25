@@ -202,10 +202,6 @@ def restApi(cmd="version", param=""):
 	    obj = HeaterClass.HeaterClass()
 	    response = {}
 	    response = obj.getCharts()
-	elif (cmd=="autoWater"):
-	    obj = SprinklerClass.SprinklerClass()
-	    response = {}
-	    response = obj.setForceAutoWater()
 	else:
 	    duration = 0
 	    if (cmd <> "events"):
