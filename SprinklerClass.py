@@ -98,3 +98,17 @@ class SprinklerClass(object):
 
 	    
 
+    def getSettings(self):
+	config = ConfigClass.ConfigClass()
+	jsonData = {}
+	jsonData['duration'] = config.getDurationTime()
+	jsonData['startTime'] = config.getStartTime()
+	jsonData['globalEnable'] = config.getGlobalEnable()
+	jsonData['day1'] = config.getLocalEnable(0)
+	jsonData['day2'] = config.getLocalEnable(1)
+	jsonData['day3'] = config.getLocalEnable(2)
+	jsonData['day4'] = config.getLocalEnable(3)
+	jsonData['day5'] = config.getLocalEnable(4)
+	jsonData['day6'] = config.getLocalEnable(5)
+	jsonData['day7'] = config.getLocalEnable(6)
+	return jsonData

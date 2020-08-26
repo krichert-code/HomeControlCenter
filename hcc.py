@@ -202,6 +202,10 @@ def restApi(cmd="version", param=""):
 	    obj = HeaterClass.HeaterClass()
 	    response = {}
 	    response = obj.getCharts()
+	elif (cmd == "getGardenSettings"):
+	    obj = SprinklerClass.SprinklerClass()
+	    response = {}
+	    response = obj.getSettings()
 	else:
 	    duration = 0
 	    if (cmd <> "events"):

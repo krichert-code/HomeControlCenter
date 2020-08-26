@@ -172,6 +172,24 @@ class ConfigClass(object):
 	else:
 	    return False
 
+    def getStartTime(self):
+	return ConfigClass.__xmldoc.getElementsByTagName('autowater')[0].getElementsByTagName('start_time')[0].getAttribute('value')
+
+    def getGlobalEnable(self):
+	globalEnableState = ConfigClass.__xmldoc.getElementsByTagName('autowater')[0].getElementsByTagName('state')[0].getAttribute('value')
+	if (globalEnableState == "disable"):
+	    return 0
+	else:
+	    return 1
+
+    def getLocalEnable(self, dayNumber):
+	tag = "day"+ str(dayNumber+1)
+	activeDay = ConfigClass.__xmldoc.getElementsByTagName('autowater')[0].getElementsByTagName(tag)[0].getAttribute('value')
+	if (activeDay == "False"):
+	    return 0
+	else:
+	    return 1
+
     def isStartTime(self, dayNumber, hour, minute):
 	globalEnableState = ConfigClass.__xmldoc.getElementsByTagName('autowater')[0].getElementsByTagName('state')[0].getAttribute('value')
 	tag = "day"+ str(dayNumber+1)
@@ -213,6 +231,11 @@ class ConfigClass(object):
 
     def getNightTemp(self):
 	return ConfigClass.__xmldoc.getElementsByTagName('heater')[0].getElementsByTagName('night_temperature')[0].getAttribute('value')
+
+    def getDayModeSettings(self, dayNumber):
+	tag = "day"+ str(dayNumber+1)
+	hours = int(ConfigClass.__xmldoc.getElementsByTagName('heater')[0].getElementsByTagName(tag)[0].getAttribute('value'))
+	return hours
 
     def isDayMode(self,dayNumber, hour):
 	tag = "day"+ str(dayNumber+1)

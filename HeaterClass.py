@@ -18,6 +18,7 @@ class HeaterParam(object):
 class HeaterClass(object):
     # static data
     __data = []
+    __data_per_day = []
     __dayMode = False
     __lastState = -1
     # statistic - how long heater is on today
@@ -90,6 +91,7 @@ class HeaterClass(object):
 		# new day - reset statistics
 		if (hour == 0 and minute == 0):
 		    HeaterClass.__heaterOnToday = 0
+		    HeaterClass.__data_per_day = []
 		if (HeaterClass.__lastState == HeaterClass.__StateOn):
 		    HeaterClass.__heaterOnToday = HeaterClass.__heaterOnToday + 1
 
@@ -133,6 +135,7 @@ class HeaterClass(object):
 			tempOutside = weatherData['temp']
 
 		    HeaterClass.__data.append(HeaterParam(temp, tempOutside, HeaterClass.__lastState, isDayMode))
+		    HeaterClass.__data_per_day.append(HeaterParam(temp, tempOutside, HeaterClass.__lastState, isDayMode))
 		    if (len(HeaterClass.__data) > HeaterClass.__maxDataBuffer):
 			HeaterClass.__data.pop(0)
 
@@ -218,13 +221,21 @@ class HeaterClass(object):
 
 
     def getCharts(self):
+	config = ConfigClass.ConfigClass()
 	nightItem = 0
 	dayItem = 0
 	notWorkItem = 0
+	nightItemPerDay = 0
+	dayItemPerDay = 0
+	notWorkItemPerDay = 0
+
+
 	counter = 0
 
 	jsonData = {}
 	percentage = {}
+	percentage_per_day = {}
+	config_data = {}
 
 	for item in HeaterClass.__data:
 	    if item.mode == 0 or item.mode == -1:
@@ -241,6 +252,21 @@ class HeaterClass(object):
 	percentage['off'] = notWorkItem
 	jsonData['percentage'] = percentage
 
+	for item in HeaterClass.__data_per_day:
+	    if item.mode == 0 or item.mode == -1:
+		notWorkItemPerDay = notWorkItemPerDay + 1
+
+	    if item.isDay == True and item.mode == 1:
+		dayItemPerDay = dayItemPerDay + 1
+
+	    if item.isDay == False and item.mode == 1:
+		nightItemPerDay = nightItemPerDay + 1
+
+	percentage_per_day['day'] = dayItemPerDay
+	percentage_per_day['night'] = nightItemPerDay
+	percentage_per_day['off'] = notWorkItemPerDay
+	jsonData['percentagePerDay'] = percentage_per_day
+
 	temp = []
 	for item in HeaterClass.__data:
 	    if counter % HeaterClass.__lineChartInterval == 0:
@@ -252,5 +278,18 @@ class HeaterClass(object):
 		temp.append(value)
 	    counter = counter + 1
 	jsonData['temp'] = temp
+
+	config_data['dayTemp'] = float(config.getDayTemp())
+	config_data['nightTemp'] = float(config.getNightTemp())
+	config_data['threshold'] = float(config.geTempThreshold())
+	config_data['day1'] = int(config.getDayModeSettings(0))
+	config_data['day2'] = int(config.getDayModeSettings(1))
+	config_data['day3'] = int(config.getDayModeSettings(2))
+	config_data['day4'] = int(config.getDayModeSettings(3))
+	config_data['day5'] = int(config.getDayModeSettings(4))
+	config_data['day6'] = int(config.getDayModeSettings(5))
+	config_data['day7'] = int(config.getDayModeSettings(6))
+	jsonData['settings'] = config_data
+
 
 	return jsonData
