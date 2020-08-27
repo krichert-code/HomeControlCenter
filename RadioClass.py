@@ -40,6 +40,10 @@ class RadioClass(object):
     __set_volume_req = {"jsonrpc" : "2.0", "method" : "Application.SetVolume", "params" : {"volume" : 0}, "id" : 1}
     __get_player_state_req = {"jsonrpc" : "2.0", "method" : "Player.GetActivePlayers", "id" : 1}
     __get_files_req = {"jsonrpc" : "2.0", "method" : "Files.GetDirectory", "params" : { "directory" : "PATH", "media" : "files" }, "id" : 1}
+
+    __get_pvr_channels = {"jsonrpc" : "2.0", "method" : "PVR.GetChannels", "params" : {"channelgroupid" : 2},  "id" : 1}
+#    __play_req_pvr   = {"jsonrpc":"2.0","id":"1","method":"Player.Open","params":{"item":{"channelid":"PLAY_REQUEST"}}}
+
     # Depricatated get method : 
     #__set_volume_req = "/jsonrpc?request={%22jsonrpc%22: %222.0%22, %22method%22: %22Application.SetVolume%22, %22params%22: {%22volume%22: VOLUME_VALUE}, %22id%22: 1}"
     #__get_event_req = "params%22:%20{%20%22properties%22:%20[%22title%22,%22artist%22],%20%22playerid%22:%201%20},%20%22id%22:%221%22}"
@@ -82,6 +86,14 @@ class RadioClass(object):
 		break
         return station
             
+    def getPVRRadioStations(self):
+	post_data = copy.deepcopy(RadioClass.__get_pvr_channels)
+
+        req = self.__getRadioDevice() + "/jsonrpc"
+        resp = requests.post(req, data=json.dumps(post_data), headers=RadioClass.__headers, verify = False, timeout = 10)
+        data = json.loads(resp.text)
+	return data['result']['channels']
+
     def getRadioStations(self):        
         return RadioClass.__stations
         
