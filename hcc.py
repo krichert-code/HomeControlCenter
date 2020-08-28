@@ -206,6 +206,14 @@ def restApi(cmd="version", param=""):
 	    obj = SprinklerClass.SprinklerClass()
 	    response = {}
 	    response = obj.getSettings()
+	elif (cmd == "getMediaChannels"):
+	    obj = RadioClass.RadioClass()
+	    response = {}
+	    response = obj.getPVRStations()
+	elif (cmd == "playMediaChannel"):
+	    obj = RadioClass.RadioClass()
+	    response = {}
+	    response = obj.playPVRStation(param)
 	else:
 	    duration = 0
 	    if (cmd <> "events"):
