@@ -246,10 +246,10 @@ class RadioClass(object):
 		event = requests.post(req, data=json.dumps(payload), headers=RadioClass.__headers, verify = False, timeout = 3)            
     		data = json.loads(event.text)
 
-    		if len(data['result']['item']['title']) > 0:
-	    	    event_text = data['result']['item']['title']
-    		elif len(data['result']['item']['label']) > 0:
-	    	    event_text = data['result']['item']['label']
+    		#if len(data['result']['item']['title']) > 0:
+	    	#    event_text = data['result']['item']['title']
+    		#elif len(data['result']['item']['label']) > 0:
+	    	event_text = data['result']['item']['label'] + "(" + data['result']['item']['title'] + ")"
 
 		if len(event_text) > 0:
 		    break
