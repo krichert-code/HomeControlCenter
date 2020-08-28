@@ -104,7 +104,7 @@ class RadioClass(object):
     def getPVRStations(self):
 	response = {}
 	response['radio'] = self.getPVRRadioStations()
-	response['tv'] = self.getPVRTVStations
+	response['tv'] = self.getPVRTVStations()
 	return response
 
     def playPVRChannel(self, channel):

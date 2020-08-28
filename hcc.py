@@ -213,7 +213,7 @@ def restApi(cmd="version", param=""):
 	elif (cmd == "playMediaChannel"):
 	    obj = RadioClass.RadioClass()
 	    response = {}
-	    response = obj.playPVRStation(param)
+	    response = obj.playPVRChannel(param)
 	else:
 	    duration = 0
 	    if (cmd <> "events"):
