@@ -121,6 +121,11 @@ class ActionClass(object):
         radio.getRadioPlayRequest(param)
 	return 0
 
+    def actionOnPlayPVR(self, param = ""):
+        radio = RadioClass.RadioClass()
+        radio.playPVRChannel(int(param))
+	return 0
+
     def actionOnPlayMp3(self, param = ""):
         player = RadioClass.RadioClass()
         player.playMp3File(param)

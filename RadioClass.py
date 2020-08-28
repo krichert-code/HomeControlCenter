@@ -110,8 +110,10 @@ class RadioClass(object):
     def playPVRChannel(self, channel):
 	post_data = copy.deepcopy(RadioClass.__play_req_pvr)
 	post_data['params']['item']['channelid'] = channel
+	print post_data
 	req = self.__getRadioDevice() + "/jsonrpc"
-	requests.post(req, data=json.dumps(post_data), headers=RadioClass.__headers, verify = False, timeout = 10)
+	d = requests.post(req, data=json.dumps(post_data), headers=RadioClass.__headers, verify = False, timeout = 10)
+	print d
 	resp = {}
 	resp['channelid'] = channel
 	return resp
