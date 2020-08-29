@@ -236,6 +236,7 @@ class RadioClass(object):
     def getEventsData(self, id):
         events = []
 	event_text = ""
+	found_event = False
     
         req = self.__getRadioDevice() + "/jsonrpc"
         payload = RadioClass.__get_event_req	
@@ -246,17 +247,15 @@ class RadioClass(object):
 		event = requests.post(req, data=json.dumps(payload), headers=RadioClass.__headers, verify = False, timeout = 3)            
     		data = json.loads(event.text)
 
-    		#if len(data['result']['item']['title']) > 0:
-	    	#    event_text = data['result']['item']['title']
-    		#elif len(data['result']['item']['label']) > 0:
 	    	event_text = data['result']['item']['label'] + "(" + data['result']['item']['title'] + ")"
-
-		if len(event_text) > 0:
+		if (len(data['result']['item']['title']) > 0 or len(data['result']['item']['label']) > 0):
+		    found_event = True
 		    break
+
 	    except:
 		pass
 	    
-        if len(event_text) > 0:
+        if found_event == True:
 	    # get volume to present next to title
 	    volume = self.__getPlayerVolume()
     	    event_text = event_text + "[" + str(volume) + " %]"
