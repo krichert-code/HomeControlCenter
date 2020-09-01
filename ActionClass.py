@@ -146,6 +146,16 @@ class ActionClass(object):
         radio.getRadioVolumeDownRequest() 
 	return 0
 
+    def actionOnVolumeSet(self, param = ""):
+        radio = RadioClass.RadioClass()
+	try:
+	    volume = int(param)
+	except:
+	    volume = 50
+
+	radio.setRadioVolume(volume)
+	return 0
+
     def actionOnGetActiveEvents(self, param = ""):
         # perform on timer tick from browser - currently do nothing
 	return 0

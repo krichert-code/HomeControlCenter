@@ -5,6 +5,7 @@ import json
 import os
 import time
 import copy
+import cec
 
 class StationClass:
     def __init__(self, id, name, post_data):
@@ -30,6 +31,7 @@ class Mp3Class:
 class RadioClass(object):
     __stations = []
     __settings = ""
+    __tv = 0
     __current_directory = ""
     __headers        = {'content-type': 'application/json'}
     __play_req       = {"jsonrpc":"2.0","id":"1","method":"Player.Open","params":{"item":{"file":"PLAY_REQUEST"}}}
@@ -58,6 +60,9 @@ class RadioClass(object):
         
         if len(RadioClass.__stations) == 0:
             RadioClass.__settings = config.getRadioSettings()
+	    cec.init()
+	    RadioClass.__tv = cec.Device(cec.CECDEVICE_TV)
+
 	    
             for name in config.getRadioStationsName():
                 req = config.getRadioURL(name)
@@ -105,6 +110,7 @@ class RadioClass(object):
 	response = {}
 	response['radio'] = self.getPVRRadioStations()
 	response['tv'] = self.getPVRTVStations()
+	response['volume'] = self.__getPlayerVolume()
 	return response
 
     def playPVRChannel(self, channel):
@@ -265,4 +271,25 @@ class RadioClass(object):
 
         return events
 
-        
+    def toggleCEC(self):
+	error = False
+	response= {}
+	try:
+	    if (RadioClass.__tv.is_on() == True):
+		RadioClass.__tv.standby()
+		response['mode'] = 0
+	    else:
+		RadioClass.__tv.power_on()
+		response['mode'] = 1
+	except:
+	    error = True
+	    response['mode'] = 3
+
+	try:
+	    if (error == True):
+		cec.init()
+		RadioClass.__tv = cec.Device(cec.CECDEVICE_TV)
+	except:
+	    response['mode'] = 4
+
+	return response

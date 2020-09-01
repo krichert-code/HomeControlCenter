@@ -214,6 +214,10 @@ def restApi(cmd="version", param=""):
 	    obj = RadioClass.RadioClass()
 	    response = {}
 	    response = obj.playPVRChannel(param)
+	elif (cmd == "toggleCec"):
+	    obj = RadioClass.RadioClass()
+	    response = {}
+	    response = obj.toggleCEC()
 	else:
 	    duration = 0
 	    if (cmd <> "events"):

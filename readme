@@ -14,7 +14,10 @@
     d. Alternative to above is to use pip (still installing python-dev is required)
 	pip install RPi.GPIO
 
-4. Run application (as a service)
+4. Install cec library
+    a. pip install cec (https://github.com/trainman419/python-cec)
+
+5. Run application (as a service)
       Add one of below entry to /etc/rc.local file
 
       1.cd /HomeControlCenter && python hcc.py &
