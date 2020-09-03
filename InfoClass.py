@@ -13,7 +13,7 @@ class InfoClass:
 	    radio = RadioClass.RadioClass()
 
             infoObj = {}
-            if config.getAlarmSetting('day_policy') == 'disabled':
+            if config.getAlarmSetting('day_policy') == 'disable':
                 infoObj['alarm_state'] = "Alarm wylaczony"
 		infoObj['alarm_state_value'] = 1
             elif config.getAlarmSetting('day_policy') == 'week_day':
@@ -25,6 +25,7 @@ class InfoClass:
 
             infoObj['alarm_start'] = config.getAlarmSetting('start_time')
 	    infoObj['alarm_stop'] = config.getAlarmSetting('stop_time')
+	    infoObj['alarm_channel'] = config.getAlarmSetting('channel')
 
             if weather.rainOccured() == False:
                 infoObj['rain'] = "Dzisiaj nie zanotowano opadu"
@@ -32,6 +33,8 @@ class InfoClass:
             else:
                 infoObj['rain'] = "Dzisiaj zanotowano opady"
                 infoObj['rain_value'] = 1
+
+
 
 	    infoObj['alarm_channels'] = radio.getPVRRadioStations()
 	    infoObj['alarm_volume']   = config.getAlarmSetting('volume')

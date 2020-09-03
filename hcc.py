@@ -177,8 +177,9 @@ def menu():
 	    return render_template('menu.html')
 
 
-@app.route("/restApi/<cmd>")
-@app.route("/restApi/<cmd>/<param>")
+
+@app.route("/restApi/<cmd>", methods=['POST'])
+@app.route("/restApi/<cmd>/<param>", methods=['POST'])
 def restApi(cmd="version", param=""):
 	if (cmd=="version"):
 	    response = {}
@@ -218,6 +219,24 @@ def restApi(cmd="version", param=""):
 	    obj = RadioClass.RadioClass()
 	    response = {}
 	    response = obj.toggleCEC()
+	elif (cmd=="setGardenSettings"):
+	    response = {}
+	    postData = request.get_json()
+	    config = ConfigClass.ConfigClass()
+	    config.saveSettingsData(2, postData)
+	    response['state'] = "OK"
+	elif (cmd=="setHeaterSettings"):
+	    response = {}
+	    postData = request.get_json()
+	    config = ConfigClass.ConfigClass()
+	    config.saveSettingsData(1, postData)
+	    response['state'] = "OK"
+	elif (cmd=="setAlarmSettings"):
+	    response = {}
+	    postData = request.get_json()
+	    config = ConfigClass.ConfigClass()
+	    config.saveSettingsData(0, postData)
+	    response['state'] = "OK"
 	else:
 	    duration = 0
 	    if (cmd <> "events"):

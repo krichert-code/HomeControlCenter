@@ -249,7 +249,7 @@ class ConfigClass(object):
 #---------------------------Settings method -----------------------------
     def __getSettings(self, pageId = -1):
 	settingsData = OrderedDict()
-	settingsData['alarm']     = { "id":"0", "icon":"alarm.png", "icon_size":"30", "nodes":['start_time', 'stop_time', 'radio', 'day_policy' ,'volume'] }
+	settingsData['alarm']     = { "id":"0", "icon":"alarm.png", "icon_size":"30", "nodes":['start_time', 'stop_time', 'radio', 'channel', 'day_policy' ,'volume'] }
 	settingsData['heater']    = { "id":"1", "icon":"piec.png", "icon_size":"30", "nodes":['day_temperature', 'night_temperature', 'threshold', 'day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'day7'] }
 	settingsData['autowater'] = { "id":"2", "icon":"garden.png", "icon_size":"30", "nodes":['state','start_time', 'duration', 'rain', 'day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'day7'] }
 	settingsData['calendar'] = { "id":"3", "icon":"calendar.png", "icon_size":"30", "nodes":['range','sms'] }
@@ -289,9 +289,12 @@ class ConfigClass(object):
     def saveSettingsData(self, pageId, data):
 	element_name,settingElement = self.__getSettingPage(pageId)
 	for key, value in data.iteritems():
+
 	    item = ConfigClass.__xmldoc.getElementsByTagName(element_name)[0].getElementsByTagName(key)[0]
+
 	    if item.getAttribute('param') == "md5":
 		value = hashlib.md5(value).hexdigest()
+
 	    item.setAttribute("value", value)
 	ConfigClass.__xmldoc.writexml( open('data/config.xml', 'w'))
 
