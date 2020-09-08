@@ -289,13 +289,15 @@ class ConfigClass(object):
     def saveSettingsData(self, pageId, data):
 	element_name,settingElement = self.__getSettingPage(pageId)
 	for key, value in data.iteritems():
+	    try:
+		item = ConfigClass.__xmldoc.getElementsByTagName(element_name)[0].getElementsByTagName(key)[0]
 
-	    item = ConfigClass.__xmldoc.getElementsByTagName(element_name)[0].getElementsByTagName(key)[0]
+		if item.getAttribute('param') == "md5":
+		    value = hashlib.md5(value).hexdigest()
 
-	    if item.getAttribute('param') == "md5":
-		value = hashlib.md5(value).hexdigest()
-
-	    item.setAttribute("value", value)
+		item.setAttribute("value", value)
+	    except:
+		pass
 	ConfigClass.__xmldoc.writexml( open('data/config.xml', 'w'))
 
     def getSettingsData(self, pageId):

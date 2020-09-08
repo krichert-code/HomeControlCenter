@@ -170,8 +170,7 @@ class ActionClass(object):
             method = getattr(self, method_name)
             response = method(param)
 	except:
-	    response = {}
-	    response['error'] = "invalid command"
+	    response = "invalid command"
 
 	ActionClass.__mutex.release()
 	return response

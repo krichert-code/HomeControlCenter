@@ -15,6 +15,8 @@ import InfoClass
 import os
 import hashlib
 import json
+import re
+import CryptClass
 
 app = Flask(__name__)
 
@@ -177,87 +179,140 @@ def menu():
 	    return render_template('menu.html')
 
 
+@app.route("/restApi", methods=['POST'])
+def restApi():
 
-@app.route("/restApi/<cmd>", methods=['POST'])
-@app.route("/restApi/<cmd>/<param>", methods=['POST'])
-def restApi(cmd="version", param=""):
-	if (cmd=="version"):
-	    response = {}
-	    response['name'] = "Home Control Center"
-	    response['version'] = "1.0"
-	elif (cmd=="temperature"):
-	    obj = HeaterClass.HeaterClass()
-	    response = obj.getCurrentTemperatureInside()
-	elif (cmd=="info"):
-	    infoObj = InfoClass.InfoClass()
-	    response = infoObj.getInfoData()
-	elif (cmd=="weather"):
-	    obj = WeatherClass.WeatherClass()
-	    response = obj.getCurrentWeather()
-	elif (cmd=="schedule"):
-	    obj = ScheduleClass.ScheduleClass()
-	    response = {}
-	    response['DirectionA'] = obj.getJsonFromKoleo('A', 0)
-	    response['DirectionB'] = obj.getJsonFromKoleo('B', 0)
-	elif (cmd=="heaterCharts"):
-	    obj = HeaterClass.HeaterClass()
-	    response = {}
-	    response = obj.getCharts()
-	elif (cmd == "getGardenSettings"):
-	    obj = SprinklerClass.SprinklerClass()
-	    response = {}
-	    response = obj.getSettings()
-	elif (cmd == "getMediaChannels"):
-	    obj = RadioClass.RadioClass()
-	    response = {}
-	    response = obj.getPVRStations()
-	elif (cmd == "playMediaChannel"):
-	    obj = RadioClass.RadioClass()
-	    response = {}
-	    response = obj.playPVRChannel(param)
-	elif (cmd == "toggleCec"):
-	    obj = RadioClass.RadioClass()
-	    response = {}
-	    response = obj.toggleCEC()
-	elif (cmd=="setGardenSettings"):
-	    response = {}
-	    postData = request.get_json()
-	    config = ConfigClass.ConfigClass()
-	    config.saveSettingsData(2, postData)
-	    response['state'] = "OK"
-	elif (cmd=="setHeaterSettings"):
-	    response = {}
-	    postData = request.get_json()
-	    config = ConfigClass.ConfigClass()
-	    config.saveSettingsData(1, postData)
-	    response['state'] = "OK"
-	elif (cmd=="setAlarmSettings"):
-	    response = {}
-	    postData = request.get_json()
-	    config = ConfigClass.ConfigClass()
-	    config.saveSettingsData(0, postData)
-	    response['state'] = "OK"
-	else:
-	    duration = 0
-	    if (cmd <> "events"):
-		action = ActionClass.ActionClass()
-		duration = action.performAction(cmd,param)
+    req = {}
+    crypt = CryptClass.CryptClass()
+    postData = crypt.Decode(request.data)
+    postData = postData[:postData.rfind("}")+1]
+    req = json.loads(postData)
 
-	    obj = ActionClass.ActionClass()
-	    events = obj.getEvents()
-	    response = {}
-	    resEvents = []
-	    for event in events:
-		row = {}
-		row['eventType'] = event.id
-		row['eventDesc'] = event.desc
-		row['eventIcon'] = event.icon
-		row['eventDate'] = event.date
-		resEvents.append(row)
-	    response['events'] = resEvents
-	    response['eventDuration'] = duration
 
-	return json.dumps(response)
+    if (req['action'] == "temperature"):
+	obj = HeaterClass.HeaterClass()
+	response = obj.getCurrentTemperatureInside()
+	r = json.dumps(response)
+	w = crypt.Encode(r)
+	return w
+    elif (req['action']=="version"):
+	response = {}
+	response['name'] = "Home Control Center"
+	response['version'] = "1.0"
+	r = json.dumps(response)
+	w = crypt.Encode(r)
+	return w
+    elif (req['action'] == "getMediaChannels"):
+        obj = RadioClass.RadioClass()
+        response = {}
+        response = obj.getPVRStations()
+	r = json.dumps(response)
+	w = crypt.Encode(r)
+	return w
+    elif (req['action']=="info"):
+	infoObj = InfoClass.InfoClass()
+	response = infoObj.getInfoData()
+	r = json.dumps(response)
+	w = crypt.Encode(r)
+	return w
+    elif (req['action']=="weather"):
+        obj = WeatherClass.WeatherClass()
+        response = obj.getCurrentWeather()
+	r = json.dumps(response)
+	w = crypt.Encode(r)
+	return w
+    elif (req['action']=="schedule"):
+	obj = ScheduleClass.ScheduleClass()
+	response = {}
+	response['DirectionA'] = obj.getJsonFromKoleo('A', 0)
+	response['DirectionB'] = obj.getJsonFromKoleo('B', 0)
+	r = json.dumps(response)
+	w = crypt.Encode(r)
+	return w
+    elif (req['action']=="heaterCharts"):
+	obj = HeaterClass.HeaterClass()
+	response = {}
+	response = obj.getCharts()
+	r = json.dumps(response)
+	w = crypt.Encode(r)
+	return w
+    elif (req['action'] == "getGardenSettings"):
+	obj = SprinklerClass.SprinklerClass()
+	response = {}
+	response = obj.getSettings()
+	r = json.dumps(response)
+	w = crypt.Encode(r)
+	return w
+    elif (req['action'] == "playMediaChannel"):
+	obj = RadioClass.RadioClass()
+	response = {}
+	response = obj.playPVRChannel(param)
+	r = json.dumps(response)
+	w = crypt.Encode(r)
+	return w
+    elif (req['action'] == "toggleCec"):
+	obj = RadioClass.RadioClass()
+	response = {}
+	response = obj.toggleCEC()
+	r = json.dumps(response)
+	w = crypt.Encode(r)
+	return w
+    elif (req['action']=="setGardenSettings"):
+	response = {}	
+	config = ConfigClass.ConfigClass()
+	config.saveSettingsData(2, req)
+	response['state'] = "OK"
+	r = json.dumps(response)
+	w = crypt.Encode(r)
+	return w
+    elif (req['action']=="setHeaterSettings"):
+	response = {}
+	config = ConfigClass.ConfigClass()
+	config.saveSettingsData(1, req)
+	response['state'] = "OK"
+	r = json.dumps(response)
+	w = crypt.Encode(r)
+	return w
+    elif (req['action']=="setAlarmSettings"):
+	response = {}
+	config = ConfigClass.ConfigClass()
+	config.saveSettingsData(0, req)
+	response['state'] = "OK"
+	r = json.dumps(response)
+	w = crypt.Encode(r)
+	return w
+    else:
+	duration = 0
+	param = ""
+	if (req['action'] <> "events"):
+	    if (req['action'] == "VolumeSet"):
+		param=req['volume']
+	    if (req['action'] == "PlayPVR"):
+		param=req['channel']
+	    if (req['action'] == "SprinklerOn"):
+		param=str(req['id'])
+
+	    action = ActionClass.ActionClass()
+	    duration = action.performAction(req['action'],param)
+
+
+	obj = ActionClass.ActionClass()
+	events = obj.getEvents()
+	response = {}
+	resEvents = []
+	for event in events:
+	    row = {}
+	    row['eventType'] = event.id
+	    row['eventDesc'] = event.desc
+	    row['eventIcon'] = event.icon
+	    row['eventDate'] = event.date
+	    resEvents.append(row)
+	response['events'] = resEvents
+	response['eventDuration'] = duration
+	r = json.dumps(response)
+	w = crypt.Encode(r)
+	return w
+
 
 
 
