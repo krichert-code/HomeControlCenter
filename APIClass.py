@@ -97,11 +97,12 @@ class APIClass:
 	response['state'] = "OK"
 	return json.dumps(response)
 
-    def APIevents(self,json_req):
+    def APIevents(self,json_req=""):
 	obj = ActionClass.ActionClass()
 	events = obj.getEvents()
 	response = {}
 	resEvents = []
+	duration = 0
 	for event in events:
 	    row = {}
 	    row['eventType'] = event.id
@@ -113,37 +114,57 @@ class APIClass:
 	response['eventDuration'] = duration
 	return json.dumps(response)
 
-    def APIVolumeSet(self,json_req):
-	duration = 0
-	param=json_req['volume']
+    def APIGenericCMD(self,cmd, param=""):
 	action = ActionClass.ActionClass()
-	duration = action.performAction(json_req['action'],param)
-	return APIevents(json_req)
+	duration = action.performAction(cmd,param)
+	return self.APIevents()
+
+    def APIVolumeSet(self,json_req):
+	param=json_req['volume']
+	return self.APIGenericCMD(json_req['action'],param)
 
     def APIPlayPVR(self,json_req):
-	duration = 0
 	param=json_req['channel']
-	action = ActionClass.ActionClass()
-	duration = action.performAction(json_req['action'],param)
-	return APIevents(json_req)
+	return self.APIGenericCMD(json_req['action'],param)
 
     def APISprinklerOn(self,json_req):
-	duration = 0
 	param=json_req['id']
-	action = ActionClass.ActionClass()
-	duration = action.performAction(json_req['action'],param)
-	return APIevents(json_req)
+	return self.APIGenericCMD(json_req['action'],param)
 
+    def APIDoor(self,json_req):
+	return self.APIGenericCMD(json_req['action'])
 
+    def APItoggleCec(self,json_req):
+	return self.APIGenericCMD(json_req['action'])
 
+    def APIGate1(self,json_req):
+	return self.APIGenericCMD(json_req['action'])
+
+    def APIGate0(self,json_req):
+	return self.APIGenericCMD(json_req['action'])
+
+    def APIGate1Perm(self,json_req):
+	return self.APIGenericCMD(json_req['action'])
+
+    def APIStop(self,json_req):
+	return self.APIGenericCMD(json_req['action'])
+
+    def APIVolumeUp(self,json_req):
+	return self.APIGenericCMD(json_req['action'])
+
+    def APIVolumeDown(self,json_req):
+	return self.APIGenericCMD(json_req['action'])
+
+    def APISprinklerOff(self,json_req):
+	return self.APIGenericCMD(json_req['action'])
 
     def invoke(self, json_req):
 	try:
-
 	    method_name = 'API' + json_req['action']
-            method = getattr(self, method_name)
-            response = method(json_req)
+	    method = getattr(self, method_name)
+	    response = method(json_req)
 	except:
 	    response = {"error" : "invalid command"}
+	    response = json.dumps(response)
 
 	return response

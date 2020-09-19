@@ -32,18 +32,18 @@ if (__name__ == "__main__"):
 	config = ConfigClass.ConfigClass()
 	config.initializeConfigData()
 
-	#hccDeamon = HccDeamonClass.HccDeamonClass()
+	hccDeamon = HccDeamonClass.HccDeamonClass()
 	connectorDeamon = ConnectorDeamonClass.ConnectorDeamonClass()
+
 	try:
-	    
-	    #hccDeamon.start()
+	    hccDeamon.start()
 	    connectorDeamon.start()
 
 	    app.run(host="0.0.0.0", port = 8090)
 	except Exception as e:
 	    print "Cannot run application ! Critical error"
 
+	connectorDeamon.stop()
+	hccDeamon.stop()
+	hccDeamon.join()
 	connectorDeamon.join()
-
-	#hccDeamon.stop()
-	#hccDeamon.join()
