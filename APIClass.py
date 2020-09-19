@@ -71,6 +71,7 @@ class APIClass:
 	response = obj.playPVRChannel(param)
 	return json.dumps(response)
 
+
     def APItoggleCec(self,json_req):
 	obj = RadioClass.RadioClass()
 	response = obj.toggleCEC()
@@ -132,9 +133,6 @@ class APIClass:
 	return self.APIGenericCMD(json_req['action'],param)
 
     def APIDoor(self,json_req):
-	return self.APIGenericCMD(json_req['action'])
-
-    def APItoggleCec(self,json_req):
 	return self.APIGenericCMD(json_req['action'])
 
     def APIGate1(self,json_req):
