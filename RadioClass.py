@@ -119,7 +119,6 @@ class RadioClass(object):
 	print post_data
 	req = self.__getRadioDevice() + "/jsonrpc"
 	d = requests.post(req, data=json.dumps(post_data), headers=RadioClass.__headers, verify = False, timeout = 10)
-	print d
 	resp = {}
 	resp['channelid'] = channel
 	return resp

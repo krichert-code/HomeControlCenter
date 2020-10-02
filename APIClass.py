@@ -66,12 +66,6 @@ class APIClass:
 	response = obj.getSettings()
 	return json.dumps(response)
 
-    def APIplayMediaChannel(self,json_req):
-	obj = RadioClass.RadioClass()
-	response = obj.playPVRChannel(param)
-	return json.dumps(response)
-
-
     def APItoggleCec(self,json_req):
 	obj = RadioClass.RadioClass()
 	response = obj.toggleCEC()

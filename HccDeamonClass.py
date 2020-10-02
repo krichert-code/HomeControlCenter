@@ -33,7 +33,7 @@ class Alarm:
 
 	start_time = self.__config.getAlarmSetting("start_time")
 	stop_time = self.__config.getAlarmSetting("stop_time")
-	radioName = self.__config.getAlarmSetting("radio")
+	radioChannel = self.__config.getAlarmSetting("channel")
 	volume = self.__config.getAlarmSetting("volume")
 	policy = self.__config.getAlarmSetting("day_policy")
 
@@ -43,9 +43,9 @@ class Alarm:
 	if (policy == "disabled") or (policy == "week_day" and datetime.datetime.today().weekday() >= 5):
 	    playRadio = False
 
-	if  self.__compareTime(start_time) == True and self.__playing == False and playRadio == True:
+	if  self.__compareTime(start_time) == True and playRadio == True and self.__playing == False:
 	    try:
-		radio.getRadioPlayRequest(radioName)
+		radio.playPVRChannel(int(radioChannel))
 		radio.setRadioVolume(int(volume))
 		self.__playing = True
             except:
