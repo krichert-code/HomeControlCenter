@@ -11,7 +11,9 @@ import SprinklerClass
 import HeaterClass
 import ScheduleClass
 import HccDeamonClass
+import SwitchClass
 import InfoClass
+import RoomClass
 import os
 import json
 
@@ -149,6 +151,17 @@ class APIClass:
 
     def APISprinklerOff(self,json_req):
 	return self.APIGenericCMD(json_req['action'])
+
+    def APItoggleLight(self, json_req):
+	obj = SwitchClass.SwitchClass()
+	ip = json_req['ip']
+	response = obj.toggleSwitchState(ip)
+	return json.dumps(response)
+
+    def APIGetRooms(self, json_req):
+	obj = RoomClass.RoomClass()
+	response = obj.getRoomsData()
+	return json.dumps(response)
 
     def invoke(self, json_req):
 	try:

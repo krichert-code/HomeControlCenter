@@ -30,6 +30,7 @@ class Mp3Class:
         
 class RadioClass(object):
     __stations = []
+    __initialized = 0
     __settings = ""
     __tv = 0
     __current_directory = ""
@@ -56,22 +57,13 @@ class RadioClass(object):
 
     def __init__(self):
         config = ConfigClass.ConfigClass()
-        id = 0
         
-        if len(RadioClass.__stations) == 0:
+        if RadioClass.__initialized == 0:
             RadioClass.__settings = config.getRadioSettings()
 	    cec.init()
 	    RadioClass.__tv = cec.Device(cec.CECDEVICE_TV)
-
+	    RadioClass.__initialized = 1
 	    
-            for name in config.getRadioStationsName():
-                req = config.getRadioURL(name)
-
-		post_data = copy.deepcopy(RadioClass.__play_req)
-		post_data['params']['item']['file'] = req
-                station = StationClass(id, name, post_data)
-                RadioClass.__stations.append( station )
-                id = id + 1
 
     def __getPlayerVolume(self):
         req = self.__getRadioDevice() + "/jsonrpc"
@@ -84,7 +76,7 @@ class RadioClass(object):
 	return value
 
     def __getRadioDevice(self):
-        return "http://" + RadioClass.__settings 
+        return "http://" + RadioClass.__settings
 
     def __getRadioStation(self,name):
         for station in RadioClass.__stations:

@@ -37,6 +37,7 @@ if (__name__ == "__main__"):
 
 	try:
 	    hccDeamon.start()
+	    #start connector deamon only if 'remote access' is enable (settings in configuration)
 	    connectorDeamon.start()
 
 	    app.run(host="0.0.0.0", port = 8090)
