@@ -123,10 +123,21 @@ class ConfigClass(object):
 	    room['id'] = item.getAttribute('id')
 	    room['name'] = item.getAttribute('name')
 	    room['light_ip'] = item.getAttribute('light')
-	    room['alarmId'] = item.getAttribute('alarm')
 	    room['tempId'] = item.getAttribute('temperature')
+
+	    room['alarmSensors'] = []
+	    for alarmItem in item.getElementsByTagName('alarmSensor'):
+		room['alarmSensors'].append( alarmItem.getAttribute("sensorName") )
+
             rooms.append(room)
         return rooms
+
+    def getAlarmSystem(self):
+	alarm = {}
+	data = ConfigClass.__xmldoc.getElementsByTagName('AlarmSystem')[0]
+	alarm['ip'] = data.getAttribute('ip')
+	alarm['port'] = data.getAttribute('port')
+	return alarm
 
 #-------------------------- Calendar settings --------------------------
     def getCalendarKey(self):
