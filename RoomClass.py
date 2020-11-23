@@ -37,18 +37,16 @@ class RoomClass:
 		    roomlight['light_state'] = "off"
 		    roomlight['light_present'] = 0
 
-		roomAlarm['state'] = "0"
-		roomAlarm['presence'] = "0"
-		roomAlarm['alert'] = "0"
+		roomAlarm['presence'] = "off"
+		roomAlarm['alert'] = "off"
 		roomAlarm['present'] = 0
 		for alarmSensor in item['alarmSensors']:
 		    for alarmItem in alerts['alerts']:	    
-			if alarmItem['name'] == alarmSensor and roomAlarm['alert'] == "0":
-			    roomAlarm['state'] = alarmItem['alert']
+			if alarmItem['name'] == alarmSensor and roomAlarm['alert'] == "off":
 			    roomAlarm['alert'] = alarmItem['alert']
 
 		    for presenceItem in presence['presence']:	    
-		        if presenceItem['name'] == alarmSensor and roomAlarm['presence'] == "0":
+		        if presenceItem['name'] == alarmSensor and roomAlarm['presence'] == "off":
 			    roomAlarm['presence'] = presenceItem['presence']
 
 		    if alarmItem['name'] == alarmSensor:

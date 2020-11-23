@@ -157,7 +157,10 @@ class AlarmClass(object):
 	    for item in xml.getElementsByTagName('sensors')[0].getElementsByTagName('sensor'):
 		element = {}
 		element['name'] = item.getElementsByTagName('sensorName')[0].firstChild.nodeValue
-		element['alert'] = item.getElementsByTagName('alert')[0].firstChild.nodeValue
+		if (int(item.getElementsByTagName('alert')[0].firstChild.nodeValue) == 0):
+		    element['alert'] = "off"
+		else:
+		    element['alert'] = "on"
 		elements.append(element)
 	    data['alerts'] = elements
 	except:
@@ -177,8 +180,12 @@ class AlarmClass(object):
 	    elements = []
 	    for item in xml.getElementsByTagName('sensors')[0].getElementsByTagName('sensor'):
 		element = {}
+		print "-------------" + item.getElementsByTagName('presenceState')[0].firstChild.nodeValue
 		element['name'] = item.getElementsByTagName('sensorName')[0].firstChild.nodeValue
-		element['presence'] = item.getElementsByTagName('presenceState')[0].firstChild.nodeValue
+		if (int(item.getElementsByTagName('presenceState')[0].firstChild.nodeValue) == 0):
+		    element['presence'] = 'off'
+		else:
+		    element['presence'] = 'on'
 		elements.append(element)
 	    data['presence'] = elements
 	except:
