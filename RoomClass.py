@@ -17,6 +17,7 @@ class RoomClass:
 	    temperature = alarm.getTemperature()
 	    alerts = alarm.getAlerts()
 	    presence = alarm.getPresence()
+	    roomsObj['error']  = 0
 
 	    for item in config.getRooms():
 		roomParams = {}
@@ -40,18 +41,20 @@ class RoomClass:
 		roomAlarm['presence'] = "off"
 		roomAlarm['alert'] = "off"
 		roomAlarm['present'] = 0
-		for alarmSensor in item['alarmSensors']:
-		    for alarmItem in alerts['alerts']:	    
-			if alarmItem['name'] == alarmSensor and roomAlarm['alert'] == "off":
-			    roomAlarm['alert'] = alarmItem['alert']
+		try:
+		    for alarmSensor in item['alarmSensors']:
+			for alarmItem in alerts['alerts']:	    
+			    if alarmItem['name'] == alarmSensor and roomAlarm['alert'] == "off":
+				roomAlarm['alert'] = alarmItem['alert']
 
-		    for presenceItem in presence['presence']:	    
-		        if presenceItem['name'] == alarmSensor and roomAlarm['presence'] == "off":
-			    roomAlarm['presence'] = presenceItem['presence']
+			for presenceItem in presence['presence']:	    
+		    	    if presenceItem['name'] == alarmSensor and roomAlarm['presence'] == "off":
+				roomAlarm['presence'] = presenceItem['presence']
 
-		    if alarmItem['name'] == alarmSensor:
-			roomAlarm['present'] = 1
-
+			if alarmItem['name'] == alarmSensor:
+			    roomAlarm['present'] = 1
+		except:
+		    roomsObj['error']  = 255
 
 		roomTemp['id'] = item['tempId']
 		roomTemp['temperature'] = ""
