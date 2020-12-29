@@ -1,5 +1,6 @@
 import ConfigClass
 import WeatherClass
+import AlarmClass
 import EventClass
 import ActionThread
 from datetime import datetime
@@ -39,16 +40,19 @@ class HeaterClass(object):
 
     def __getTemperatureFromDevice(self):
 	config = ConfigClass.ConfigClass()
+	alarm = AlarmClass.AlarmClass()
+	thermDevices = alarm.getTemperature()
+	temp = 22
 
 	#todo: get temperature depands on mode (min,max)
-	devFile, offset = config.getFirstThermDevices()
+	devName, offset = config.getFirstThermDevices()
 
-        file = open(devFile, "rb")
-        for line in file:
-	    pass
-        
-	temp = int(line[line.find("=")+1:])/1000.0
-	temp = temp + int(offset)
+	for item in thermDevices['temperature']:
+	    if devName == item['name']:
+		temp = round(float(item['value']) + float(offset), 2)
+		print temp
+		break
+
 	return temp
 
 
