@@ -239,11 +239,33 @@ class ConfigClass(object):
 
     def getFirstThermDevices(self):
         self.iterator = 0
-        return ConfigClass.__xmldoc.getElementsByTagName('heater')[0].getElementsByTagName('thermometer')[0].getElementsByTagName('device')[0].getAttribute('name'), ConfigClass.__xmldoc.getElementsByTagName('heater')[0].getElementsByTagName('thermometer')[0].getElementsByTagName('device')[0].getAttribute('offset')
+	data = {}
+	try:
+	    data['error']  = 0
+	    data['mode']   = ConfigClass.__xmldoc.getElementsByTagName('heater')[0].getElementsByTagName('thermometer')[0].getAttribute('mode')
+	    data['name']   = ConfigClass.__xmldoc.getElementsByTagName('heater')[0].getElementsByTagName('thermometer')[0].getElementsByTagName('device')[0].getAttribute('name')
+	    data['offset'] = ConfigClass.__xmldoc.getElementsByTagName('heater')[0].getElementsByTagName('thermometer')[0].getElementsByTagName('device')[0].getAttribute('offset')
+	except:
+	    data['error']  = 255
+	    data['name']   = ""
+	    data['offset'] = ""
+	    data['mode']   = ""
+        return data
 
     def getNextThermDevices(self):
         self.iterator = self.iterator + 1
-        return ConfigClass.__xmldoc.getElementsByTagName('heater')[0].getElementsByTagName('thermometer')[0].getElementsByTagName('device')[self.iterator].getAttribute('name'), ConfigClass.__xmldoc.getElementsByTagName('heater')[0].getElementsByTagName('thermometer')[0].getElementsByTagName('device')[self.iterator].getAttribute('offset')
+	data = {}
+	try:
+	    data['error'] = 0
+	    data['mode']   = ConfigClass.__xmldoc.getElementsByTagName('heater')[0].getElementsByTagName('thermometer')[0].getAttribute('mode')
+	    data['name'] = ConfigClass.__xmldoc.getElementsByTagName('heater')[0].getElementsByTagName('thermometer')[0].getElementsByTagName('device')[self.iterator].getAttribute('name')
+	    data['offset'] = ConfigClass.__xmldoc.getElementsByTagName('heater')[0].getElementsByTagName('thermometer')[0].getElementsByTagName('device')[self.iterator].getAttribute('offset')
+	except:
+	    data['error']  = 255
+	    data['name']   = ""
+	    data['offset'] = ""
+	    data['mode']   = ""
+	return data
 
     def getDayTemp(self):
 	return ConfigClass.__xmldoc.getElementsByTagName('heater')[0].getElementsByTagName('day_temperature')[0].getAttribute('value')

@@ -42,18 +42,30 @@ class HeaterClass(object):
 	config = ConfigClass.ConfigClass()
 	alarm = AlarmClass.AlarmClass()
 	thermDevices = alarm.getTemperature()
-	temp = 22
+	temperature = 22
+	isTemepratureInit = False
+	thermalElements = 1
 
-	#todo: get temperature depands on mode (min,max)
-	devName, offset = config.getFirstThermDevices()
+	thermData = config.getFirstThermDevices()
 
-	for item in thermDevices['temperature']:
-	    if devName == item['name']:
-		temp = round(float(item['value']) + float(offset), 2)
-		print temp
-		break
+	while (thermData['error'] == 0):
+	    for item in thermDevices['temperature']:
+		if thermData['name'] == item['name']:
+	    	    tempValue = round(float(item['value']) + float(thermData['offset']), 2)
 
-	return temp
+		    if (isTemepratureInit == False):
+			temperature = tempValue
+			isTemepratureInit = True
+		    elif (thermData['mode'] == "max" and tempValue > temperature) or (thermData['mode'] == "min" and tempValue < temperature):
+			temperature = tempValue
+		    elif (thermData['mode'] == "avg") or (isTemepratureInit == False):
+			temperature = (temperature + tempValue) / thermalElements
+
+		    thermalElements = thermalElements +1
+	    	    break
+	    thermData = config.getNextThermDevices()
+
+	return temperature
 
 
     def getCurrentTemperatureInside(self):
