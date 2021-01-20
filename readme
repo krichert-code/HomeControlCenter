@@ -26,10 +26,10 @@
 5. Sms API - https://justsend.pl/
 
 TODO list:
+0. If temp sensor is the last in Alarm.xml then move sensors are not reported
 1. Change class name for radio component (player is more generic)
 2. Alarm implementation
 3. Camera implementation
 4. Separate class for 'info' data (currently implemented as a part of hcc)
-5. 'Auth' page seems to be not needed - authentication shall be done on '/'
 6. Exception logger in  hccDeamon - exceptions shall be displayed in info view
 7. Saving and restoring history of temperature data

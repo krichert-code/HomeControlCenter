@@ -29,6 +29,9 @@ class CalendarClass:
 	    except:
 		event = EventClass.EventClass(element['summary'], element['start']['dateTime'], id)
 
+	    if (eventFile.find('holiday') != -1):
+		event.setHoliday()
+
 	    event.setEventIcon('calendar')
             self.__eventsData.append(event)
                 

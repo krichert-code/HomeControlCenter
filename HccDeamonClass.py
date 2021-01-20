@@ -16,6 +16,7 @@ import json
 class Alarm:
     def __init__(self):
 	self.__config = ConfigClass.ConfigClass()
+	self.__calendar = CalendarClass.CalendarClass()
 	self.__playing = False
 
     def __compareTime(self, date):
@@ -36,12 +37,18 @@ class Alarm:
 	radioChannel = self.__config.getAlarmSetting("channel")
 	volume = self.__config.getAlarmSetting("volume")
 	policy = self.__config.getAlarmSetting("day_policy")
-
+	alarmOnHoliday = self.__config.getAlarmSetting("alarm_on_holiday")
+	curr_day = datetime.datetime.now().strftime('%d')
+	curr_month = datetime.datetime.now().strftime('%m')
 
 	playRadio = True
 	#disable alarm if value is = 'disable' or alarm is set on 'week_day' and now is weekend
 	if (policy == "disabled") or (policy == "week_day" and datetime.datetime.today().weekday() >= 5):
 	    playRadio = False
+	#disable alarm also if alarm_on_holiday = "no" and today is holiday
+	for event in self.__calendar.getEventsData():
+	    if event.date.find(curr_month + "-" + curr_day) != -1 and event.isHoliday == True and alarmOnHoliday == "no":
+		playRadio = False
 
 	if  self.__compareTime(start_time) == True and playRadio == True and self.__playing == False:
 	    try:

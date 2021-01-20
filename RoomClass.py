@@ -1,6 +1,7 @@
 import ConfigClass
 import SwitchClass
 import AlarmClass
+import WeatherClass
 
 class RoomClass:
     def __init__(self):
@@ -10,6 +11,8 @@ class RoomClass:
             config = ConfigClass.ConfigClass()
 	    switch = SwitchClass.SwitchClass()
 	    alarm = AlarmClass.AlarmClass()
+	    weather = WeatherClass.WeatherClass()
+	    tempOut = weather.getCurrentWeather()['temp']
 
             roomsObj = {}
 	    rooms = []
@@ -46,13 +49,13 @@ class RoomClass:
 			for alarmItem in alerts['alerts']:	    
 			    if alarmItem['name'] == alarmSensor and roomAlarm['alert'] == "off":
 				roomAlarm['alert'] = alarmItem['alert']
+				roomAlarm['present'] = 1
 
 			for presenceItem in presence['presence']:	    
 		    	    if presenceItem['name'] == alarmSensor and roomAlarm['presence'] == "off":
 				roomAlarm['presence'] = presenceItem['presence']
+				roomAlarm['present'] = 1
 
-			if alarmItem['name'] == alarmSensor:
-			    roomAlarm['present'] = 1
 		except:
 		    roomsObj['error']  = 255
 
@@ -66,6 +69,12 @@ class RoomClass:
 			roomTemp['thresholdExceeded'] = tempItem['thresholdExceeded']
 			roomTemp['present'] = 1
 			break
+
+		if item['tempId'] == "weather":
+			roomTemp['temperature'] = tempOut
+			roomTemp['thresholdExceeded'] = "no"
+			roomTemp['present'] = 1
+
 
 		roomParams['light'] = roomlight
 		roomParams['alarm'] = roomAlarm
