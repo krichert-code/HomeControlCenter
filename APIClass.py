@@ -16,7 +16,8 @@ import InfoClass
 import RoomClass
 import os
 import json
-
+import psutil
+from subprocess import Popen
 
 
 
@@ -158,7 +159,31 @@ class APIClass:
 	response = obj.toggleSwitchState(ip)
 	return json.dumps(response)
 
+
+    def __checkIfProcessRunning(processName):
+	for proc in psutil.process_iter():
+	    try:
+		print proc.name()
+		if processName.lower() in proc.name().lower():
+		    return True
+	    except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+		pass
+	return False;
+
+
+
     def APIGetRooms(self, json_req):
+	streaming_in_progress = False
+	for proc in psutil.process_iter():
+	    if proc.name() == 'ffmpeg':
+		streaming_in_progress = True
+		break
+
+	if streaming_in_progress == False:
+	    command = ['/HomeControlCenter/play.sh']
+	    proc = Popen(command, shell=True,
+	    stdin=None, stdout=None, stderr=None, close_fds=True)
+
 	obj = RoomClass.RoomClass()
 	response = obj.getRoomsData()
 	return json.dumps(response)
