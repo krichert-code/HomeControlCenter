@@ -33,7 +33,11 @@ class Alarm:
     	radio = RadioClass.RadioClass()
 
 	start_time = self.__config.getAlarmSetting("start_time")
-	stop_time = self.__config.getAlarmSetting("stop_time")
+	duration = int(self.__config.getAlarmSetting("stop_time"))
+	stop_time_obj = datetime.datetime.strptime(start_time,"%H:%M")
+	stop_time_obj = stop_time_obj + datetime.timedelta(minutes=duration)
+	stop_time = stop_time_obj.strftime("%H:%M")
+
 	radioChannel = self.__config.getAlarmSetting("channel")
 	volume = self.__config.getAlarmSetting("volume")
 	policy = self.__config.getAlarmSetting("day_policy")

@@ -60,9 +60,9 @@ class RadioClass(object):
         
         if RadioClass.__initialized == 0:
             RadioClass.__settings = config.getRadioSettings()
-	    #cec.init()
-	    #RadioClass.__tv = cec.Device(cec.CECDEVICE_TV)
-	    #RadioClass.__initialized = 1
+#	    cec.init()
+#	    RadioClass.__tv = cec.Device(cec.CECDEVICE_TV)
+	    RadioClass.__initialized = 1
 	    
 
     def __getPlayerVolume(self):
@@ -244,8 +244,14 @@ class RadioClass(object):
 		event = requests.post(req, data=json.dumps(payload), headers=RadioClass.__headers, verify = False, timeout = 3)            
     		data = json.loads(event.text)
 
-	    	event_text = data['result']['item']['label'] + "(" + data['result']['item']['title'] + ")"
-		if (len(data['result']['item']['title']) > 0 or len(data['result']['item']['label']) > 0):
+
+		if (len(data['result']['item']['label']) > 0):
+		    event_text = data['result']['item']['label']
+		    found_event = True
+		    break
+
+		if (len(data['result']['item']['title']) > 0):
+		    event_text = data['result']['item']['title']
 		    found_event = True
 		    break
 
