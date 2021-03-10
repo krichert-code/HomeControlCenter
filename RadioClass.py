@@ -47,6 +47,7 @@ class RadioClass(object):
     __get_pvr_radio_channels = {"jsonrpc" : "2.0", "method" : "PVR.GetChannels", "params" : {"channelgroupid" : 2},  "id" : 1}
     __get_pvr_tv_channels = {"jsonrpc" : "2.0", "method" : "PVR.GetChannels", "params" : {"channelgroupid" : 1},  "id" : 1}
     __play_req_pvr   = {"jsonrpc":"2.0","id":"1","method":"Player.Open","params":{"item":{"channelid":0}}}
+    __play_req_yt    = {"jsonrpc":"2.0", "method":"Player.Open", "params":{ "item":{"file":"VIDEO_ID" } }, "id":1 }
 
     # Depricatated get method : 
     #__set_volume_req = "/jsonrpc?request={%22jsonrpc%22: %222.0%22, %22method%22: %22Application.SetVolume%22, %22params%22: {%22volume%22: VOLUME_VALUE}, %22id%22: 1}"
@@ -113,6 +114,21 @@ class RadioClass(object):
 	d = requests.post(req, data=json.dumps(post_data), headers=RadioClass.__headers, verify = False, timeout = 10)
 	resp = {}
 	resp['channelid'] = channel
+	return resp
+
+    def playYTAddonVideo(self, link):
+	post_data = copy.deepcopy(RadioClass.__play_req_yt)
+	if (link.find("playlist") == -1):
+	    post_data['params']['item']['file'] = "plugin://plugin.video.youtube/play/?screensaver=true&video_id="+link[link.rindex("/")+1:]
+	else:
+	    post_data['params']['item']['file'] = "plugin://plugin.video.youtube/play/?play=1&&order=default&playlist_id="+link[link.rindex("=")+1:]
+	resp = {}
+	resp['status'] = 0
+	try:
+	    req = self.__getRadioDevice() + "/jsonrpc"
+	    d = requests.post(req, data=json.dumps(post_data), headers=RadioClass.__headers, verify = False, timeout = 5)
+	except:
+	    resp['status'] = 1
 	return resp
 
     def getRadioStations(self):        

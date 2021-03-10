@@ -125,6 +125,10 @@ class APIClass:
 	param=json_req['channel']
 	return self.APIGenericCMD(json_req['action'],param)
 
+    def APIVideoShare(self, json_req):
+	param=json_req['link']
+	return self.APIGenericCMD(json_req['action'],param)
+
     def APISprinklerOn(self,json_req):
 	param=json_req['id']
 	return self.APIGenericCMD(json_req['action'],param)
@@ -149,6 +153,8 @@ class APIClass:
 
     def APIVolumeDown(self,json_req):
 	return self.APIGenericCMD(json_req['action'])
+
+
 
     def APISprinklerOff(self,json_req):
 	return self.APIGenericCMD(json_req['action'])
@@ -190,6 +196,7 @@ class APIClass:
 
     def invoke(self, json_req):
 	try:
+	    print "Method : " + json_req['action']
 	    method_name = 'API' + json_req['action']
 	    method = getattr(self, method_name)
 	    response = method(json_req)

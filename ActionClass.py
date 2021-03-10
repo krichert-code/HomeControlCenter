@@ -126,6 +126,11 @@ class ActionClass(object):
         radio.playPVRChannel(int(param))
 	return 0
 
+    def actionOnVideoShare(self, param = ""):
+        radio = RadioClass.RadioClass()
+        radio.playYTAddonVideo(param)
+	return 0
+
     def actionOnPlayMp3(self, param = ""):
         player = RadioClass.RadioClass()
         player.playMp3File(param)

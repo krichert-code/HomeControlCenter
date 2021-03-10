@@ -20,8 +20,12 @@
 5. Run application (as a service)
       Add one of below entry to /etc/rc.local file
 
-      1.cd /HomeControlCenter && python hcc.py &
-      2.start-stop-daemon -b -S --chdir /HomeControlCenter -x hcc.py
+    1. start as a regular bash script
+      cd /RtspSrv && ./rtsp-simple-server &
+      cd /HomeControlCenter && python proxy.py &
+      cd /HomeControlCenter && python new_hcc.py &
+
+    2.start-stop-daemon -b -S --chdir /HomeControlCenter -x hcc.py
 
 5. Sms API - https://justsend.pl/
 
