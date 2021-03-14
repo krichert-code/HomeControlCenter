@@ -131,6 +131,11 @@ class ActionClass(object):
         radio.playYTAddonVideo(param)
 	return 0
 
+    def actionOnPlaySpotifyObject(self, param = ""):
+        radio = RadioClass.RadioClass()
+        radio.playSpotifyObject(param)
+	return 0
+
     def actionOnPlayMp3(self, param = ""):
         player = RadioClass.RadioClass()
         player.playMp3File(param)

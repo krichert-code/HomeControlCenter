@@ -36,14 +36,34 @@ def getRadio():
         req = None
 
 
+def getSpotifyObject(self, directory="plugin://plugin.audio.spotify/"):
+    get_state = {"jsonrpc": "2.0", "method": "Files.GetDirectory", "params": {"directory":"plugin://plugin.audio.spotify/", "media":"files"}, "id": "1"}
+    get_state["params"]["directory"] = directory
+    try:
+        req = "http://192.168.1.3:8080/jsonrpc"
+
+	post_data = copy.deepcopy(get_state)
+	headers = {'content-type': 'application/json'}
+
+
+        r = requests.post(req, data=json.dumps(post_data), headers=headers )
+
+	print r.url
+	print r.text
+    except requests.exceptions.RequestException as e:
+        req = None
+
+
+
 def getWeather():
 
     #get_state = {"jsonrpc" : "2.0", "method" :"Addons.GetAddons", "params": {"type": "xbmc.addon.video", "content": "video","enabled": True,"properties": ["name", "fanart", "thumbnail", "description"]},"id": 1}
 
 #spotify search items
-    #get_state = {"jsonrpc": "2.0", "method": "Files.GetDirectory", "params": {"directory":"plugin://plugin.audio.spotify/?action=search", "media":"files"}, "id": "1"}
+    get_state = {"jsonrpc": "2.0", "method": "Files.GetDirectory", "params": {"directory":"plugin://plugin.audio.spotify/?action=search", "media":"files"}, "id": "1"}
     #get_state = {"jsonrpc": "2.0", "method": "Files.GetDirectory", "params": {"directory":"plugin://plugin.audio.spotify/?action=search_artists&artistid='roxette'", "media":"files"}, "id": "1"}
     #get_state = {"jsonrpc": "2.0", "method": "Files.GetDirectory", "params": {"directory":"plugin://plugin.audio.spotify/?action=search_tracks&trackid='november'", "media":"files"}, "id": "1"}
+    #get_state = {"jsonrpc": "2.0", "method": "Files.GetDirectory", "params": {"directory":"plugin://plugin.audio.spotify/?action=search&trackid='november'", "media":"files"}, "id": "1"}
 
 #get items from directory
     #get_state = {"jsonrpc": "2.0", "method": "Files.GetDirectory", "params": {"directory":"plugin://plugin.audio.spotify/", "media":"files"}, "id": "1"}
@@ -54,7 +74,7 @@ def getWeather():
 
 #----------------------youtube------------------------
 #    get_state = { "jsonrpc":"2.0", "method":"Player.Open", "params":{ "item":{"file":"plugin://plugin.video.youtube/play/?screensaver=true&video_id=TzU4fntZYnY" } }, "id":1 }
-    get_state = { "jsonrpc":"2.0", "method":"Player.Open", "params":{ "item":{"file":"plugin://plugin.video.youtube/play/?play=1&&order=default&playlist_id=RDEMDs8vWIQKMflBG8QUQQaUrw" } }, "id":1 }
+#    get_state = { "jsonrpc":"2.0", "method":"Player.Open", "params":{ "item":{"file":"plugin://plugin.video.youtube/play/?play=1&&order=default&playlist_id=RDEMDs8vWIQKMflBG8QUQQaUrw" } }, "id":1 }
 
 
     try:

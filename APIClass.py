@@ -42,6 +42,16 @@ class APIClass:
         response = obj.getPVRStations()
 	return json.dumps(response)
 
+    def APIgetSpotifyObject(self,json_req):
+	obj = RadioClass.RadioClass()
+	print json_req
+	if "directory" in json_req:
+	    response = obj.getSpotifyObject(json_req['directory'])
+	else:
+	    response = obj.getSpotifyObject()
+	return json.dumps(response)
+
+
     def APIinfo(self,json_req):
 	infoObj = InfoClass.InfoClass()
 	response = infoObj.getInfoData()
@@ -123,6 +133,10 @@ class APIClass:
 
     def APIPlayPVR(self,json_req):
 	param=json_req['channel']
+	return self.APIGenericCMD(json_req['action'],param)
+
+    def APIPlaySpotifyObject(self,json_req):
+	param=json_req['link']
 	return self.APIGenericCMD(json_req['action'],param)
 
     def APIVideoShare(self, json_req):
