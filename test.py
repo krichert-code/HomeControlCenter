@@ -60,8 +60,7 @@ def getWeather():
     #get_state = {"jsonrpc" : "2.0", "method" :"Addons.GetAddons", "params": {"type": "xbmc.addon.video", "content": "video","enabled": True,"properties": ["name", "fanart", "thumbnail", "description"]},"id": 1}
 
 #spotify search items
-    get_state = {"jsonrpc": "2.0", "method": "Files.GetDirectory", "params": {"directory":"plugin://plugin.audio.spotify/?action=search", "media":"files"}, "id": "1"}
-    #get_state = {"jsonrpc": "2.0", "method": "Files.GetDirectory", "params": {"directory":"plugin://plugin.audio.spotify/?action=search_artists&artistid='roxette'", "media":"files"}, "id": "1"}
+    get_state = {"jsonrpc": "2.0", "method": "Files.GetDirectory", "params": {"directory":"plugin://plugin.audio.spotify/?action=search_artists&artistid='roxette'", "media":"files"}, "id": "1"}
     #get_state = {"jsonrpc": "2.0", "method": "Files.GetDirectory", "params": {"directory":"plugin://plugin.audio.spotify/?action=search_tracks&trackid='november'", "media":"files"}, "id": "1"}
     #get_state = {"jsonrpc": "2.0", "method": "Files.GetDirectory", "params": {"directory":"plugin://plugin.audio.spotify/?action=search&trackid='november'", "media":"files"}, "id": "1"}
 
@@ -70,7 +69,7 @@ def getWeather():
     #get_state = {"jsonrpc": "2.0", "method": "Files.GetDirectory", "params": {"directory":"plugin://plugin.audio.spotify/?action=browse_playlist&ownerid=spotify&playlistid=37i9dQZF1DX4pq3ejIlJu2", "media":"files"}, "id": "1"}
 #play
     #get_state = { "jsonrpc":"2.0", "method":"Player.Open", "params":{ "item":{"directory":"plugin://plugin.audio.spotify/?action=browse_playlist&ownerid=spotify&playlistid=37i9dQZF1DX4pq3ejIlJu2" } }, "id":1 }
-    #get_state = { "jsonrpc":"2.0", "method":"Player.Open", "params":{ "item":{"directory":"plugin://plugin.audio.spotify/?action=search_tracks&trackid='november'" } }, "id":1 }
+
 
 #----------------------youtube------------------------
 #    get_state = { "jsonrpc":"2.0", "method":"Player.Open", "params":{ "item":{"file":"plugin://plugin.video.youtube/play/?screensaver=true&video_id=TzU4fntZYnY" } }, "id":1 }

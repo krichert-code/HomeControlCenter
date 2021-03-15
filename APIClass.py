@@ -42,11 +42,13 @@ class APIClass:
         response = obj.getPVRStations()
 	return json.dumps(response)
 
-    def APIgetSpotifyObject(self,json_req):
+    def APIgetSpotifyData(self,json_req):
 	obj = RadioClass.RadioClass()
 	print json_req
-	if "directory" in json_req:
-	    response = obj.getSpotifyObject(json_req['directory'])
+	if json_req['searchTextExist'] == True:
+	    response = obj.getSpotifyObjectFromSearch(json_req['searchText'])
+	elif json_req['currentDirectoryExist'] == True:
+	    response = obj.getSpotifyObject(json_req['currentDirectoryText'])
 	else:
 	    response = obj.getSpotifyObject()
 	return json.dumps(response)
@@ -136,6 +138,10 @@ class APIClass:
 	return self.APIGenericCMD(json_req['action'],param)
 
     def APIPlaySpotifyObject(self,json_req):
+	param=json_req['link']
+	return self.APIGenericCMD(json_req['action'],param)
+
+    def APIPlaySpotifyDirectory(self,json_req):
 	param=json_req['link']
 	return self.APIGenericCMD(json_req['action'],param)
 

@@ -50,7 +50,10 @@ class RadioClass(object):
     __play_req_yt    = {"jsonrpc":"2.0", "method":"Player.Open", "params":{ "item":{"file":"VIDEO_ID" } }, "id":1 }
 
     __get_spotify_directory_req = {"jsonrpc": "2.0", "method": "Files.GetDirectory", "params": {"directory":"plugin://plugin.audio.spotify/", "media":"files"}, "id": "1"}
-    __play_sporify_object_req = { "jsonrpc":"2.0", "method":"Player.Open", "params":{ "item":{"directory":"SPOTIFY_LINK" } }, "id":1 }
+    __get_spotify_search_req = {"jsonrpc": "2.0", "method": "Files.GetDirectory", "params": {"directory":"plugin://plugin.audio.spotify/?action=search_artists&artistid='SEARCH_REQUEST'", "media":"files"}, "id": "1"}
+
+    __play_sporify_object_req = { "jsonrpc":"2.0", "method":"Player.Open", "params":{ "item":{"file":"SPOTIFY_LINK" } }, "id":1 }
+    __play_sporify_directory_req = { "jsonrpc":"2.0", "method":"Player.Open", "params":{ "item":{"directory":"SPOTIFY_LINK" } }, "id":1 }
 
     # Depricatated get method : 
     #__set_volume_req = "/jsonrpc?request={%22jsonrpc%22: %222.0%22, %22method%22: %22Application.SetVolume%22, %22params%22: {%22volume%22: VOLUME_VALUE}, %22id%22: 1}"
@@ -129,10 +132,28 @@ class RadioClass(object):
 	response_data['directory'] = directory
 	return response_data
 
+    def getSpotifyObjectFromSearch(self, searchText):
+	post_data = copy.deepcopy(RadioClass.__get_spotify_search_req)
+	post_data["params"]["directory"] = "plugin://plugin.audio.spotify/?action=search_artists&artistid='"+searchText+"'"
+	req = self.__getRadioDevice() + "/jsonrpc"
+	resp = requests.post(req, data=json.dumps(post_data), headers=RadioClass.__headers, verify = False, timeout = 30)
+        data = json.loads(resp.text)
+	response_data = {}
+	response_data['result'] = data['result']['files']
+	response_data['directory'] = post_data["params"]["directory"]
+	return response_data
+
     def playSpotifyObject(self, link):
 	post_data = copy.deepcopy(RadioClass.__play_sporify_object_req)
+	post_data["params"]["item"]["file"] = link
+	req = self.__getRadioDevice() + "/jsonrpc"
+	resp = requests.post(req, data=json.dumps(post_data), headers=RadioClass.__headers, verify = False, timeout = 30)
+	response_data = {}
+	return response_data
+
+    def playSpotifyDirectory(self, link):
+	post_data = copy.deepcopy(RadioClass.__play_sporify_directory_req)
 	post_data["params"]["item"]["directory"] = link
-	print post_data
 	req = self.__getRadioDevice() + "/jsonrpc"
 	resp = requests.post(req, data=json.dumps(post_data), headers=RadioClass.__headers, verify = False, timeout = 30)
 	response_data = {}

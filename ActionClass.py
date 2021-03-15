@@ -136,6 +136,11 @@ class ActionClass(object):
         radio.playSpotifyObject(param)
 	return 0
 
+    def actionOnPlaySpotifyDirectory(self, param = ""):
+        radio = RadioClass.RadioClass()
+        radio.playSpotifyDirectory(param)
+	return 0
+
     def actionOnPlayMp3(self, param = ""):
         player = RadioClass.RadioClass()
         player.playMp3File(param)
