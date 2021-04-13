@@ -496,7 +496,7 @@ class ConfigClass(object):
         	item.setAttribute("desc", desc)
 	    else:
 		item.setAttribute("desc", "No action")
-    	    ConfigClass.__xmldoc.writexml( open('data/config.xml', 'w'))
+    	    #ConfigClass.__xmldoc.writexml( open('data/config.xml', 'w'))
 	elif value == item.getAttribute("state") and desc == item.getAttribute("desc"):
 	    ret_val = "in_progress"
 
