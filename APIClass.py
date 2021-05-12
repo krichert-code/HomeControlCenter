@@ -174,7 +174,8 @@ class APIClass:
     def APIVolumeDown(self,json_req):
 	return self.APIGenericCMD(json_req['action'])
 
-
+    def APISprinklerForceAuto(self,json_req):
+	return self.APIGenericCMD(json_req['action'])
 
     def APISprinklerOff(self,json_req):
 	return self.APIGenericCMD(json_req['action'])
@@ -216,8 +217,8 @@ class APIClass:
 
     def invoke(self, json_req):
 	try:
-	    print "Method : " + json_req['action']
 	    method_name = 'API' + json_req['action']
+	    print "Method : " + method_name
 	    method = getattr(self, method_name)
 	    response = method(json_req)
 	except:
