@@ -388,13 +388,6 @@ class ConfigClass(object):
 
 
 #---------------------------Generic config methods ----------------------
-#    def getEvent(self, name):
-#        eventData = None
-#        itemsList = ConfigClass.__xmldoc.getElementsByTagName('status')[0].getElementsByTagName('element')        
-#        for item in itemsList:
-#	    if item.getAttribute('name') == name:
-#		break
-#	return EventClass.EventClass(item.getAttribute('desc'),"",item.getAttribute('name'), item.getAttribute('state'))
     def __updateEvents(self):
 	sprinklerStatus1 = (1 << 3)
 	sprinklerStatus2 = (1 << 2)
@@ -408,7 +401,7 @@ class ConfigClass(object):
 	    status_url = self.getSwitchURL("Status")
 	    threadStatus = ActionThread.ActionThread()
 	    threadStatus.addTask("request",status_url)
-	    threadStatus.addTask("delay",1)
+	    #threadStatus.addTask("delay",1)
 	    threadStatus.addTask("notify")
 	    threadStatus.start()
 	    threadStatus.suspend()
@@ -496,7 +489,7 @@ class ConfigClass(object):
         	item.setAttribute("desc", desc)
 	    else:
 		item.setAttribute("desc", "No action")
-    	    #ConfigClass.__xmldoc.writexml( open('data/config.xml', 'w'))
+
 	elif value == item.getAttribute("state") and desc == item.getAttribute("desc"):
 	    ret_val = "in_progress"
 

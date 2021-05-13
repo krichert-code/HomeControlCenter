@@ -211,4 +211,5 @@ class ActionClass(object):
 	    events = copy.deepcopy(ActionClass.__actionEvents)
 
 	ActionClass.__mutex.release()
+
         return events
