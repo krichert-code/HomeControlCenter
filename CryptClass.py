@@ -2,6 +2,7 @@ import hashlib
 import math
 import os
 import base64
+import ConfigClass
 from Crypto.Cipher import AES
 
 
@@ -14,8 +15,9 @@ class CryptClass(object):
 
 
     def __init__(self):
-	#password get from config
-	self.__password = "!@Elizka()"
+	config = ConfigClass.ConfigClass()
+	self.__password = config.getHccPassword().encode("utf8")
+
 
     def __pad(self, text):
 	pad_char = chr(16 - len(text) % 16)

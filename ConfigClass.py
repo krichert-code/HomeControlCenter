@@ -86,6 +86,14 @@ class ConfigClass(object):
                     item.setAttribute("desc", "No action")
             ConfigClass.__xmldoc.writexml( open('data/config.xml', 'w'))
             
+    def getHccId(self):
+	id = ConfigClass.__xmldoc.getElementsByTagName('hcc')[0].getAttribute('id')
+	return id
+
+    def getHccPassword(self):
+	passwd = ConfigClass.__xmldoc.getElementsByTagName('hcc')[0].getAttribute('password')
+	return passwd
+
     def getSwitchURL(self,name):
         ip = ConfigClass.__xmldoc.getElementsByTagName('switch')[0].getAttribute('ip')
         url = ConfigClass.__xmldoc.getElementsByTagName('switch')[0].getElementsByTagName(name)[0].getAttribute('url')

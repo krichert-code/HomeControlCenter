@@ -4,6 +4,7 @@ from flask import Flask, render_template, request, make_response, session, redir
 from flask_sessionstore import Session
 import os
 import json
+import base64
 import ConfigClass
 import CryptClass
 import APIClass
@@ -25,7 +26,9 @@ def restApi():
     req = json.loads(postData)
 
     response = api.invoke(req)
-    return crypt.EncodeWithId("00000567", response)
+
+    return crypt.EncodeWithId(config.getHccId().encode("utf8"), response)
+
 
 
 if (__name__ == "__main__"):
