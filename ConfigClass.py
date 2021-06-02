@@ -87,12 +87,16 @@ class ConfigClass(object):
             ConfigClass.__xmldoc.writexml( open('data/config.xml', 'w'))
             
     def getHccId(self):
-	id = ConfigClass.__xmldoc.getElementsByTagName('hcc')[0].getAttribute('id')
+	id = ConfigClass.__xmldoc.getElementsByTagName('HomeControlCenter')[0].getAttribute('id')
 	return id
 
     def getHccPassword(self):
-	passwd = ConfigClass.__xmldoc.getElementsByTagName('hcc')[0].getAttribute('password')
+	passwd = ConfigClass.__xmldoc.getElementsByTagName('HomeControlCenter')[0].getAttribute('password')
 	return passwd
+
+    def getHccServer(self):
+	server = ConfigClass.__xmldoc.getElementsByTagName('HomeControlCenter')[0].getAttribute('server')
+	return server
 
     def getSwitchURL(self,name):
         ip = ConfigClass.__xmldoc.getElementsByTagName('switch')[0].getAttribute('ip')

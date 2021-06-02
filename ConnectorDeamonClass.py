@@ -4,7 +4,7 @@ import ConfigClass
 import APIClass
 import CryptClass
 import json
-
+import base64
 
 
 
@@ -15,8 +15,9 @@ class ConnectorDeamonClass(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
 	#TODO: get ID and url(remote) from configuration
-	self.__url = "http://192.168.1.3/register"
-	self.__id="00000567"
+	config = ConfigClass.ConfigClass()
+	self.__url = config.getHccServer().encode("utf-8")
+	self.__id=config.getHccId().encode("utf-8")
         self.__stopEvent = False
 
     def stop(self):

@@ -21,13 +21,15 @@ def restApi():
     crypt = CryptClass.CryptClass()
     api = APIClass.APIClass()
 
-    postData = crypt.DecodeWithId(request.data)
-    postData = postData[:postData.rfind("}")+1]
-    req = json.loads(postData)
-
-    response = api.invoke(req)
-
-    return crypt.EncodeWithId(config.getHccId().encode("utf8"), response)
+    try:
+	postData = crypt.DecodeWithId(request.data)
+	postData = postData[:postData.rfind("}")+1]
+	req = json.loads(postData)
+	response = api.invoke(req)
+        return crypt.EncodeWithId(config.getHccId().encode("utf8"), response)
+    except Exception as e:
+	print "CRYPTO: wrong password"
+	return ""
 
 
 
