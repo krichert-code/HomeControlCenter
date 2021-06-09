@@ -144,6 +144,29 @@ class AlarmClass(object):
 	    data['error'] = 255
 	return data
 
+    def getEnergy(self):
+	config = ConfigClass.ConfigClass()
+	alarm = config.getAlarmSystem()
+	req = "http://" + alarm['ip'] + ":" + alarm['port'] + "/command=GetEnergy"
+	try:
+	    output = requests.get(req,  timeout=(0.5, 10))
+	    xml = minidom.parseString(output.text)
+	    data = {}
+	    data['error'] = 0
+	    elements = []
+	    for item in xml.getElementsByTagName('sensors')[0].getElementsByTagName('sensor'):
+		element = {}
+		element['name'] = item.getElementsByTagName('sensorName')[0].firstChild.nodeValue
+		element['power'] = item.getElementsByTagName('power')[0].firstChild.nodeValue
+		element['type'] = item.getElementsByTagName('type')[0].firstChild.nodeValue
+		elements.append(element)
+	    data['energy'] = elements
+	except:
+	    data = {}
+	    data['error'] = 255
+	return data
+
+
     def getAlerts(self):
 	config = ConfigClass.ConfigClass()
 	alarm = config.getAlarmSystem()

@@ -31,6 +31,11 @@ class APIClass:
 	response = obj.getCurrentTemperatureInside()
 	return json.dumps(response)
 
+    def APIenergy(self, json_req):
+	obj = EnergyClass.EnergyClass()
+	response = obj.getCurrentProduceEnergy()
+	return json.dumps(response)
+
     def APIversion(self,json_req):
 	response = {}
 	response['name'] = "Home Control Center"
@@ -186,7 +191,6 @@ class APIClass:
 	response = obj.toggleSwitchState(ip)
 	return json.dumps(response)
 
-
     def __checkIfProcessRunning(processName):
 	for proc in psutil.process_iter():
 	    try:
@@ -196,8 +200,6 @@ class APIClass:
 	    except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
 		pass
 	return False;
-
-
 
     def APIGetRooms(self, json_req):
 	streaming_in_progress = False

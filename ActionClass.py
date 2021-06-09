@@ -6,6 +6,7 @@ import CalendarClass
 import RadioClass
 import SprinklerClass
 import HeaterClass
+import EnergyClass
 import threading
 import copy
 
