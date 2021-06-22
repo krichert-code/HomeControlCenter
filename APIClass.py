@@ -14,6 +14,7 @@ import HccDeamonClass
 import SwitchClass
 import InfoClass
 import RoomClass
+import EnergyClass
 import os
 import json
 import psutil

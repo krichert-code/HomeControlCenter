@@ -200,7 +200,7 @@ class Sprinkler:
 	def timeEvent(self, tick):
 	    try:
 		# manage sprinkler state once per 45 sec
-		if ((tick % 45)  == 0):
+		if ((tick % 35)  == 0):
 		    curr_week_day = datetime.datetime.today().weekday()
 		    curr_hour = int(datetime.datetime.now().strftime('%H'))
 		    curr_min = int(datetime.datetime.now().strftime('%M'))

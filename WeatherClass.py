@@ -53,6 +53,7 @@ class WeatherClass(object):
 		WeatherClass.__rainIndicator = True
 
 	except:
+	    clearRainIndicator()
 	    print "_____________weather exception!!!"
 
 
