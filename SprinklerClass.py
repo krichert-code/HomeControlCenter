@@ -78,10 +78,6 @@ class SprinklerClass(object):
 	    self.__timestamp = currentTS
 	    SprinklerClass.__break_auto_water = False
 	
-	print "---------DEBUG autowater = " + str(self.__autowater)
-	print "---------DEBUG brake = " + str(SprinklerClass.__break_auto_water)
-	print "---------DEBUG force = " + str(SprinklerClass.__force_auto_water)
-
 	if self.__autowater == True and ( currentTS >= self.__timestamp + (self.__state * duration) ):
 	    self.__state = self.__state + 1
 	    if self.__state <= SprinklerClass.__Max_num_of_sprinklers and rainOccured == False:

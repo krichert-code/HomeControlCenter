@@ -2,6 +2,7 @@ import ConfigClass
 import WeatherClass
 import HeaterClass
 import RadioClass
+import EnergyClass
 
 class InfoClass:
     def __init__(self):
@@ -11,6 +12,7 @@ class InfoClass:
             weather = WeatherClass.WeatherClass()
             heater = HeaterClass.HeaterClass()
 	    radio = RadioClass.RadioClass()
+	    energy = EnergyClass.EnergyClass()
 
             infoObj = {}
             if config.getAlarmSetting('day_policy') == 'disable':
@@ -40,5 +42,9 @@ class InfoClass:
 	    infoObj['alarm_volume']   = config.getAlarmSetting('volume')
 
             infoObj['heater_time'] = heater.getHeaterStatistic()
+
+	    infoObj['total_energy'] = energy.getTotalEnergy()
+
+	    infoObj['total_per_month'] = energy.getTotalPerMonth()
 
 	    return infoObj

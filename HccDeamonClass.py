@@ -9,6 +9,8 @@ import WeatherClass
 import HeaterClass
 import ActionClass
 import SprinklerClass
+import EnergyClass
+import DBClass
 import RPi.GPIO as GPIO
 import json
 
@@ -307,6 +309,42 @@ class Messages:
 		self.__calendarEventMessage()
 
 
+class Energy:
+	def __init__(self):
+	    self.__db = DBClass.DBClass()
+	    self.__energy = EnergyClass.EnergyClass()
+	    self.__lastGoodValue = 0
+	    self.__energyProducedForMonth = 0
+	    self.__curr_week_day = datetime.datetime.today().weekday()
+
+
+	def timeEvent(self, tick):
+	    try:
+		curr_week_day = datetime.datetime.today().weekday()
+
+		# get energy once per 30min
+		if ((tick % 1800)  == 0):
+		    energyValues = self.__energy.getCurrentProduceEnergy()
+		    for item in energyValues['energy']:
+			if item['type'] == 'today' and item['status']=='OK':
+			    self.__lastGoodValue = int(item['power'])
+			    self.__energyProducedForMonth = datetime.datetime.today().month
+
+		if self.__curr_week_day <> curr_week_day:
+		    #update total value for current month using today produced energy
+		    if (self.__energyProducedForMonth <> 0):
+			energyForMonth = self.__db.getEnergyPerMonth(self.__energyProducedForMonth)['energy']
+			energyForMonth = energyForMonth + self.__lastGoodValue
+			self.__db.updateEnergy(self.__energyProducedForMonth, energyForMonth)
+		    self.__energyProducedForMonth = 0
+		    self.__lastGoodValue = 0
+		    self.__curr_week_day = curr_week_day
+
+
+	    except Exception as e:
+		print "_____________Energy exception (HCC deamon)"
+		print e.message
+
 
 #------------------------------------------------------------------------------------------------------------------------
 class HccDeamonClass(threading.Thread):
@@ -328,6 +366,7 @@ class HccDeamonClass(threading.Thread):
 	heater = Heater()
 	messages = Messages()
 	sprinkler = Sprinkler()
+	energy = Energy()
 
 	while (not self.__stopEvent):
 		alarm.timeEvent()
@@ -337,5 +376,6 @@ class HccDeamonClass(threading.Thread):
 		heater.timeEvent(timerTick)
 		messages.timeEvent(timerTick)
 		sprinkler.timeEvent(timerTick)
+		energy.timeEvent(timerTick)
 		time.sleep(1)
 		timerTick = timerTick + 1

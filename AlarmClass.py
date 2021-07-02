@@ -159,6 +159,7 @@ class AlarmClass(object):
 		element['name'] = item.getElementsByTagName('sensorName')[0].firstChild.nodeValue
 		element['power'] = item.getElementsByTagName('power')[0].firstChild.nodeValue
 		element['type'] = item.getElementsByTagName('type')[0].firstChild.nodeValue
+		element['status'] = item.getElementsByTagName('status')[0].firstChild.nodeValue
 		elements.append(element)
 	    data['energy'] = elements
 	except:
