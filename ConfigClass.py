@@ -4,6 +4,7 @@ import EventClass
 import hashlib
 import datetime
 import ActionThread
+import AlarmClass
 
 class SettingElementClass(object):
     def __init__(self,name, title, type, param, value):
@@ -80,11 +81,7 @@ class ConfigClass(object):
             
     def initializeConfigData(self):
             # clear statuses
-            itemsList = ConfigClass.__xmldoc.getElementsByTagName('status')[0].getElementsByTagName('element')
-            for item in itemsList:
-                    item.setAttribute("state","0")
-                    item.setAttribute("desc", "No action")
-            ConfigClass.__xmldoc.writexml( open('data/config.xml', 'w'))
+            pass
             
     def getHccId(self):
 	id = ConfigClass.__xmldoc.getElementsByTagName('HomeControlCenter')[0].getAttribute('id')
@@ -400,112 +397,85 @@ class ConfigClass(object):
 
 
 #---------------------------Generic config methods ----------------------
-    def __updateEvents(self):
-	sprinklerStatus1 = (1 << 3)
-	sprinklerStatus2 = (1 << 2)
-	sprinklerStatus3 = (1 << 1)
-	heaterStatus     = (1 << 6)
-	cesspitStatus    = (1 << 0)
-	desc = ""
-	state = "0"
-
-	try:
-	    status_url = self.getSwitchURL("Status")
-	    threadStatus = ActionThread.ActionThread()
-	    threadStatus.addTask("request",status_url)
-	    #threadStatus.addTask("delay",1)
-	    threadStatus.addTask("notify")
-	    threadStatus.start()
-	    threadStatus.suspend()
-	    switchStatus = int(threadStatus.getResponse())
-	except:
-	    switchStatus = -1
-
-	if switchStatus <> -1:
-	    self.changeStatus("error", "0")
-
-	    # sprinkler status
-	    state = "1"
-	    if (switchStatus & sprinklerStatus1 <> 0):
-		desc = "Zraszacze w polu 1 aktywne"
-	    elif (switchStatus & sprinklerStatus2 <> 0):
-		desc = "Zraszacze w polu 2 aktywne"
-	    elif (switchStatus & sprinklerStatus3 <> 0):
-		desc = "Zraszacze w polu 3 aktywne"
-	    else:
-		desc = "No action"
-		state = "0"
-	    self.changeStatus("sprinkler", state, desc)
-
-	    # heater status
-	    if (switchStatus & heaterStatus <> 0):
-		dayTemp = float(self.getDayTemp())
-		nightTemp = float(self.getNightTemp())
-		threshold = float(self.geTempThreshold())
-		isDayMode = self.isDayMode(datetime.datetime.today().weekday(), int(datetime.datetime.now().strftime('%H')))
-		if (isDayMode == True):
-		    desc = "Piec w trybie dziennym ["+ str(dayTemp+threshold) +"]"
-		else:
-		    desc = "Piec w trybie nocnym ["+ str(nightTemp+threshold) +"]"
-		state = "1"
-	    else:
-		desc = "No action"
-		state = "0"
-	    self.changeStatus("heater", state, desc)
-
-    	    # cesspit status
-	    if (switchStatus & cesspitStatus <> 0):
-		desc  = "Szambo pelne [tel:0501024804]"
-		state = "1"
-	    else:
-		desc = "No action"
-		state = "0"
-	    self.changeStatus("cesspit", state, desc)
-
-	else:
-	    self.changeStatus("error", "1", "Blad krytyczny sterownika")
-
-
-
+    def __createEventsRecord(self, itemsList, id, type, onlyActiveEvents = True):
+	eventsData = []
+	for item in itemsList:
+            if (item.getAttribute('state') == "1" and onlyActiveEvents == True) or (onlyActiveEvents == False):
+		event = EventClass.EventClass(item.getAttribute('desc'),"",id, item.getAttribute('state'))		
+		event.type = type
+		try:
+		    event.messageId = item.getAttribute('messageId')
+		except:
+		    event.messageId = -1
+		
+		eventsData.append(event)
+	return eventsData
+    
+    
     def getEvents(self, id, onlyActiveEvents = True):
         eventsData = []
 
-	self.__updateEvents()
+        itemsList = ConfigClass.__xmldoc.getElementsByTagName('devices')[0].getElementsByTagName('status')[0].getElementsByTagName('element')                    
+        eventsData = eventsData +  self.__createEventsRecord(itemsList, id, "status", onlyActiveEvents)
 
-        itemsList = ConfigClass.__xmldoc.getElementsByTagName('status')[0].getElementsByTagName('element')        
-        for item in itemsList:
-            if (item.getAttribute('state') == "1" and onlyActiveEvents == True) or (onlyActiveEvents == False):
-                event = EventClass.EventClass(item.getAttribute('desc'),"",id, item.getAttribute('state'))
-		event.setEventName(item.getAttribute('name'))
-                try:
-                    event.setEventIcon(item.getAttribute('icon'))
-                    event.setEventMessageId(item.getAttribute('messageId'))
-                except:
-                    event.setEventIcon('gate')
-                eventsData.append(event)
+        itemsList = ConfigClass.__xmldoc.getElementsByTagName('devices')[0].getElementsByTagName('gate')[0].getElementsByTagName('element')                    
+        eventsData = eventsData +  self.__createEventsRecord(itemsList, id, "gate", onlyActiveEvents)
 
+        itemsList = ConfigClass.__xmldoc.getElementsByTagName('devices')[0].getElementsByTagName('heater')[0].getElementsByTagName('element')                    
+        eventsData = eventsData +  self.__createEventsRecord(itemsList, id, "heater", onlyActiveEvents)
+
+        itemsList = ConfigClass.__xmldoc.getElementsByTagName('devices')[0].getElementsByTagName('sprinkler')[0].getElementsByTagName('element')                    
+        eventsData = eventsData +  self.__createEventsRecord(itemsList, id, "sprinkler", onlyActiveEvents)
+        
         return eventsData
 
 
-    def changeStatus(self, name, value, desc = ""):
-        ret_val = "Conf_Change_ok"
+    def changeStatus(self, type, id, value):
+        ret_val = 0
 
-        itemsList = ConfigClass.__xmldoc.getElementsByTagName('status')[0].getElementsByTagName('element')
+        itemsList = ConfigClass.__xmldoc.getElementsByTagName('devices')[0].getElementsByTagName(type)[0].getElementsByTagName('element')
         for item in itemsList:
-            if item.getAttribute('name') == name:
+            if item.getAttribute('id') == id:
+		item.setAttribute("state", value)
                 break
 
-	if value != item.getAttribute("state") or desc != item.getAttribute("desc"):
-    	    item.setAttribute("state", value)
-    	    if len(desc) > 0:
-        	item.setAttribute("desc", desc)
-	    else:
-		item.setAttribute("desc", "No action")
+    def getDeviceSensor(self, type, id):
+        ret_val = ""
 
-	elif value == item.getAttribute("state") and desc == item.getAttribute("desc"):
-	    ret_val = "in_progress"
+        itemsList = ConfigClass.__xmldoc.getElementsByTagName('devices')[0].getElementsByTagName(type)[0].getElementsByTagName('element')
+        for item in itemsList:
+            if item.getAttribute('id') == id:
+		ret_val = item.getAttribute("sensor")
+		break
+	return ret_val
 
-        return ret_val
+    def getDeviceSensors(self, type):
+        ret_val = []
+
+        itemsList = ConfigClass.__xmldoc.getElementsByTagName('devices')[0].getElementsByTagName(type)[0].getElementsByTagName('element')
+        for item in itemsList:            
+		ret_val.append( (item.getAttribute("id"),item.getAttribute("sensor")))
+	return ret_val
+
+    def getStatus(self, type, id):
+        ret_val = "-1"
+
+        itemsList = ConfigClass.__xmldoc.getElementsByTagName('devices')[0].getElementsByTagName(type)[0].getElementsByTagName('element')
+        for item in itemsList:
+            if item.getAttribute('id') == id:
+		ret_val = item.getAttribute("state")
+		break
+	return ret_val
+
+    def getDeviceSensorActionDuration(self, type, id):
+        ret_val = 0
+
+        itemsList = ConfigClass.__xmldoc.getElementsByTagName('devices')[0].getElementsByTagName(type)[0].getElementsByTagName('element')
+        for item in itemsList:
+            if item.getAttribute('id') == id:
+		ret_val = int(item.getAttribute("time"))
+		break
+	return ret_val
 
 
 #---------------------------Generic config methods ----------------------

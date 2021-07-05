@@ -134,6 +134,8 @@ def restApi():
 		param=req['channel']
 	    if (req['action'] == "SprinklerOn"):
 		param=str(req['id'])
+	    if (req['action'] == "Gate"):
+		param=str(req['id'])
 
 	    action = ActionClass.ActionClass()
 	    duration = action.performAction(req['action'],param)

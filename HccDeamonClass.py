@@ -248,12 +248,13 @@ class Messages:
 	    try:
 		for item in items:
 		    update = False
+		    name = item.type + str(item.groupId)
 		    # add item if not exist in "last state" list
-		    if item.name not in self.lastStates:
-		        self.lastStates[item.name] = "0"
+		    if name not in self.lastStates:
+		        self.lastStates[name] = "0"
 
 		    # if state has changed then send message (if needed) and then update last state
-		    if item.state != self.lastStates[item.name] and len(item.messageId) > 0:
+		    if item.state != self.lastStates[name] and len(item.messageId) > 0:
 		        #send message
 		        phones = config.getPhoneNumbers()
 		        text = config.getSmsMessage(item.messageId, item.state)
@@ -266,9 +267,10 @@ class Messages:
 
 			# update last state if at least one message was send succesfully 
 			if update == True:
-		    	    self.lastStates[item.name] = item.state
-	    except:
+		    	    self.lastStates[name] = item.state
+	    except Exception as e:
 		print "__________message excetion"
+		print str(e)
 
 
 	def __calendarEventMessage(self):

@@ -215,3 +215,35 @@ class AlarmClass(object):
 	    data = {}
 	    data['error'] = 255
 	return data
+
+    def getStateSensors(self):
+	config = ConfigClass.ConfigClass()
+	alarm = config.getAlarmSystem()
+	req = "http://" + alarm['ip'] + ":" + alarm['port'] + "/command=GetStates"
+	try:
+	    output = requests.get(req,  timeout=(0.5, 10))
+	    xml = minidom.parseString(output.text)
+	    data = {}
+	    data['error'] = 0
+	    elements = []
+	    for item in xml.getElementsByTagName('sensors')[0].getElementsByTagName('sensor'):
+		element = {}
+		element['name'] = item.getElementsByTagName('sensorName')[0].firstChild.nodeValue
+		if (int(item.getElementsByTagName('outputState')[0].firstChild.nodeValue) == 0):
+		    element['output'] = 'off'
+		else:
+		    element['output'] = 'on'
+		elements.append(element)
+	    data['states'] = elements
+	except:
+	    data = {}
+	    data['error'] = 255
+	return data
+
+    def getUpdateUrl(self, sensor, value):
+	config = ConfigClass.ConfigClass()
+	alarm = config.getAlarmSystem()	
+	req = "http://" + alarm['ip'] + ":" + alarm['port'] + "/command=UpdateSensorState&sensorName="+sensor+"&reading="+str(value)
+	return req
+
+	

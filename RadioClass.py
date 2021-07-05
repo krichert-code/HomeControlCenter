@@ -322,7 +322,7 @@ class RadioClass(object):
 	    volume = self.__getPlayerVolume()
     	    event_text = event_text + "[" + str(volume) + " %]"
 	    state = EventClass.EventClass(event_text, "", id)
-	    state.setEventIcon('radio')                
+	    state.type = 'radio'                
 	    events.append(state)
 
         return events

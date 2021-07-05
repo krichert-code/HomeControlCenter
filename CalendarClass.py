@@ -30,9 +30,9 @@ class CalendarClass:
 		event = EventClass.EventClass(element['summary'], element['start']['dateTime'], id)
 
 	    if (eventFile.find('holiday') != -1):
-		event.setHoliday()
+		event.isHoliday = True
 
-	    event.setEventIcon('calendar')
+	    event.type = 'calendar'
             self.__eventsData.append(event)
                 
     def generateFiles(self):

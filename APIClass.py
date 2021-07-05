@@ -121,9 +121,9 @@ class APIClass:
 	duration = 0
 	for event in events:
 	    row = {}
-	    row['eventType'] = event.id
+	    row['eventGroup'] = event.groupId
 	    row['eventDesc'] = event.desc
-	    row['eventIcon'] = event.icon
+	    row['eventType'] = event.type
 	    row['eventDate'] = event.date
 	    resEvents.append(row)
 	response['events'] = resEvents
@@ -159,17 +159,13 @@ class APIClass:
 	param=json_req['id']
 	return self.APIGenericCMD(json_req['action'],param)
 
-    def APIDoor(self,json_req):
-	return self.APIGenericCMD(json_req['action'])
+    def APIGate(self,json_req):
+	param=json_req['id']	
+	return self.APIGenericCMD(json_req['action'], param)
 
-    def APIGate1(self,json_req):
-	return self.APIGenericCMD(json_req['action'])
-
-    def APIGate0(self,json_req):
-	return self.APIGenericCMD(json_req['action'])
-
-    def APIGate1Perm(self,json_req):
-	return self.APIGenericCMD(json_req['action'])
+    def APIGatePerm(self,json_req):
+	param=json_req['id']
+	return self.APIGenericCMD(json_req['action'], param)
 
     def APIStop(self,json_req):
 	return self.APIGenericCMD(json_req['action'])

@@ -2,6 +2,7 @@ import ConfigClass
 import EventClass
 import ActionThread
 import WeatherClass
+import AlarmClass
 import time
 
 
@@ -15,49 +16,38 @@ class SprinklerClass(object):
 	self.__state = 0
 	self.__timestamp = 0
 
-
-
-    def getSprinklerItems(self):
-        events = []
-        desc = "Zraszacze w polu 1"
-	item = EventClass.EventClass(desc)
-	item.setEventName("1")
-        events.append(item)
-
-        desc = "Zraszacze w polu 2"
-	item = EventClass.EventClass(desc)
-	item.setEventName("2")
-        events.append(item)
-
-        desc = "Zraszacze w polu 3"
-	item = EventClass.EventClass(desc)
-	item.setEventName("3")
-        events.append(item)
-
-        return events
-
     def setSprinklerForceAuto(self):
 	SprinklerClass.__force_auto_water = True
 
-    def setSprinklerOn(self, param = ""):
+    def setSprinklerOn(self, param = "-1"):
+	alarm = AlarmClass.AlarmClass()
 	threadTask = ActionThread.ActionThread()
 	config = ConfigClass.ConfigClass()
-	url_on = config.getSwitchURL("Sprinkler"+param)
-        threadTask.addTask("request",url_on)
-        threadTask.addTask("delay",2)
-	threadTask.addTask("notify")
-        threadTask.start()
+	sensor = config.getDeviceSensor("sprinkler", param)			
+	url_on = alarm.getUpdateUrl(sensor, 1)	
+	        
+	threadTask.addTask(ActionThread.Task("request", ActionThread.RequestParam(url_on)))
+	#threadTask.addTask(ActionThread.Task("delay", ActionThread.DelayParam(2)))
+	threadTask.addTask(ActionThread.Task("set", ActionThread.UpdateParam("sprinkler",param)))
+	threadTask.addTask(ActionThread.Task("notify", ActionThread.NotifyParam()))
+	threadTask.start()
 	threadTask.suspend()
 
     def setSprinklerOff(self):
+	alarm = AlarmClass.AlarmClass()
 	threadTask = ActionThread.ActionThread()
 	config = ConfigClass.ConfigClass()
 	SprinklerClass.__break_auto_water = True
-	url_off = config.getSwitchURL("SprinklerOff")
-        threadTask.addTask("request", url_off)
-	threadTask.addTask("delay", 2)
-	threadTask.addTask("notify")
-        threadTask.start()
+	sensors = config.getDeviceSensors("sprinkler")
+	
+	for item in sensors:
+		sensor = item[1]
+		id = item[0]
+		url_off = alarm.getUpdateUrl(sensor, 0)				
+		threadTask.addTask(ActionThread.Task("request", ActionThread.RequestParam(url_off)))		
+		threadTask.addTask(ActionThread.Task("clear", ActionThread.UpdateParam("sprinkler",id)))	
+	threadTask.addTask(ActionThread.Task("notify", ActionThread.NotifyParam()))
+	threadTask.start()
 	threadTask.suspend()
 
     def manageSprinklerState(self, curr_week_day, curr_hour, curr_min):
@@ -83,6 +73,7 @@ class SprinklerClass(object):
 	    if self.__state <= SprinklerClass.__Max_num_of_sprinklers and rainOccured == False:
 		#print "---------------ON :" + str(self.__state)
 		if SprinklerClass.__break_auto_water == False:
+		    self.setSprinklerOff()
 		    self.setSprinklerOn(str(self.__state))
 		else:
 		    self.__autowater = False
