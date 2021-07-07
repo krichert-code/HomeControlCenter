@@ -94,6 +94,7 @@ class HeaterClass(object):
     def manageHeaterState(self, dayOfWeek, hour, minute):
 		config = ConfigClass.ConfigClass()
 		weather = WeatherClass.WeatherClass()
+		alarm = AlarmClass.AlarmClass()
 		threadTask = None
 
 		dayTemp = float(config.getDayTemp())
@@ -117,30 +118,29 @@ class HeaterClass(object):
 
 		self.__storeDataCounter = self.__storeDataCounter + 1
 		HeaterClass.__dayMode = isDayMode
-
-		print "________State = " + str(HeaterClass.__lastState)
-		print "Temp curr = " + str(temp) + "  Threshold " + str(threshold)
-		print "DatMode = " + str(isDayMode)
-		print "TEMP (day;night) = " + str(dayTemp) + "  ;  " + str(nightTemp)
+		
+		sensor = config.getDeviceSensors("heater")[0]
+		
 		if (isDayMode == True and temp + threshold <= dayTemp) or (isDayMode == False and temp + threshold <= nightTemp):
 			#turn on heater
-			url = config.getSwitchURL("HeaterOn")
+			url = alarm.getUpdateUrl(sensor[1],1)
 			if HeaterClass.__lastState == HeaterClass.__StateOff or HeaterClass.__lastState == HeaterClass.__StateUnknown:
 				threadTask = ActionThread.ActionThread()
 			HeaterClass.__lastState = HeaterClass.__StateOn
 		elif (isDayMode == True and temp >= dayTemp + threshold) or (isDayMode == False and temp >= nightTemp + threshold) or (HeaterClass.__lastState == HeaterClass.__StateUnknown):
 			#turn off heater
-			url = config.getSwitchURL("HeaterOff")
+			url = alarm.getUpdateUrl(sensor[1],0)
 			if HeaterClass.__lastState == HeaterClass.__StateOn or HeaterClass.__lastState == HeaterClass.__StateUnknown:
 				threadTask = ActionThread.ActionThread()
 			HeaterClass.__lastState = HeaterClass.__StateOff
 
 		if threadTask <> None :
-			threadTask.addTask("request", url)
-			threadTask.addTask("delay", 2)
-			threadTask.addTask("notify")
-			threadTask.start()
-			threadTask.suspend()
+			pass
+			#threadTask.addTask("request", url)
+			#threadTask.addTask("delay", 2)
+			#threadTask.addTask("notify")
+			#threadTask.start()
+			#threadTask.suspend()
 
 		# store data once per defined invokes (currently it means once per 10min) - not need so many data
 		if self.__storeDataCounter % HeaterClass.__storeDataInterval == 0:

@@ -13,7 +13,7 @@ import EnergyClass
 import DBClass
 import RPi.GPIO as GPIO
 import json
-
+import AlarmClass
         
 class Alarm:
     def __init__(self):
@@ -143,8 +143,8 @@ class Heater:
 		    curr_hour = int(datetime.datetime.now().strftime('%H'))
 		    curr_min = int(datetime.datetime.now().strftime('%M'))
 		    self.__heater.manageHeaterState(curr_week_day, curr_hour, curr_min)
-	    except:
-		print "__________heater excetion"
+	    except Exception as e:
+		print "Heater exception : " + str(e)
 	    
 	    
 class Weather:
@@ -245,10 +245,12 @@ class Messages:
 
 	    # get all generic event (active and inactive)
 	    items = events.getEvents( events.ActionEventGeneric, True, False )
+	    eventId = 0
 	    try:
 		for item in items:
 		    update = False
-		    name = item.type + str(item.groupId)
+		    name = item.type + str(eventId)
+		    eventId = eventId + 1
 		    # add item if not exist in "last state" list
 		    if name not in self.lastStates:
 		        self.lastStates[name] = "0"
@@ -347,6 +349,24 @@ class Energy:
 		print "_____________Energy exception (HCC deamon)"
 		print e.message
 
+class Status:
+	def __init__(self):
+	    self.__alarm = AlarmClass.AlarmClass()
+	    self.__config = ConfigClass.ConfigClass()
+
+	def __updateStatus(self,sensor, value):
+	    pass
+
+	def timeEvent(self, tick):
+	    if ((tick % 60)  == 0):
+		stateSensors = self.__alarm.getStateSensors()
+#		moveSensors = alarm.getPresence()
+		if (stateSensors['error'] == 255):
+		    self.__config.changeStatus("status",0,1)
+		else:
+		    self.__config.changeStatus("status",0,0)
+		
+
 
 #------------------------------------------------------------------------------------------------------------------------
 class HccDeamonClass(threading.Thread):
@@ -369,6 +389,7 @@ class HccDeamonClass(threading.Thread):
 	messages = Messages()
 	sprinkler = Sprinkler()
 	energy = Energy()
+	status = Status()
 
 	while (not self.__stopEvent):
 		alarm.timeEvent()
@@ -379,5 +400,6 @@ class HccDeamonClass(threading.Thread):
 		messages.timeEvent(timerTick)
 		sprinkler.timeEvent(timerTick)
 		energy.timeEvent(timerTick)
+		status.timeEvent(timerTick)
 		time.sleep(1)
 		timerTick = timerTick + 1

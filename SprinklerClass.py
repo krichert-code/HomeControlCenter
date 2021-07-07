@@ -19,36 +19,36 @@ class SprinklerClass(object):
     def setSprinklerForceAuto(self):
 	SprinklerClass.__force_auto_water = True
 
-    def setSprinklerOn(self, param = "-1"):
+    def __controlSprinkler(self, ctrlType=0, ctrlParam="-1"):
 	alarm = AlarmClass.AlarmClass()
 	threadTask = ActionThread.ActionThread()
 	config = ConfigClass.ConfigClass()
-	sensor = config.getDeviceSensor("sprinkler", param)			
-	url_on = alarm.getUpdateUrl(sensor, 1)	
-	        
-	threadTask.addTask(ActionThread.Task("request", ActionThread.RequestParam(url_on)))
-	#threadTask.addTask(ActionThread.Task("delay", ActionThread.DelayParam(2)))
-	threadTask.addTask(ActionThread.Task("set", ActionThread.UpdateParam("sprinkler",param)))
-	threadTask.addTask(ActionThread.Task("notify", ActionThread.NotifyParam()))
-	threadTask.start()
-	threadTask.suspend()
 
-    def setSprinklerOff(self):
-	alarm = AlarmClass.AlarmClass()
-	threadTask = ActionThread.ActionThread()
-	config = ConfigClass.ConfigClass()
-	SprinklerClass.__break_auto_water = True
+	#make sure all sprinklers are disabled - only one sprinkler can be enable in the same time
 	sensors = config.getDeviceSensors("sprinkler")
-	
 	for item in sensors:
 		sensor = item[1]
 		id = item[0]
 		url_off = alarm.getUpdateUrl(sensor, 0)				
 		threadTask.addTask(ActionThread.Task("request", ActionThread.RequestParam(url_off)))		
 		threadTask.addTask(ActionThread.Task("clear", ActionThread.UpdateParam("sprinkler",id)))	
+
+	#enable one sprinkler device
+	if (ctrlType <> 0):
+	    sensor = config.getDeviceSensor("sprinkler", ctrlParam)			
+	    url_on = alarm.getUpdateUrl(sensor, 1)	
+	    threadTask.addTask(ActionThread.Task("request", ActionThread.RequestParam(url_on)))
+	    threadTask.addTask(ActionThread.Task("set", ActionThread.UpdateParam("sprinkler",ctrlParam)))
+
 	threadTask.addTask(ActionThread.Task("notify", ActionThread.NotifyParam()))
 	threadTask.start()
 	threadTask.suspend()
+
+    def setSprinklerOn(self, param = "-1"):
+	self.__controlSprinkler(1,param)
+
+    def setSprinklerOff(self):
+	self.__controlSprinkler(0)
 
     def manageSprinklerState(self, curr_week_day, curr_hour, curr_min):
 	config = ConfigClass.ConfigClass()
@@ -73,7 +73,6 @@ class SprinklerClass(object):
 	    if self.__state <= SprinklerClass.__Max_num_of_sprinklers and rainOccured == False:
 		#print "---------------ON :" + str(self.__state)
 		if SprinklerClass.__break_auto_water == False:
-		    self.setSprinklerOff()
 		    self.setSprinklerOn(str(self.__state))
 		else:
 		    self.__autowater = False

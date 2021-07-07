@@ -5,6 +5,7 @@ import hashlib
 import datetime
 import ActionThread
 import AlarmClass
+import threading
 
 class SettingElementClass(object):
     def __init__(self,name, title, type, param, value):
@@ -73,9 +74,13 @@ class SettingElementClass(object):
 
 class ConfigClass(object):
     __xmldoc = None
-    
+    __mutex = None
+
     def __init__(self):
         self.iterator = 0
+	if ConfigClass.__mutex == None:
+            ConfigClass.__mutex = threading.Lock()
+
         if ConfigClass.__xmldoc == None:
             ConfigClass.__xmldoc = minidom.parse('data/config.xml')
             
@@ -399,6 +404,7 @@ class ConfigClass(object):
 #---------------------------Generic config methods ----------------------
     def __createEventsRecord(self, itemsList, id, type, onlyActiveEvents = True):
 	eventsData = []
+	ConfigClass.__mutex.acquire()
 	for item in itemsList:
             if (item.getAttribute('state') == "1" and onlyActiveEvents == True) or (onlyActiveEvents == False):
 		event = EventClass.EventClass(item.getAttribute('desc'),"",id, item.getAttribute('state'))		
@@ -409,6 +415,7 @@ class ConfigClass(object):
 		    event.messageId = -1
 		
 		eventsData.append(event)
+	ConfigClass.__mutex.release()
 	return eventsData
     
     
@@ -432,49 +439,54 @@ class ConfigClass(object):
 
     def changeStatus(self, type, id, value):
         ret_val = 0
-
+	ConfigClass.__mutex.acquire()
         itemsList = ConfigClass.__xmldoc.getElementsByTagName('devices')[0].getElementsByTagName(type)[0].getElementsByTagName('element')
         for item in itemsList:
             if item.getAttribute('id') == id:
 		item.setAttribute("state", value)
                 break
+	ConfigClass.__mutex.release()
 
     def getDeviceSensor(self, type, id):
         ret_val = ""
-
+	ConfigClass.__mutex.acquire()
         itemsList = ConfigClass.__xmldoc.getElementsByTagName('devices')[0].getElementsByTagName(type)[0].getElementsByTagName('element')
         for item in itemsList:
             if item.getAttribute('id') == id:
 		ret_val = item.getAttribute("sensor")
 		break
+	ConfigClass.__mutex.release()
 	return ret_val
 
     def getDeviceSensors(self, type):
         ret_val = []
-
+	ConfigClass.__mutex.acquire()
         itemsList = ConfigClass.__xmldoc.getElementsByTagName('devices')[0].getElementsByTagName(type)[0].getElementsByTagName('element')
         for item in itemsList:            
 		ret_val.append( (item.getAttribute("id"),item.getAttribute("sensor")))
+	ConfigClass.__mutex.release()
 	return ret_val
 
     def getStatus(self, type, id):
         ret_val = "-1"
-
+	ConfigClass.__mutex.acquire()
         itemsList = ConfigClass.__xmldoc.getElementsByTagName('devices')[0].getElementsByTagName(type)[0].getElementsByTagName('element')
         for item in itemsList:
             if item.getAttribute('id') == id:
 		ret_val = item.getAttribute("state")
 		break
+	ConfigClass.__mutex.release()
 	return ret_val
 
     def getDeviceSensorActionDuration(self, type, id):
         ret_val = 0
-
+	ConfigClass.__mutex.acquire()
         itemsList = ConfigClass.__xmldoc.getElementsByTagName('devices')[0].getElementsByTagName(type)[0].getElementsByTagName('element')
         for item in itemsList:
             if item.getAttribute('id') == id:
 		ret_val = int(item.getAttribute("time"))
 		break
+	ConfigClass.__mutex.release()
 	return ret_val
 
 
