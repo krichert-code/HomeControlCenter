@@ -67,19 +67,26 @@ class ActionClass(object):
 
 
     def actionOnGatePerm(self, param = ""):
-        url = self.__config.getSwitchURL("mainGate")
-        threadTask = ActionThread.ActionThread()
+	alarm = AlarmClass.AlarmClass()	
+	threadTask = ActionThread.ActionThread()
+	config = ConfigClass.ConfigClass()
+	sensor = config.getDeviceSensor("gate", param)
+	time = config.getDeviceSensorActionDuration("gate", param)
+	url = alarm.getUpdateUrl(sensor, 1)	
+	threadTask.addTask(ActionThread.Task("set", ActionThread.UpdateParam("gate",param)))
+	threadTask.addTask(ActionThread.Task("request", ActionThread.RequestParam(url)))
+	threadTask.addTask(ActionThread.Task("delay", ActionThread.DelayParam(time)))
 
-        threadTask.addTask("set","mainGate", "Otwieranie bramy wjazdowej")
-        threadTask.addTask("request",url)
-        threadTask.addTask("delay",25)
-        threadTask.addTask("request",url)
-        threadTask.addTask("delay",2)
-        threadTask.addTask("request",url)
-        threadTask.addTask("clear","mainGate", "No action")
-        threadTask.start()
+	threadTask.addTask(ActionThread.Task("request", ActionThread.RequestParam(url)))
+	threadTask.addTask(ActionThread.Task("delay", ActionThread.DelayParam(2)))
+
+	threadTask.addTask(ActionThread.Task("request", ActionThread.RequestParam(url)))
+
+	threadTask.addTask(ActionThread.Task("clear", ActionThread.UpdateParam("gate",param)))                
+	threadTask.start()
 	threadTask.suspend()
-	return 27
+	return time
+
                 
     def actionOnSprinklerOn(self, param = ""):
 	sprinkler = SprinklerClass.SprinklerClass()

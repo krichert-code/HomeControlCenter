@@ -14,6 +14,7 @@ import DBClass
 import RPi.GPIO as GPIO
 import json
 import AlarmClass
+import traceback
         
 class Alarm:
     def __init__(self):
@@ -144,6 +145,7 @@ class Heater:
 		    curr_min = int(datetime.datetime.now().strftime('%M'))
 		    self.__heater.manageHeaterState(curr_week_day, curr_hour, curr_min)
 	    except Exception as e:
+		traceback.print_exc()
 		print "Heater exception : " + str(e)
 	    
 	    

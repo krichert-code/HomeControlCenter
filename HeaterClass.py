@@ -118,29 +118,29 @@ class HeaterClass(object):
 
 		self.__storeDataCounter = self.__storeDataCounter + 1
 		HeaterClass.__dayMode = isDayMode
-		
+
 		sensor = config.getDeviceSensors("heater")[0]
-		
+
 		if (isDayMode == True and temp + threshold <= dayTemp) or (isDayMode == False and temp + threshold <= nightTemp):
 			#turn on heater
 			url = alarm.getUpdateUrl(sensor[1],1)
 			if HeaterClass.__lastState == HeaterClass.__StateOff or HeaterClass.__lastState == HeaterClass.__StateUnknown:
 				threadTask = ActionThread.ActionThread()
+				threadTask.addTask("clear", ActionThread.UpdateParam("set",sensor[0]))
 			HeaterClass.__lastState = HeaterClass.__StateOn
 		elif (isDayMode == True and temp >= dayTemp + threshold) or (isDayMode == False and temp >= nightTemp + threshold) or (HeaterClass.__lastState == HeaterClass.__StateUnknown):
 			#turn off heater
 			url = alarm.getUpdateUrl(sensor[1],0)
 			if HeaterClass.__lastState == HeaterClass.__StateOn or HeaterClass.__lastState == HeaterClass.__StateUnknown:
 				threadTask = ActionThread.ActionThread()
+				threadTask.addTask(ActionThread.Task("clear", ActionThread.UpdateParam("heater",sensor[0])))
 			HeaterClass.__lastState = HeaterClass.__StateOff
 
 		if threadTask <> None :
-			pass
-			#threadTask.addTask("request", url)
-			#threadTask.addTask("delay", 2)
-			#threadTask.addTask("notify")
-			#threadTask.start()
-			#threadTask.suspend()
+			threadTask.addTask(ActionThread.Task("request", ActionThread.RequestParam(url)))
+			threadTask.addTask(ActionThread.Task("notify", ActionThread.NotifyParam()))
+			threadTask.start()
+			threadTask.suspend()
 
 		# store data once per defined invokes (currently it means once per 10min) - not need so many data
 		if self.__storeDataCounter % HeaterClass.__storeDataInterval == 0:

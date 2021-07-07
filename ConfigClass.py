@@ -99,15 +99,6 @@ class ConfigClass(object):
     def getHccServer(self):
 	server = ConfigClass.__xmldoc.getElementsByTagName('HomeControlCenter')[0].getAttribute('server')
 	return server
-
-    def getSwitchURL(self,name):
-        ip = ConfigClass.__xmldoc.getElementsByTagName('switch')[0].getAttribute('ip')
-        url = ConfigClass.__xmldoc.getElementsByTagName('switch')[0].getElementsByTagName(name)[0].getAttribute('url')
-        url = "http://"+ ip + url
-        return url
-
-    def getSwitchItemDesc(self, name):
-        return ConfigClass.__xmldoc.getElementsByTagName('switch')[0].getElementsByTagName(name)[0].getAttribute('desc')
         
     def getRadioURL(self,name):
         for item in ConfigClass.__xmldoc.getElementsByTagName('radio')[0].getElementsByTagName('element'):
@@ -282,7 +273,7 @@ class ConfigClass(object):
 	return data
 
     def getDayTemp(self):
-	return ConfigClass.__xmldoc.getElementsByTagName('heater')[0].getElementsByTagName('day_temperature')[0].getAttribute('value')
+	return ConfigClass.__xmldoc.getElementsByTagName('HomeControlCenter')[0].getElementsByTagName('heater')[0].getElementsByTagName('day_temperature')[0].getAttribute('value')
 
     def geTempThreshold(self):
         return ConfigClass.__xmldoc.getElementsByTagName('heater')[0].getElementsByTagName('threshold')[
