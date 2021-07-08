@@ -353,21 +353,29 @@ class Energy:
 
 class Status:
 	def __init__(self):
-	    self.__alarm = AlarmClass.AlarmClass()
-	    self.__config = ConfigClass.ConfigClass()
-
-	def __updateStatus(self,sensor, value):
 	    pass
 
 	def timeEvent(self, tick):
+	    alarm = AlarmClass.AlarmClass()
+	    config = ConfigClass.ConfigClass()
+
 	    if ((tick % 60)  == 0):
-		stateSensors = self.__alarm.getStateSensors()
-#		moveSensors = alarm.getPresence()
-		if (stateSensors['error'] == 255):
-		    self.__config.changeStatus("status",0,1)
-		else:
-		    self.__config.changeStatus("status",0,0)
-		
+		try:
+		    statusSensors = config.getDeviceSensors("status")
+		    inputSensors = alarm.getPresence()
+
+		    if inputSensors['error'] <> 0:
+			raise Exception('Error Response', str(inputSensors['error']))
+
+		    config.changeStatus("status","0","0")
+		    for statusSensor in statusSensors:
+			for inputSensor in inputSensors['presence']:
+			    if statusSensor[1] == inputSensor['name'] and inputSensor['presence'] == 'on':
+				config.changeStatus("status",statusSensor[0],"1")
+			    elif statusSensor[1] == inputSensor['name'] and inputSensor['presence'] == 'off':
+				config.changeStatus("status",statusSensor[0],"0")
+		except:
+		    config.changeStatus("status","0","1")
 
 
 #------------------------------------------------------------------------------------------------------------------------

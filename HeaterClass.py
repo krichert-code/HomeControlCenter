@@ -126,7 +126,7 @@ class HeaterClass(object):
 			url = alarm.getUpdateUrl(sensor[1],1)
 			if HeaterClass.__lastState == HeaterClass.__StateOff or HeaterClass.__lastState == HeaterClass.__StateUnknown:
 				threadTask = ActionThread.ActionThread()
-				threadTask.addTask("clear", ActionThread.UpdateParam("set",sensor[0]))
+				threadTask.addTask(ActionThread.Task("set", ActionThread.UpdateParam("heater",sensor[0])))
 			HeaterClass.__lastState = HeaterClass.__StateOn
 		elif (isDayMode == True and temp >= dayTemp + threshold) or (isDayMode == False and temp >= nightTemp + threshold) or (HeaterClass.__lastState == HeaterClass.__StateUnknown):
 			#turn off heater

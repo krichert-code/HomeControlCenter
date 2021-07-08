@@ -428,7 +428,7 @@ class ConfigClass(object):
         return eventsData
 
 
-    def changeStatus(self, type, id, value):
+    def changeStatus(self, type="", id="0", value="0"):
         ret_val = 0
 	ConfigClass.__mutex.acquire()
         itemsList = ConfigClass.__xmldoc.getElementsByTagName('devices')[0].getElementsByTagName(type)[0].getElementsByTagName('element')
