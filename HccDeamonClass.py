@@ -310,7 +310,7 @@ class Messages:
 		        result = self.sendSms(token, to, text)
 
 	def timeEvent(self,tick):
-	    if (tick % 30) == 0:
+	    if (tick % 35) == 0:
 		self.__genericEventMessage(tick)
 		self.__calendarEventMessage()
 
@@ -353,29 +353,31 @@ class Energy:
 
 class Status:
 	def __init__(self):
-	    pass
+	    self.__config = ConfigClass.ConfigClass()
+
 
 	def timeEvent(self, tick):
 	    alarm = AlarmClass.AlarmClass()
-	    config = ConfigClass.ConfigClass()
 
-	    if ((tick % 60)  == 0):
+	    if ((tick % 5)  == 0):
 		try:
-		    statusSensors = config.getDeviceSensors("status")
+		    statusSensors = self.__config.getDeviceSensors("status")
 		    inputSensors = alarm.getPresence()
 
 		    if inputSensors['error'] <> 0:
 			raise Exception('Error Response', str(inputSensors['error']))
 
-		    config.changeStatus("status","0","0")
+		    self.__config.changeStatus("status","0","0")
 		    for statusSensor in statusSensors:
 			for inputSensor in inputSensors['presence']:
 			    if statusSensor[1] == inputSensor['name'] and inputSensor['presence'] == 'on':
-				config.changeStatus("status",statusSensor[0],"1")
+				#print "---------------Status on for "+ inputSensor['name']
+				self.__config.changeStatus("status",statusSensor[0],"1")
 			    elif statusSensor[1] == inputSensor['name'] and inputSensor['presence'] == 'off':
-				config.changeStatus("status",statusSensor[0],"0")
+				#print "---------------Status off for "+ inputSensor['name']
+				self.__config.changeStatus("status",statusSensor[0],"0")
 		except:
-		    config.changeStatus("status","0","1")
+		    self.__config.changeStatus("status","0","1")
 
 
 #------------------------------------------------------------------------------------------------------------------------
