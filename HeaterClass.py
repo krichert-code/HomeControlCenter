@@ -82,9 +82,14 @@ class HeaterClass(object):
 		heater['icon'] = "img/night.gif"
 		heater['mode'] = "night"
 	except Exception as e:
+	    heater['status'] = "ERROR"
+    	    heater['temp'] = "-"
+    	    heater['time'] = "00:00:00"
+    	    heater['icon'] = "img/day.gif"
+	    heater['mode'] = "day"
 	    print "___________heater exception 1"
             traceback.print_exc()
-	    heater['status'] = "ERROR"
+
         return heater
 
     def getHeaterStatistic(self):
