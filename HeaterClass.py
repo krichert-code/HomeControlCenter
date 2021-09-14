@@ -5,6 +5,7 @@ import EventClass
 import ActionThread
 from datetime import datetime
 import json
+import traceback
 
 
 class HeaterParam(object):
@@ -72,7 +73,7 @@ class HeaterClass(object):
 	heater = {}
 	try:
 	    temp = self.__getTemperatureFromDevice()
-
+	    heater['status'] = "OK"
     	    heater['temp'] = "%.1f" % temp
     	    heater['time'] = datetime.now().strftime('%H:%M:%S')
     	    heater['icon'] = "img/day.gif"
@@ -80,15 +81,17 @@ class HeaterClass(object):
 	    if HeaterClass.__dayMode == False:
 		heater['icon'] = "img/night.gif"
 		heater['mode'] = "night"
-	except:
-	    print "___________heater exception" 
+	except Exception as e:
+	    print "___________heater exception 1"
+            traceback.print_exc()
+	    heater['status'] = "ERROR"
         return heater
 
     def getHeaterStatistic(self):
 	try:
     	    heaterStats = str(int(HeaterClass.__heaterOnToday / 60)) + "h " + str(HeaterClass.__heaterOnToday % 60) + "min"
 	except:
-	    print "___________heater exception" 
+	    print "___________heater exception 2" 
         return heaterStats
 
     def manageHeaterState(self, dayOfWeek, hour, minute):
