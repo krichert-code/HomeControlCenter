@@ -43,52 +43,50 @@ class HeaterClass(object):
 	config = ConfigClass.ConfigClass()
 	alarm = AlarmClass.AlarmClass()
 	thermDevices = alarm.getTemperature()
-	temperature = 22
+	temperature = 0
 	isTemepratureInit = False
 	thermalElements = 1
+	status = 0
 
-	thermData = config.getFirstThermDevices()
+	if (thermDevices['error'] <> 0):
+	    status = 1
+	else:
+	    thermData = config.getFirstThermDevices()
+	    while (thermData['error'] == 0):
+		for item in thermDevices['temperature']:
+		    if thermData['name'] == item['name']:
+	    		tempValue = round(float(item['value']) + float(thermData['offset']), 2)
 
-	while (thermData['error'] == 0):
-	    for item in thermDevices['temperature']:
-		if thermData['name'] == item['name']:
-	    	    tempValue = round(float(item['value']) + float(thermData['offset']), 2)
+			if (isTemepratureInit == False):
+			    temperature = tempValue
+			    isTemepratureInit = True
+			elif (thermData['mode'] == "max" and tempValue > temperature) or (thermData['mode'] == "min" and tempValue < temperature):
+			    temperature = tempValue
+			elif (thermData['mode'] == "avg") or (isTemepratureInit == False):
+			    temperature = (temperature + tempValue) / thermalElements
 
-		    if (isTemepratureInit == False):
-			temperature = tempValue
-			isTemepratureInit = True
-		    elif (thermData['mode'] == "max" and tempValue > temperature) or (thermData['mode'] == "min" and tempValue < temperature):
-			temperature = tempValue
-		    elif (thermData['mode'] == "avg") or (isTemepratureInit == False):
-			temperature = (temperature + tempValue) / thermalElements
+			thermalElements = thermalElements +1
+	    		break
+		thermData = config.getNextThermDevices()
 
-		    thermalElements = thermalElements +1
-	    	    break
-	    thermData = config.getNextThermDevices()
-
-	return temperature
+	return status, temperature
 
 
     def getCurrentTemperatureInside(self):
 	heater = {}
-	try:
-	    temp = self.__getTemperatureFromDevice()
+	status,temp = self.__getTemperatureFromDevice()
+	if status == 0:
 	    heater['status'] = "OK"
-    	    heater['temp'] = "%.1f" % temp
-    	    heater['time'] = datetime.now().strftime('%H:%M:%S')
-    	    heater['icon'] = "img/day.gif"
-	    heater['mode'] = "day"
-	    if HeaterClass.__dayMode == False:
-		heater['icon'] = "img/night.gif"
-		heater['mode'] = "night"
-	except Exception as e:
+	else:
 	    heater['status'] = "ERROR"
-    	    heater['temp'] = "-"
-    	    heater['time'] = "00:00:00"
-    	    heater['icon'] = "img/day.gif"
-	    heater['mode'] = "day"
-	    print "___________heater exception 1"
-            traceback.print_exc()
+
+    	heater['temp'] = "%.1f" % temp
+    	heater['time'] = datetime.now().strftime('%H:%M:%S')
+    	heater['icon'] = "img/day.gif"
+	heater['mode'] = "day"
+	if HeaterClass.__dayMode == False:
+	    heater['icon'] = "img/night.gif"
+	    heater['mode'] = "night"
 
         return heater
 
@@ -111,7 +109,9 @@ class HeaterClass(object):
 
 		isDayMode = config.isDayMode(dayOfWeek, hour)
 
-		temp = self.__getTemperatureFromDevice()
+		status,temp = self.__getTemperatureFromDevice()
+		if status <> 0 :
+		    return
 
 		# new day - reset statistics
 		if (hour == 0 and minute == 0):

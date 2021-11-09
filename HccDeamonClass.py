@@ -15,6 +15,7 @@ import RPi.GPIO as GPIO
 import json
 import AlarmClass
 import traceback
+import logging
         
 class Alarm:
     def __init__(self):
@@ -65,6 +66,8 @@ class Alarm:
             except:
 		self.__playing = False
 		print "____________radio error1"
+		logging.error("RADIO EXCEPT:")
+
 	elif self.__compareTime(stop_time) == True and self.__playing == True:
 	    try:
 		radio.getRadioStopRequest()
@@ -114,6 +117,7 @@ class Speaker:
 		GPIO.output(self.__activatePin, GPIO.LOW)
 		self.__no_activeCounter = 0
 	except:
+	    logging.error("SPEAKER EXCEPT:")
 	    print "__________speaker excetion"
 
 
@@ -129,6 +133,7 @@ class Calendar:
 		self.__day = curr_day
 		calendar.generateFiles()
 	except:
+	    logging.error("CALENDAR EXCEPT:")
 	    print "__________calendar excetion"
 
 class Heater:
@@ -146,6 +151,7 @@ class Heater:
 		    self.__heater.manageHeaterState(curr_week_day, curr_hour, curr_min)
 	    except Exception as e:
 		traceback.print_exc()
+		logging.error("HEATER EXCEPT:" + str(e))
 		print "Heater exception : " + str(e)
 	    
 	    
@@ -161,6 +167,7 @@ class Weather:
 		try:
 		    weather.generateFiles(weather.WeatherDailyFile | weather.WeatherHourlyFile | weather.WeatherCurrentFile)
 		except:
+		    logging.error("WEATHER EXCEPT:")
 		    print "__________wather excetion"
 
 	def timeEvent(self):
@@ -189,6 +196,7 @@ class Weather:
 			self.__counter = self.__counter - 1
 
 		except Exception as e:
+		    logging.error("WEATHER1 EXCEPT:")
 		    print e.message
 		    self.__day = curr_day
 		    self.__hour = curr_hour
@@ -211,6 +219,7 @@ class Sprinkler:
 		    self.__sprinkler.manageSprinklerState(curr_week_day, curr_hour, curr_min)
 	    except Exception as e:
 		print e.message
+		logging.error("SPRINKLER EXCEPT:")
 		print "__________sprinkler excetion"
 
 
@@ -235,6 +244,7 @@ class Messages:
         	resp = json.loads(r.text)
         	status = resp['responseCode']
     	    except:
+		logging.error("MESSAGE EXCEPT:")
         	status = "ERROR"
 
     	    return status
@@ -275,6 +285,8 @@ class Messages:
 	    except Exception as e:
 		print "__________message excetion"
 		print str(e)
+		logging.error("MESSAGE EXCEPT:" + str(e))
+
 
 
 	def __calendarEventMessage(self):
@@ -282,15 +294,22 @@ class Messages:
 	    config = ConfigClass.ConfigClass()
 	    curr_time = datetime.datetime.now().strftime('%H:%M')
 	    sendMessage = False
+	    
+	    #logging.error('SMS ' +str(config.getCalendarReminderEnabled()))
+	    #logging.error("SMS: "+ config.getCalendarReminderTime())
+
 
 	    if config.getCalendarReminderEnabled() == True and curr_time == config.getCalendarReminderTime():
 	        events = calendar.getEventsData()
 		currTS = time.time()
 		text = ""
+		logging.error("SMS currTime: "+ str(currTS))
 
 	        for event in events:
 		    eventTS = time.mktime(datetime.datetime.strptime(event.date, "%Y-%m-%d").timetuple())
 		    # if event is tomorrow then send it
+		    logging.error("SMS some events: "+ str(eventTS))
+
 		    if (eventTS - currTS <= self.__diff_calendar_timestamp) and (eventTS - currTS > 0):
 		        if sendMessage == True:
 			    text = text + " , "
@@ -300,6 +319,7 @@ class Messages:
 			self.currSendEventDate = event.date
 			text = text + event.desc
 			sendMessage = True
+			logging.error("SMS text events: "+ text)
 
 		if sendMessage == True and self.currSendEventDate <> self.lastSendEventDate:
 		    self.lastSendEventDate = self.currSendEventDate
@@ -307,10 +327,11 @@ class Messages:
 		    phones = config.getPhoneNumbers()
 		    token = config.getSmsToken()
 		    for to in phones:
+			logging.error("SMS send to: "+ to)
 		        result = self.sendSms(token, to, text)
 
 	def timeEvent(self,tick):
-	    if (tick % 35) == 0:
+	    if (tick % 20) == 0:
 		self.__genericEventMessage(tick)
 		self.__calendarEventMessage()
 
@@ -348,6 +369,7 @@ class Energy:
 
 
 	    except Exception as e:
+		logging.error("ENERGY EXCEPT:")
 		print "_____________Energy exception (HCC deamon)"
 		print e.message
 
@@ -380,6 +402,16 @@ class Status:
 		    self.__config.changeStatus("status","0","1")
 
 
+class SelfActivateAlarmSystem:
+	def __init__(self):
+	    self.__config = ConfigClass.ConfigClass()
+
+
+	def timeEvent(self, tick):
+	    alarm = AlarmClass.AlarmClass()
+	    #if last activate sensor was one of the self activiation sensor then activate alarm
+
+
 #------------------------------------------------------------------------------------------------------------------------
 class HccDeamonClass(threading.Thread):
 
@@ -391,6 +423,8 @@ class HccDeamonClass(threading.Thread):
 	self.__stopEvent = True
 
     def run(self):
+	logging.basicConfig(filename='/media/usb0/hcc.log', encoding='utf-8', level=logging.ERROR, format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
+	logging.error('Started')
 	timerTick = 0;
 	config = ConfigClass.ConfigClass()
 	speaker = Speaker()
@@ -404,14 +438,18 @@ class HccDeamonClass(threading.Thread):
 	status = Status()
 
 	while (not self.__stopEvent):
-		alarm.timeEvent()
-		speaker.timeEvent()
-		calendar.timeEvent()
-		weather.timeEvent()
-		heater.timeEvent(timerTick)
-		messages.timeEvent(timerTick)
-		sprinkler.timeEvent(timerTick)
-		energy.timeEvent(timerTick)
-		status.timeEvent(timerTick)
-		time.sleep(1)
-		timerTick = timerTick + 1
+		try:
+		    alarm.timeEvent()
+		    speaker.timeEvent()
+		    calendar.timeEvent()
+		    weather.timeEvent()
+		    heater.timeEvent(timerTick)
+		    messages.timeEvent(timerTick)
+		    sprinkler.timeEvent(timerTick)
+		    energy.timeEvent(timerTick)
+		    status.timeEvent(timerTick)
+		    time.sleep(1)
+		    timerTick = timerTick + 1
+		except Exception as e:
+		    logging.error("ENERGY EXCEPT:")
+		    logging.error(e.message)
