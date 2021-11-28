@@ -1,6 +1,5 @@
 #!/usr/bin/python
 
-
 import time
 import CryptClass
 import hashlib
@@ -24,13 +23,13 @@ def register():
     d[hash] = request.data
 
     if hash in t:
-	#new response from HCC arrived
-	t[hash].set()
+        #new response from HCC arrived
+        t[hash].set()
     else:
-	#first reuest from HCC (not response data)
-	t[hash] = threading.Event()
+        #first reuest from HCC (not response data)
+        t[hash] = threading.Event()
 
-    print "Wait for client request to ID = " +id+"(" + hash +")"
+    print("Wait for client request to ID = " +str(id)+"(" + str(hash) +")")
     t[hash].clear()
     t[hash].wait()
     return d[hash]
@@ -44,22 +43,21 @@ def restApi():
     result = "device doesn't exist"
 
     if hash in t:
-	d[hash] = request.data
-	t[hash].set()
-	print "Request from "+ id + " arrives"
-	t[hash].clear()
+        d[hash] = request.data
+        t[hash].set()
+        print("Request from "+ str(id) + " arrives")
+        t[hash].clear()
 
-	print "Waiting for data from HCC"
-	t[hash].wait()
-	result = d[hash]
+        print("Waiting for data from HCC")
+        t[hash].wait()
+        result = d[hash]
 
     return result
 
 
 if (__name__ == "__main__"):
-
-	try:
-	    app.run(host="0.0.0.0", port = 80)
-	except Exception as e:
-	    print "Cannot run application ! Critical error"
+    try:
+        app.run(host="0.0.0.0", port = 90)
+    except Exception as e:
+        print("Cannot run application ! Critical error :" + str(e))
 

@@ -1,3 +1,5 @@
+﻿#!/usr/bin/python
+# -*- coding: utf-8 -*-
 from xml.dom import minidom
 import ActionThread
 import EventClass
@@ -13,10 +15,11 @@ import copy
 
 
 class ActionClass(object):
-    ActionEventAll       = 1 << 0
-    ActionEventGeneric   = 1 << 1
-    ActionEventCalendar  = 1 << 2
-    ActionEventRadio     = 1 << 3
+
+    ActionEventAll = 1 << 0
+    ActionEventGeneric = 1 << 1
+    ActionEventCalendar = 1 << 2
+    ActionEventRadio = 1 << 3
     __actionEvents = []
     __mutex = None
 
@@ -26,177 +29,203 @@ class ActionClass(object):
             ActionClass.__mutex = threading.Lock()
 
     def __isEventEnable(self, events, eventID):
-        if (events & eventID <> 0) or (events & ActionClass.ActionEventAll <> 0):
+        if events & eventID != 0 or events & ActionClass.ActionEventAll \
+            != 0:
             return True
         else:
             return False
 
     def __updateEvents(self, events, filters):
-        if (filters & ActionClass.ActionEventAll <> 0):
+        if filters & ActionClass.ActionEventAll != 0:
             ActionClass.__actionEvents = events
         elif len(events) > 0:
+
             # find events in global event list and update them, if not exist then add
-            for item in events:                
+
+            for item in events:
                 exist = False
                 for global_event_item in ActionClass.__actionEvents:
-                    if global_event_item.id == item.id:                                                
-                        ActionClass.__actionEvents.remove(global_event_item)                        
-                        break                    
-                                                            
+                    if global_event_item.id == item.id:
+                        ActionClass.__actionEvents.remove(global_event_item)
+                        break
+
                 ActionClass.__actionEvents.insert(0, item)
         else:
             for global_event_item in ActionClass.__actionEvents:
-                if global_event_item.id & filters <> 0:
+                if global_event_item.id & filters != 0:
                     ActionClass.__actionEvents.remove(global_event_item)
-                    
-        
-    def actionOnGate(self, param = ""):
-	alarm = AlarmClass.AlarmClass()	
-	threadTask = ActionThread.ActionThread()
-	config = ConfigClass.ConfigClass()
-	sensor = config.getDeviceSensor("gate", param)
-	time = config.getDeviceSensorActionDuration("gate", param)
-	url = alarm.getUpdateUrl(sensor, 1)	
-	threadTask.addTask(ActionThread.Task("set", ActionThread.UpdateParam("gate",param)))
-	threadTask.addTask(ActionThread.Task("request", ActionThread.RequestParam(url)))
-	threadTask.addTask(ActionThread.Task("delay", ActionThread.DelayParam(time)))
-	threadTask.addTask(ActionThread.Task("clear", ActionThread.UpdateParam("gate",param)))                
-	threadTask.start()
-	threadTask.suspend()
-	return time
 
+    def actionOnGate(self, param=''):
+        alarm = AlarmClass.AlarmClass()
+        threadTask = ActionThread.ActionThread()
+        config = ConfigClass.ConfigClass()
+        sensor = config.getDeviceSensor('gate', param)
+        time = config.getDeviceSensorActionDuration('gate', param)
+        url = alarm.getUpdateUrl(sensor, 1)
+        threadTask.addTask(ActionThread.Task('set',
+                           ActionThread.UpdateParam('gate', param)))
+        threadTask.addTask(ActionThread.Task('request',
+                           ActionThread.RequestParam(url)))
+        threadTask.addTask(ActionThread.Task('delay',
+                           ActionThread.DelayParam(time)))
+        threadTask.addTask(ActionThread.Task('clear',
+                           ActionThread.UpdateParam('gate', param)))
+        threadTask.start()
+        threadTask.suspend()
+        return time
 
-    def actionOnGatePerm(self, param = ""):
-	alarm = AlarmClass.AlarmClass()	
-	threadTask = ActionThread.ActionThread()
-	config = ConfigClass.ConfigClass()
-	sensor = config.getDeviceSensor("gate", param)
-	time = config.getDeviceSensorActionDuration("gate", param)
-	url = alarm.getUpdateUrl(sensor, 1)	
-	threadTask.addTask(ActionThread.Task("set", ActionThread.UpdateParam("gate",param)))
-	threadTask.addTask(ActionThread.Task("request", ActionThread.RequestParam(url)))
-	threadTask.addTask(ActionThread.Task("delay", ActionThread.DelayParam(time)))
+    def actionOnGatePerm(self, param=''):
+        alarm = AlarmClass.AlarmClass()
+        threadTask = ActionThread.ActionThread()
+        config = ConfigClass.ConfigClass()
+        sensor = config.getDeviceSensor('gate', param)
+        time = config.getDeviceSensorActionDuration('gate', param)
+        url = alarm.getUpdateUrl(sensor, 1)
+        threadTask.addTask(ActionThread.Task('set',
+                           ActionThread.UpdateParam('gate', param)))
+        threadTask.addTask(ActionThread.Task('request',
+                           ActionThread.RequestParam(url)))
+        threadTask.addTask(ActionThread.Task('delay',
+                           ActionThread.DelayParam(time)))
 
-	threadTask.addTask(ActionThread.Task("request", ActionThread.RequestParam(url)))
-	threadTask.addTask(ActionThread.Task("delay", ActionThread.DelayParam(2)))
+        threadTask.addTask(ActionThread.Task('request',
+                           ActionThread.RequestParam(url)))
+        threadTask.addTask(ActionThread.Task('delay',
+                           ActionThread.DelayParam(2)))
 
-	threadTask.addTask(ActionThread.Task("request", ActionThread.RequestParam(url)))
+        threadTask.addTask(ActionThread.Task('request',
+                           ActionThread.RequestParam(url)))
 
-	threadTask.addTask(ActionThread.Task("clear", ActionThread.UpdateParam("gate",param)))                
-	threadTask.start()
-	threadTask.suspend()
-	return time
+        threadTask.addTask(ActionThread.Task('clear',
+                           ActionThread.UpdateParam('gate', param)))
+        threadTask.start()
+        threadTask.suspend()
+        return time
 
-                
-    def actionOnSprinklerOn(self, param = ""):
-	sprinkler = SprinklerClass.SprinklerClass()
-	sprinkler.setSprinklerOn(param)
-	return 0
+    def actionOnSprinklerOn(self, param=''):
+        sprinkler = SprinklerClass.SprinklerClass()
+        sprinkler.setSprinklerOn(param)
+        return 0
 
-    def actionOnSprinklerOff(self, param = ""):
-	sprinkler = SprinklerClass.SprinklerClass()
-	sprinkler.setSprinklerOff()
-	return 0
+    def actionOnSprinklerOff(self, param=''):
+        sprinkler = SprinklerClass.SprinklerClass()
+        sprinkler.setSprinklerOff()
+        return 0
 
-    def actionOnSprinklerForceAuto(self, param = ""):
-	sprinkler = SprinklerClass.SprinklerClass()
-	sprinkler.setSprinklerForceAuto()
-	return 5
+    def actionOnSprinklerForceAuto(self, param=''):
+        sprinkler = SprinklerClass.SprinklerClass()
+        sprinkler.setSprinklerForceAuto()
+        return 5
 
-    def actionOnPlay(self, param = ""):
+    def actionOnPlay(self, param=''):
         radio = RadioClass.RadioClass()
         radio.getRadioPlayRequest(param)
-	return 0
+        return 0
 
-    def actionOnPlayPVR(self, param = ""):
+    def actionOnPlayPVR(self, param=''):
         radio = RadioClass.RadioClass()
         radio.playPVRChannel(int(param))
-	return 0
+        return 0
 
-    def actionOnVideoShare(self, param = ""):
+    def actionOnVideoShare(self, param=''):
         radio = RadioClass.RadioClass()
         radio.playYTAddonVideo(param)
-	return 0
+        return 0
 
-    def actionOnPlaySpotifyObject(self, param = ""):
+    def actionOnPlaySpotifyObject(self, param=''):
         radio = RadioClass.RadioClass()
         radio.playSpotifyObject(param)
-	return 0
+        return 0
 
-    def actionOnPlaySpotifyDirectory(self, param = ""):
+    def actionOnPlaySpotifyDirectory(self, param=''):
         radio = RadioClass.RadioClass()
         radio.playSpotifyDirectory(param)
-	return 0
+        return 0
 
-    def actionOnPlayMp3(self, param = ""):
+    def actionOnPlayMp3(self, param=''):
         player = RadioClass.RadioClass()
         player.playMp3File(param)
-	return 0
+        return 0
 
-    def actionOnStop(self, param = ""):
+    def actionOnStop(self, param=''):
         radio = RadioClass.RadioClass()
         radio.getRadioStopRequest()
-	return 0
+        return 0
 
-    def actionOnVolumeUp(self, param = ""):
+    def actionOnVolumeUp(self, param=''):
         radio = RadioClass.RadioClass()
-        radio.getRadioVolumeUpRequest() 
-	return 0
+        radio.getRadioVolumeUpRequest()
+        return 0
 
-    def actionOnVolumeDown(self, param = ""):
+    def actionOnVolumeDown(self, param=''):
         radio = RadioClass.RadioClass()
-        radio.getRadioVolumeDownRequest() 
-	return 0
+        radio.getRadioVolumeDownRequest()
+        return 0
 
-    def actionOnVolumeSet(self, param = ""):
+    def actionOnVolumeSet(self, param=''):
         radio = RadioClass.RadioClass()
-	try:
-	    volume = int(param)
-	except:
-	    volume = 50
+        try:
+            volume = int(param)
+        except:
+            volume = 50
 
-	radio.setRadioVolume(volume)
-	return 0
+        radio.setRadioVolume(volume)
+        return 0
 
-    def actionOnGetActiveEvents(self, param = ""):
+    def actionOnGetActiveEvents(self, param=''):
+
         # perform on timer tick from browser - currently do nothing
-	return 0
 
+        return 0
 
-#---------------------------------------------------------------------------------------------------------------
-    def performAction(self,actionName="", param = ""):
-	ActionClass.__mutex.acquire()
+# ---------------------------------------------------------------------------------------------------------------
 
-	try:
+    def performAction(self, actionName='', param=''):
+        ActionClass.__mutex.acquire()
+
+        try:
             method_name = 'actionOn' + actionName
             method = getattr(self, method_name)
             response = method(param)
-	except:
-	    response = "invalid command"
+        except:
+            response = 'invalid command'
 
-	ActionClass.__mutex.release()
-	return response
+        ActionClass.__mutex.release()
+        return response
 
-    def getEvents(self, filters = ActionEventAll, returnOnlyRequestedEvents = False, returnOnlyActiveEvents = True):
+    def getEvents(
+        self,
+        filters=ActionEventAll,
+        returnOnlyRequestedEvents=False,
+        returnOnlyActiveEvents=True,
+        ):
         events = []
         calendarEvents = CalendarClass.CalendarClass()
         radioEvents = RadioClass.RadioClass()
 
-	ActionClass.__mutex.acquire()
+        ActionClass.__mutex.acquire()
 
-        if self.__isEventEnable(filters, ActionClass.ActionEventGeneric) == True:
-            events = events + self.__config.getEvents(self.ActionEventGeneric, returnOnlyActiveEvents)
+        if self.__isEventEnable(filters,
+                                ActionClass.ActionEventGeneric) == True:
+            events = events \
+                + self.__config.getEvents(self.ActionEventGeneric,
+                    returnOnlyActiveEvents)
 
-        if self.__isEventEnable(filters, ActionClass.ActionEventRadio) == True:
-            events = events + radioEvents.getEventsData(self.ActionEventRadio)
+        if self.__isEventEnable(filters, ActionClass.ActionEventRadio) \
+            == True:
+            events = events \
+                + radioEvents.getEventsData(self.ActionEventRadio)
 
-        if self.__isEventEnable(filters, ActionClass.ActionEventCalendar) == True:
-            events = events + calendarEvents.getEventsData(self.ActionEventCalendar)
+        if self.__isEventEnable(filters,
+                                ActionClass.ActionEventCalendar) \
+            == True:
+            events = events \
+                + calendarEvents.getEventsData(self.ActionEventCalendar)
 
         if returnOnlyRequestedEvents == False:
-    	    self.__updateEvents(events, filters)
-	    events = copy.deepcopy(ActionClass.__actionEvents)
+            self.__updateEvents(events, filters)
+            events = copy.deepcopy(ActionClass.__actionEvents)
 
-	ActionClass.__mutex.release()
+        ActionClass.__mutex.release()
 
         return events
