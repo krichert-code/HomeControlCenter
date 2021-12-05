@@ -511,7 +511,8 @@ class ConfigClass(object):
 
     def saveSettingsData(self, pageId, data):
         (element_name, settingElement) = self.__getSettingPage(pageId)
-        for (key, value) in data.iteritems():
+
+        for (key, value) in data.items():
             try:
                 item = \
                     ConfigClass.__xmldoc.getElementsByTagName(element_name)[0].getElementsByTagName(key)[0]
@@ -520,9 +521,11 @@ class ConfigClass(object):
                     value = hashlib.md5(value).hexdigest()
 
                 item.setAttribute('value', value)
-            except:
+            except Exception as e:
                 pass
+
         ConfigClass.__xmldoc.writexml(open('data/config.xml', 'w'))
+
 
     def getSettingsData(self, pageId):
         data = {}

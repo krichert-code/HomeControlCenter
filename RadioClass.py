@@ -7,6 +7,7 @@ import json
 import os
 import time
 import copy
+from youtubesearchpython import *
 #import cec
 
 
@@ -277,6 +278,11 @@ class RadioClass(object):
         return response_data
 
     def playYTAddonVideo(self, link):
+        #print("LINK = " + link)
+        if link.find("youtube.com") != -1:
+            link="https://youtu.be/" + link[link.rfind("v=")+2:]
+        #print("LINK = " + link)
+
         post_data = copy.deepcopy(RadioClass.__play_req_yt)
         if link.find('playlist') == -1:
             post_data['params']['item']['file'] = \
@@ -296,6 +302,18 @@ class RadioClass(object):
         except:
             resp['status'] = 1
         return resp
+
+    def getYTsearch(self, text):
+        result = []
+        customSearch = VideosSearch(text, limit = 20)
+        for entry in customSearch.result()['result']:
+            entry_data = {}
+            entry_data['title'] = entry['title']
+            entry_data['duration'] = entry['duration']
+            entry_data['link'] = entry['link']
+            entry_data['icon'] = entry['thumbnails'][0]['url']
+            result.append(entry_data)
+        return result
 
     def getRadioStations(self):
         return RadioClass.__stations

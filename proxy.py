@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/local/bin/python3.6
 
 import time
 import CryptClass
