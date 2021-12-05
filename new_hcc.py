@@ -1,4 +1,5 @@
-#!/usr/bin/python
+#!/usr/local/bin/python3.6
+
 
 from flask import Flask, render_template, request, make_response, session, redirect, url_for
 from flask_sessionstore import Session

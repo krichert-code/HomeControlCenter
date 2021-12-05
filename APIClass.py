@@ -62,6 +62,12 @@ class APIClass:
             response = obj.getSpotifyObject()
         return json.dumps(response)
 
+    def APIgetYTSearchResult(self, json_req):
+        obj = RadioClass.RadioClass()
+        response =  {}
+        response['videos'] = obj.getYTsearch(json_req['search'])
+        return json.dumps(response)
+
     def APIinfo(self, json_req):
         infoObj = InfoClass.InfoClass()
         response = infoObj.getInfoData()
