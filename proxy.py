@@ -26,7 +26,7 @@ def register():
         #new response from HCC arrived
         t[hash].set()
     else:
-        #first reuest from HCC (not response data)
+        #first request from HCC (not response data)
         t[hash] = threading.Event()
 
     print("Wait for client request to ID = " +str(id)+"(" + str(hash) +")")
