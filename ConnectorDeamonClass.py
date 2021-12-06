@@ -39,8 +39,10 @@ class ConnectorDeamonClass(threading.Thread):
                 response = requests.post(self.__url,
                         data=crypt.EncodeWithId(self.__id, req),
                         headers=headers)
-                postData = crypt.DecodeWithId(response.text)
+
+                postData = crypt.DecodeWithId(response.text.encode()).decode()
                 postData = postData[:postData.rfind('}') + 1]
+
                 req = apiObj.invoke(json.loads(postData))
-            except:
+            except Exception as e:
                 req = json.dumps(reg_data)

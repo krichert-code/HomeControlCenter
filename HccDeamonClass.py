@@ -321,7 +321,7 @@ class Messages:
             # add item if not exist in "last state" list
 
                 if name not in self.lastStates:
-                    self.lastStates[name] = '0'
+                    self.lastStates[name] = 0
 
             # if state has changed then send message (if needed) and then update last state
 
