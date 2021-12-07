@@ -163,9 +163,9 @@ class WeatherClass(object):
         try:
             resp = requests.get(url, verify=False, timeout=10)
             with open(name, 'w') as f:
-                f.write(resp.text.encode('utf-8'))
-        except Exception:
-            print("_____________weather exception3")
+                f.write(resp.text)
+        except Exception as e:
+            print("_____________weather exception3 : " +str(e))
 
     def generateFiles(self, files):
         config = ConfigClass.ConfigClass()

@@ -16,9 +16,11 @@ class RoomClass:
         switch = SwitchClass.SwitchClass()
         alarm = AlarmClass.AlarmClass()
         weather = WeatherClass.WeatherClass()
-        tempOut = 0
-
-# weather.getCurrentWeather()['temp']
+        try:
+            tempOut = weather.getCurrentWeather()['temp']
+        except:
+            #dirty workaround must be fixed
+            tempOut = 0
 
         roomsObj = {}
         rooms = []

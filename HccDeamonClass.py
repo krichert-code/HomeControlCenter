@@ -321,7 +321,7 @@ class Messages:
             # add item if not exist in "last state" list
 
                 if name not in self.lastStates:
-                    self.lastStates[name] = 0
+                    self.lastStates[name] = "0"
 
             # if state has changed then send message (if needed) and then update last state
 
@@ -343,8 +343,9 @@ class Messages:
             # update last state if at least one message was send succesfully
 
                     if update == True:
+                        print( item.state)
                         self.lastStates[name] = item.state
-        except Exception:
+        except Exception as e:
             print("__________message excetion")
             #print str(e)
             logging.error('MESSAGE EXCEPT:' + str(e))
