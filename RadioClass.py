@@ -164,8 +164,8 @@ class RadioClass(object):
         if RadioClass.__initialized == 0:
             RadioClass.__settings = config.getRadioSettings()
 
-# ....    cec.init()
-# ....    RadioClass.__tv = cec.Device(cec.CECDEVICE_TV)
+            #cec.init()
+            #RadioClass.__tv = cec.Device(cec.CECDEVICE_TV)
 
             RadioClass.__initialized = 1
 
