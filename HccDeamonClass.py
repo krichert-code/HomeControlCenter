@@ -510,10 +510,14 @@ class HccDeamonClass(threading.Thread):
         self.__stopEvent = True
 
     def run(self):
-        logging.basicConfig(filename='/media/usb0/hcc.log')
-                            #encoding='utf-8', level=logging.ERROR)
-                            #format='%(asctime)s %(message)s')
-                            #datefmt='%m/%d/%Y %I:%M:%S %p')
+        logging.basicConfig(handlers=[logging.FileHandler(filename="/media/usb0/hcc.log",
+                                     encoding='utf-8', mode='a+')],
+                            format="%(asctime)s %(name)s:%(levelname)s:%(message)s",
+                            datefmt="%F %A %T",
+                            level=logging.ERROR)
+        log = logging.getLogger('werkzeug')
+        log.setLevel(logging.ERROR)
+
         logging.error('Started')
         timerTick = 0
         config = ConfigClass.ConfigClass()
