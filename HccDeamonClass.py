@@ -3,7 +3,7 @@
 import requests
 import threading
 import time
-import datetime
+#import datetime
 import ConfigClass
 import RadioClass
 import CalendarClass
@@ -18,7 +18,12 @@ import json
 import AlarmClass
 import traceback
 import logging
-
+import SwitchClass
+from datetime import date
+from datetime import datetime
+from datetime import timedelta
+from astral.sun import sun
+from astral import LocationInfo
 
 class Alarm:
 
@@ -28,8 +33,8 @@ class Alarm:
         self.__playing = False
 
     def __compareTime(self, date):
-        hour = datetime.datetime.now().time().hour
-        minute = datetime.datetime.now().time().minute
+        hour = datetime.now().time().hour
+        minute = datetime.now().time().minute
         hour_param = int(date[:date.find(':')])
         minute_param = int(date[date.find(':') + 1:])
         if hour == hour_param and minute == minute_param:
@@ -42,9 +47,9 @@ class Alarm:
 
         start_time = self.__config.getAlarmSetting('start_time')
         duration = int(self.__config.getAlarmSetting('stop_time'))
-        stop_time_obj = datetime.datetime.strptime(start_time, '%H:%M')
+        stop_time_obj = datetime.strptime(start_time, '%H:%M')
         stop_time_obj = stop_time_obj \
-            + datetime.timedelta(minutes=duration)
+            + timedelta(minutes=duration)
         stop_time = stop_time_obj.strftime('%H:%M')
 
         radioChannel = self.__config.getAlarmSetting('channel')
@@ -52,15 +57,15 @@ class Alarm:
         policy = self.__config.getAlarmSetting('day_policy')
         alarmOnHoliday = \
             self.__config.getAlarmSetting('alarm_on_holiday')
-        curr_day = datetime.datetime.now().strftime('%d')
-        curr_month = datetime.datetime.now().strftime('%m')
+        curr_day = datetime.now().strftime('%d')
+        curr_month = datetime.now().strftime('%m')
 
         playRadio = True
 
     # disable alarm if value is = 'disable' or alarm is set on 'week_day' and now is weekend
 
         if policy == 'disabled' or policy == 'week_day' \
-            and datetime.datetime.today().weekday() >= 5:
+            and datetime.today().weekday() >= 5:
             playRadio = False
 
     # disable alarm also if alarm_on_holiday = "no" and today is holiday
@@ -146,7 +151,7 @@ class Calendar:
     def timeEvent(self):
         try:
             calendar = CalendarClass.CalendarClass()
-            curr_day = datetime.datetime.now().strftime('%d')
+            curr_day = datetime.now().strftime('%d')
             if self.__day != curr_day:
                 self.__day = curr_day
                 calendar.generateFiles()
@@ -167,9 +172,9 @@ class Heater:
         # manage heater state once per 60 sec
 
             if tick % 60 == 0:
-                curr_week_day = datetime.datetime.today().weekday()
-                curr_hour = int(datetime.datetime.now().strftime('%H'))
-                curr_min = int(datetime.datetime.now().strftime('%M'))
+                curr_week_day = datetime.today().weekday()
+                curr_hour = int(datetime.now().strftime('%H'))
+                curr_min = int(datetime.now().strftime('%M'))
                 self.__heater.manageHeaterState(curr_week_day,
                         curr_hour, curr_min)
         except e:
@@ -201,8 +206,8 @@ class Weather:
     def timeEvent(self):
         try:
             weather = WeatherClass.WeatherClass()
-            curr_day = datetime.datetime.now().strftime('%d')
-            curr_hour = datetime.datetime.now().strftime('%H')
+            curr_day = datetime.now().strftime('%d')
+            curr_hour = datetime.now().strftime('%H')
 
             if self.__day != curr_day:
                 self.__day = curr_day
@@ -247,9 +252,9 @@ class Sprinkler:
         # manage sprinkler state once per 45 sec
 
             if tick % 35 == 0:
-                curr_week_day = datetime.datetime.today().weekday()
-                curr_hour = int(datetime.datetime.now().strftime('%H'))
-                curr_min = int(datetime.datetime.now().strftime('%M'))
+                curr_week_day = datetime.today().weekday()
+                curr_hour = int(datetime.now().strftime('%H'))
+                curr_min = int(datetime.now().strftime('%M'))
                 self.__sprinkler.manageSprinklerState(curr_week_day,
                         curr_hour, curr_min)
         except Exception:
@@ -353,7 +358,7 @@ class Messages:
     def __calendarEventMessage(self):
         calendar = CalendarClass.CalendarClass()
         config = ConfigClass.ConfigClass()
-        curr_time = datetime.datetime.now().strftime('%H:%M')
+        curr_time = datetime.now().strftime('%H:%M')
         sendMessage = False
 
         # logging.error('SMS ' +str(config.getCalendarReminderEnabled()))
@@ -368,7 +373,7 @@ class Messages:
 
             for event in events:
                 eventTS = \
-                    time.mktime(datetime.datetime.strptime(event.date,
+                    time.mktime(datetime.strptime(event.date,
                                 '%Y-%m-%d').timetuple())
 
             # if event is tomorrow then send it
@@ -410,11 +415,11 @@ class Energy:
         self.__energy = EnergyClass.EnergyClass()
         self.__lastGoodValue = 0
         self.__energyProducedForMonth = 0
-        self.__curr_week_day = datetime.datetime.today().weekday()
+        self.__curr_week_day = datetime.today().weekday()
 
     def timeEvent(self, tick):
         try:
-            curr_week_day = datetime.datetime.today().weekday()
+            curr_week_day = datetime.today().weekday()
 
         # get energy once per 30min
 
@@ -425,7 +430,7 @@ class Energy:
                         == 'OK':
                         self.__lastGoodValue = int(item['power'])
                         self.__energyProducedForMonth = \
-                            datetime.datetime.today().month
+                            datetime.today().month
 
             if self.__curr_week_day != curr_week_day:
 
@@ -487,16 +492,74 @@ class Status:
                 self.__config.changeStatus('status', '0', '1')
 
 
-class SelfActivateAlarmSystem:
+class ProgramAction:
 
     def __init__(self):
-        self.__config = ConfigClass.ConfigClass()
+        config = ConfigClass.ConfigClass()
+
+        self.__alarmActivatedTimestamp = 0
+        self.__alarmActivatedFlag = False
+        self.__lights = config.getProgramLightAction()
+        self.__alarmActivatSettings = config.getAlarmActivate()
+        self.__alarmTriggered = False
+
+
+    def __checkIfNoBodyHome(self):
+        result = False
+        alarm = AlarmClass.AlarmClass()
+        settings = self.__alarmActivatSettings
+        currentTimestamp = time.time()
+
+        sensors = alarm.getPresence()['presence']
+        #logging.error(str(sensors))
+        #print(sensors)
+        for sensor in sensors:
+            #todo : check if sensor exists in any room, if not then continue without checking (szambo case)
+            if (sensor['name'] in settings['sensors']) and (sensor['presence'] == 'on'):
+                result = True
+                self.__alarmActivatedFlag = True
+                self.__alarmActivatedTimestamp = currentTimestamp
+            elif (sensor['name'] not in settings['sensors']) and (sensor['presence'] == 'on'):
+                result = False
+                self.__alarmActivatedFlag = False
+                break
+
+        #print(currentTimestamp - self.__alarmActivatedTimestamp)
+        #print(int(settings['timeToActivate']) * 60)
+        #print(self.__alarmActivatedFlag)
+        if (currentTimestamp - self.__alarmActivatedTimestamp >= (int(settings['timeToActivate']) * 60)) and (self.__alarmActivatedFlag == True):
+            return True
+        else:
+            return False
+
+    def __isDuskTime(self):
+        city = LocationInfo("Warsaw", "Poland")
+        s = sun(city.observer, date=date.today())
+        duskTimestamp = datetime.timestamp(s["dusk"])
+        currentTimestamp = time.time()
+        if (currentTimestamp > duskTimestamp):
+            return True
+        else:
+            return False
 
     def timeEvent(self, tick):
-        alarm = AlarmClass.AlarmClass()
+        alarmActivated = False
 
+        if tick % 5 == 0:
+            checkIfNoBodyHome = self.__checkIfNoBodyHome()
+            #print(checkIfNoBodyHome)
+            #logging.error(str(checkIfNoBodyHome))
+            if (checkIfNoBodyHome == True):
+                self.__alarmTriggered = True
+            elif (checkIfNoBodyHome == False and self.__alarmTriggered == True):
+                alarmActivated = True
+                self.__alarmTriggered = False
 
-        # if last activate sensor was one of the self activiation sensor then activate alarm
+            for light in self.__lights:
+                if (bool(light['onAlarmActivate']) == True) and (alarmActivated == True) and (self.__isDuskTime() == True):
+                    lightSwitch = SwitchClass.SwitchClass()
+                    lightSwitch.changeSwitchState(light['lightIp'], 'on')
+
 
 # ------------------------------------------------------------------------------------------------------------------------
 
@@ -530,6 +593,7 @@ class HccDeamonClass(threading.Thread):
         sprinkler = Sprinkler()
         energy = Energy()
         status = Status()
+        programAction = ProgramAction()
 
         while not self.__stopEvent:
             try:
@@ -542,8 +606,17 @@ class HccDeamonClass(threading.Thread):
                 sprinkler.timeEvent(timerTick)
                 energy.timeEvent(timerTick)
                 status.timeEvent(timerTick)
+                programAction.timeEvent(timerTick)
                 time.sleep(1)
                 timerTick = timerTick + 1
-            except e:
+            except Exception as e:
                 logging.error('ENERGY EXCEPT:')
-                logging.error(e.message)
+                logging.error(str(e))
+                print(str(e))
+
+
+
+
+
+
+
