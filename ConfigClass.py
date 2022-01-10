@@ -407,6 +407,50 @@ class ConfigClass(object):
 
 # -------------------------- Heater settings -----------------------------
 
+# -------------------------- ProgramAction settings -----------------------------
+    def getAlarmActivate(self):
+        result = {}
+        rooms = self.getRooms()
+        actions = ConfigClass.__xmldoc.getElementsByTagName('actions')[0].getElementsByTagName('action')
+        for action in actions:
+            if action.getAttribute('device') == 'alarm' :
+                result['timeToActivate'] = action.getAttribute('timeToActivate')
+                result['sensors'] = []
+                for roomId in action.getElementsByTagName('alarmSensor'):
+                    id = roomId.getAttribute('roomId')
+                    for room in rooms:
+                        if room['id'] == id:
+                            result['sensors'] = room['alarmSensors']
+                            break
+                break
+
+        return result
+
+    def getProgramLightAction(self):
+        result = []
+        rooms = self.getRooms()
+
+        actions = ConfigClass.__xmldoc.getElementsByTagName('actions')[0].getElementsByTagName('action')
+        for action in actions:
+            if action.getAttribute('device') == 'light':
+                obj = {}
+                roomId = action.getAttribute('roomId')
+                for room in rooms:
+                    if room['id'] == roomId:
+                        obj['lightIp']=room['light_ip']
+                        break
+
+                obj['timeOff']=action.getAttribute('timeOff')
+                obj['onAlarmActivate']=action.getAttribute('onAlarmActivate')
+                obj['validMonths']=action.getAttribute('validMonths')
+                result.append(obj)
+
+        return result
+
+# -------------------------- ProgramAction settings -----------------------------
+
+
+
 # ---------------------------Settings method -----------------------------
 
     def __getSettings(self, pageId=-1):
