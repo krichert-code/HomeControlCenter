@@ -536,7 +536,9 @@ class ProgramAction:
         city = LocationInfo("Warsaw", "Poland")
         s = sun(city.observer, date=date.today())
         duskTimestamp = datetime.timestamp(s["dusk"])
-        currentTimestamp = time.time()
+        duskTimestamp = duskTimestamp - 3600
+        currentTimestamp = datetime.timestamp(datetime.now())
+
         if (currentTimestamp > duskTimestamp):
             return True
         else:
@@ -544,22 +546,43 @@ class ProgramAction:
 
     def timeEvent(self, tick):
         alarmActivated = False
+        lightSwitch = SwitchClass.SwitchClass()
+        currentTime = datetime.now().strftime("%H:%M")
 
         if tick % 5 == 0:
             checkIfNoBodyHome = self.__checkIfNoBodyHome()
             #print(checkIfNoBodyHome)
             #logging.error(str(checkIfNoBodyHome))
-            if (checkIfNoBodyHome == True):
+
+            if (checkIfNoBodyHome == True) and (self.__alarmTriggered == False):
                 self.__alarmTriggered = True
+                logging.error("Alarm triggered")
             elif (checkIfNoBodyHome == False and self.__alarmTriggered == True):
                 alarmActivated = True
                 self.__alarmTriggered = False
+                logging.error("Alarm activated")
 
             for light in self.__lights:
-                if (bool(light['onAlarmActivate']) == True) and (alarmActivated == True) and (self.__isDuskTime() == True):
-                    lightSwitch = SwitchClass.SwitchClass()
-                    lightSwitch.changeSwitchState(light['lightIp'], 'on')
 
+                if (light['state'] == 3) and (self.__isDuskTime() == False):
+                    light['state'] = 0
+
+                if (light['onAlarmActivate'] == True) and (alarmActivated == True) and (self.__isDuskTime() == True):
+                    lightSwitch.changeSwitchState(light['lightIp'], 'on')
+                    logging.error("Light " + light['lightIp'] +" on - caused alarm activated")
+                    continue
+
+                if (self.__isDuskTime() == True) and (light['state'] == 0) and (light['onAlarmActivate'] == False):
+                    light['state'] = 1
+                    lightSwitch.changeSwitchState(light['lightIp'], 'on')
+                    logging.error("Light " + light['lightIp'] +" on - caused dusk")
+                    continue
+
+                if (light['timeOff'] == currentTime) and (light['state'] == 1) and (light['onAlarmActivate'] == False):
+                    light['state'] = 3
+                    lightSwitch.changeSwitchState(light['lightIp'], 'off')
+                    logging.error("Light " + light['lightIp'] +" off - caused time off")
+                    continue
 
 # ------------------------------------------------------------------------------------------------------------------------
 
@@ -610,10 +633,7 @@ class HccDeamonClass(threading.Thread):
                 time.sleep(1)
                 timerTick = timerTick + 1
             except Exception as e:
-                logging.error('ENERGY EXCEPT:')
                 logging.error(str(e))
-                print(str(e))
-
 
 
 
