@@ -441,8 +441,12 @@ class ConfigClass(object):
                         break
 
                 obj['timeOff']=action.getAttribute('timeOff')
-                obj['onAlarmActivate']=action.getAttribute('onAlarmActivate')
+                if (action.getAttribute('onAlarmActivate') == "True"):
+                    obj['onAlarmActivate']=True
+                else:
+                    obj['onAlarmActivate']=False
                 obj['validMonths']=action.getAttribute('validMonths')
+                obj['state'] = 0
                 result.append(obj)
 
         return result
