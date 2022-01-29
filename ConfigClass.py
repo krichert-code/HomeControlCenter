@@ -445,7 +445,7 @@ class ConfigClass(object):
                     obj['onAlarmActivate']=True
                 else:
                     obj['onAlarmActivate']=False
-                obj['validMonths']=action.getAttribute('validMonths')
+                obj['validMonths']=int(action.getAttribute('validMonths'))
                 obj['state'] = 0
                 result.append(obj)
 
