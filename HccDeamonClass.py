@@ -548,9 +548,11 @@ class ProgramAction:
         alarmActivated = False
         lightSwitch = SwitchClass.SwitchClass()
         currentTime = datetime.now().strftime("%H:%M")
+        curr_month = int(datetime.now().strftime('%m'))
 
         if tick % 5 == 0:
             checkIfNoBodyHome = self.__checkIfNoBodyHome()
+            
             #print(checkIfNoBodyHome)
             #logging.error(str(checkIfNoBodyHome))
 
@@ -566,6 +568,9 @@ class ProgramAction:
 
                 if (light['state'] == 3) and (self.__isDuskTime() == False):
                     light['state'] = 0
+
+                if ((light['validMonths'] & (1 << (curr_month-1))) == 0):
+                    continue
 
                 if (light['onAlarmActivate'] == True) and (alarmActivated == True) and (self.__isDuskTime() == True):
                     lightSwitch.changeSwitchState(light['lightIp'], 'on')
