@@ -376,9 +376,9 @@ class Messages:
                     time.mktime(datetime.strptime(event.date,
                                 '%Y-%m-%d').timetuple())
 
-            # if event is tomorrow then send it
+                # if event is tomorrow then send it
 
-                logging.error('SMS some events: ' + str(eventTS))
+                logging.error('SMS eventTime=' + str(eventTS) + ' currentTime=' + str(currTS) + ' diffTime=' + str(self.__diff_calendar_timestamp) + ' ' + event.desc)
 
                 if eventTS - currTS <= self.__diff_calendar_timestamp \
                     and eventTS - currTS > 0:
@@ -536,7 +536,7 @@ class ProgramAction:
         city = LocationInfo("Warsaw", "Poland")
         s = sun(city.observer, date=date.today())
         duskTimestamp = datetime.timestamp(s["dusk"])
-        duskTimestamp = duskTimestamp - 3600
+        duskTimestamp = duskTimestamp - (2*3600)
         currentTimestamp = datetime.timestamp(datetime.now())
 
         if (currentTimestamp > duskTimestamp):
