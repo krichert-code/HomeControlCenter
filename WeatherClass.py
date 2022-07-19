@@ -7,7 +7,6 @@ import csv
 from datetime import datetime
 import json
 
-
 class WeatherForecaset(object):
 
     time = ''
@@ -40,20 +39,19 @@ class WeatherClass(object):
     WeatherHourlyFile = 1 << 1
     WeatherDailyFile = 1 << 2
 
-    __currWeatherFile = 'data/weatherCurrent.json'
-    __hourlyWeatherFile = 'data/weatherHourly.json'
-    __dailyWeatherFile = 'data/weatherDaily.json'
+    __currWeatherFile = '/HomeControlCenter/data/weatherCurrent.json'
+    __hourlyWeatherFile = '/HomeControlCenter/data/weatherHourly.json'
+    __dailyWeatherFile = '/HomeControlCenter/data/weatherDaily.json'
     __rainStringIndicator = 'eszcz'
     __rainIndicator = False
 
     # The class "constructor" - It's actually an initializer
 
     def __init__(self):
-        self.__heater = {}
+        pass
 
     def clearRainIndicator(self):
         WeatherClass.__rainIndicator = False
-        pass
 
     def rainOccured(self):
         return WeatherClass.__rainIndicator
@@ -67,9 +65,8 @@ class WeatherClass(object):
                     ].find(self.__rainStringIndicator) != -1:
                 WeatherClass.__rainIndicator = True
         except:
-
-            clearRainIndicator()
-            print("_____________weather exception!!!")
+            WeatherClass.__rainIndicator = False
+            print("_____________update rain indicator exception!!!")
 
     def getCurrentWeather(self):
         weatherData = {}
@@ -88,96 +85,45 @@ class WeatherClass(object):
             weatherData['wind'] = '%.1f' % data['data'][0]['wind_spd']
             weatherData['wind_dir'] = ''
         except:
-            print("_____________weather exception1")
+            weatherData['icon'] = \
+                'https://www.weatherbit.io/static/img/icons/' \
+                + data['data'][0]['weather']['icon'] + '.png'
+            weatherData['temp'] = '0.0'
+            weatherData['date'] = ''
+            weatherData['time'] = ''
+            weatherData['pressure'] = '0.0'
+            weatherData['wind'] = '0.0'
+            weatherData['wind_dir'] = ''
 
         return weatherData
 
-    def getWeatherHourlyForecast(self):
-        id = 0
-        weatherForecast = []
-        try:
-            with open(WeatherClass.__hourlyWeatherFile) as f:
-                data = json.load(f)
-
-            for item in data['data']:
-
-            # skip weather forecast between 1am to 5am, and display only temperature on every 3 hours
-
-                if id % 3 == 0:
-                    icon = \
-                        'https://www.weatherbit.io/static/img/icons/' \
-                        + item['weather']['icon'] + '.png'
-                    time = item['timestamp_local']
-                    time = time[time.find('T') + 1:]
-                    temp = '%.1f' % item['temp']
-                    wind = '%.1f' % item['wind_spd']
-                    presure = '%.1f' % item['pres']
-                    weatherForecast.append(WeatherForecaset(
-                        id / 3,
-                        time,
-                        temp,
-                        wind,
-                        presure,
-                        icon,
-                        ))
-                id = id + 1
-                if id > 15:
-                    break
-        except:
-            print("_____________weather exception")
-        return weatherForecast
-
-    def getWeatherDailyForecast(self):
-        id = 0
-        weatherForecast = []
-        try:
-            with open(WeatherClass.__dailyWeatherFile) as f:
-                data = json.load(f)
-
-            for item in data['data']:
-                id = id + 1
-                icon = 'https://www.weatherbit.io/static/img/icons/' \
-                    + item['weather']['icon'] + '.png'
-                time = item['datetime']
-
-                # time = time[time.find("T")+1:]
-
-                temp = '%.1f' % item['temp']
-                wind = '%.1f' % item['wind_gust_spd']
-                presure = '%.1f' % item['pres']
-                weatherForecast.append(WeatherForecaset(
-                    id,
-                    time,
-                    temp,
-                    wind,
-                    presure,
-                    icon,
-                    ))
-                if id > 2:
-                    break
-        except:
-            print("_____________weather exception_DAILY")
-        return weatherForecast
 
     def __saveWeatherFile(self, url, name):
-        try:
-            resp = requests.get(url, verify=False, timeout=10)
-            with open(name, 'w') as f:
-                f.write(resp.text)
-        except Exception as e:
-            print("_____________weather exception3 : " +str(e))
+        resp = requests.get(url, verify=False, timeout=10)
+        data = json.loads(resp.text)
+        with open(name, 'w+') as f:
+            json.dump(data, f)
+
 
     def generateFiles(self, files):
         config = ConfigClass.ConfigClass()
+        result = True
+        try:
+            if files & WeatherClass.WeatherCurrentFile != 0:
+                self.__saveWeatherFile(config.getCurrentWeatherReq(),
+                                       self.__currWeatherFile)
 
-        if files & WeatherClass.WeatherCurrentFile != 0:
-            self.__saveWeatherFile(config.getCurrentWeatherReq(),
-                                   self.__currWeatherFile)
+            #if files & WeatherClass.WeatherHourlyFile != 0:
+            #    self.__saveWeatherFile(config.getHourlyWeatherForecastReq(),
+            #                           self.__hourlyWeatherFile)
 
-        if files & WeatherClass.WeatherHourlyFile != 0:
-            self.__saveWeatherFile(config.getHourlyWeatherForecastReq(),
-                                   self.__hourlyWeatherFile)
+            #if files & WeatherClass.WeatherDailyFile != 0:
+            #    self.__saveWeatherFile(config.getDailyWeatherForecastReq(),
+            #                           self.__dailyWeatherFile)
 
-        if files & WeatherClass.WeatherDailyFile != 0:
-            self.__saveWeatherFile(config.getDailyWeatherForecastReq(),
-                                   self.__dailyWeatherFile)
+        except Exception as e:
+            #logging.error(str(e))
+            print("_____________weather class exception : " +str(e))
+            result = False
+
+        return result
