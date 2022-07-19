@@ -186,58 +186,32 @@ class Heater:
 class Weather:
 
     def __init__(self):
-        weather = WeatherClass.WeatherClass()
+        self.__weather = WeatherClass.WeatherClass()
         self.__day = 0
         self.__hour = 0
-        self.__weatherFiles = 0
 
-        # Below counter is needed to generate weather files not exactly when new day/hour,
-            # but some time later because data are not available.
+    def timeEvent(self, tick):
 
-        self.__counter = 0
-        try:
-            weather.generateFiles(weather.WeatherDailyFile
-                                  | weather.WeatherHourlyFile
-                                  | weather.WeatherCurrentFile)
-        except:
-            logging.error('WEATHER EXCEPT:')
-            print("__________wather excetion")
-
-    def timeEvent(self):
-        try:
-            weather = WeatherClass.WeatherClass()
+        if tick % 30 == 0:
+            weatherFiles = 0
             curr_day = datetime.now().strftime('%d')
             curr_hour = datetime.now().strftime('%H')
+            curr_min = datetime.now().strftime('%M')
 
             if self.__day != curr_day:
-                self.__day = curr_day
-                self.__weatherFiles = self.__weatherFiles \
-                    | weather.WeatherDailyFile \
-                    | weather.WeatherHourlyFile
-                self.__counter = 200
-                weather.clearRainIndicator()
+                weatherFiles = self.__weather.WeatherCurrentFile
+                self.__weather.clearRainIndicator()
+            elif self.__hour != curr_hour:
+                weatherFiles = self.__weather.WeatherCurrentFile
 
-            if self.__hour != curr_hour:
-                self.__hour = curr_hour
-                self.__weatherFiles = self.__weatherFiles \
-                    | weather.WeatherCurrentFile
-                self.__counter = 200
+            if weatherFiles != 0:
+#and int(curr_min) == 15:
+                result = self.__weather.generateFiles(weatherFiles)
+                if result == True:
+                    self.__day = curr_day
+                    self.__hour = curr_hour
+                    self.__weather.updateRainIndicator()
 
-            if self.__weatherFiles != 0 and self.__counter == 0:
-                weather.generateFiles(self.__weatherFiles)
-                self.__weatherFiles = 0
-                weather.updateRainIndicator()
-
-            if self.__counter > 0:
-                self.__counter = self.__counter - 1
-        except Exception:
-
-            logging.error('WEATHER1 EXCEPT:')
-            #print( e.message)
-            self.__day = curr_day
-            self.__hour = curr_hour
-            self.__weatherFiles = 0
-            self.__counter = 200
 
 
 class Sprinkler:
@@ -628,7 +602,7 @@ class HccDeamonClass(threading.Thread):
                 alarm.timeEvent()
                 speaker.timeEvent()
                 calendar.timeEvent()
-                weather.timeEvent()
+                weather.timeEvent(timerTick)
                 heater.timeEvent(timerTick)
                 messages.timeEvent(timerTick)
                 sprinkler.timeEvent(timerTick)
