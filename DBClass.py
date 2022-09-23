@@ -52,6 +52,17 @@ class DBClass(object):
         query = query.where(energy.columns.Id == monthId)
         results = connection.execute(query)
 
+    def updatePrevEnergy(self, monthId, value):
+        engine = db.create_engine('sqlite:///hcc.db')
+        connection = engine.connect()
+
+        metadata = db.MetaData()
+        energy = db.Table('EnergyData', metadata, autoload=True,
+                          autoload_with=engine)
+        query = db.update(energy).values(prev_energy=value)
+        query = query.where(energy.columns.Id == monthId)
+        results = connection.execute(query)
+
     def getEnergyPerMonth(self, monthId):
         engine = db.create_engine('sqlite:///hcc.db')
         connection = engine.connect()
