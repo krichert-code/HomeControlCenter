@@ -19,6 +19,7 @@ import AlarmClass
 import traceback
 import logging
 import SwitchClass
+import base64
 from datetime import date
 from datetime import datetime
 from datetime import timedelta
@@ -250,7 +251,37 @@ class Messages:
         self.lastSendEventDate = ''
         self.currSendEventDate = ''
 
-    def sendSms(
+    def __sendSmsBulk(
+        self,
+        apiKey,
+        number,
+        message,
+        ):
+
+        #apiKey = base64.b64encode("D7A6E0DC86E44ED38B298C7BBAF3A15D-02-7:m0fvQo#QDsajOhx*GoU2QyHJxLoLj")
+        apiKey = base64.b64encode(apiKey.encode("utf-8"))
+        headers = {'content-type': 'application/json', 'Authorization': 'Basic ' + apiKey.decode("utf-8")}
+        sms = {
+            'from' : 'Dom',
+            'to': number,
+            'body': message
+        }
+
+        status = 'OK'
+
+        try:
+            req = 'https://api.bulksms.com/v1/messages?auto-unicode=true&longMessageMaxParts=3'
+            r = requests.post(req, data=json.dumps(sms), headers=headers)
+
+            #resp = json.loads(r.text)
+            #resp['responseCode']
+        except:
+            logging.error('MESSAGE (bulk) EXCEPT:')
+            status = 'ERROR'
+
+        return status
+
+    def __sendSmsJustSend(
         self,
         apiKey,
         number,
@@ -274,10 +305,18 @@ class Messages:
             resp = json.loads(r.text)
             status = resp['responseCode']
         except:
-            logging.error('MESSAGE EXCEPT:')
+            logging.error('MESSAGE (justsend) EXCEPT:')
             status = 'ERROR'
 
         return status
+
+    def sendSms(
+        self,
+        apiKey,
+        number,
+        message,
+        ):
+        return self.__sendSmsBulk(apiKey, number, message)
 
     def __genericEventMessage(self, tick):
 
@@ -394,8 +433,9 @@ class Energy:
     def timeEvent(self, tick):
         try:
             curr_week_day = datetime.today().weekday()
+            curr_day = datetime.today().day
 
-        # get energy once per 30min
+            # get energy once per 30min
 
             if tick % 1800 == 0:
                 energyValues = self.__energy.getCurrentProduceEnergy()
@@ -407,17 +447,23 @@ class Energy:
                             datetime.today().month
 
             if self.__curr_week_day != curr_week_day:
-
-            # update total value for current month using today produced energy
-
+                # update total value for current month using today produced energy
                 if self.__energyProducedForMonth != 0:
                     energyForMonth = \
                         self.__db.getEnergyPerMonth(self.__energyProducedForMonth)['energy'
                             ]
-                    energyForMonth = energyForMonth \
-                        + self.__lastGoodValue
+                    if (curr_day == 1):
+                        self.__db.updatePrevEnergy(self.__energyProducedForMonth,
+                                energyForMonth)
+                        energyForMonth = self.__lastGoodValue
+
+                    else:
+                        energyForMonth = energyForMonth \
+                            + self.__lastGoodValue
+
                     self.__db.updateEnergy(self.__energyProducedForMonth,
                             energyForMonth)
+
                 self.__energyProducedForMonth = 0
                 self.__lastGoodValue = 0
                 self.__curr_week_day = curr_week_day

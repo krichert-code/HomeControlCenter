@@ -28,6 +28,7 @@
     2.start-stop-daemon -b -S --chdir /HomeControlCenter -x hcc.py
 
 5. Sms API - https://justsend.pl/
+   BulkSms - https://www.bulksms.com/
 
 TODO list:
 0. If temp sensor is the last in Alarm.xml then move sensors are not reported

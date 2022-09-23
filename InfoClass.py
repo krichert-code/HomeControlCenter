@@ -50,4 +50,6 @@ class InfoClass:
 
         infoObj['total_per_month'] = energy.getTotalPerMonth()
 
+        infoObj['total_per_month_prev_value'] = energy.getTotalPerMonthPrevValue()
+
         return infoObj
