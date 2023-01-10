@@ -178,10 +178,8 @@ class Heater:
                 curr_min = int(datetime.now().strftime('%M'))
                 self.__heater.manageHeaterState(curr_week_day,
                         curr_hour, curr_min)
-        except e:
-            traceback.print_exc()
-            logging.error('HEATER EXCEPT:' + str(e))
-            print("Heater exception : " + str(e))
+        except Exception as e:
+            logging.error('HEATER EXCEPT: ' + str(e) + " " + traceback.format_exc())
 
 
 class Weather:
