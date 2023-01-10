@@ -4,6 +4,7 @@ import ConfigClass
 import WeatherClass
 import AlarmClass
 import EventClass
+import SwitchClass
 import ActionThread
 from datetime import datetime
 import json
@@ -34,6 +35,7 @@ class HeaterClass(object):
     __data_per_day = []
     __dayMode = False
     __lastState = -1
+    __lastSupportState = -1
 
     # statistic - how long heater is on today
 
@@ -123,6 +125,66 @@ class HeaterClass(object):
             print ("___________heater exception 2")
         return heaterStats
 
+    def __mainHeatSourceControl(self, url, action, sensorId):
+        threadTask = ActionThread.ActionThread()
+        threadTask.addTask(ActionThread.Task(action,
+                           ActionThread.UpdateParam('heater',
+                           sensorId)))
+
+        threadTask.addTask(ActionThread.Task('request',
+                           ActionThread.RequestParam(url)))
+        threadTask.addTask(ActionThread.Task('notify',
+                           ActionThread.NotifyParam()))
+        threadTask.start()
+        threadTask.suspend()
+
+    def __supportHeatSourceControl(self, action, sensorId):
+        state = 'off'
+        config = ConfigClass.ConfigClass()
+        currentState = HeaterClass.__lastSupportState
+        threadTask = ActionThread.ActionThread()
+        exceptOccured = False
+
+        errorHeaterSensor = config.getDeviceSensors('status')[3]
+        supportedDevices = config.getSupportDevices()
+
+        if (action == 'set'):
+            state = 'on'
+            HeaterClass.__lastSupportState = HeaterClass.__StateOn
+        else:
+            state = 'off'
+            HeaterClass.__lastSupportState = HeaterClass.__StateOff
+
+        controlInterface = SwitchClass.SwitchClass()
+        try:
+            if ( HeaterClass.__lastSupportState != currentState):
+                for dev in supportedDevices:
+                    controlInterface.changeSwitchState(dev, state)
+
+                threadTask.addTask(ActionThread.Task(action,
+                                   ActionThread.UpdateParam('heater',
+                                   sensorId)))
+
+
+                threadTask.addTask(ActionThread.Task('clear',
+                                   ActionThread.UpdateParam('status',
+                                   errorHeaterSensor[0])))
+
+
+        except:
+            exceptOccured = True
+            HeaterClass.__lastSupportState = currentState
+            threadTask.addTask(ActionThread.Task('set',
+                               ActionThread.UpdateParam('status',
+                               errorHeaterSensor[0])))
+
+        if ( HeaterClass.__lastSupportState != currentState or exceptOccured == True):
+            threadTask.addTask(ActionThread.Task('notify',
+                               ActionThread.NotifyParam()))
+            threadTask.start()
+            threadTask.suspend()
+
+
     def manageHeaterState(
         self,
         dayOfWeek,
@@ -132,78 +194,89 @@ class HeaterClass(object):
         config = ConfigClass.ConfigClass()
         weather = WeatherClass.WeatherClass()
         alarm = AlarmClass.AlarmClass()
-        threadTask = None
 
         dayTemp = float(config.getDayTemp())
         nightTemp = float(config.getNightTemp())
         threshold = float(config.geTempThreshold())
 
         isDayMode = config.isDayMode(dayOfWeek, hour)
+        isMainDeviceEnable = config.isMainDeviceEnabled()
+        sensor = config.getDeviceSensors('heater')[0]
 
-        (status, temp) = self.__getTemperatureFromDevice()
-        if status != 0:
-            return
+        isSupportedDeviceMode = config.isSupportedDeviceEnabled(dayOfWeek, hour)
+        isSupportedDeviceEnable = config.isSupportDeviceEnabled()
 
-        # new day - reset statistics
-
-        if hour == 0 and minute == 0:
+        # New day - reset statistics
+        if hour == 0 and minute < 2:
             HeaterClass.__heaterOnToday = 0
             HeaterClass.__data_per_day = []
         if HeaterClass.__lastState == HeaterClass.__StateOn:
             HeaterClass.__heaterOnToday = HeaterClass.__heaterOnToday \
                 + 1
 
-        if HeaterClass.__dayMode != isDayMode:
-
-            # if mode has changed set heater state as 'unknown'(-1)
-
-            HeaterClass.__lastState = HeaterClass.__StateUnknown
-
-        self.__storeDataCounter = self.__storeDataCounter + 1
-        HeaterClass.__dayMode = isDayMode
-
-        sensor = config.getDeviceSensors('heater')[0]
-
-        if isDayMode == True and temp + threshold <= dayTemp \
-            or isDayMode == False and temp + threshold <= nightTemp:
-
-            # turn on heater
-
-            url = alarm.getUpdateUrl(sensor[1], 1)
-            if HeaterClass.__lastState == HeaterClass.__StateOff \
-                or HeaterClass.__lastState \
-                == HeaterClass.__StateUnknown:
-                threadTask = ActionThread.ActionThread()
-                threadTask.addTask(ActionThread.Task('set',
-                                   ActionThread.UpdateParam('heater',
-                                   sensor[0])))
-            HeaterClass.__lastState = HeaterClass.__StateOn
-        elif isDayMode == True and temp >= dayTemp + threshold \
-            or isDayMode == False and temp >= nightTemp + threshold \
-            or HeaterClass.__lastState == HeaterClass.__StateUnknown:
-
-            # turn off heater
-
+        # Check support source - if enable then turn off main source and
+        # operate only on support source.
+        # Supported divice is consider as enabled if for particular time is enabled
+        # and main switch (support_device_enable) is enabled.
+        # print("----Check support state = " + str(isSupportedDeviceEnable) + " " + str(isSupportedDeviceMode))
+        if (isSupportedDeviceEnable == True and isSupportedDeviceMode == True):
+            # print("----Support device start. Current main source = " + str(HeaterClass.__lastState))
+            # turn off main heat source
             url = alarm.getUpdateUrl(sensor[1], 0)
             if HeaterClass.__lastState == HeaterClass.__StateOn \
                 or HeaterClass.__lastState \
                 == HeaterClass.__StateUnknown:
-                threadTask = ActionThread.ActionThread()
-                threadTask.addTask(ActionThread.Task('clear',
-                                   ActionThread.UpdateParam('heater',
-                                   sensor[0])))
+                self.__mainHeatSourceControl(url, 'clear', sensor[0])
             HeaterClass.__lastState = HeaterClass.__StateOff
 
-        if threadTask != None:
-            threadTask.addTask(ActionThread.Task('request',
-                               ActionThread.RequestParam(url)))
-            threadTask.addTask(ActionThread.Task('notify',
-                               ActionThread.NotifyParam()))
-            threadTask.start()
-            threadTask.suspend()
+            # Turn on supported devices
+            self.__supportHeatSourceControl('set', sensor[0])
+            return
+        else:
+            # Turn off supported devices and go with main heat source
+            self.__supportHeatSourceControl('clear', sensor[0])
 
-        # store data once per defined invokes (currently it means once per 10min) - not need so many data
 
+        # Read current temperature
+        (status, temp) = self.__getTemperatureFromDevice()
+        if status != 0:
+            return
+
+        # Update current mode (day or night mode)
+        if HeaterClass.__dayMode != isDayMode:
+            # if mode has changed set heater state as 'unknown'(-1)
+            HeaterClass.__lastState = HeaterClass.__StateUnknown
+        HeaterClass.__dayMode = isDayMode
+
+        # Main heat source control
+        if (isMainDeviceEnable == False):
+            self.__mainHeatSourceControl(url, 'clear', sensor[0])
+            HeaterClass.__lastState = HeaterClass.__StateOff
+        elif (isDayMode == True and temp + threshold <= dayTemp) \
+            or (isDayMode == False and temp + threshold <= nightTemp):
+
+            # turn on heater
+            url = alarm.getUpdateUrl(sensor[1], 1)
+            if HeaterClass.__lastState == HeaterClass.__StateOff \
+                or HeaterClass.__lastState \
+                == HeaterClass.__StateUnknown:
+                self.__mainHeatSourceControl(url, 'set', sensor[0])
+            HeaterClass.__lastState = HeaterClass.__StateOn
+        elif (isDayMode == True and temp >= dayTemp + threshold) \
+            or (isDayMode == False and temp >= nightTemp + threshold) \
+            or (HeaterClass.__lastState == HeaterClass.__StateUnknown):
+
+            # turn off heater
+            url = alarm.getUpdateUrl(sensor[1], 0)
+            if HeaterClass.__lastState == HeaterClass.__StateOn \
+                or HeaterClass.__lastState \
+                == HeaterClass.__StateUnknown:
+                self.__mainHeatSourceControl(url, 'clear', sensor[0])
+            HeaterClass.__lastState = HeaterClass.__StateOff
+
+
+        # Store data once per defined invokes (currently it means once per 10min) - not need so many data
+        self.__storeDataCounter = self.__storeDataCounter + 1
         if self.__storeDataCounter % HeaterClass.__storeDataInterval \
             == 0:
             weatherData = weather.getCurrentWeather()
@@ -300,11 +373,6 @@ class HeaterClass(object):
                         'f': str(item.tempOutside)}]})
             counter = counter + 1
 
-# ....jsonData['rows'].append({'c':[ {'v':'01.01.2019','f':'01.01.2019'}, {'v':20,'f':'20'}, {'v':5,'f':'5'}]  })
-# ....jsonData['rows'].append({'c':[ {'v':'01.01.2019','f':'01.01.2019'}, {'v':21,'f':'21'}, {'v':3,'f':'3'}]  })
-# ....jsonData['rows'].append({'c':[ {'v':'01.01.2019','f':'01.01.2019'}, {'v':21,'f':'21'}, {'v':3,'f':'3'}]  })
-# ....jsonData['rows'].append({'c':[ {'v':'01.01.2019','f':'01.01.2019'}, {'v':21,'f':'21'}, {'v':3,'f':'3'}]  })
-
         return json.dumps(jsonData, indent=4)
 
     def getCharts(self):
@@ -367,6 +435,9 @@ class HeaterClass(object):
             counter = counter + 1
         jsonData['temp'] = temp
 
+
+        config_data['mainDevice'] = int(config.isMainDeviceEnabled())
+        config_data['supportDevice'] = int(config.isSupportDeviceEnabled())
         config_data['dayTemp'] = float(config.getDayTemp())
         config_data['nightTemp'] = float(config.getNightTemp())
         config_data['threshold'] = float(config.geTempThreshold())
@@ -377,6 +448,15 @@ class HeaterClass(object):
         config_data['day5'] = int(config.getDayModeSettings(4))
         config_data['day6'] = int(config.getDayModeSettings(5))
         config_data['day7'] = int(config.getDayModeSettings(6))
+
+        config_data['day_support1'] = int(config.getEnabledSupportDeviceSettings(0))
+        config_data['day_support2'] = int(config.getEnabledSupportDeviceSettings(1))
+        config_data['day_support3'] = int(config.getEnabledSupportDeviceSettings(2))
+        config_data['day_support4'] = int(config.getEnabledSupportDeviceSettings(3))
+        config_data['day_support5'] = int(config.getEnabledSupportDeviceSettings(4))
+        config_data['day_support6'] = int(config.getEnabledSupportDeviceSettings(5))
+        config_data['day_support7'] = int(config.getEnabledSupportDeviceSettings(6))
+
         jsonData['settings'] = config_data
 
         return jsonData

@@ -314,6 +314,38 @@ class ConfigClass(object):
 # -------------------------- Sprinkler settings --------------------------
 
 # -------------------------- Heater settings -----------------------------
+    def isMainDeviceEnabled(self):
+        if int(ConfigClass.__xmldoc.getElementsByTagName('heater'
+                )[0].getElementsByTagName('main_device_enable'
+                )[0].getAttribute('value')) == 0:
+            return False
+        else:
+            return True
+
+    def isSupportDeviceEnabled(self):
+        if int(ConfigClass.__xmldoc.getElementsByTagName('heater'
+                )[0].getElementsByTagName('support_device_enable'
+                )[0].getAttribute('value')) == 0:
+            return False
+        else:
+            return True
+
+    def getSupportDevices(self):
+        data = []
+        idx = 0
+
+        try:
+            devices_node = ConfigClass.__xmldoc.getElementsByTagName('heater'
+                )[0].getElementsByTagName('support_device'
+                )[0].getElementsByTagName('device')
+
+            for node in devices_node:
+                data.append(node.getAttribute('ip'))
+        except Exception as e:
+            print (str(e))
+            data.clear()
+
+        return data
 
     def getThermMode(self):
         return ConfigClass.__xmldoc.getElementsByTagName('heater'
@@ -390,10 +422,20 @@ class ConfigClass(object):
 
     def getDayModeSettings(self, dayNumber):
         tag = 'day' + str(dayNumber + 1)
-        hours = int(ConfigClass.__xmldoc.getElementsByTagName('heater'
+        hours_main = int(ConfigClass.__xmldoc.getElementsByTagName('heater'
                     )[0].getElementsByTagName(tag)[0].getAttribute('value'
                     ))
-        return hours
+
+        return hours_main
+
+    def getEnabledSupportDeviceSettings(self, dayNumber):
+        tag = 'day_support' + str(dayNumber + 1)
+
+        hours_support = int(ConfigClass.__xmldoc.getElementsByTagName('heater'
+                    )[0].getElementsByTagName(tag)[0].getAttribute('value'
+                    ))
+
+        return hours_support
 
     def isDayMode(self, dayNumber, hour):
         tag = 'day' + str(dayNumber + 1)
@@ -401,6 +443,26 @@ class ConfigClass(object):
                     )[0].getElementsByTagName(tag)[0].getAttribute('value'
                     ))
         if hours & 1 << hour != 0:
+            return True
+        else:
+            return False
+
+    def isSupportedDeviceEnabled(self, dayNumber, hour):
+        tag = 'day_support' + str(dayNumber + 1)
+        hours = int(ConfigClass.__xmldoc.getElementsByTagName('heater'
+                    )[0].getElementsByTagName(tag)[0].getAttribute('value'
+                    ))
+        if hours & 1 << hour != 0:
+            return True
+        else:
+            return False
+
+    def isSupportedDeviceEnabledToday(self, dayNumber):
+        tag = 'day_support' + str(dayNumber + 1)
+        hours = int(ConfigClass.__xmldoc.getElementsByTagName('heater'
+                    )[0].getElementsByTagName(tag)[0].getAttribute('value'
+                    ))
+        if hours != 0:
             return True
         else:
             return False
@@ -477,6 +539,8 @@ class ConfigClass(object):
             'icon': 'piec.png',
             'icon_size': '30',
             'nodes': [
+                'main_device_enable',
+                'support_device_enable',
                 'day_temperature',
                 'night_temperature',
                 'threshold',
@@ -487,6 +551,13 @@ class ConfigClass(object):
                 'day5',
                 'day6',
                 'day7',
+                'day_support1',
+                'day_support2',
+                'day_support3',
+                'day_support4',
+                'day_support5',
+                'day_support6',
+                'day_support7',
                 ],
             }
         settingsData['autowater'] = {
