@@ -189,28 +189,24 @@ class Weather:
         self.__day = 0
         self.__hour = 0
 
-    def timeEvent(self, tick):
+    def getDuskTime(self):
+        weatherData = self.__weather.getCurrentWeather()
+        sunsetTimestamp = datetime.strptime( str(weatherData['date'] + " " + weatherData['sunset']), '%Y-%m-%d %H:%M')
+        return datetime.timestamp(sunsetTimestamp)
 
+    def timeEvent(self, tick):
         if tick % 30 == 0:
-            weatherFiles = 0
             curr_day = datetime.now().strftime('%d')
             curr_hour = datetime.now().strftime('%H')
             curr_min = datetime.now().strftime('%M')
 
             if self.__day != curr_day:
-                weatherFiles = self.__weather.WeatherCurrentFile
                 self.__weather.clearRainIndicator()
-            elif self.__hour != curr_hour:
-                weatherFiles = self.__weather.WeatherCurrentFile
-
-            if weatherFiles != 0:
-#and int(curr_min) == 15:
-                result = self.__weather.generateFiles(weatherFiles)
+                result = self.__weather.generateFiles()
                 if result == True:
                     self.__day = curr_day
                     self.__hour = curr_hour
                     self.__weather.updateRainIndicator()
-
 
 
 class Sprinkler:
@@ -512,7 +508,7 @@ class Status:
 
 class ProgramAction:
 
-    def __init__(self):
+    def __init__(self, weather):
         config = ConfigClass.ConfigClass()
 
         self.__alarmActivatedTimestamp = 0
@@ -520,6 +516,7 @@ class ProgramAction:
         self.__lights = config.getProgramLightAction()
         self.__alarmActivatSettings = config.getAlarmActivate()
         self.__alarmTriggered = False
+        self.__weather = weather
 
 
     def __checkIfNoBodyHome(self):
@@ -551,10 +548,13 @@ class ProgramAction:
             return False
 
     def __isDuskTime(self):
+        #duskTimestamp = self.__weather.getDuskTime()
+
         city = LocationInfo("Warsaw", "Poland")
         s = sun(city.observer, date=date.today())
         duskTimestamp = datetime.timestamp(s["dusk"])
         duskTimestamp = duskTimestamp - (2*3600)
+
         currentTimestamp = datetime.timestamp(datetime.now())
 
         if (currentTimestamp > duskTimestamp):
@@ -639,7 +639,7 @@ class HccDeamonClass(threading.Thread):
         sprinkler = Sprinkler()
         energy = Energy()
         status = Status()
-        programAction = ProgramAction()
+        programAction = ProgramAction(weather)
 
         while not self.__stopEvent:
             try:
