@@ -26,15 +26,15 @@
     </calendar>
 
     <weather>
-	<current url="https://api.weatherbit.io/v1.0/current/city?city_id=3087299&amp;lang=pl&amp;key=cad604937e474c7c9667370555483830"/>
-	<hourly url="https://api.weatherbit.io/v1.0/forecast/hourly/city?city_id=3087299&amp;lang=pl&amp;hours=24&amp;key=cad604937e474c7c9667370555483830"/>
-	<daily url="https://api.weatherbit.io/v1.0/forecast/daily/city?city_id=3087299&amp;days=3&amp;lang=pl&amp;key=cad604937e474c7c9667370555483830"/>
+	<current url="https://api.weatherbit.io/v2.0/current?city_id=3087299&amp;lang=pl&amp;key=cad604937e474c7c9667370555483830"/>
+	<hourly url="https://api.weatherbit.io/v2.0/forecast/hourly?city_id=3087299&amp;lang=pl&amp;hours=24&amp;key=cad604937e474c7c9667370555483830"/>
+	<daily url="https://api.weatherbit.io/v2.0/forecast/daily?city_id=3087299&amp;days=3&amp;lang=pl&amp;key=cad604937e474c7c9667370555483830"/>
     </weather>
 
     <autowater>
 	<state param="disable;Wylaczone,enable;Aktywne" title="Stan" type="select" value="disable"/>
 	<start_time title="Podlewanie start" type="text" value="22:30"/>
-	<duration title="Czas trwania" type="text" value="20"/>
+	<duration title="Czas trwania" type="text" value="25"/>
 	<rain param="False;Ignoruj,True;Sprawdzaj" title="Sprawdzaj prognoze pogody" type="select" value="True"/>
     	<day1 param="False;Wylaczone,True;Aktywne" title="Poniedzialek" type="select" value="True"/>
     	<day2 param="False;Wylaczone,True;Aktywne" title="Wtorek" type="select" value="False"/>
@@ -47,10 +47,10 @@
 
     <heater>
 	<main_device_enable value="1"/>
-	<day_temperature title="Temperatura dzienna" type="text" value="21.0"/>
-	<night_temperature title="Temperatura nocna" type="text" value="20.6"/>
+	<day_temperature title="Temperatura dzienna" type="text" value="21.6"/>
+	<night_temperature title="Temperatura nocna" type="text" value="20.2"/>
 	<threshold title="Tolerancja" type="text" value="0.3"/>
-	<thermometer mode="max">
+	<thermometer mode="min">
 		<device name="TempSalon" offset="0"/>
 		<device name="TempKuchnia" offset="0"/>
 	</thermometer>
@@ -59,20 +59,21 @@
 	<day3 name="day3" param="24" title="Sroda" type="bitfield" value="4194240"/>
 	<day4 name="day4" param="24" title="Czwartek" type="bitfield" value="4194240"/>
 	<day5 name="day5" param="24" title="Piatek" type="bitfield" value="8388544"/>
-	<day6 name="day6" param="24" title="Sobota" type="bitfield" value="0"/>
-	<day7 name="day7" param="24" title="Niedziela" type="bitfield" value="0"/>
+	<day6 name="day6" param="24" title="Sobota" type="bitfield" value="4194176"/>
+	<day7 name="day7" param="24" title="Niedziela" type="bitfield" value="1048320"/>
 
-	<support_device_enable value="1"/>
-	<day_support1 name="day1" param="24" title="Poniedzialek" type="bitfield" value="983488"/>
-	<day_support2 name="day2" param="24" title="Wtorek" type="bitfield" value="65984"/>
-	<day_support3 name="day3" param="24" title="Sroda" type="bitfield" value="983488"/>
-	<day_support4 name="day4" param="24" title="Czwartek" type="bitfield" value="983488"/>
-	<day_support5 name="day5" param="24" title="Piatek" type="bitfield" value="983488"/>
-	<day_support6 name="day6" param="24" title="Sobota" type="bitfield" value="983488"/>
-	<day_support7 name="day7" param="24" title="Niedziela" type="bitfield" value="983488"/>
+	<support_device_enable value="0"/>
+	<day_support1 name="day1" param="24" title="Poniedzialek" type="bitfield" value="929984"/>
+	<day_support2 name="day2" param="24" title="Wtorek" type="bitfield" value="929984"/>
+	<day_support3 name="day3" param="24" title="Sroda" type="bitfield" value="929984"/>
+	<day_support4 name="day4" param="24" title="Czwartek" type="bitfield" value="929984"/>
+	<day_support5 name="day5" param="24" title="Piatek" type="bitfield" value="929984"/>
+	<day_support6 name="day6" param="24" title="Sobota" type="bitfield" value="930176"/>
+	<day_support7 name="day7" param="24" title="Niedziela" type="bitfield" value="930176"/>
 
 	<support_device>
 	    <device ip="192.168.1.110"/>
+	    <device ip="192.168.1.111"/>
 	</support_device>
     </heater>
 
@@ -119,7 +120,7 @@
 	<room id="3" light="0.0.0.0" name="Gabinet" temperature="TempGabinet">
 	</room>
 
-	<room id="4" light="0.0.0.0" name="Sypialnia Nati" temperature="">
+	<room id="4" light="0.0.0.0" name="Sypialnia Nati" temperature="TempNati">
 	</room>
 
 	<room id="5" light="0.0.0.0" name="Sypialnia Pati" temperature="TempPati">
@@ -158,7 +159,7 @@
 	</sprinkler>
 
 	<heater>
-	    <element desc="Grzanie aktywne" id="1" sensor="Piec" state="1"/>
+	    <element desc="Grzanie aktywne" id="1" sensor="Piec" state="0"/>
 	</heater>
 
 	<gate>
