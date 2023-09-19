@@ -1,6 +1,14 @@
 import HeaterClass
+import ConfigClass
 
+
+c = ConfigClass.ConfigClass()
 
 t = HeaterClass.HeaterClass()
 
-t.getCurrentTemperatureInside()
+
+a= t.getCurrentTemperature()
+print(a['tempInside'])
+print(a['tempOutside'])
+
+

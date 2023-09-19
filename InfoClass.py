@@ -1,7 +1,6 @@
 ﻿#!/usr/bin/python
 # -*- coding: utf-8 -*-
 import ConfigClass
-import WeatherClass
 import HeaterClass
 import RadioClass
 import EnergyClass
@@ -14,7 +13,6 @@ class InfoClass:
 
     def getInfoData(self):
         config = ConfigClass.ConfigClass()
-        weather = WeatherClass.WeatherClass()
         heater = HeaterClass.HeaterClass()
         radio = RadioClass.RadioClass()
         energy = EnergyClass.EnergyClass()
@@ -33,13 +31,6 @@ class InfoClass:
         infoObj['alarm_start'] = config.getAlarmSetting('start_time')
         infoObj['alarm_stop'] = config.getAlarmSetting('stop_time')
         infoObj['alarm_channel'] = config.getAlarmSetting('channel')
-
-        if weather.rainOccured() == False:
-            infoObj['rain'] = 'Dzisiaj nie zanotowano opadu'
-            infoObj['rain_value'] = 0
-        else:
-            infoObj['rain'] = 'Dzisiaj zanotowano opady'
-            infoObj['rain_value'] = 1
 
         infoObj['alarm_channels'] = radio.getPVRRadioStations()
         infoObj['alarm_volume'] = config.getAlarmSetting('volume')

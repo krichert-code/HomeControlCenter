@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import HeaterClass
-import WeatherClass
 import CalendarClass
 import ActionClass
 import ConfigClass
@@ -30,7 +29,7 @@ class APIClass:
 
     def APItemperature(self, json_req):
         obj = HeaterClass.HeaterClass()
-        response = obj.getCurrentTemperatureInside()
+        response = obj.getCurrentTemperature()
         return json.dumps(response)
 
     def APIenergy(self, json_req):
@@ -74,9 +73,12 @@ class APIClass:
         return json.dumps(response)
 
     def APIweather(self, json_req):
-        obj = WeatherClass.WeatherClass()
-        response = obj.getCurrentWeather()
-        return json.dumps(response)
+        weatherData['temp'] = '0.0'
+        weatherData['date'] = '0000-00-00'
+        weatherData['time'] = '0:00'
+        weatherData['pressure'] = '0.0'
+        weatherData['wind'] = '0.0'
+        return json.dumps(weatherData)
 
     def APIschedule(self, json_req):
         obj = ScheduleClass.ScheduleClass()

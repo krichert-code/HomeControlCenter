@@ -3,7 +3,6 @@
 import ConfigClass
 import SwitchClass
 import AlarmClass
-import WeatherClass
 
 
 class RoomClass:
@@ -15,12 +14,9 @@ class RoomClass:
         config = ConfigClass.ConfigClass()
         switch = SwitchClass.SwitchClass()
         alarm = AlarmClass.AlarmClass()
-        weather = WeatherClass.WeatherClass()
-        try:
-            tempOut = weather.getCurrentWeather()['temp']
-        except:
-            #dirty workaround must be fixed
-            tempOut = 0
+
+        # TODO: dirty workaround must be fixed
+        tempOut = 0
 
         roomsObj = {}
         rooms = []
@@ -83,6 +79,7 @@ class RoomClass:
                     roomTemp['present'] = 1
                     break
 
+            # TODO: warkaround outdoor must be treat as casual room
             if item['tempId'] == 'weather':
                 roomTemp['temperature'] = tempOut
                 roomTemp['thresholdExceeded'] = 'no'

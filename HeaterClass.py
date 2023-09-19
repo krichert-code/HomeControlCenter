@@ -1,7 +1,6 @@
 ﻿#!/usr/bin/python
 # -*- coding: utf-8 -*-
 import ConfigClass
-import WeatherClass
 import AlarmClass
 import EventClass
 import SwitchClass
@@ -62,7 +61,7 @@ class HeaterClass(object):
     def __init__(self):
         self.__storeDataCounter = 0
 
-    def __getTemperatureFromDevice(self):
+    def __getTemperatureFromDevice(self, thermType):
         config = ConfigClass.ConfigClass()
         alarm = AlarmClass.AlarmClass()
         thermDevices = alarm.getTemperature()
@@ -74,7 +73,7 @@ class HeaterClass(object):
         if thermDevices['error'] != 0:
             status = 1
         else:
-            thermData = config.getFirstThermDevices()
+            thermData = config.getFirstThermDevices(thermType)
             while thermData['error'] == 0:
                 for item in thermDevices['temperature']:
                     if thermData['name'] == item['name']:
@@ -95,13 +94,13 @@ class HeaterClass(object):
 
                         thermalElements = thermalElements + 1
                         break
-                thermData = config.getNextThermDevices()
+                thermData = config.getNextThermDevices(thermType)
 
         return (status, temperature)
 
     def getCurrentTemperatureInside(self):
         heater = {}
-        (status, temp) = self.__getTemperatureFromDevice()
+        (status, temp) = self.__getTemperatureFromDevice('thermometerInside')
         if status == 0:
             heater['status'] = 'OK'
         else:
@@ -109,10 +108,33 @@ class HeaterClass(object):
 
         heater['temp'] = '%.1f' % temp
         heater['time'] = datetime.now().strftime('%H:%M:%S')
-        heater['icon'] = 'img/day.gif'
         heater['mode'] = 'day'
         if HeaterClass.__dayMode == False:
-            heater['icon'] = 'img/night.gif'
+            heater['mode'] = 'night'
+
+        return heater
+
+    def getCurrentTemperature(self):
+        heater = {}
+        (status, temp) = self.__getTemperatureFromDevice('thermometerInside')
+        if status == 0:
+            heater['statusInside'] = 'OK'
+        else:
+            heater['statusInside'] = 'ERROR'
+
+        heater['tempInside'] = '%.1f' % temp
+
+        (status, temp) = self.__getTemperatureFromDevice('thermometerOutside')
+        if status == 0:
+            heater['statusOutside'] = 'OK'
+        else:
+            heater['statusOutside'] = 'ERROR'
+
+        heater['tempOutside'] = '%.1f' % temp
+
+        heater['time'] = datetime.now().strftime('%H:%M:%S')
+        heater['mode'] = 'day'
+        if HeaterClass.__dayMode == False:
             heater['mode'] = 'night'
 
         return heater
@@ -192,7 +214,6 @@ class HeaterClass(object):
         minute,
         ):
         config = ConfigClass.ConfigClass()
-        weather = WeatherClass.WeatherClass()
         alarm = AlarmClass.AlarmClass()
 
         dayTemp = float(config.getDayTemp())
@@ -238,7 +259,7 @@ class HeaterClass(object):
 
 
         # Read current temperature
-        (status, temp) = self.__getTemperatureFromDevice()
+        (status, temp) = self.__getTemperatureFromDevice('thermometerInside')
         if status != 0:
             return
 
@@ -279,11 +300,10 @@ class HeaterClass(object):
         self.__storeDataCounter = self.__storeDataCounter + 1
         if self.__storeDataCounter % HeaterClass.__storeDataInterval \
             == 0:
-            weatherData = weather.getCurrentWeather()
-            if not weatherData:
-                tempOutside = 0
-            else:
-                tempOutside = weatherData['temp']
+            # read from external temperature sensor
+            (status, tempOutside) = self.__getTemperatureFromDevice('thermometerOutside')
+            if status != 0:
+                return
 
             HeaterClass.__data.append(HeaterParam(temp, tempOutside,
                     HeaterClass.__lastState, isDayMode))
