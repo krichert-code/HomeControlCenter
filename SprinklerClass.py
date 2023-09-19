@@ -3,7 +3,6 @@
 import ConfigClass
 import EventClass
 import ActionThread
-import WeatherClass
 import AlarmClass
 import time
 
@@ -11,11 +10,13 @@ import time
 class SprinklerClass(object):
 
     __Max_num_of_sprinklers = 3
-    __break_auto_water = False
+
+    # must be global static because auto-sprinklers may be triggered
+    # manually from different object
     __force_auto_water = False
+    __autowater = False
 
     def __init__(self):
-        self.__autowater = False
         self.__state = 0
         self.__timestamp = 0
 
@@ -27,7 +28,7 @@ class SprinklerClass(object):
         threadTask = ActionThread.ActionThread()
         config = ConfigClass.ConfigClass()
 
-    # make sure all sprinklers are disabled - only one sprinkler can be enable in the same time
+        # make sure all sprinklers are disabled - only one sprinkler can be enable in the same time
 
         sensors = config.getDeviceSensors('sprinkler')
         for item in sensors:
@@ -61,6 +62,8 @@ class SprinklerClass(object):
 
     def setSprinklerOff(self):
         self.__controlSprinkler(0)
+        SprinklerClass.__autowater = False
+        SprinklerClass.__force_auto_water = False
 
     def manageSprinklerState(
         self,
@@ -68,42 +71,32 @@ class SprinklerClass(object):
         curr_hour,
         curr_min,
         ):
+        returnState = False
         config = ConfigClass.ConfigClass()
-        weather = WeatherClass.WeatherClass()
-
-        rainOccured = False
         duration = int(config.getDurationTime()) * 60
         currentTS = time.time()
-
-        if weather.rainOccured() == True and config.checkRainOccured() \
-            == True:
-            rainOccured = True
-
-        if self.__autowater == False:
+        print ("---------------AutoWater Begin")
+        if SprinklerClass.__autowater == False:
             self.__state = 0
+            self.__timestamp = currentTS
+            print ("---------------AutoWaterOff")
             if config.isStartTime(curr_week_day, curr_hour, curr_min) \
                 or SprinklerClass.__force_auto_water == True:
-                self.__autowater = True
-            self.__timestamp = currentTS
-            SprinklerClass.__break_auto_water = False
+                print ("---------------Time or force = " + str(SprinklerClass.__force_auto_water))
+                SprinklerClass.__autowater = True
 
-        if self.__autowater == True and currentTS >= self.__timestamp \
+        if SprinklerClass.__autowater == True and currentTS >= self.__timestamp \
             + self.__state * duration:
             self.__state = self.__state + 1
-            if self.__state <= SprinklerClass.__Max_num_of_sprinklers \
-                and rainOccured == False:
-
-        # print "---------------ON :" + str(self.__state)
-
-                if SprinklerClass.__break_auto_water == False:
-                    self.setSprinklerOn(str(self.__state))
-                else:
-                    self.__autowater = False
-                    SprinklerClass.__force_auto_water = False
+            if self.__state <= SprinklerClass.__Max_num_of_sprinklers:
+                print ("---------------ON :" + str(self.__state))
+                self.setSprinklerOn(str(self.__state))
+                returnState = True
             else:
+                returnState = False
                 self.setSprinklerOff()
-                self.__autowater = False
-                SprinklerClass.__force_auto_water = False
+
+        return returnState
 
     def getSettings(self):
         config = ConfigClass.ConfigClass()

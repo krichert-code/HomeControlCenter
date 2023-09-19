@@ -1,0 +1,25 @@
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+
+cd /HomeControlCenter && ./proxy.py &
+cd /HomeControlCenter && ./hcc.py &
+#cd /PKKK && python3 pkkk.py &
+
+#start-stop-daemon -b -S --chdir /HomeControlCenter -x proxy.py
+#start-stop-daemon -b -S --chdir /HomeControlCenter -x new_hcc.py
+#start-stop-daemon -b -S --chdir /PKKK -x pkkk.py
+
+cd /RtspSrv && ./rtsp-simple-server &
+
+exit 0

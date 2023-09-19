@@ -11,7 +11,7 @@
 		<channel type="text" value="43"/>
 		<day_policy param="week;Zawsze,week_day;Tylko w tygodniu,disable;Nigdy" title="Aktywny" type="select" value="week_day"/>
 		<alarm_on_holiday type="select" value="no"/>
-		<volume title="Glosnosc[%]" type="text" value="35"/>
+		<volume title="Glosnosc[%]" type="text" value="47"/>
     </alarm>
 
 
@@ -33,8 +33,8 @@
 
     <autowater>
 	<state param="disable;Wylaczone,enable;Aktywne" title="Stan" type="select" value="disable"/>
-	<start_time title="Podlewanie start" type="text" value="22:30"/>
-	<duration title="Czas trwania" type="text" value="25"/>
+	<start_time title="Podlewanie start" type="text" value="06:40"/>
+	<duration title="Czas trwania" type="text" value="20"/>
 	<rain param="False;Ignoruj,True;Sprawdzaj" title="Sprawdzaj prognoze pogody" type="select" value="True"/>
     	<day1 param="False;Wylaczone,True;Aktywne" title="Poniedzialek" type="select" value="True"/>
     	<day2 param="False;Wylaczone,True;Aktywne" title="Wtorek" type="select" value="False"/>
@@ -47,13 +47,25 @@
 
     <heater>
 	<main_device_enable value="1"/>
-	<day_temperature title="Temperatura dzienna" type="text" value="21.6"/>
-	<night_temperature title="Temperatura nocna" type="text" value="20.2"/>
+	<day_temperature title="Temperatura dzienna" type="text" value="20.0"/>
+	<night_temperature title="Temperatura nocna" type="text" value="20.0"/>
 	<threshold title="Tolerancja" type="text" value="0.3"/>
-	<thermometer mode="min">
+	<support_device_enable value="0"/>
+
+	<thermometerInside mode="min">
 		<device name="TempSalon" offset="0"/>
 		<device name="TempKuchnia" offset="0"/>
-	</thermometer>
+	</thermometerInside>
+
+	<thermometerOutside mode="min">
+		<device name="TempOgrod" offset="0"/>
+	</thermometerOutside>
+
+	<support_device>
+	    <device ip="192.168.1.110"/>
+	    <device ip="192.168.1.111"/>
+	</support_device>
+
 	<day1 name="day1" param="24" title="Poniedzialek" type="bitfield" value="4194240"/>
 	<day2 name="day2" param="24" title="Wtorek" type="bitfield" value="4194240"/>
 	<day3 name="day3" param="24" title="Sroda" type="bitfield" value="4194240"/>
@@ -62,7 +74,7 @@
 	<day6 name="day6" param="24" title="Sobota" type="bitfield" value="4194176"/>
 	<day7 name="day7" param="24" title="Niedziela" type="bitfield" value="1048320"/>
 
-	<support_device_enable value="0"/>
+
 	<day_support1 name="day1" param="24" title="Poniedzialek" type="bitfield" value="929984"/>
 	<day_support2 name="day2" param="24" title="Wtorek" type="bitfield" value="929984"/>
 	<day_support3 name="day3" param="24" title="Sroda" type="bitfield" value="929984"/>
@@ -70,11 +82,6 @@
 	<day_support5 name="day5" param="24" title="Piatek" type="bitfield" value="929984"/>
 	<day_support6 name="day6" param="24" title="Sobota" type="bitfield" value="930176"/>
 	<day_support7 name="day7" param="24" title="Niedziela" type="bitfield" value="930176"/>
-
-	<support_device>
-	    <device ip="192.168.1.110"/>
-	    <device ip="192.168.1.111"/>
-	</support_device>
     </heater>
 
 
@@ -104,7 +111,7 @@
     </text_messages>
 
     <rooms>
-	<room id="0" light="192.168.1.103" name="Ogrod" temperature="weather">
+	<room id="0" light="192.168.1.103" name="Ogrod" temperature="TempOgrod">
 	    <alarmSensor sensorName="Furtka"/>
 	    <alarmSensor sensorName="Kamera"/>
 	</room>

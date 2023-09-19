@@ -1,35 +1,41 @@
 #EXTM3U
 #EXTINF:-1,Telewizja WP HD
 plugin://plugin.video.pilot.wp?action=PLAY&channel=158
+#EXTINF:-1,Kabaret TV
+plugin://plugin.video.pilot.wp?action=PLAY&channel=271
 #EXTINF:-1,TVP 1 HD
 plugin://plugin.video.pilot.wp?action=PLAY&channel=3
 #EXTINF:-1,TVP 2 HD
 plugin://plugin.video.pilot.wp?action=PLAY&channel=5
-#EXTINF:-1,Polsat
+#EXTINF:-1,Polsat HD
 plugin://plugin.video.pilot.wp?action=PLAY&channel=9
 #EXTINF:-1,TVN
 plugin://plugin.video.pilot.wp?action=PLAY&channel=14
-#EXTINF:-1,TV 4
+#EXTINF:-1,TV 4 HD
 plugin://plugin.video.pilot.wp?action=PLAY&channel=11
-#EXTINF:-1,TV Puls
+#EXTINF:-1,TV Puls HD
 plugin://plugin.video.pilot.wp?action=PLAY&channel=12
+#EXTINF:-1,Puls 2
+plugin://plugin.video.pilot.wp?action=PLAY&channel=312
 #EXTINF:-1,4FUN.TV
 plugin://plugin.video.pilot.wp?action=PLAY&channel=21
 #EXTINF:-1,4FUN DANCE
 plugin://plugin.video.pilot.wp?action=PLAY&channel=50
-#EXTINF:-1,4FUN GOLD
+#EXTINF:-1,4FUN KIDS
 plugin://plugin.video.pilot.wp?action=PLAY&channel=22
 #EXTINF:-1,TVP Warszawa
 plugin://plugin.video.pilot.wp?action=PLAY&channel=57
 #EXTINF:-1,TVP Gdańsk
 plugin://plugin.video.pilot.wp?action=PLAY&channel=187
-#EXTINF:-1,Travelxp HD
-plugin://plugin.video.pilot.wp?action=PLAY&channel=182
+#EXTINF:-1,News24
+plugin://plugin.video.pilot.wp?action=PLAY&channel=272
+#EXTINF:-1,Red Top TV
+plugin://plugin.video.pilot.wp?action=PLAY&channel=273
 #EXTINF:-1,Gametoon HD
 plugin://plugin.video.pilot.wp?action=PLAY&channel=205
 #EXTINF:-1,Stars.TV HD
 plugin://plugin.video.pilot.wp?action=PLAY&channel=24
-#EXTINF:-1,Music Box UA HD
+#EXTINF:-1,Music Box Polska
 plugin://plugin.video.pilot.wp?action=PLAY&channel=188
 #EXTINF:-1,Jazz HD
 plugin://plugin.video.pilot.wp?action=PLAY&channel=213
@@ -39,30 +45,32 @@ plugin://plugin.video.pilot.wp?action=PLAY&channel=58
 plugin://plugin.video.pilot.wp?action=PLAY&channel=18
 #EXTINF:-1,France 24 English HD
 plugin://plugin.video.pilot.wp?action=PLAY&channel=17
-#EXTINF:-1,To!TV
+#EXTINF:-1,Nuta GOLD
 plugin://plugin.video.pilot.wp?action=PLAY&channel=172
 #EXTINF:-1,wPolsce.pl HD
 plugin://plugin.video.pilot.wp?action=PLAY&channel=174
-#EXTINF:-1,Love TV HD
-plugin://plugin.video.pilot.wp?action=PLAY&channel=45
 #EXTINF:-1,TVS
 plugin://plugin.video.pilot.wp?action=PLAY&channel=51
 #EXTINF:-1,TV Trwam
 plugin://plugin.video.pilot.wp?action=PLAY&channel=10
-#EXTINF:-1,Red Carpet TV HD
-plugin://plugin.video.pilot.wp?action=PLAY&channel=138
-#EXTINF:-1,EzoTV
-plugin://plugin.video.pilot.wp?action=PLAY&channel=149
+#EXTINF:-1,13.TV
+plugin://plugin.video.pilot.wp?action=PLAY&channel=274
 #EXTINF:-1,Twoja.TV HD
 plugin://plugin.video.pilot.wp?action=PLAY&channel=150
-#EXTINF:-1,TBN Polska HD
-plugin://plugin.video.pilot.wp?action=PLAY&channel=204
+#EXTINF:-1,Red Carpet TV HD
+plugin://plugin.video.pilot.wp?action=PLAY&channel=138
 #EXTINF:-1,Polonia 1
 plugin://plugin.video.pilot.wp?action=PLAY&channel=211
 #EXTINF:-1,Tele 5 HD
 plugin://plugin.video.pilot.wp?action=PLAY&channel=212
+#EXTINF:-1,TBN Polska HD
+plugin://plugin.video.pilot.wp?action=PLAY&channel=204
+#EXTINF:-1,TVT Rybnik
+plugin://plugin.video.pilot.wp?action=PLAY&channel=298
 #EXTINF:-1,group-title="radio" radio="true",AntyRadio
 https://an.cdn.eurozet.pl/ant-waw.mp3
+#EXTINF:-1,group-title="radio" radio="true",ChilliZet
+http://redir.atmcdn.pl/sc/o2/Eurozet/live/chillizet.livx
 #EXTINF:-1,group-title="radio" radio="true",RMF Relaks
 http://195.150.20.7/RELAKS
 #EXTINF:-1,group-title="radio" radio="true",2000

@@ -7,7 +7,6 @@ import time
 import ConfigClass
 import RadioClass
 import CalendarClass
-import WeatherClass
 import HeaterClass
 import ActionClass
 import SprinklerClass
@@ -182,33 +181,6 @@ class Heater:
             logging.error('HEATER EXCEPT: ' + str(e) + " " + traceback.format_exc())
 
 
-class Weather:
-
-    def __init__(self):
-        self.__weather = WeatherClass.WeatherClass()
-        self.__day = 0
-        self.__hour = 0
-
-    def getDuskTime(self):
-        weatherData = self.__weather.getCurrentWeather()
-        sunsetTimestamp = datetime.strptime( str(weatherData['date'] + " " + weatherData['sunset']), '%Y-%m-%d %H:%M')
-        return datetime.timestamp(sunsetTimestamp)
-
-    def timeEvent(self, tick):
-        if tick % 30 == 0:
-            curr_day = datetime.now().strftime('%d')
-            curr_hour = datetime.now().strftime('%H')
-            curr_min = datetime.now().strftime('%M')
-
-            if self.__day != curr_day:
-                self.__weather.clearRainIndicator()
-                result = self.__weather.generateFiles()
-                if result == True:
-                    self.__day = curr_day
-                    self.__hour = curr_hour
-                    self.__weather.updateRainIndicator()
-
-
 class Sprinkler:
 
     def __init__(self):
@@ -217,15 +189,14 @@ class Sprinkler:
 
     def timeEvent(self, tick):
         try:
-
-        # manage sprinkler state once per 45 sec
-
-            if tick % 35 == 0:
+            # manage sprinkler state once per 25 sec
+            if tick % 25 == 0:
                 curr_week_day = datetime.today().weekday()
                 curr_hour = int(datetime.now().strftime('%H'))
                 curr_min = int(datetime.now().strftime('%M'))
-                self.__sprinkler.manageSprinklerState(curr_week_day,
+                val = self.__sprinkler.manageSprinklerState(curr_week_day,
                         curr_hour, curr_min)
+                #logging.error('-------------SPRINKLER RUN :' + str(val))
         except Exception:
             #print e.message
             logging.error('SPRINKLER EXCEPT:')
@@ -376,7 +347,7 @@ class Messages:
             events = calendar.getEventsData()
             currTS = time.time()
             text = ''
-            logging.error('SMS currTime: ' + str(currTS))
+            #logging.error('SMS currTime: ' + str(currTS))
 
             for event in events:
                 eventTS = \
@@ -385,7 +356,7 @@ class Messages:
 
                 # if event is tomorrow then send it
 
-                logging.error('SMS eventTime=' + str(eventTS) + ' currentTime=' + str(currTS) + ' diffTime=' + str(self.__diff_calendar_timestamp) + ' ' + event.desc)
+                #logging.error('SMS eventTime=' + str(eventTS) + ' currentTime=' + str(currTS) + ' diffTime=' + str(self.__diff_calendar_timestamp) + ' ' + event.desc)
 
                 if eventTS - currTS <= self.__diff_calendar_timestamp \
                     and eventTS - currTS > 0:
@@ -397,7 +368,7 @@ class Messages:
                     self.currSendEventDate = event.date
                     text = text + event.desc
                     sendMessage = True
-                    logging.error('SMS text events: ' + text)
+                    #logging.error('SMS text events: ' + text)
 
             if sendMessage == True and self.currSendEventDate \
                 != self.lastSendEventDate:
@@ -406,7 +377,7 @@ class Messages:
                 phones = config.getPhoneNumbers()
                 token = config.getSmsToken()
                 for to in phones:
-                    logging.error('SMS send to: ' + to)
+                    #logging.error('SMS send to: ' + to)
                     result = self.sendSms(token, to, text)
 
     def timeEvent(self, tick):
@@ -508,7 +479,7 @@ class Status:
 
 class ProgramAction:
 
-    def __init__(self, weather):
+    def __init__(self):
         config = ConfigClass.ConfigClass()
 
         self.__alarmActivatedTimestamp = 0
@@ -516,7 +487,6 @@ class ProgramAction:
         self.__lights = config.getProgramLightAction()
         self.__alarmActivatSettings = config.getAlarmActivate()
         self.__alarmTriggered = False
-        self.__weather = weather
 
 
     def __checkIfNoBodyHome(self):
@@ -548,8 +518,6 @@ class ProgramAction:
             return False
 
     def __isDuskTime(self):
-        #duskTimestamp = self.__weather.getDuskTime()
-
         city = LocationInfo("Warsaw", "Poland")
         s = sun(city.observer, date=date.today())
         duskTimestamp = datetime.timestamp(s["dusk"])
@@ -633,20 +601,18 @@ class HccDeamonClass(threading.Thread):
         speaker = Speaker()
         alarm = Alarm()
         calendar = Calendar()
-        weather = Weather()
         heater = Heater()
         messages = Messages()
         sprinkler = Sprinkler()
         energy = Energy()
         status = Status()
-        programAction = ProgramAction(weather)
+        programAction = ProgramAction()
 
         while not self.__stopEvent:
             try:
                 alarm.timeEvent()
                 speaker.timeEvent()
                 calendar.timeEvent()
-                weather.timeEvent(timerTick)
                 heater.timeEvent(timerTick)
                 messages.timeEvent(timerTick)
                 sprinkler.timeEvent(timerTick)

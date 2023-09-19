@@ -347,28 +347,23 @@ class ConfigClass(object):
 
         return data
 
-    def getThermMode(self):
-        return ConfigClass.__xmldoc.getElementsByTagName('heater'
-                )[0].getElementsByTagName('thermometer'
-                )[0].getAttribute('mode')
-
-    def getFirstThermDevices(self):
+    def getFirstThermDevices(self, thermType):
         self.iterator = 0
         data = {}
         try:
             data['error'] = 0
             data['mode'] = \
                 ConfigClass.__xmldoc.getElementsByTagName('heater'
-                    )[0].getElementsByTagName('thermometer'
+                    )[0].getElementsByTagName(thermType
                     )[0].getAttribute('mode')
             data['name'] = \
                 ConfigClass.__xmldoc.getElementsByTagName('heater'
-                    )[0].getElementsByTagName('thermometer'
+                    )[0].getElementsByTagName(thermType
                     )[0].getElementsByTagName('device'
                     )[0].getAttribute('name')
             data['offset'] = \
                 ConfigClass.__xmldoc.getElementsByTagName('heater'
-                    )[0].getElementsByTagName('thermometer'
+                    )[0].getElementsByTagName(thermType
                     )[0].getElementsByTagName('device'
                     )[0].getAttribute('offset')
         except:
@@ -378,23 +373,23 @@ class ConfigClass(object):
             data['mode'] = ''
         return data
 
-    def getNextThermDevices(self):
+    def getNextThermDevices(self, thermType):
         self.iterator = self.iterator + 1
         data = {}
         try:
             data['error'] = 0
             data['mode'] = \
                 ConfigClass.__xmldoc.getElementsByTagName('heater'
-                    )[0].getElementsByTagName('thermometer'
+                    )[0].getElementsByTagName(thermType
                     )[0].getAttribute('mode')
             data['name'] = \
                 ConfigClass.__xmldoc.getElementsByTagName('heater'
-                    )[0].getElementsByTagName('thermometer'
+                    )[0].getElementsByTagName(thermType
                     )[0].getElementsByTagName('device'
                     )[self.iterator].getAttribute('name')
             data['offset'] = \
                 ConfigClass.__xmldoc.getElementsByTagName('heater'
-                    )[0].getElementsByTagName('thermometer'
+                    )[0].getElementsByTagName(thermType
                     )[0].getElementsByTagName('device'
                     )[self.iterator].getAttribute('offset')
         except:
