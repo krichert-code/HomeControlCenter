@@ -12,7 +12,7 @@
 # By default this script does nothing.
 
 
-cd /HomeControlCenter && ./proxy.py &
+#cd /HomeControlCenter && ./proxy.py &
 cd /HomeControlCenter && ./hcc.py &
 #cd /PKKK && python3 pkkk.py &
 
@@ -20,6 +20,6 @@ cd /HomeControlCenter && ./hcc.py &
 #start-stop-daemon -b -S --chdir /HomeControlCenter -x new_hcc.py
 #start-stop-daemon -b -S --chdir /PKKK -x pkkk.py
 
-cd /RtspSrv && ./rtsp-simple-server &
+#cd /RtspSrv && ./rtsp-simple-server &
 
 exit 0

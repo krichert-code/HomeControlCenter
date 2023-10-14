@@ -4,6 +4,7 @@
 from flask import Flask, render_template, request, make_response, session, redirect, url_for
 from flask_sessionstore import Session
 import os
+import time
 import json
 import base64
 import ConfigClass
@@ -40,15 +41,19 @@ if (__name__ == "__main__"):
         config = ConfigClass.ConfigClass()
         config.initializeConfigData()
 
-        hccDeamon = HccDeamonClass.HccDeamonClass()
-        connectorDeamon = ConnectorDeamonClass.ConnectorDeamonClass()
 
         try:
+            hccDeamon = HccDeamonClass.HccDeamonClass()
             hccDeamon.start()
+
+            #sleep is only for get TID for logging purposes
+            time.sleep(1)
+
             #start connector deamon only if 'remote access' is enable (settings in configuration)
+            connectorDeamon = ConnectorDeamonClass.ConnectorDeamonClass()
             connectorDeamon.start()
 
-            app.run(host="0.0.0.0", port = 8090)
+            app.run(host="0.0.0.0", port = 80)
         except Exception as e:
             print( "Cannot run application ! Critical error")
 
