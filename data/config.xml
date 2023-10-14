@@ -1,5 +1,4 @@
-<?xml version="1.0" ?><HomeControlCenter file="configuration and status" id="00000777" password="Elizka82!" server="http://192.168.1.3:90/register">
-
+<?xml version="1.0" ?><HomeControlCenter file="configuration and status" id="00000777" password="Elizka82!" server="http://hccapi.000webhostapp.com/register">
 
      <AlarmSystem ip="192.168.1.100" port="9080"/>
 
@@ -80,8 +79,8 @@
 	<day_support3 name="day3" param="24" title="Sroda" type="bitfield" value="929984"/>
 	<day_support4 name="day4" param="24" title="Czwartek" type="bitfield" value="929984"/>
 	<day_support5 name="day5" param="24" title="Piatek" type="bitfield" value="929984"/>
-	<day_support6 name="day6" param="24" title="Sobota" type="bitfield" value="930176"/>
-	<day_support7 name="day7" param="24" title="Niedziela" type="bitfield" value="930176"/>
+	<day_support6 name="day6" param="24" title="Sobota" type="bitfield" value="995712"/>
+	<day_support7 name="day7" param="24" title="Niedziela" type="bitfield" value="995712"/>
     </heater>
 
 
@@ -166,7 +165,7 @@
 	</sprinkler>
 
 	<heater>
-	    <element desc="Grzanie aktywne" id="1" sensor="Piec" state="0"/>
+	    <element desc="Grzanie aktywne" id="1" sensor="Piec" state="1"/>
 	</heater>
 
 	<gate>

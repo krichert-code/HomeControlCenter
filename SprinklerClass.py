@@ -75,7 +75,14 @@ class SprinklerClass(object):
         config = ConfigClass.ConfigClass()
         duration = int(config.getDurationTime()) * 60
         currentTS = time.time()
+        return returnState
+
         print ("---------------AutoWater Begin")
+
+        if int(config.getGlobalEnable()) == 0:
+            self.setSprinklerOff()
+            return returnStata
+
         if SprinklerClass.__autowater == False:
             self.__state = 0
             self.__timestamp = currentTS

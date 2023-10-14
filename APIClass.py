@@ -216,16 +216,16 @@ class APIClass:
                 streaming_in_progress = True
                 break
 
-        if streaming_in_progress == False:
-            command = ['/HomeControlCenter/play.sh']
-            proc = Popen(
-                command,
-                shell=True,
-                stdin=None,
-                stdout=None,
-                stderr=None,
-                close_fds=True,
-                )
+        #if streaming_in_progress == False:
+        #    command = ['/HomeControlCenter/play.sh']
+        #    proc = Popen(
+        #        command,
+        #        shell=True,
+        #        stdin=None,
+        #        stdout=None,
+        #        stderr=None,
+        #        close_fds=True,
+        #        )
 
         obj = RoomClass.RoomClass()
         response = obj.getRoomsData()
@@ -234,7 +234,7 @@ class APIClass:
     def invoke(self, json_req):
         try:
             method_name = 'API' + json_req['action']
-            print( "Method : " + method_name)
+            #print( "Method : " + method_name)
             method = getattr(self, method_name)
             response = method(json_req)
         except:

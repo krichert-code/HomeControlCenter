@@ -19,11 +19,13 @@ import traceback
 import logging
 import SwitchClass
 import base64
+import os
 from datetime import date
 from datetime import datetime
 from datetime import timedelta
 from astral.sun import sun
 from astral import LocationInfo
+from subprocess import Popen, PIPE
 
 class Alarm:
 
@@ -197,10 +199,8 @@ class Sprinkler:
                 val = self.__sprinkler.manageSprinklerState(curr_week_day,
                         curr_hour, curr_min)
                 #logging.error('-------------SPRINKLER RUN :' + str(val))
-        except Exception:
-            #print e.message
-            logging.error('SPRINKLER EXCEPT:')
-            print("__________sprinkler excetion")
+        except Exception as e:
+            logging.error('SPRINKLER EXCEPT: ' + str(e))
 
 
 class Messages:
@@ -392,51 +392,51 @@ class Energy:
         self.__db = DBClass.DBClass()
         self.__energy = EnergyClass.EnergyClass()
         self.__lastGoodValue = 0
-        self.__energyProducedForMonth = 0
-        self.__curr_week_day = datetime.today().weekday()
+        self.__curr_month = datetime.today().month
+        self.__curr_day = datetime.today().day
 
     def timeEvent(self, tick):
         try:
-            curr_week_day = datetime.today().weekday()
             curr_day = datetime.today().day
+            curr_month = datetime.today().month
 
             # get energy once per 30min
-
             if tick % 1800 == 0:
                 energyValues = self.__energy.getCurrentProduceEnergy()
                 for item in energyValues['energy']:
                     if item['type'] == 'today' and item['status'] \
                         == 'OK':
                         self.__lastGoodValue = int(item['power'])
-                        self.__energyProducedForMonth = \
-                            datetime.today().month
 
-            if self.__curr_week_day != curr_week_day:
+            if self.__curr_day != curr_day:
                 # update total value for current month using today produced energy
-                if self.__energyProducedForMonth != 0:
+                energyForMonth = \
+                    self.__db.getEnergyPerMonth(self.__curr_month)['energy'
+                        ]
+
+                energyForMonth = energyForMonth \
+                    + self.__lastGoodValue
+
+                self.__db.updateEnergy(self.__curr_month,
+                        energyForMonth)
+
+                # check if it's new month, then copy current value to previous_energy and clear
+                if (curr_day == 1):
                     energyForMonth = \
-                        self.__db.getEnergyPerMonth(self.__energyProducedForMonth)['energy'
+                        self.__db.getEnergyPerMonth(curr_month)['energy'
                             ]
-                    if (curr_day == 1):
-                        self.__db.updatePrevEnergy(self.__energyProducedForMonth,
-                                energyForMonth)
-                        energyForMonth = self.__lastGoodValue
-
-                    else:
-                        energyForMonth = energyForMonth \
-                            + self.__lastGoodValue
-
-                    self.__db.updateEnergy(self.__energyProducedForMonth,
+                    self.__db.updatePrevEnergy(curr_month,
                             energyForMonth)
+                    self.__db.updateEnergy(self.__curr_month,
+                            0)
+                    self.__curr_month = curr_month
 
-                self.__energyProducedForMonth = 0
+
                 self.__lastGoodValue = 0
-                self.__curr_week_day = curr_week_day
-        except Exception:
+                self.__curr_day = curr_day
 
-            logging.error('ENERGY EXCEPT:')
-            print("_____________Energy exception (HCC deamon)")
-            #print e.message
+        except Exception as e:
+            logging.error('ENERGY EXCEPT:' + str(e))
 
 
 class Status:
@@ -588,14 +588,27 @@ class HccDeamonClass(threading.Thread):
 
     def run(self):
         logging.basicConfig(handlers=[logging.FileHandler(filename="/media/usb0/hcc.log",
-                                     encoding='utf-8', mode='a+')],
-                            format="%(asctime)s %(name)s:%(levelname)s:%(message)s",
+                                     encoding='utf-8', mode='w+')],
+                            format="%(asctime)s %(levelname)s %(message)s",
                             datefmt="%F %A %T",
-                            level=logging.ERROR)
+                            level=logging.INFO)
         log = logging.getLogger('werkzeug')
+
+        command = ['ps -A -T | grep hcc.py']
+        proc = Popen(
+            command,
+            shell=True,
+            stdin=None,
+            stdout=PIPE,
+            stderr=None,
+            close_fds=True,
+            )
+
+        logging.info('HCC deamon pid')
+        logging.info(str(proc.communicate()[0]))
+
         log.setLevel(logging.ERROR)
 
-        logging.error('Started')
         timerTick = 0
         config = ConfigClass.ConfigClass()
         speaker = Speaker()
