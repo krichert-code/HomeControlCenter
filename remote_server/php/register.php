@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "id21363354_kwiatowa";
+$username = "id21400845_hcc";
 $password = "Kwiatowa13!";
-$dbname = "id21363354_hcc";
+$dbname = "id21400845_hcc";
 $errorCode = 0;
 
 // get device id
@@ -17,7 +17,7 @@ $id = intval($id);
 
 if (!class_exists('mysqli')) {
     $errorCode=1;
-    exit(0);
+    exit(0);    
 }
 
 
@@ -42,19 +42,19 @@ if ($result->num_rows == 0) {
 }
 
 if ($json_obj->{'type'} == 1) {
-    //response ready
+    //Response ready. Because communication is in progress it's more possible that new
+    //request apear soon.
     $sql = "UPDATE connections SET resAvailable=true, reqAvailable=false, res='".$json_obj->{'data'}."' where id=$id";
     $result = $conn->query($sql);
+    $loop = 20;
 }
 else {
-    //reset 
-    $sql = "UPDATE connections SET resAvailable=false, reqAvailable=false where id=$id";
-    //$result = $conn->query($sql);
+    //wait up to 20s for new request
+    $loop = 20;
 }
 
 
-//wait for request
-$loop = 5;
+//wait for request definded time
 while ($loop > 0) {
     $sql = "SELECT * FROM connections where id=$id";
     $result = $conn->query($sql);
@@ -69,7 +69,5 @@ while ($loop > 0) {
     }
     $loop--;
 }
-
-
 
 ?>

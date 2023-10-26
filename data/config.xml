@@ -49,7 +49,7 @@
 	<day_temperature title="Temperatura dzienna" type="text" value="20.0"/>
 	<night_temperature title="Temperatura nocna" type="text" value="20.0"/>
 	<threshold title="Tolerancja" type="text" value="0.3"/>
-	<support_device_enable value="0"/>
+	<support_device_enable value="1"/>
 
 	<thermometerInside mode="min">
 		<device name="TempSalon" offset="0"/>
@@ -165,7 +165,7 @@
 	</sprinkler>
 
 	<heater>
-	    <element desc="Grzanie aktywne" id="1" sensor="Piec" state="1"/>
+	    <element desc="Grzanie aktywne" id="1" sensor="Piec" state="0"/>
 	</heater>
 
 	<gate>
@@ -176,7 +176,7 @@
 
 	<status>
 	    <element desc="Brak komunikacji ze sterownikiem" id="1" state="0"/>
-	    <element desc="Szambo pelne" id="2" messageId="0" sensor="Szambo" state="0"/>
+	    <element desc="Szambo pelne" id="2" messageId="0" sensor="Szambo" state="1"/>
 	    <element desc="Brama otwarta" id="3" sensor="Brama" state="0"/>
 	    <element desc="Brak komunikacji z grzalka" id="4" state="0"/>
 	</status>

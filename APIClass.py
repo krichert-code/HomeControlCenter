@@ -123,6 +123,32 @@ class APIClass:
         response['state'] = 'OK'
         return json.dumps(response)
 
+    def APIstatus(self, json_req=''):
+        evn = ActionClass.ActionClass()
+        temp = HeaterClass.HeaterClass()
+        eng = EnergyClass.EnergyClass()
+
+        events = evn.getEvents()
+        temperature = temp.getCurrentTemperature()
+        energy = eng.getCurrentProduceEnergy()
+
+        response = {}
+        resEvents = []
+        duration = 0
+        for event in events:
+            row = {}
+            row['eventGroup'] = event.groupId
+            row['eventDesc'] = event.desc
+            row['eventType'] = event.type
+            row['eventDate'] = event.date
+            resEvents.append(row)
+
+        response['events'] = resEvents
+        response['temperature'] = temperature
+        response['energy'] = energy
+
+        return json.dumps(response)
+
     def APIevents(self, json_req=''):
         obj = ActionClass.ActionClass()
         events = obj.getEvents()
