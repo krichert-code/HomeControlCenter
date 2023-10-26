@@ -42,21 +42,31 @@ class ConnectorDeamonClass(threading.Thread):
 
                 req = json.dumps(reg_data)
 
+                #logging.error("-------------Connector error code : registration")
                 response = requests.post(self.__url,
                         data=req,
-                        headers=headers, timeout=None)
+                        headers=headers, timeout=30)
 
-                if (len(response.text) == 0):
+                if (response.status_code != 200):
+                    #logging.error("-------------Connector error code : " + str(response.status_code))
+                    reg_data['type'] = 0
+                    time.sleep(5)
+                elif (len(response.text) == 0):
+                    #logging.error("-------------Connector no request data available")
                     reg_data['type'] = 0
                     time.sleep(2)
                 else:
                     postData = crypt.DecodeWithId(response.text.encode()).decode()
                     postData = postData[:postData.rfind('}') + 1]
-                    logging.error("-------------get request " + postData)
+                    #logging.error("-------------get request " + postData)
                     response_data = apiObj.invoke(json.loads(postData))
-                    logging.error("-------------get reponse " + response_data)
+                    #logging.error("-------------get reponse " + response_data)
                     reg_data['type'] = 1
+
+                response.close()
+
             except Exception as e:
+                response.close()
                 reg_data['type'] = 0
                 logging.error('Connector exception : ' + str(e))
                 time.sleep(5)

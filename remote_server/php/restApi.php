@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "id21363354_kwiatowa";
+$username = "id21400845_hcc";
 $password = "Kwiatowa13!";
-$dbname = "id21363354_hcc";
+$dbname = "id21400845_hcc";
 $errorCode = 0;
 
 // get device id
@@ -37,30 +37,29 @@ if ($result->num_rows == 0) {
     $result = $conn->query($sql);
 }
 
+$output = "";
+
 // insert request
 if ($row['reqAvailable'] == false) {
     $sql = "UPDATE connections SET req='".$data."', reqAvailable=true, resAvailable=false where id=$id";
     $result = $conn->query($sql);
 
     //wait for response
-    $output = "";
-    do {
+    $loop = 5;
+    while ($loop > 0) {
         sleep(2);
         $sql = "SELECT * FROM connections where id=$id";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
+
         if ($row["resAvailable"] == true) {
             $output = $row["res"];
+            break;
         }
-    } while ($row["resAvailable"] == false);
-
-
-    //clear response available flag (request flag should be cleared but do it again)
-    $sql = "UPDATE connections SET reqAvailable=false, resAvailable=false where id=$id";
-    
-    //print response
-    echo $output;
+    }
 }
 
+//print response
+echo $output;
 
 ?>
