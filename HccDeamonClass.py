@@ -301,18 +301,17 @@ class Messages:
                 name = item.type + str(eventId)
                 eventId = eventId + 1
 
-            # add item if not exist in "last state" list
+                # add item if not exist in "last state" list
 
                 if name not in self.lastStates:
                     self.lastStates[name] = "0"
 
-            # if state has changed then send message (if needed) and then update last state
+                # if state has changed then send message (if needed) and then update last state
 
                 if item.state != self.lastStates[name] \
                     and len(item.messageId) > 0:
 
-                # send message
-
+                    # send message
                     phones = config.getPhoneNumbers()
                     text = config.getSmsMessage(item.messageId,
                             item.state)
@@ -320,17 +319,13 @@ class Messages:
 
                     for to in phones:
                         result = self.sendSms(token, to, text)
-                        if result == 'OK':
-                            update = True
+                        #if result == 'OK':
+                        #    update = True
 
-            # update last state if at least one message was send succesfully
-
-                    if update == True:
-                        print( item.state)
-                        self.lastStates[name] = item.state
+                    # update last state if at least one message was send succesfully
+                    #if update == True:
+                    self.lastStates[name] = item.state
         except Exception as e:
-            print("__________message excetion")
-            #print str(e)
             logging.error('MESSAGE EXCEPT:' + str(e))
 
     def __calendarEventMessage(self):
@@ -427,7 +422,7 @@ class Energy:
                             ]
                     self.__db.updatePrevEnergy(curr_month,
                             energyForMonth)
-                    self.__db.updateEnergy(self.__curr_month,
+                    self.__db.updateEnergy(curr_month,
                             0)
                     self.__curr_month = curr_month
 
@@ -517,6 +512,15 @@ class ProgramAction:
         else:
             return False
 
+    def __checkIfSensorTriggered(self, sensorName):
+        result = False
+        alarm = AlarmClass.AlarmClass()
+        sensors = alarm.getPresence()['presence']
+        for sensor in sensors:
+            if (sensor['name'] == sensorName) and (sensor['presence'] == 'on'):
+                result = True
+        return result
+
     def __isDuskTime(self):
         city = LocationInfo("Warsaw", "Poland")
         s = sun(city.observer, date=date.today())
@@ -536,21 +540,25 @@ class ProgramAction:
         currentTime = datetime.now().strftime("%H:%M")
         curr_month = int(datetime.now().strftime('%m'))
 
-        if tick % 5 == 0:
+        if tick % 2 == 0:
             checkIfNoBodyHome = self.__checkIfNoBodyHome()
-            
+
             #print(checkIfNoBodyHome)
             #logging.error(str(checkIfNoBodyHome))
 
             if (checkIfNoBodyHome == True) and (self.__alarmTriggered == False):
                 self.__alarmTriggered = True
-                logging.error("Alarm triggered")
+                logging.error("[HCC] Program class : move detected")
             elif (checkIfNoBodyHome == False and self.__alarmTriggered == True):
                 alarmActivated = True
                 self.__alarmTriggered = False
-                logging.error("Alarm activated")
+                logging.error("[HCC] Program class : alarm activated")
+                # TODO : enable alarm automaticlly
 
             for light in self.__lights:
+                lightInfo=lightSwitch.getSwitchInfo(light['lightIp'])
+                if (lightInfo['error'] != 0):
+                    continue
 
                 if (light['state'] == 3) and (self.__isDuskTime() == False):
                     light['state'] = 0
@@ -558,21 +566,37 @@ class ProgramAction:
                 if ((light['validMonths'] & (1 << (curr_month-1))) == 0):
                     continue
 
+                if (light['onAlarmActivate'] == True) and (light['triggerSensor'] != 'none') and (self.__isDuskTime() == True) :
+                   isTriggered = self.__checkIfSensorTriggered(light['triggerSensor'])
+
+                   if (isTriggered):
+                       if (lightInfo['data']['switch'] == 'off'):
+                           lightSwitch.changeSwitchState(light['lightIp'], 'on')
+                           if (light['timeMode'] == 'switch'):
+                               light['switch_state'] = 1
+                               logging.error("Program class light " + light['lightIp'] +" on - caused sensor activated")
+                   elif (light['timeMode'] == 'switch') and (light['switch_state'] == 1) and (light['state'] != 1):
+                       lightSwitch.changeSwitchState(light['lightIp'], 'off')
+                       light['switch_state'] = 0
+                   else:
+                       light['switch_state'] = 0
+                   continue
+
                 if (light['onAlarmActivate'] == True) and (alarmActivated == True) and (self.__isDuskTime() == True):
                     lightSwitch.changeSwitchState(light['lightIp'], 'on')
-                    logging.error("Light " + light['lightIp'] +" on - caused alarm activated")
+                    logging.error("Program class light " + light['lightIp'] +" on - caused alarm activated")
                     continue
 
                 if (self.__isDuskTime() == True) and (light['state'] == 0) and (light['onAlarmActivate'] == False):
                     light['state'] = 1
                     lightSwitch.changeSwitchState(light['lightIp'], 'on')
-                    logging.error("Light " + light['lightIp'] +" on - caused dusk")
+                    logging.error("Program class light " + light['lightIp'] +" on - caused dusk")
                     continue
 
-                if (light['timeOff'] == currentTime) and (light['state'] == 1) and (light['onAlarmActivate'] == False):
+                if (light['timeMode'] == 'on') and (light['timeOff'] == currentTime) and (light['state'] == 1) and (light['onAlarmActivate'] == False):
                     light['state'] = 3
                     lightSwitch.changeSwitchState(light['lightIp'], 'off')
-                    logging.error("Light " + light['lightIp'] +" off - caused time off")
+                    logging.error("Program class light " + light['lightIp'] +" off - caused time off")
                     continue
 
 # ------------------------------------------------------------------------------------------------------------------------
