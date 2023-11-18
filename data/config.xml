@@ -5,8 +5,8 @@
      <radio ip="127.0.0.1" mp3_directory="/media/usb0/Muzyka/" port="8080"/>
 
     <alarm>
-		<start_time title="Godzina alarmu" type="text" value="07:00"/>
-		<stop_time title="Czas alarmu[min]" type="text" value="40"/>
+		<start_time title="Godzina alarmu" type="text" value="06:30"/>
+		<stop_time title="Czas alarmu[min]" type="text" value="60"/>
 		<channel type="text" value="43"/>
 		<day_policy param="week;Zawsze,week_day;Tylko w tygodniu,disable;Nigdy" title="Aktywny" type="select" value="week_day"/>
 		<alarm_on_holiday type="select" value="no"/>
@@ -17,7 +17,6 @@
     <calendar>
 		<calendars_list>
 	    	<element name="krzysiek.richert@gmail.com"/>
-<!--	    	<element name="polish@holiday.calendar.google.com"/> -->
 		</calendars_list>
 		<key value="AIzaSyCrh3AIdRUJOmpqB5XqJhnJbhnlcJPYruM"/>
 		<sms param="False;Wylaczony,True;Aktywny" sendTime="19:00" title="Przypominacz" type="select" value="True"/>
@@ -74,11 +73,11 @@
 	<day7 name="day7" param="24" title="Niedziela" type="bitfield" value="1048320"/>
 
 
-	<day_support1 name="day1" param="24" title="Poniedzialek" type="bitfield" value="929984"/>
-	<day_support2 name="day2" param="24" title="Wtorek" type="bitfield" value="929984"/>
-	<day_support3 name="day3" param="24" title="Sroda" type="bitfield" value="929984"/>
-	<day_support4 name="day4" param="24" title="Czwartek" type="bitfield" value="929984"/>
-	<day_support5 name="day5" param="24" title="Piatek" type="bitfield" value="929984"/>
+	<day_support1 name="day1" param="24" title="Poniedzialek" type="bitfield" value="929888"/>
+	<day_support2 name="day2" param="24" title="Wtorek" type="bitfield" value="929888"/>
+	<day_support3 name="day3" param="24" title="Sroda" type="bitfield" value="929888"/>
+	<day_support4 name="day4" param="24" title="Czwartek" type="bitfield" value="929888"/>
+	<day_support5 name="day5" param="24" title="Piatek" type="bitfield" value="929888"/>
 	<day_support6 name="day6" param="24" title="Sobota" type="bitfield" value="995712"/>
 	<day_support7 name="day7" param="24" title="Niedziela" type="bitfield" value="995712"/>
     </heater>
@@ -111,8 +110,7 @@
 
     <rooms>
 	<room id="0" light="192.168.1.103" name="Ogrod" temperature="TempOgrod">
-	    <alarmSensor sensorName="Furtka"/>
-	    <alarmSensor sensorName="Kamera"/>
+	    <alarmSensor sensorName="OgrodCam"/>
 	</room>
 
 	<room id="1" light="192.168.1.101" name="Kuchnia" temperature="TempKuchnia">
@@ -121,6 +119,7 @@
 
 	<room id="2" light="0.0.0.0" name="Salon" temperature="TempSalon">
 	    <alarmSensor sensorName="Salon1"/>
+	    <alarmSensor sensorName="SalonCam"/>
 	</room>
 
 	<room id="3" light="0.0.0.0" name="Gabinet" temperature="TempGabinet">
@@ -141,7 +140,7 @@
 	<room id="8" light="0.0.0.0" name="Pralnia" temperature="TempPralnia">
 	</room>
 
-	<room id="9" light="0.0.0.0" name="Garaz" temperature="TempGaraz">
+	<room id="9" light="0.0.0.0" name="Garaz" temperature="">
 	    <alarmSensor sensorName="Brama"/>
 	</room>
 
@@ -153,8 +152,9 @@
         <action device="alarm" timeToActivate="10">
 	    <alarmSensor roomId="9"/>
         </action>
-	<action device="light" roomId="0" timeOff="22:00" validMonths="2273"/>
-	<action device="light" onAlarmActivate="True" roomId="1" validMonths="4095"/>
+	<action device="light" mode="always" roomId="0" timeMode="on" timeOff="22:00" validMonths="2273"/>
+	<action device="light" mode="onAlarmActivate" roomId="1" validMonths="4095"/>
+        <action device="light" mode="onAlarmActivate" triggerSensor="OgrodCam" roomId="0" timeMode="switch" timeOff="10" validMonths="4095"/>
     </actions>
 
     <devices>
@@ -165,7 +165,7 @@
 	</sprinkler>
 
 	<heater>
-	    <element desc="Grzanie aktywne" id="1" sensor="Piec" state="0"/>
+	    <element desc="Grzanie aktywne" id="1" sensor="Piec" state="1"/>
 	</heater>
 
 	<gate>
@@ -174,9 +174,15 @@
 	    <element desc="Otwieranie furtki" id="3" sensor="Furtka" state="0" time="2"/>
 	</gate>
 
+	<energy>
+	    <element desc="Moc wygenerowana dzisiaj" id="1" sensor="PowerToday" state="0"/>
+	    <element desc="Obecna energia ladowania" id="2" sensor="PowerCurrent" state="0"/>
+	    <element desc="Moc wygenerowana calkowita" id="3" sensor="PowerTotal" state="0"/>
+	</energy>
+
 	<status>
 	    <element desc="Brak komunikacji ze sterownikiem" id="1" state="0"/>
-	    <element desc="Szambo pelne" id="2" messageId="0" sensor="Szambo" state="1"/>
+	    <element desc="Szambo pelne" id="2" messageId="0" sensor="Szambo" state="0"/>
 	    <element desc="Brama otwarta" id="3" sensor="Brama" state="0"/>
 	    <element desc="Brak komunikacji z grzalka" id="4" state="0"/>
 	</status>

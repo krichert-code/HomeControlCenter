@@ -236,8 +236,8 @@ class ConfigClass(object):
                 )[0].getElementsByTagName('md5')[0].getAttribute('value'
                 )
 
-# -------------------------- Sprinkler settings --------------------------
 
+# -------------------------- Sprinkler settings --------------------------
     def getDurationTime(self):
         return ConfigClass.__xmldoc.getElementsByTagName('autowater'
                 )[0].getElementsByTagName('duration'
@@ -497,11 +497,28 @@ class ConfigClass(object):
                         obj['lightIp']=room['light_ip']
                         break
 
-                obj['timeOff']=action.getAttribute('timeOff')
-                if (action.getAttribute('onAlarmActivate') == "True"):
+
+                if (action.hasAttribute('timeMode')):
+                    obj['timeMode']=action.getAttribute('timeMode')
+                else:
+                    obj['timeMode']='off'
+
+                if (action.hasAttribute('timeOff')):
+                    obj['timeOff']=action.getAttribute('timeOff')
+                else:
+                    obj['timeOff']='0'
+                    obj['timeMode']='off'
+
+                if (action.hasAttribute('triggerSensor')):
+                    obj['triggerSensor']=action.getAttribute('triggerSensor')
+                else:
+                    obj['triggerSensor']='none'
+
+                if (action.getAttribute('mode') == 'onAlarmActivate'):
                     obj['onAlarmActivate']=True
                 else:
                     obj['onAlarmActivate']=False
+
                 obj['validMonths']=int(action.getAttribute('validMonths'))
                 obj['state'] = 0
                 result.append(obj)

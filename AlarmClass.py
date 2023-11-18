@@ -162,10 +162,13 @@ class AlarmClass(object):
 
     def getEnergy(self):
         config = ConfigClass.ConfigClass()
+
         alarm = config.getAlarmSystem()
         req = 'http://' + alarm['ip'] + ':' + alarm['port'] \
             + '/command=GetEnergy'
         try:
+            energySensors = config.getDeviceSensors('energy')
+
             output = requests.get(req, timeout=(0.5, 10))
             xml = minidom.parseString(output.text)
             data = {}
@@ -176,12 +179,24 @@ class AlarmClass(object):
                 element = {}
                 element['name'] = item.getElementsByTagName('sensorName'
                         )[0].firstChild.nodeValue
+
                 element['power'] = item.getElementsByTagName('power'
                         )[0].firstChild.nodeValue
-                element['type'] = item.getElementsByTagName('type'
-                        )[0].firstChild.nodeValue
+
                 element['status'] = item.getElementsByTagName('status'
                         )[0].firstChild.nodeValue
+
+
+                for item in energySensors:
+                    sensorName = item[1]
+                    id = item[0]
+                    if (sensorName == element['name']) and (id == '1'):
+                        element['type'] = 'today'
+                    if (sensorName == element['name']) and (id == '2'):
+                        element['type'] = 'current'
+                    if (sensorName == element['name']) and (id == '3'):
+                        element['type'] = 'total'
+
                 elements.append(element)
             data['energy'] = elements
         except:
