@@ -165,7 +165,7 @@
 	</sprinkler>
 
 	<heater>
-	    <element desc="Grzanie aktywne" id="1" sensor="Piec" state="1"/>
+	    <element desc="Grzanie aktywne" id="1" sensor="Piec" state="0"/>
 	</heater>
 
 	<gate>
