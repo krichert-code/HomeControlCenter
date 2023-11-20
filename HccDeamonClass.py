@@ -540,7 +540,7 @@ class ProgramAction:
         currentTime = datetime.now().strftime("%H:%M")
         curr_month = int(datetime.now().strftime('%m'))
 
-        if tick % 2 == 0:
+        if tick % 1 == 0:
             checkIfNoBodyHome = self.__checkIfNoBodyHome()
 
             #print(checkIfNoBodyHome)
@@ -566,7 +566,7 @@ class ProgramAction:
                 if ((light['validMonths'] & (1 << (curr_month-1))) == 0):
                     continue
 
-                if (light['onAlarmActivate'] == True) and (light['triggerSensor'] != 'none') and (self.__isDuskTime() == True) :
+                if (light['onAlarmActivate'] == True) and (light['triggerSensor'] != 'none') and (self.__isDuskTime() == True):
                    isTriggered = self.__checkIfSensorTriggered(light['triggerSensor'])
 
                    if (isTriggered):
