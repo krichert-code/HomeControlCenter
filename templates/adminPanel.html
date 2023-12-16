@@ -167,12 +167,12 @@
     <div class="menuElement" id="Info" style = "display:block">
     GENERIC
     <hr>
-    <table>
+    <table>      
       <tr>
         <td>ID</td>
         <td class="value">{{ config.getHccId() }}</td>      
       </tr>
-      <tr>
+      <tr>        
         <td>Server</td>
         <td class="value">{{ config.getHccServer() }}</td>      
       </tr>
@@ -229,7 +229,6 @@
         <td>SMS phone number 4</td>
         <td class="value"><input type="text" id="Post_SMSPhone4" onKeyPress="return /[0-9]/i.test(event.key)" value={{ config.getPhoneNumbers()[3] }}></td>      
       </tr>
-
     </table>
     </div> 
     

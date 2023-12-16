@@ -39,11 +39,11 @@ def restApi():
 def adminPanel():
     config = ConfigClass.ConfigClass()
     if request.method == 'POST':
-        config.updateConfiguration(request.form)        
+        config.updateConfiguration(request.form)
         admiPanelSync.notify()
         return "Success"
-    else:        
-        return render_template('index.html', config=config)
+    else:
+        return render_template('adminPanel.html', config=config)
 
 if (__name__ == "__main__"):
         config = ConfigClass.ConfigClass()

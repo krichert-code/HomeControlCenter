@@ -810,9 +810,9 @@ class ConfigClass(object):
                 )
         for item in itemsList:
             ret_val.append((item.getAttribute('id'),
-                           item.getAttribute('sensor'), item.getAttribute('desc'),
-                           item.getAttribute('messageActive'), item.getAttribute('messageInactive'),
-                           item.getAttribute('messageSend')))
+                        item.getAttribute('sensor'), item.getAttribute('desc'),
+                        item.getAttribute('messageActive'), item.getAttribute('messageInactive'),
+                        item.getAttribute('messageSend')))
         ConfigClass.__mutex.release()
         return ret_val
 
