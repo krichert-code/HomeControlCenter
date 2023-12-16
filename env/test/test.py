@@ -1,5 +1,4 @@
 import CalendarClass
-import WeatherClass
 import requests
 import json
 import copy
@@ -55,7 +54,7 @@ def getSpotifyObject(self, directory="plugin://plugin.audio.spotify/"):
 
 
 
-def getWeather():
+def getJSON():
 
     #get_state = {"jsonrpc" : "2.0", "method" :"Addons.GetAddons", "params": {"type": "xbmc.addon.video", "content": "video","enabled": True,"properties": ["name", "fanart", "thumbnail", "description"]},"id": 1}
 
@@ -119,7 +118,7 @@ def j():
 
 	
 
-getWeather()
+getJSON()
 #getRadio()
 #stations()
 #j()

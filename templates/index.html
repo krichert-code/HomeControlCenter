@@ -1,0 +1,724 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>HCC</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href={{ url_for('static', filename='styles.css') }}  type="text/css" />
+</head>
+
+
+<script type="text/javascript">
+
+  function displayContent(id)
+  {
+    var list = document.getElementsByClassName("menuElement");
+    for (var i = 0; i < list.length; i++) {
+      list[i].style.display = 'none';
+    }
+    
+    document.getElementById(id).style.display = 'block';
+  }
+
+  function validateData()
+  {
+    return true;
+  }
+
+  function sendPostForm()
+  {
+    var xmlhttp;
+    var formData = new FormData();
+    //var formElements = document.getElementsByClassName('form');
+    // var value = NaN;
+    // var bit = 0;
+    // var lastName = NaN;
+    if (validateData() == false)
+    {
+      alert("Wrong data format !");
+      return;
+    }
+
+    if (window.XMLHttpRequest)
+    {
+      //code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {
+        alert("Your browser does not support XMLHTTP!");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+      if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+      {
+        alert("Settings saved succesfully");
+        //xmlhttp.responseText
+      }
+    }
+    
+    //generic data
+    formData.set("Post_CalendarRange", document.getElementById('Post_CalendarRange').value);
+    formData.set("Post_HccPasswd", document.getElementById('Post_HccPasswd').value);
+    formData.set("Post_CalendarKey", document.getElementById('Post_CalendarKey').value);
+    formData.set("Post_CalendarSource", document.getElementById('Post_CalendarSource').value);    
+    formData.set("Post_CalendarReminderEnabled", document.getElementById('Post_CalendarReminderEnabled').checked ? "checked" : "");
+    formData.set("Post_CalendarReminderTime", document.getElementById('Post_CalendarReminderTime').value);
+    formData.set("Post_SMSToken", document.getElementById('Post_SMSToken').value);
+    formData.set("Post_SMSPhone1", document.getElementById('Post_SMSPhone1').value);
+    formData.set("Post_SMSPhone2", document.getElementById('Post_SMSPhone2').value);
+    formData.set("Post_SMSPhone3", document.getElementById('Post_SMSPhone3').value);
+    formData.set("Post_SMSPhone4", document.getElementById('Post_SMSPhone4').value);
+   
+    //heater data
+    formData.set("Post_HeaterSensor", document.getElementById('Post_HeaterSensor').value);
+    formData.set("Post_HeaterSensorDesc", document.getElementById('Post_HeaterSensorDesc').value);
+    formData.set("Post_HeaterRange", document.getElementById('Post_HeaterRange').value);
+    var item = document.getElementById('Post_HeaterInsideMode');
+    formData.set("Post_HeaterInsideMode", item.options[item.selectedIndex].text);    
+    formData.set("Post_HeaterInsideSensor1", document.getElementById('Post_HeaterInsideSensor1').value);
+    formData.set("Post_HeaterInsideSensor2", document.getElementById('Post_HeaterInsideSensor2').value);
+    formData.set("Post_HeaterInsideSensor3", document.getElementById('Post_HeaterInsideSensor3').value);
+    formData.set("Post_HeaterInsideSensor4", document.getElementById('Post_HeaterInsideSensor4').value);
+    formData.set("Post_HeaterInsideSensor5", document.getElementById('Post_HeaterInsideSensor5').value);
+    var item = document.getElementById('Post_HeaterOutsideMode');
+    formData.set("Post_HeaterOutsideMode", item.options[item.selectedIndex].text);    
+    formData.set("Post_HeaterOutsideSensor1", document.getElementById('Post_HeaterOutsideSensor1').value);
+    formData.set("Post_HeaterOutsideSensor2", document.getElementById('Post_HeaterOutsideSensor2').value);
+    formData.set("Post_HeaterOutsideSensor3", document.getElementById('Post_HeaterOutsideSensor3').value);
+    formData.set("Post_HeaterOutsideSensor4", document.getElementById('Post_HeaterOutsideSensor4').value);
+    formData.set("Post_HeaterOutsideSensor5", document.getElementById('Post_HeaterOutsideSensor5').value);
+    formData.set("Post_HeaterSupport1", document.getElementById('Post_HeaterSupport1').value);
+    formData.set("Post_HeaterSupport2", document.getElementById('Post_HeaterSupport2').value);
+    formData.set("Post_HeaterSupport3", document.getElementById('Post_HeaterSupport3').value);
+    formData.set("Post_HeaterSupport4", document.getElementById('Post_HeaterSupport4').value);
+    formData.set("Post_HeaterSupport5", document.getElementById('Post_HeaterSupport5').value);
+
+    //alarm data
+    formData.set("Post_AlarmSystemIP", document.getElementById('Post_AlarmSystemIP').value);
+    for (let i = 1; i < 12; i++) {
+      formData.set("Post_AlarmRoom"+i.toString()+"Name", document.getElementById("Post_AlarmRoom"+i.toString()+"Name").value);
+      formData.set("Post_AlarmRoom"+i.toString()+"Temp", document.getElementById("Post_AlarmRoom"+i.toString()+"Temp").value);
+      formData.set("Post_AlarmRoom"+i.toString()+"Light", document.getElementById("Post_AlarmRoom"+i.toString()+"Light").value);
+      formData.set("Post_AlarmRoom"+i.toString()+"Sensor1", document.getElementById("Post_AlarmRoom"+i.toString()+"Sensor1").value);
+      formData.set("Post_AlarmRoom"+i.toString()+"Sensor2", document.getElementById("Post_AlarmRoom"+i.toString()+"Sensor2").value);
+    }
+
+    //sprinklers data
+    formData.set("Post_SprinklerSensor1", document.getElementById('Post_SprinklerSensor1').value);
+    formData.set("Post_SprinklerSensor1Desc", document.getElementById('Post_SprinklerSensor1Desc').value);
+    formData.set("Post_SprinklerSensor2", document.getElementById('Post_SprinklerSensor2').value);
+    formData.set("Post_SprinklerSensor2Desc", document.getElementById('Post_SprinklerSensor2Desc').value);
+    formData.set("Post_SprinklerSensor3", document.getElementById('Post_SprinklerSensor3').value);
+    formData.set("Post_SprinklerSensor3Desc", document.getElementById('Post_SprinklerSensor3Desc').value);
+
+    //gates data
+    formData.set("Post_GateSensor1", document.getElementById('Post_GateSensor1').value);
+    formData.set("Post_GateSensor1Desc", document.getElementById('Post_GateSensor1Desc').value);
+    formData.set("Post_GateSensor2", document.getElementById('Post_GateSensor2').value);
+    formData.set("Post_GateSensor2Desc", document.getElementById('Post_GateSensor2Desc').value);
+    formData.set("Post_GateSensor3", document.getElementById('Post_GateSensor3').value);
+    formData.set("Post_GateSensor3Desc", document.getElementById('Post_GateSensor3Desc').value);
+
+    //status data
+    for (let i = 1; i < 6; i++) {
+       formData.set("Post_StatusSensor"+i.toString(), document.getElementById("Post_StatusSensor"+i.toString()).value);
+       formData.set("Post_StatusSensor"+i.toString()+"Desc", document.getElementById("Post_StatusSensor"+i.toString()+"Desc").value);
+       formData.set("Post_StatusSensor"+i.toString()+"MessageActive", document.getElementById("Post_StatusSensor"+i.toString()+"MessageActive").value);
+       formData.set("Post_StatusSensor"+i.toString()+"MessageInactive", document.getElementById("Post_StatusSensor"+i.toString()+"MessageInactive").value);
+       formData.set("Post_StatusSensor"+i.toString()+"MessageSend", document.getElementById("Post_StatusSensor"+i.toString()+"MessageSend").checked ? "checked" : "");
+    }
+
+    //pv data
+    formData.set("Post_EnergySensor1", document.getElementById('Post_EnergySensor1').value);
+    formData.set("Post_EnergySensor1Desc", document.getElementById('Post_EnergySensor1Desc').value);
+    formData.set("Post_EnergySensor2", document.getElementById('Post_EnergySensor2').value);
+    formData.set("Post_EnergySensor2Desc", document.getElementById('Post_EnergySensor2Desc').value);
+    formData.set("Post_EnergySensor3", document.getElementById('Post_EnergySensor3').value);
+    formData.set("Post_EnergySensor3Desc", document.getElementById('Post_EnergySensor3Desc').value);
+
+    xmlhttp.open("POST","/",true);
+    xmlhttp.send(formData);
+  }
+</script>
+
+<body>
+<h1>Home Control Center</h1>
+<hr />
+
+<table border="0">
+<tr><td valign="top">
+  <div id="menu" align="top">
+    <ul>
+      <li><div onClick="displayContent('Info')">Generic</div></li>
+      <li><div onClick="displayContent('Heater')">Heater</div></li>
+      <li><div onClick="displayContent('Alarm')">Alarm</div></li>
+      <li><div onClick="displayContent('Actions')">Actions</div></li>
+      <li><div onClick="displayContent('Sprinklers')">Sprinklers</div></li>
+      <li><div onClick="displayContent('Gates')">Gates</div></li>
+      <li><div onClick="displayContent('Status')">Status</div></li>
+      <li><div onClick="displayContent('Pv')">Photovoltaic</div></li>
+      <li><div onClick="sendPostForm()">Save</div></li>
+    </ul>
+  </div>
+</td>
+
+<td valign="top">
+  <div id="content">
+    <div class="menuElement" id="Info" style = "display:block">
+    GENERIC
+    <hr>
+    <table>
+      <tr>
+        <td>ID</td>
+        <td class="value">{{ config.getHccId() }}</td>      
+      </tr>
+      <tr>
+        <td>Server</td>
+        <td class="value">{{ config.getHccServer() }}</td>      
+      </tr>
+      <tr>
+        <td>Password</td>
+        <td class="value">
+            <input type="password" id="Post_HccPasswd" value={{ config.getHccPassword() }}>
+            <img id="hide" onClick="document.getElementById('Post_HccPasswd').type=='text'?document.getElementById('Post_HccPasswd').type='password':document.getElementById('Post_HccPasswd').type='text'">
+        </td> 
+      </tr>
+
+      <tr><td class="separator"></td></tr>
+
+      <tr>
+        <td>Calendar key</td>
+        <td class="value"><input type="text" id="Post_CalendarKey" value={{ config.getCalendarKey() }}>
+      </tr>
+      <tr>
+        <td>Calendar range in days</td>
+        <td class="value"><input type="text" onKeyPress="return /[0-9]/i.test(event.key)"  id="Post_CalendarRange" value={{ config.getCalendarRange() }}></td>      
+      </tr>
+      <tr>
+        <td>Calendar source</td>
+        <td class="value"><input type="text" id="Post_CalendarSource" value={{ config.getCalendarsList()[0] }}></td>      
+      </tr>
+      <tr>
+        <td>Calendar reminder enabled</td>
+        <td class="value"><input type="checkbox" id="Post_CalendarReminderEnabled" {{ config.getCalendarReminderEnabled() }}></td>      
+      </tr>
+      <tr>
+        <td>Calendar reminder send time</td>
+        <td class="value"><input type="time" id="Post_CalendarReminderTime" value={{ config.getCalendarReminderTime() }}></td>      
+      </tr>
+
+      <tr><td class="separator"></td></tr>
+
+      <tr>
+        <td>SMS token</td>
+        <td class="value"><input type="text" id="Post_SMSToken" value={{ config.getSmsToken() }}></td>      
+      </tr>
+      <tr>
+        <td>SMS phone number 1</td>
+        <td class="value"><input type="text" id="Post_SMSPhone1" onKeyPress="return /[0-9]/i.test(event.key)" value={{ config.getPhoneNumbers()[0] }}></td>      
+      </tr>
+      <tr>
+        <td>SMS phone number 2</td>
+        <td class="value"><input type="text" id="Post_SMSPhone2" onKeyPress="return /[0-9]/i.test(event.key)" value={{ config.getPhoneNumbers()[1] }}></td>      
+      </tr>
+      <tr>
+        <td>SMS phone number 3</td>
+        <td class="value"><input type="text" id="Post_SMSPhone3" onKeyPress="return /[0-9]/i.test(event.key)" value={{ config.getPhoneNumbers()[2] }}></td>      
+      </tr>
+      <tr>
+        <td>SMS phone number 4</td>
+        <td class="value"><input type="text" id="Post_SMSPhone4" onKeyPress="return /[0-9]/i.test(event.key)" value={{ config.getPhoneNumbers()[3] }}></td>      
+      </tr>
+
+    </table>
+    </div> 
+    
+    <div class="menuElement" id="Heater" style = "display:none">
+      HEATER
+      <hr>
+      <table>
+        <tr>
+          <td>Sensor</td><td><input id="Post_HeaterSensor" type="text" value="{{ config.getDeviceSensors('heater')[0][1] }}"></td>
+        </tr>
+
+        <tr>
+          <td>Sensor description</td><td><input id="Post_HeaterSensorDesc" type="text" value="{{ config.getDeviceSensors('heater')[0][2] }}"></td>
+        </tr>
+
+        <tr>
+          <td>Range [&#8451;]</td>
+          <td class="value"><input type="text" id="Post_HeaterRange" onKeyPress="return /[0-9\.]/i.test(event.key)" value={{ config.geTempThreshold() }}></td>      
+        </tr>
+
+        <tr><td class="separator"></td></tr>
+
+        <tr>
+          <td>Inside temeprature mode</td>
+          <td class="value">
+            <select id="Post_HeaterInsideMode">
+              <option value="min" {{ config.getThermalDeviceAvaraging('thermometerInside','min') }}>min</option>
+              <option value="avg" {{ config.getThermalDeviceAvaraging('thermometerInside','avg') }}>avg</option>
+              <option value="max" {{ config.getThermalDeviceAvaraging('thermometerInside','max') }}>max</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Inside sensor 1</td>
+          <td class="value"><input type="text" id="Post_HeaterInsideSensor1" value={{ config.getThermalDeviceSensor('thermometerInside',0) }}></td>      
+        </tr>
+        <tr>
+          <td>Inside sensor 2</td>
+          <td class="value"><input type="text" id="Post_HeaterInsideSensor2" value={{ config.getThermalDeviceSensor('thermometerInside',1) }}></td>      
+        </tr>
+        <tr>
+          <td>Inside sensor 3</td>
+          <td class="value"><input type="text" id="Post_HeaterInsideSensor3" value={{ config.getThermalDeviceSensor('thermometerInside',2) }}></td>      
+        </tr>
+        <tr>
+          <td>Inside sensor 4</td>
+          <td class="value"><input type="text" id="Post_HeaterInsideSensor4" value={{ config.getThermalDeviceSensor('thermometerInside',3) }}></td>      
+        </tr>
+        <tr>
+          <td>Inside sensor 5</td>
+          <td class="value"><input type="text" id="Post_HeaterInsideSensor5" value={{ config.getThermalDeviceSensor('thermometerInside',4) }}></td>      
+        </tr>
+
+        <tr><td class="separator"></td></tr>
+
+        <tr>
+          <td>Outside temeprature mode</td>
+          <td class="value">
+            <select id="Post_HeaterOutsideMode">
+              <option value="min" {{ config.getThermalDeviceAvaraging('thermometerOutside','min') }}>min</option>
+              <option value="avg" {{ config.getThermalDeviceAvaraging('thermometerOutside','avg') }}>avg</option>
+              <option value="max" {{ config.getThermalDeviceAvaraging('thermometerOutside','max') }}>max</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Outside sensor 1</td>
+          <td class="value"><input type="text" id="Post_HeaterOutsideSensor1" value={{ config.getThermalDeviceSensor('thermometerOutside',0) }}></td>      
+        </tr>
+        <tr>
+          <td>Outside sensor 2</td>
+          <td class="value"><input type="text" id="Post_HeaterOutsideSensor2" value={{ config.getThermalDeviceSensor('thermometerOutside',1) }}></td>      
+        </tr>
+        <tr>
+          <td>Outside sensor 3</td>
+          <td class="value"><input type="text" id="Post_HeaterOutsideSensor3" value={{ config.getThermalDeviceSensor('thermometerOutside',2) }}></td>      
+        </tr>
+        <tr>
+          <td>Outside sensor 4</td>
+          <td class="value"><input type="text" id="Post_HeaterOutsideSensor4" value={{ config.getThermalDeviceSensor('thermometerOutside',3) }}></td>      
+        </tr>
+        <tr>
+          <td>Outside sensor 5</td>
+          <td class="value"><input type="text" id="Post_HeaterOutsideSensor5" value={{ config.getThermalDeviceSensor('thermometerOutside',4) }}></td>      
+        </tr>
+
+        <tr><td class="separator"></td></tr>
+
+        <tr>
+          <td>Support device 1</td>
+          <td class="value"><input type="text" id="Post_HeaterSupport1" onKeyPress="return /[0-9\.]/i.test(event.key)" value={{ config.getSupportDevices()[0] }}></td>      
+        </tr>
+
+        <tr>
+          <td>Support device 2</td>
+          <td class="value"><input type="text" id="Post_HeaterSupport2" onKeyPress="return /[0-9\.]/i.test(event.key)" value={{ config.getSupportDevices()[1] }}></td>      
+        </tr>
+
+        <tr>
+          <td>Support device 3</td>
+          <td class="value"><input type="text" id="Post_HeaterSupport3" onKeyPress="return /[0-9\.]/i.test(event.key)" value={{ config.getSupportDevices()[2] }}></td>      
+        </tr>
+
+        <tr>
+          <td>Support device 4</td>
+          <td class="value"><input type="text" id="Post_HeaterSupport4" onKeyPress="return /[0-9\.]/i.test(event.key)" value={{ config.getSupportDevices()[3] }}></td>      
+        </tr>
+
+        <tr>
+          <td>Support device 5</td>
+          <td class="value"><input type="text" id="Post_HeaterSupport5" onKeyPress="return /[0-9\.]/i.test(event.key)" value={{ config.getSupportDevices()[4] }}></td>      
+        </tr>
+
+      </table>  
+    </div> 
+
+    <div class="menuElement" id="Alarm" style = "display:none">
+      ALARM
+      <hr>
+      <table>
+        <tr>
+          <td>System IP</td>
+          <td class="value"><input type="text" id="Post_AlarmSystemIP" onKeyPress="return /[0-9\.]/i.test(event.key)" value="{{ config.getAlarmSystem()['ip'] }}"></td>      
+        </tr>
+
+        <tr><td class="separator"></td></tr>
+
+        <tr>
+          <td>Room 1</td>
+          <td class="value">
+            Name:<input id="Post_AlarmRoom1Name" type="text" size="4" value="{{ config.getRooms()[0]['name'] }}">
+            TempSensor:<input id="Post_AlarmRoom1Temp" type="text" size="4" value="{{ config.getRooms()[0]['tempId'] }}">
+            LightSensor:<input id="Post_AlarmRoom1Light" type="text" size="4" onKeyPress="return /[0-9\.]/i.test(event.key)" value="{{ config.getRooms()[0]['light_ip'] }}">
+            AlarmSensor 1:<input id="Post_AlarmRoom1Sensor1" type="text" size="4" value="{{ config.getRooms()[0]['alarmSensors'][0] }}">
+            AlarmSensor 2:<input id="Post_AlarmRoom1Sensor2" type="text" size="4" value="{{ config.getRooms()[0]['alarmSensors'][1] }}">            
+          </td>
+        </tr>
+
+        <tr>
+          <td>Room 2</td>
+          <td class="value">
+            Name:<input id="Post_AlarmRoom2Name" type="text" size="4" value="{{ config.getRooms()[1]['name'] }}">
+            TempSensor:<input id="Post_AlarmRoom2Temp" type="text" size="4" value="{{ config.getRooms()[1]['tempId'] }}">
+            LightSensor:<input id="Post_AlarmRoom2Light" type="text" size="4" onKeyPress="return /[0-9\.]/i.test(event.key)" value="{{ config.getRooms()[1]['light_ip'] }}">
+            AlarmSensor 1:<input id="Post_AlarmRoom2Sensor1" type="text" size="4" value="{{ config.getRooms()[1]['alarmSensors'][0] }}">
+            AlarmSensor 2:<input id="Post_AlarmRoom2Sensor2" type="text" size="4" value="{{ config.getRooms()[1]['alarmSensors'][1] }}">
+          </td>
+        </tr>
+
+        <tr>
+          <td>Room 3</td>
+          <td class="value">
+            Name:<input id="Post_AlarmRoom3Name" type="text" size="4" value="{{ config.getRooms()[2]['name'] }}">
+            TempSensor:<input id="Post_AlarmRoom3Temp" type="text" size="4" value="{{ config.getRooms()[2]['tempId'] }}">
+            LightSensor:<input id="Post_AlarmRoom3Light" type="text" size="4" onKeyPress="return /[0-9\.]/i.test(event.key)" value="{{ config.getRooms()[2]['light_ip'] }}">
+            AlarmSensor 1:<input id="Post_AlarmRoom3Sensor1" type="text" size="4" value="{{ config.getRooms()[2]['alarmSensors'][0] }}">
+            AlarmSensor 2:<input id="Post_AlarmRoom3Sensor2" type="text" size="4" value="{{ config.getRooms()[2]['alarmSensors'][1] }}">
+          </td>
+        </tr>
+
+        <tr>
+          <td>Room 4</td>
+          <td class="value">
+            Name:<input id="Post_AlarmRoom4Name" type="text" size="4" value="{{ config.getRooms()[3]['name'] }}">
+            TempSensor:<input id="Post_AlarmRoom4Temp" type="text" size="4" value="{{ config.getRooms()[3]['tempId'] }}">
+            LightSensor:<input id="Post_AlarmRoom4Light" type="text" size="4" onKeyPress="return /[0-9\.]/i.test(event.key)" value="{{ config.getRooms()[3]['light_ip'] }}">
+            AlarmSensor 1:<input id="Post_AlarmRoom4Sensor1" type="text" size="4" value="{{ config.getRooms()[3]['alarmSensors'][0] }}">
+            AlarmSensor 2:<input id="Post_AlarmRoom4Sensor2" type="text" size="4" value="{{ config.getRooms()[3]['alarmSensors'][1] }}">
+          </td>
+        </tr>
+
+        <tr>
+          <td>Room 5</td>
+          <td class="value">
+            Name:<input id="Post_AlarmRoom5Name" type="text" size="4" value="{{ config.getRooms()[4]['name'] }}">
+            TempSensor:<input id="Post_AlarmRoom5Temp" type="text" size="4" value="{{ config.getRooms()[4]['tempId'] }}">
+            LightSensor:<input id="Post_AlarmRoom5Light" type="text" size="4" onKeyPress="return /[0-9\.]/i.test(event.key)" value="{{ config.getRooms()[4]['light_ip'] }}">
+            AlarmSensor 1:<input id="Post_AlarmRoom5Sensor1" type="text" size="4" value="{{ config.getRooms()[4]['alarmSensors'][0] }}">
+            AlarmSensor 2:<input id="Post_AlarmRoom5Sensor2" type="text" size="4" value="{{ config.getRooms()[4]['alarmSensors'][1] }}">            
+          </td>
+        </tr>
+
+        <tr>
+          <td>Room 6</td>
+          <td class="value">
+            Name:<input id="Post_AlarmRoom6Name" type="text" size="4" value="{{ config.getRooms()[5]['name'] }}">
+            TempSensor:<input id="Post_AlarmRoom6Temp" type="text" size="4" value="{{ config.getRooms()[5]['tempId'] }}">
+            LightSensor:<input id="Post_AlarmRoom6Light" type="text" size="4" onKeyPress="return /[0-9\.]/i.test(event.key)" value="{{ config.getRooms()[5]['light_ip'] }}">
+            AlarmSensor 1:<input id="Post_AlarmRoom6Sensor1" type="text" size="4" value="{{ config.getRooms()[5]['alarmSensors'][0] }}">
+            AlarmSensor 2:<input id="Post_AlarmRoom6Sensor2" type="text" size="4" value="{{ config.getRooms()[5]['alarmSensors'][1] }}">            
+          </td>
+        </tr>
+
+        <tr>
+          <td>Room 7</td>
+          <td class="value">
+            Name:<input id="Post_AlarmRoom7Name" type="text" size="4" value="{{ config.getRooms()[6]['name'] }}">
+            TempSensor:<input id="Post_AlarmRoom7Temp" type="text" size="4" value="{{ config.getRooms()[6]['tempId'] }}">
+            LightSensor:<input id="Post_AlarmRoom7Light" type="text" size="4" onKeyPress="return /[0-9\.]/i.test(event.key)" value="{{ config.getRooms()[6]['light_ip'] }}">
+            AlarmSensor 1:<input id="Post_AlarmRoom7Sensor1" type="text" size="4" value="{{ config.getRooms()[6]['alarmSensors'][0] }}">
+            AlarmSensor 2:<input id="Post_AlarmRoom7Sensor2" type="text" size="4" value="{{ config.getRooms()[6]['alarmSensors'][1] }}">            
+          </td>
+        </tr>
+
+        <tr>
+          <td>Room 8</td>
+          <td class="value">
+            Name:<input id="Post_AlarmRoom8Name" type="text" size="4" value="{{ config.getRooms()[7]['name'] }}">
+            TempSensor:<input id="Post_AlarmRoom8Temp" type="text" size="4" value="{{ config.getRooms()[7]['tempId'] }}">
+            LightSensor:<input id="Post_AlarmRoom8Light" type="text" size="4" onKeyPress="return /[0-9\.]/i.test(event.key)" value="{{ config.getRooms()[7]['light_ip'] }}">
+            AlarmSensor 1:<input id="Post_AlarmRoom8Sensor1" type="text" size="4" value="{{ config.getRooms()[7]['alarmSensors'][0] }}">
+            AlarmSensor 2:<input id="Post_AlarmRoom8Sensor2" type="text" size="4" value="{{ config.getRooms()[7]['alarmSensors'][1] }}">            
+          </td>
+        </tr>
+
+        <tr>
+          <td>Room 9</td>
+          <td class="value">
+            Name:<input id="Post_AlarmRoom9Name" type="text" size="4" value="{{ config.getRooms()[8]['name'] }}">
+            TempSensor:<input id="Post_AlarmRoom9Temp" type="text" size="4" value="{{ config.getRooms()[8]['tempId'] }}">
+            LightSensor:<input id="Post_AlarmRoom9Light" type="text" size="4" onKeyPress="return /[0-9\.]/i.test(event.key)" value="{{ config.getRooms()[8]['light_ip'] }}">
+            AlarmSensor 1:<input id="Post_AlarmRoom9Sensor1" type="text" size="4" value="{{ config.getRooms()[8]['alarmSensors'][0] }}">
+            AlarmSensor 2:<input id="Post_AlarmRoom9Sensor2" type="text" size="4" value="{{ config.getRooms()[8]['alarmSensors'][1] }}">            
+          </td>
+        </tr>
+
+        <tr>
+          <td>Room 10</td>
+          <td class="value">
+            Name:<input id="Post_AlarmRoom10Name" type="text" size="4" value="{{ config.getRooms()[9]['name'] }}">
+            TempSensor:<input id="Post_AlarmRoom10Temp" type="text" size="4" value="{{ config.getRooms()[9]['tempId'] }}">
+            LightSensor:<input id="Post_AlarmRoom10Light" type="text" size="4" onKeyPress="return /[0-9\.]/i.test(event.key)" value="{{ config.getRooms()[9]['light_ip'] }}">
+            AlarmSensor 1:<input id="Post_AlarmRoom10Sensor1" type="text" size="4" value="{{ config.getRooms()[9]['alarmSensors'][0] }}">
+            AlarmSensor 2:<input id="Post_AlarmRoom10Sensor2" type="text" size="4" value="{{ config.getRooms()[9]['alarmSensors'][1] }}">            
+          </td>
+        </tr>
+
+        <tr>
+          <td>Room 11</td>
+          <td class="value">
+            Name:<input id="Post_AlarmRoom11Name" type="text" size="4" value="{{ config.getRooms()[10]['name'] }}">
+            TempSensor:<input id="Post_AlarmRoom11Temp" type="text" size="4" value="{{ config.getRooms()[10]['tempId'] }}">
+            LightSensor:<input id="Post_AlarmRoom11Light" type="text" size="4" onKeyPress="return /[0-9\.]/i.test(event.key)" value="{{ config.getRooms()[10]['light_ip'] }}">
+            AlarmSensor 1:<input id="Post_AlarmRoom11Sensor1" type="text" size="4" value="{{ config.getRooms()[10]['alarmSensors'][0] }}">
+            AlarmSensor 2:<input id="Post_AlarmRoom11Sensor2" type="text" size="4" value="{{ config.getRooms()[10]['alarmSensors'][1] }}">            
+          </td>
+        </tr>
+      </table>
+    </div> 
+
+    <div class="menuElement" id="Actions" style = "display:none">
+      ACTIONS
+      <hr>
+      <table>
+        <tr>
+          <td>Action 1</td>
+          <td class="value">
+            Type:<select id="Post_Action1Type">
+                  <option value="alarm">alarm</option>
+                  <option value="light">light</option>
+                </select>
+            Room:<input id="Post_ActionRoom" type="text" size="4" onKeyPress="return /[0-9]/i.test(event.key)" value="">
+            Trigger sensor:<input id="Post_ActionTrigger" type="text" size="4" onKeyPress="return /[0-9]/i.test(event.key)" value="">
+          </td>
+        </tr>
+      </table>
+    </div> 
+
+    <div class="menuElement" id="Sprinklers" style = "display:none">
+      SPRINKLERS
+      <hr>
+      <table>
+        <tr>
+          <td>Sprinkler sensor 1</td><td><input id="Post_SprinklerSensor1" type="text" value="{{ config.getDeviceSensors('sprinkler')[0][1] }}"></td>
+        </tr>
+        <tr>
+          <td>Sprinkler sensor 1 description</td><td><input id="Post_SprinklerSensor1Desc" type="text" value="{{ config.getDeviceSensors('sprinkler')[0][2] }}"></td>
+        </tr>
+
+        <tr><td class="separator"></td></tr>
+
+        <tr>
+          <td>Sprinkler sensor 2</td><td><input id="Post_SprinklerSensor2" type="text" value="{{ config.getDeviceSensors('sprinkler')[1][1] }}"></td>
+        </tr>
+        <tr>
+          <td>Sprinkler sensor 2 description</td><td><input id="Post_SprinklerSensor2Desc" type="text" value="{{ config.getDeviceSensors('sprinkler')[1][2] }}"></td>
+        </tr>
+
+        <tr><td class="separator"></td></tr>
+
+        <tr>
+          <td>Sprinkler sensor 3</td><td><input id="Post_SprinklerSensor3" type="text" value="{{ config.getDeviceSensors('sprinkler')[2][1] }}"></td>
+        </tr>
+        <tr>
+          <td>Sprinkler sensor 3 description</td><td><input id="Post_SprinklerSensor3Desc" type="text" value="{{ config.getDeviceSensors('sprinkler')[2][2] }}"></td>
+        </tr>
+      </table>
+    </div> 
+      
+    <div class="menuElement" id="Gates" style = "display:none">
+      GATES
+      <hr>
+      <table>
+        <tr>
+          <td>Gate sensor 1</td><td><input id="Post_GateSensor1" type="text" value="{{ config.getDeviceSensors('gate')[0][1] }}"></td>
+        </tr>
+        <tr>
+          <td>Gate sensor 1 description</td><td><input id="Post_GateSensor1Desc" type="text" value="{{ config.getDeviceSensors('gate')[0][2] }}"></td>
+        </tr>
+
+        <tr><td class="separator"></td></tr>
+
+        <tr>
+          <td>Gate sensor 2</td><td><input id="Post_GateSensor2" type="text" value="{{ config.getDeviceSensors('gate')[1][1] }}"></td>
+        </tr>
+        <tr>
+          <td>Gate sensor 2 description</td><td><input id="Post_GateSensor2Desc" type="text" value="{{ config.getDeviceSensors('gate')[1][2] }}"></td>
+        </tr>
+
+        <tr><td class="separator"></td></tr>
+
+        <tr>
+          <td>Gate sensor 3</td><td><input id="Post_GateSensor3" type="text" value="{{ config.getDeviceSensors('gate')[2][1] }}"></td>
+        </tr>
+        <tr>
+          <td>Gate sensor 3 description</td><td><input id="Post_GateSensor3Desc" type="text" value="{{ config.getDeviceSensors('gate')[2][2] }}"></td>
+        </tr>
+      </table>
+    </div> 
+
+    <div class="menuElement" id="Status" style = "display:none">
+      STATUS
+      <hr>
+      <table>
+        <tr>
+          <td>Status 1</td>
+          <td>
+            <table>
+             <tr>
+              <td>Sensor</td><td><input id="Post_StatusSensor1" type="text" value="Alarm (reserved)" disabled></td>
+             </tr>
+             <tr>
+              <td>Description</td><td><input id="Post_StatusSensor1Desc" type="text" value="{{ config.getDeviceSensors('status')[0][2] }}"></td>
+             </tr>
+             <tr>
+              <td>Message active</td><td><input id="Post_StatusSensor1MessageActive" type="text" value="{{ config.getDeviceSensors('status')[0][3] }}"></td>
+             </tr>
+             <tr>
+              <td>Message inactive</td><td><input id="Post_StatusSensor1MessageInactive" type="text" value="{{ config.getDeviceSensors('status')[0][4] }}"></td>
+             </tr>
+             <tr>
+              <td>Message send</td><td><input type="checkbox" id="Post_StatusSensor1MessageSend" {{ config.getDeviceSensors('status')[0][5] }}></td>
+             </tr>
+            </table>
+         </td>
+        </tr>        
+
+        <tr>
+          <td>Status 2</td>
+          <td>
+            <table>
+             <tr>
+              <td>Sensor</td><td><input id="Post_StatusSensor2" type="text" value="{{ config.getDeviceSensors('status')[1][1] }}"></td>
+             </tr>
+             <tr>
+              <td>Description</td><td><input id="Post_StatusSensor2Desc" type="text" value="{{ config.getDeviceSensors('status')[1][2] }}"></td>
+             </tr>
+             <tr>
+              <td>Message active</td><td><input id="Post_StatusSensor2MessageActive" type="text" value="{{ config.getDeviceSensors('status')[1][3] }}"></td>
+             </tr>
+             <tr>
+              <td>Message inactive</td><td><input id="Post_StatusSensor2MessageInactive" type="text" value="{{ config.getDeviceSensors('status')[1][4] }}"></td>
+             </tr>
+             <tr>
+              <td>Message send</td><td><input type="checkbox" id="Post_StatusSensor2MessageSend" {{ config.getDeviceSensors('status')[1][5] }}></td>
+             </tr>
+            </table>
+         </td>
+        </tr>        
+
+        <tr>
+          <td>Status 3</td>
+          <td>
+            <table>
+             <tr>
+              <td>Sensor</td><td><input id="Post_StatusSensor3" type="text" value="{{ config.getDeviceSensors('status')[2][1] }}"></td>
+             </tr>
+             <tr>
+              <td>Description</td><td><input id="Post_StatusSensor3Desc" type="text" value="{{ config.getDeviceSensors('status')[2][2] }}"></td>
+             </tr>
+             <tr>
+              <td>Message active</td><td><input id="Post_StatusSensor3MessageActive" type="text" value="{{ config.getDeviceSensors('status')[2][3] }}"></td>
+             </tr>
+             <tr>
+              <td>Message inactive</td><td><input id="Post_StatusSensor3MessageInactive" type="text" value="{{ config.getDeviceSensors('status')[2][4] }}"></td>
+             </tr>
+             <tr>
+              <td>Message send</td><td><input type="checkbox" id="Post_StatusSensor3MessageSend" {{ config.getDeviceSensors('status')[2][5] }}></td>
+             </tr>
+            </table>
+         </td>
+        </tr>
+
+        <tr>
+          <td>Status 4</td>
+          <td>
+            <table>
+             <tr>
+              <td>Sensor</td><td><input id="Post_StatusSensor4" type="text" value="Support heater (reserved)" disabled></td></td>
+             </tr>
+             <tr>
+              <td>Description</td><td><input id="Post_StatusSensor4Desc" type="text" value="{{ config.getDeviceSensors('status')[3][2] }}"></td>
+             </tr>
+             <tr>
+              <td>Message active</td><td><input id="Post_StatusSensor4MessageActive" type="text" value="{{ config.getDeviceSensors('status')[3][3] }}"></td>
+             </tr>
+             <tr>
+              <td>Message inactive</td><td><input id="Post_StatusSensor4MessageInactive" type="text" value="{{ config.getDeviceSensors('status')[3][4] }}"></td>
+             </tr>
+             <tr>
+              <td>Message send</td><td><input type="checkbox" id="Post_StatusSensor4MessageSend" {{ config.getDeviceSensors('status')[3][5] }}></td>
+             </tr>
+            </table>
+         </td>
+        </tr>
+        
+        <tr>
+          <td>Status 5</td>
+          <td>
+            <table>
+             <tr>
+              <td>Sensor</td><td><input id="Post_StatusSensor5" type="text" value="{{ config.getDeviceSensors('status')[4][1] }}"></td>
+             </tr>
+             <tr>
+              <td>Description</td><td><input id="Post_StatusSensor5Desc" type="text" value="{{ config.getDeviceSensors('status')[4][2] }}"></td>
+             </tr>
+             <tr>
+              <td>Message active</td><td><input id="Post_StatusSensor5MessageActive" type="text" value="{{ config.getDeviceSensors('status')[4][3] }}"></td>
+             </tr>
+             <tr>
+              <td>Message inactive</td><td><input id="Post_StatusSensor5MessageInactive" type="text" value="{{ config.getDeviceSensors('status')[4][4] }}"></td>
+             </tr>
+             <tr>
+              <td>Message send</td><td><input type="checkbox" id="Post_StatusSensor5MessageSend" {{ config.getDeviceSensors('status')[4][5] }}></td>
+             </tr>
+            </table>
+         </td>
+        </tr>
+      </table>
+    </div> 
+
+    <div class="menuElement" id="Pv" style = "display:none">
+      PHOTOVOLTAIC
+      <hr>
+      <table>
+        <tr>
+          <td>PV sensor 1</td><td><input id="Post_EnergySensor1" type="text" value="{{ config.getDeviceSensors('energy')[0][1] }}"></td>
+        </tr>
+        <tr>
+          <td>PV sensor 1 description</td><td><input id="Post_EnergySensor1Desc" type="text" value="{{ config.getDeviceSensors('energy')[0][2] }}"></td>
+        </tr>
+
+        <tr><td class="separator"></td></tr>
+
+        <tr>
+          <td>PV sensor 2</td><td><input id="Post_EnergySensor2" type="text" value="{{ config.getDeviceSensors('energy')[1][1] }}"></td>
+        </tr>
+        <tr>
+          <td>PV sensor 2 description</td><td><input id="Post_EnergySensor2Desc" type="text" value="{{ config.getDeviceSensors('energy')[1][2] }}"></td>
+        </tr>
+
+        <tr><td class="separator"></td></tr>
+
+        <tr>
+          <td>PV sensor 3</td><td><input id="Post_EnergySensor3" type="text" value="{{ config.getDeviceSensors('energy')[2][1] }}"></td>
+        </tr>
+        <tr>
+          <td>PV sensor 3 description</td><td><input id="Post_EnergySensor3Desc" type="text" value="{{ config.getDeviceSensors('energy')[2][2] }}"></td>
+        </tr>
+      </table>
+    </div> 
+
+  </div>
+</td></tr>
+</table>
+
+<hr/>
+<h7>(c) 2023 </h7>
+
+
+</body>
+</html>

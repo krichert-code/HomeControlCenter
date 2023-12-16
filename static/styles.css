@@ -1,0 +1,105 @@
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 80%;
+	font-weight: bold;
+	}	
+
+h1 {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:16px;
+	font-weight:bold;
+	margin:0;
+	padding:0;
+	}
+
+h7 {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:8px;
+	margin:0;
+	padding:0;
+	}
+
+hr {
+	border:none;
+	border-top:1px solid #CCCCCC;
+	height:1px;
+	margin-bottom:1px;
+	}
+
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	}
+	
+table {
+	border:none;
+	height:1px;
+	margin-top:25px;
+	margin-bottom:10px;
+    }
+
+td {	
+	padding-right: 50px;
+	padding-bottom: 10px;
+}
+
+td.value {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-weight: none;
+	font-size:10px;
+	margin:0;
+	padding:2px;
+}
+
+td.separator {	
+	padding:10px;
+}
+
+#hide {
+	content:url(/static/img/hide.png);
+	padding-top:8px;
+	margin-top: 8px;
+	width: 15px;
+	height: 15px;
+}
+
+#content{
+	margin-top:10px;
+    }
+
+#menu {
+	width: 200px;
+	border-style: solid solid none solid;
+	border-color: #94AA74;
+	border-size: 1px;
+	border-width: 1px;
+	margin: 10px;
+	}
+	
+#menu li div {
+	height: 32px;
+  	voice-family: "\"}\""; 
+  	voice-family: inherit;
+  	height: 24px;
+	text-decoration: none;
+	}	
+	
+#menu li div, #menu li div:visited {
+	color: #5E7830;
+	display: block;
+	background: url(/static/img/menu.gif);
+	padding: 8px 0 0 10px;
+	}
+	
+#menu li div:hover {
+	color: #26370A;
+	background: url(/static/img/menu.gif) 0 -32px;
+	padding: 8px 0 0 10px;
+	}
+	
+#menu li div:active {
+	color: #26370A;
+	background: url(/static/img/menu.gif) 0 -64px;
+	padding: 8px 0 0 10px;
+	}

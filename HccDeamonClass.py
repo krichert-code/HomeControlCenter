@@ -3,7 +3,6 @@
 import requests
 import threading
 import time
-#import datetime
 import ConfigClass
 import RadioClass
 import CalendarClass
@@ -11,6 +10,7 @@ import HeaterClass
 import ActionClass
 import SprinklerClass
 import EnergyClass
+import ConfigurationInterface
 import DBClass
 import RPi.GPIO as GPIO
 import json
@@ -309,12 +309,14 @@ class Messages:
                 # if state has changed then send message (if needed) and then update last state
 
                 if item.state != self.lastStates[name] \
-                    and len(item.messageId) > 0:
+                    and item.messageSend == 1:
 
                     # send message
                     phones = config.getPhoneNumbers()
-                    text = config.getSmsMessage(item.messageId,
-                            item.state)
+                    if item.state == '0':
+                        text = item.messageInactive
+                    else:
+                        text = item.messageActive
                     token = config.getSmsToken()
 
                     for to in phones:
@@ -337,7 +339,7 @@ class Messages:
         # logging.error('SMS ' +str(config.getCalendarReminderEnabled()))
         # logging.error("SMS: "+ config.getCalendarReminderTime())
 
-        if config.getCalendarReminderEnabled() == True and curr_time \
+        if config.getCalendarReminderEnabled() == 'checked' and curr_time \
             == config.getCalendarReminderTime():
             events = calendar.getEventsData()
             currTS = time.time()
@@ -542,8 +544,6 @@ class ProgramAction:
 
         if tick % 1 == 0:
             checkIfNoBodyHome = self.__checkIfNoBodyHome()
-
-            #print(checkIfNoBodyHome)
             #logging.error(str(checkIfNoBodyHome))
 
             if (checkIfNoBodyHome == True) and (self.__alarmTriggered == False):
@@ -601,11 +601,17 @@ class ProgramAction:
 
 # ------------------------------------------------------------------------------------------------------------------------
 
-class HccDeamonClass(threading.Thread):
+class HccDeamonClass(threading.Thread, ConfigurationInterface.ConfigurationInterface):
 
     def __init__(self):
         threading.Thread.__init__(self)
         self.__stopEvent = False
+
+    def configurationUpdate(self):
+        """Overrides ConfigurationInterface.configurationUpdate()"""
+        config = ConfigClass.ConfigClass()
+        config.initializeConfigData()
+        print("* Configuration update")        
 
     def stop(self):
         self.__stopEvent = True
@@ -633,8 +639,7 @@ class HccDeamonClass(threading.Thread):
 
         log.setLevel(logging.ERROR)
 
-        timerTick = 0
-        config = ConfigClass.ConfigClass()
+        timerTick = 0        
         speaker = Speaker()
         alarm = Alarm()
         calendar = Calendar()

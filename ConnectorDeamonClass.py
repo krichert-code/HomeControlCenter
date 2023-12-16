@@ -9,6 +9,7 @@ import json
 import base64
 import logging
 import time
+from subprocess import Popen, PIPE
 # ------------------------------------------------------------------------------------------------------------------------
 
 class ConnectorDeamonClass(threading.Thread):
@@ -26,7 +27,19 @@ class ConnectorDeamonClass(threading.Thread):
 
     def run(self):
         log = logging.getLogger('werkzeug')
-        logging.info('HCC connector start')
+
+        command = ['ps -A -T | grep hcc.py']
+        proc = Popen(
+            command,
+            shell=True,
+            stdin=None,
+            stdout=PIPE,
+            stderr=None,
+            close_fds=True,
+            )
+
+        logging.info('HCC connector pid')
+        logging.info(str(proc.communicate()[0]))
 
         apiObj = APIClass.APIClass()
         crypt = CryptClass.CryptClass()
