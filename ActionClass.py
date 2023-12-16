@@ -206,10 +206,10 @@ class ActionClass(object):
         ActionClass.__mutex.acquire()
 
         if self.__isEventEnable(filters,
-                                ActionClass.ActionEventGeneric) == True:
-            events = events \
-                + self.__config.getEvents(self.ActionEventGeneric,
-                    returnOnlyActiveEvents)
+                               ActionClass.ActionEventGeneric) == True:
+           events = events \
+               + self.__config.getEvents(self.ActionEventGeneric,
+                  returnOnlyActiveEvents)
 
         if self.__isEventEnable(filters, ActionClass.ActionEventRadio) \
             == True:

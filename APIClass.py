@@ -9,7 +9,6 @@ import RadioClass
 import SprinklerClass
 import HeaterClass
 import ScheduleClass
-import HccDeamonClass
 import SwitchClass
 import InfoClass
 import RoomClass
@@ -72,14 +71,6 @@ class APIClass:
         response = infoObj.getInfoData()
         return json.dumps(response)
 
-    def APIweather(self, json_req):
-        weatherData['temp'] = '0.0'
-        weatherData['date'] = '0000-00-00'
-        weatherData['time'] = '0:00'
-        weatherData['pressure'] = '0.0'
-        weatherData['wind'] = '0.0'
-        return json.dumps(weatherData)
-
     def APIschedule(self, json_req):
         obj = ScheduleClass.ScheduleClass()
         response = {}
@@ -123,15 +114,15 @@ class APIClass:
         response['state'] = 'OK'
         return json.dumps(response)
 
-    def APIstatus(self, json_req=''):
+    def APIstatus(self, json_req=''):        
         evn = ActionClass.ActionClass()
         temp = HeaterClass.HeaterClass()
         eng = EnergyClass.EnergyClass()
-
-        events = evn.getEvents()
+        
+        events = evn.getEvents()        
         temperature = temp.getCurrentTemperature()
         energy = eng.getCurrentProduceEnergy()
-
+        
         response = {}
         resEvents = []
         duration = 0
@@ -146,7 +137,7 @@ class APIClass:
         response['events'] = resEvents
         response['temperature'] = temperature
         response['energy'] = energy
-
+        
         return json.dumps(response)
 
     def APIevents(self, json_req=''):

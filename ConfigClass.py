@@ -92,10 +92,8 @@ class ConfigClass(object):
             ConfigClass.__xmldoc = minidom.parse('data/config.xml')
 
     def initializeConfigData(self):
+        ConfigClass.__xmldoc = minidom.parse('data/config.xml')
 
-            # clear statuses
-
-        pass
 
     def getHccId(self):
         id = \
@@ -193,29 +191,11 @@ class ConfigClass(object):
                 )[0].getAttribute('sendTime')
 
     def getCalendarReminderEnabled(self):
-        if ConfigClass.__xmldoc.getElementsByTagName('calendar'
-                )[0].getElementsByTagName('sms')[0].getAttribute('value'
-                ) == 'True':
-            return True
-        else:
-            return False
+        return ConfigClass.__xmldoc.getElementsByTagName('calendar'
+                )[0].getElementsByTagName('sms')[0].getAttribute('value')
 
 # -------------------------- Calendar settings --------------------------
 
-    def getCurrentWeatherReq(self):
-        return ConfigClass.__xmldoc.getElementsByTagName('weather'
-                )[0].getElementsByTagName('current'
-                )[0].getAttribute('url')
-
-    def getHourlyWeatherForecastReq(self):
-        return ConfigClass.__xmldoc.getElementsByTagName('weather'
-                )[0].getElementsByTagName('hourly'
-                )[0].getAttribute('url')
-
-    def getDailyWeatherForecastReq(self):
-        return ConfigClass.__xmldoc.getElementsByTagName('weather'
-                )[0].getElementsByTagName('daily')[0].getAttribute('url'
-                )
 
     def getDS18B20file(self):
         return ConfigClass.__xmldoc.getElementsByTagName('ds18b20'
@@ -340,7 +320,8 @@ class ConfigClass(object):
                 )[0].getElementsByTagName('device')
 
             for node in devices_node:
-                data.append(node.getAttribute('ip'))
+                if (len(node.getAttribute('ip')) > 0):
+                    data.append(node.getAttribute('ip'))
         except Exception as e:
             print (str(e))
             data.clear()
@@ -366,6 +347,8 @@ class ConfigClass(object):
                     )[0].getElementsByTagName(thermType
                     )[0].getElementsByTagName('device'
                     )[0].getAttribute('offset')
+            if (len(data['name']) == 0):
+               data['error'] = 1 
         except:
             data['error'] = 255
             data['name'] = ''
@@ -392,12 +375,38 @@ class ConfigClass(object):
                     )[0].getElementsByTagName(thermType
                     )[0].getElementsByTagName('device'
                     )[self.iterator].getAttribute('offset')
+            if (len(data['name']) == 0):
+               data['error'] = 1 
         except:
             data['error'] = 255
             data['name'] = ''
             data['offset'] = ''
             data['mode'] = ''
         return data
+
+    def getThermalDeviceAvaraging(self, thermType, avgType):
+        result = ""
+        try:
+            if (avgType == ConfigClass.__xmldoc.getElementsByTagName('heater'
+                    )[0].getElementsByTagName(thermType
+                    )[0].getAttribute('mode')):
+                result="selected"
+        except Exception as e:
+            result = ""
+
+        return result
+
+    def getThermalDeviceSensor(self, thermType, id):
+        name = ""
+        try:
+            name = ConfigClass.__xmldoc.getElementsByTagName('heater'
+                    )[0].getElementsByTagName(thermType
+                    )[0].getElementsByTagName('device'
+                    )[id].getAttribute('name')
+        except Exception as e:
+            name = ""
+            
+        return name
 
     def getDayTemp(self):
         return ConfigClass.__xmldoc.getElementsByTagName('HomeControlCenter'
@@ -472,11 +481,12 @@ class ConfigClass(object):
         for action in actions:
             if action.getAttribute('device') == 'alarm' :
                 result['timeToActivate'] = action.getAttribute('timeToActivate')
-                result['sensors'] = []
-                for roomId in action.getElementsByTagName('alarmSensor'):
-                    id = roomId.getAttribute('roomId')
+                result['sensors'] = []                
+                roomIds = action.getAttribute('roomId').split(",")                
+                for roomId in roomIds:                    
                     for room in rooms:
-                        if room['id'] == id:
+                        if room['id'] == roomId:
+                            # TODO: shall be append ??
                             result['sensors'] = room['alarmSensors']
                             break
                 break
@@ -521,6 +531,7 @@ class ConfigClass(object):
 
                 obj['validMonths']=int(action.getAttribute('validMonths'))
                 obj['state'] = 0
+                obj['switch_state'] = 0
                 result.append(obj)
 
         return result
@@ -687,30 +698,14 @@ class ConfigClass(object):
             ConfigClass.__xmldoc.getElementsByTagName('text_messages'
                 )[0].getElementsByTagName('phones'
                 )[0].getElementsByTagName('element'):
-            phones.append(item.getAttribute('number'))
+                if (len(item.getAttribute('number')) > 0):
+                    phones.append(item.getAttribute('number'))
         return phones
 
     def getSmsToken(self):
         return ConfigClass.__xmldoc.getElementsByTagName('text_messages'
                 )[0].getElementsByTagName('token'
                 )[0].getAttribute('value')
-
-    def getSmsMessage(self, id, state):
-        message = ''
-        tag = 'active'
-        if state == '0':
-            tag = 'inactive'
-        for item in \
-            ConfigClass.__xmldoc.getElementsByTagName('text_messages'
-                )[0].getElementsByTagName('text'
-                )[0].getElementsByTagName('element'):
-            if item.getAttribute('id') == id:
-                message = \
-                    item.getElementsByTagName(tag)[0].getAttribute('message'
-                        )
-                break
-        return message
-
 # ---------------------------text message method --------------------------
 
 # ---------------------------Generic config methods ----------------------
@@ -731,9 +726,18 @@ class ConfigClass(object):
                         ), '', id, item.getAttribute('state'))
                 event.type = type
                 try:
-                    event.messageId = item.getAttribute('messageId')
+                    if (item.getAttribute('messageSend') == 'checked'):
+                        event.messageSend = 1
+                        event.messageActive = item.getAttribute('messageActive')
+                        event.messageInactive = item.getAttribute('messageInactive')
+                    else:
+                        event.messageSend = 0
+                        event.messageActive = ""
+                        event.messageInactive = ""
                 except:
-                    event.messageId = -1
+                    event.messageSend = 0
+                    event.messageActive = ""
+                    event.messageInactive = ""
 
                 eventsData.append(event)
         ConfigClass.__mutex.release()
@@ -806,7 +810,9 @@ class ConfigClass(object):
                 )
         for item in itemsList:
             ret_val.append((item.getAttribute('id'),
-                           item.getAttribute('sensor')))
+                           item.getAttribute('sensor'), item.getAttribute('desc'),
+                           item.getAttribute('messageActive'), item.getAttribute('messageInactive'),
+                           item.getAttribute('messageSend')))
         ConfigClass.__mutex.release()
         return ret_val
 
@@ -838,3 +844,143 @@ class ConfigClass(object):
 
 
 # ---------------------------Generic config methods ----------------------
+
+    def updateConfiguration(self, form):
+
+        # generic data
+        ConfigClass.__xmldoc.getElementsByTagName("calendar")[0].\
+            getElementsByTagName("key")[0].setAttribute('value', form['Post_CalendarKey'])
+
+        ConfigClass.__xmldoc.getElementsByTagName("HomeControlCenter")[0].\
+            setAttribute('password', form['Post_HccPasswd'])
+
+        ConfigClass.__xmldoc.getElementsByTagName("calendar")[0].\
+            getElementsByTagName("range")[0].setAttribute('value', form['Post_CalendarRange'])
+
+        ConfigClass.__xmldoc.getElementsByTagName("calendar")[0].\
+            getElementsByTagName("calendars_list")[0].getElementsByTagName("element")[0].\
+            setAttribute('name', form['Post_CalendarSource'])
+
+        ConfigClass.__xmldoc.getElementsByTagName("calendar")[0].\
+            getElementsByTagName("sms")[0].setAttribute('sendTime', form['Post_CalendarReminderTime'])
+
+        ConfigClass.__xmldoc.getElementsByTagName("calendar")[0].\
+            getElementsByTagName("sms")[0].setAttribute('value', form['Post_CalendarReminderEnabled'])
+
+        ConfigClass.__xmldoc.getElementsByTagName("text_messages")[0].\
+            getElementsByTagName("token")[0].setAttribute('value', form['Post_SMSToken'])
+
+        for i in range(0, 4):
+            ConfigClass.__xmldoc.getElementsByTagName("text_messages")[0].\
+                getElementsByTagName("phones")[0].getElementsByTagName("element")[i].\
+                setAttribute('number', form['Post_SMSPhone'+str(i+1)])
+
+        # heater data
+        ConfigClass.__xmldoc.getElementsByTagName("devices")[0].\
+            getElementsByTagName("heater")[0].getElementsByTagName("element")[0].\
+            setAttribute('sensor', form['Post_HeaterSensor'])
+
+        ConfigClass.__xmldoc.getElementsByTagName("devices")[0].\
+            getElementsByTagName("heater")[0].getElementsByTagName("element")[0].\
+            setAttribute('desc', form['Post_HeaterSensorDesc'])
+
+        ConfigClass.__xmldoc.getElementsByTagName("heater")[0].\
+            getElementsByTagName("threshold")[0].setAttribute('value', form['Post_HeaterRange'])
+
+        ConfigClass.__xmldoc.getElementsByTagName("heater")[0].\
+            getElementsByTagName("thermometerInside")[0].setAttribute('mode', form['Post_HeaterInsideMode'])
+
+        ConfigClass.__xmldoc.getElementsByTagName("heater")[0].\
+            getElementsByTagName("thermometerOutside")[0].setAttribute('mode', form['Post_HeaterOutsideMode'])
+
+        for i in range(0, 5):
+            ConfigClass.__xmldoc.getElementsByTagName("heater")[0].\
+                getElementsByTagName("thermometerInside")[0].getElementsByTagName("device")[i].\
+                setAttribute('name', form['Post_HeaterInsideSensor'+str(i+1)])
+            
+            ConfigClass.__xmldoc.getElementsByTagName("heater")[0].\
+                getElementsByTagName("thermometerOutside")[0].getElementsByTagName("device")[i].\
+                setAttribute('name', form['Post_HeaterOutsideSensor'+str(i+1)])
+
+            ConfigClass.__xmldoc.getElementsByTagName("heater")[0].\
+                getElementsByTagName("support_device")[0].getElementsByTagName("device")[i].\
+                setAttribute('ip', form['Post_HeaterSupport'+str(i+1)])
+
+        # alarm data
+        ConfigClass.__xmldoc.getElementsByTagName("AlarmSystem")[0].\
+            setAttribute('ip', form['Post_AlarmSystemIP'])
+
+        for i in range(0, 11):
+            ConfigClass.__xmldoc.getElementsByTagName("rooms")[0].\
+                getElementsByTagName("room")[i].setAttribute('name', form['Post_AlarmRoom'+str(i+1)+'Name'])
+
+            ConfigClass.__xmldoc.getElementsByTagName("rooms")[0].\
+                getElementsByTagName("room")[i].setAttribute('temperature', form['Post_AlarmRoom'+str(i+1)+'Temp'])
+
+            ConfigClass.__xmldoc.getElementsByTagName("rooms")[0].\
+                getElementsByTagName("room")[i].setAttribute('light', form['Post_AlarmRoom'+str(i+1)+'Light'])
+
+            ConfigClass.__xmldoc.getElementsByTagName("rooms")[0].\
+                getElementsByTagName("room")[i].getElementsByTagName("alarmSensor")[0].\
+                setAttribute('sensorName', form['Post_AlarmRoom'+str(i+1)+'Sensor1'])
+
+            ConfigClass.__xmldoc.getElementsByTagName("rooms")[0].\
+                getElementsByTagName("room")[i].getElementsByTagName("alarmSensor")[1].\
+                setAttribute('sensorName', form['Post_AlarmRoom'+str(i+1)+'Sensor2'])
+
+        # actions data
+
+        # sprinklers data
+        for i in range(0, 3):
+            ConfigClass.__xmldoc.getElementsByTagName("devices")[0].\
+                getElementsByTagName("sprinkler")[0].getElementsByTagName("element")[i].\
+                setAttribute('sensor', form['Post_SprinklerSensor'+str(i+1)])
+
+            ConfigClass.__xmldoc.getElementsByTagName("devices")[0].\
+                getElementsByTagName("sprinkler")[0].getElementsByTagName("element")[i].\
+                setAttribute('desc', form['Post_SprinklerSensor'+str(i+1)+'Desc'])
+
+        # gates data
+        for i in range(0, 3):
+            ConfigClass.__xmldoc.getElementsByTagName("devices")[0].\
+                getElementsByTagName("gate")[0].getElementsByTagName("element")[i].\
+                setAttribute('sensor', form['Post_GateSensor'+str(i+1)])
+
+            ConfigClass.__xmldoc.getElementsByTagName("devices")[0].\
+                getElementsByTagName("gate")[0].getElementsByTagName("element")[i].\
+                setAttribute('desc', form['Post_GateSensor'+str(i+1)+'Desc'])
+
+        # status data
+        for i in range(0, 5):
+            ConfigClass.__xmldoc.getElementsByTagName("devices")[0].\
+                getElementsByTagName("status")[0].getElementsByTagName("element")[i].\
+                setAttribute('sensor', form['Post_StatusSensor'+str(i+1)])
+
+            ConfigClass.__xmldoc.getElementsByTagName("devices")[0].\
+                getElementsByTagName("status")[0].getElementsByTagName("element")[i].\
+                setAttribute('desc', form['Post_StatusSensor'+str(i+1)+'Desc'])
+
+            ConfigClass.__xmldoc.getElementsByTagName("devices")[0].\
+                getElementsByTagName("status")[0].getElementsByTagName("element")[i].\
+                setAttribute('messageActive', form['Post_StatusSensor'+str(i+1)+'MessageActive'])
+
+            ConfigClass.__xmldoc.getElementsByTagName("devices")[0].\
+                getElementsByTagName("status")[0].getElementsByTagName("element")[i].\
+                setAttribute('messageInactive', form['Post_StatusSensor'+str(i+1)+'MessageInactive'])
+
+            ConfigClass.__xmldoc.getElementsByTagName("devices")[0].\
+                getElementsByTagName("status")[0].getElementsByTagName("element")[i].\
+                setAttribute('messageSend', form['Post_StatusSensor'+str(i+1)+'MessageSend'])
+
+        # pv data        
+        for i in range(0, 3):
+            ConfigClass.__xmldoc.getElementsByTagName("devices")[0].\
+                getElementsByTagName("energy")[0].getElementsByTagName("element")[i].\
+                setAttribute('sensor', form['Post_EnergySensor'+str(i+1)])
+
+            ConfigClass.__xmldoc.getElementsByTagName("devices")[0].\
+                getElementsByTagName("energy")[0].getElementsByTagName("element")[i].\
+                setAttribute('desc', form['Post_EnergySensor'+str(i+1)+'Desc'])
+
+        ConfigClass.__xmldoc.writexml(open('data/config.xml', 'w'))
+        pass

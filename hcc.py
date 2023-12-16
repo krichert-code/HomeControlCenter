@@ -12,10 +12,10 @@ import CryptClass
 import APIClass
 import HccDeamonClass
 import ConnectorDeamonClass
+import AdminPanelSyncClass
 
 app = Flask(__name__)
-
-
+admiPanelSync = AdminPanelSyncClass.AdminPanelSyncClass()
 
 @app.route("/restApi", methods=['POST'])
 def restApi():
@@ -35,15 +35,23 @@ def restApi():
         print (str(e))
         return ""
 
-
+@app.route("/", methods=['GET','POST'])
+def adminPanel():
+    config = ConfigClass.ConfigClass()
+    if request.method == 'POST':
+        config.updateConfiguration(request.form)        
+        admiPanelSync.notify()
+        return "Success"
+    else:        
+        return render_template('index.html', config=config)
 
 if (__name__ == "__main__"):
         config = ConfigClass.ConfigClass()
         config.initializeConfigData()
 
-
         try:
             hccDeamon = HccDeamonClass.HccDeamonClass()
+            admiPanelSync.registerObserver(hccDeamon)
             hccDeamon.start()
 
             #sleep is only for get TID for logging purposes

@@ -17,5 +17,7 @@ class EventClass:
         self.desc = desc
         self.date = date
         self.state = state
-        self.messageId = ''
+        self.messageSend = 0
+        self.messageActive = ''
+        self.messageInactive = ''
         self.isHoliday = isHoliday

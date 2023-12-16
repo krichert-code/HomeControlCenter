@@ -15,9 +15,6 @@ class RoomClass:
         switch = SwitchClass.SwitchClass()
         alarm = AlarmClass.AlarmClass()
 
-        # TODO: dirty workaround must be fixed
-        tempOut = 0
-
         roomsObj = {}
         rooms = []
 
@@ -63,7 +60,6 @@ class RoomClass:
                                 presenceItem['presence']
                             roomAlarm['present'] = 1
             except:
-
                 roomsObj['error'] = 255
 
             roomTemp['id'] = item['tempId']
@@ -78,12 +74,6 @@ class RoomClass:
                         tempItem['thresholdExceeded']
                     roomTemp['present'] = 1
                     break
-
-            # TODO: warkaround outdoor must be treat as casual room
-            if item['tempId'] == 'weather':
-                roomTemp['temperature'] = tempOut
-                roomTemp['thresholdExceeded'] = 'no'
-                roomTemp['present'] = 1
 
             roomParams['light'] = roomlight
             roomParams['alarm'] = roomAlarm
