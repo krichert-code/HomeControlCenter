@@ -8,7 +8,7 @@ import datetime
 import ActionThread
 import AlarmClass
 import threading
-
+import copy
 
 class SettingElementClass(object):
 
@@ -666,7 +666,7 @@ class ConfigClass(object):
             except Exception as e:
                 pass
 
-        ConfigClass.__xmldoc.writexml(open('data/config.xml', 'w'))
+        self.__writeConfigfile()
 
 
     def getSettingsData(self, pageId):
@@ -844,9 +844,37 @@ class ConfigClass(object):
 
 
 # ---------------------------Generic config methods ----------------------
+    def __writeConfigfile(self):
+        ConfigClass.__mutex.acquire()
+
+        config = copy.deepcopy(ConfigClass.__xmldoc)
+        # clear state
+        config.getElementsByTagName("devices")[0].\
+            getElementsByTagName("heater")[0].getElementsByTagName("element")[0].\
+            setAttribute('state', '0')
+
+        for i in range(0, 3):
+            config.getElementsByTagName("devices")[0].\
+                getElementsByTagName("sprinkler")[0].getElementsByTagName("element")[i].\
+                setAttribute('state', '0')
+
+            config.getElementsByTagName("devices")[0].\
+                getElementsByTagName("gate")[0].getElementsByTagName("element")[i].\
+                setAttribute('state', '0')
+
+            config.getElementsByTagName("devices")[0].\
+                getElementsByTagName("energy")[0].getElementsByTagName("element")[i].\
+                setAttribute('state', '0')
+
+        for i in range(0, 5):
+            config.getElementsByTagName("devices")[0].\
+                getElementsByTagName("status")[0].getElementsByTagName("element")[i].\
+                setAttribute('state', '0')
+
+        config.writexml(open('data/config.xml', 'w'))
+        ConfigClass.__mutex.release()
 
     def updateConfiguration(self, form):
-
         # generic data
         ConfigClass.__xmldoc.getElementsByTagName("calendar")[0].\
             getElementsByTagName("key")[0].setAttribute('value', form['Post_CalendarKey'])
@@ -982,5 +1010,4 @@ class ConfigClass(object):
                 getElementsByTagName("energy")[0].getElementsByTagName("element")[i].\
                 setAttribute('desc', form['Post_EnergySensor'+str(i+1)+'Desc'])
 
-        ConfigClass.__xmldoc.writexml(open('data/config.xml', 'w'))
-        pass
+        self.__writeConfigfile()
