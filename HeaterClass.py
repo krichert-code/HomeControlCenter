@@ -8,37 +8,54 @@ import ActionThread
 from datetime import datetime
 import json
 import traceback
+import DBClass
+import threading
 
 
 class HeaterParam(object):
 
-    def __init__(
-        self,
-        tempInside,
-        tempOutside,
-        mode,
-        isDay,
-        ):
-        self.tempInside = tempInside
-        self.tempOutside = tempOutside
-        self.mode = mode
-        self.isDay = isDay
-        self.date = datetime.now().strftime('%H:%M %d/%m/%y')
+    def __init__(self):
+        self.timeOffSampleCount = 0
+        self.timeOnDaySampleCount = 0
+        self.timeOnNightSampleCount = 0
+    
+    def initializeSamples(self, timeOnDay, timeOnNight, timeOff):
+        self.timeOffSampleCount = timeOff
+        self.timeOnDaySampleCount = timeOnDay
+        self.timeOnNightSampleCount = timeOnNight
+
+    def updateTimeOff(self):
+        self.timeOffSampleCount = self.timeOffSampleCount + 1
+    def updateTimeOnDay(self):
+        self.timeOnDaySampleCount = self.timeOnDaySampleCount + 1
+    def updateTimeOnNight(self):
+        self.timeOnNightSampleCount = self.timeOnNightSampleCount + 1
+    def getData(self):
+        return (self.timeOffSampleCount,self.timeOnDaySampleCount,self.timeOnNightSampleCount)
+    def clearData(self):
+        self.timeOffSampleCount = 0
+        self.timeOnDaySampleCount = 0
+        self.timeOnNightSampleCount = 0
+    def getPercentStatistics(self):
+        total = self.timeOffSampleCount + self.timeOnDaySampleCount + self.timeOnNightSampleCount
+        return (self.timeOffSampleCount / total, self.timeOnDaySampleCount / total, 
+                self.timeOnNightSampleCount /total)
 
 
 class HeaterClass(object):
 
+    __singletonInit = False
+    __mutex = None
     # static data
 
     __data = []
-    __data_per_day = []
+    __data_per_day = HeaterParam()
+    __data_per_total = HeaterParam()
+    __heaterOnToday = 0
+
     __dayMode = False
     __lastState = -1
     __lastSupportState = -1
-
-    # statistic - how long heater is on today
-
-    __heaterOnToday = 0
 
     # State defines
 
@@ -48,19 +65,27 @@ class HeaterClass(object):
 
     # Stored data buffer size - data to generate charts
 
-    __maxDataBuffer = 50000
+    __maxDataBuffer = 10000
 
-    # How offent data should be stored in buffer (more offten means shorter period displayed on chart)
+    # How offent data should be stored in buffer [min]
 
-    __storeDataInterval = 10
-
-    # How many data should be used to generate 'WorkHeatChart' (every __lineChartInterval sample will be used) - more data means that chart will be generated slower
-
-    __lineChartInterval = 24
+    __storeDataInterval = 60
 
     def __init__(self):
-        self.__storeDataCounter = 0
+        if (HeaterClass.__singletonInit == False):            
+            HeaterClass.__singletonInit = True                        
+            HeaterClass.__mutex = threading.Lock()
 
+            self.__storeDataCounter = 0
+            db = DBClass.DBClass()
+            stats = db.getHeaterStats()
+            HeaterClass.__data_per_total.initializeSamples(stats[0], stats[1], stats[2])
+            
+            tempEntries = db.getTemeperatureEntries()
+            for item in tempEntries:
+                HeaterClass.__data.append((item[0], item[1], str(item[2])))
+            
+            
     def __getTemperatureFromDevice(self, thermType):
         config = ConfigClass.ConfigClass()
         alarm = AlarmClass.AlarmClass()
@@ -69,12 +94,14 @@ class HeaterClass(object):
         isTemepratureInit = False
         thermalElements = 1
         status = 0
+        mode = ""
 
         if thermDevices['error'] != 0:
             status = 1
         else:
             thermData = config.getFirstThermDevices(thermType)
-            while thermData['error'] == 0:
+            mode = thermData['mode']
+            while thermData['error'] == 0:                
                 for item in thermDevices['temperature']:
                     if thermData['name'] == item['name']:
                         tempValue = round(float(item['value'])
@@ -89,12 +116,14 @@ class HeaterClass(object):
                             temperature = tempValue
                         elif thermData['mode'] == 'avg' \
                             or isTemepratureInit == False:
-                            temperature = (temperature + tempValue) \
-                                / thermalElements
+                            temperature = (temperature + tempValue)                                
 
                         thermalElements = thermalElements + 1
                         break
                 thermData = config.getNextThermDevices(thermType)
+            
+            if (mode == 'avg'):
+                temperature = temperature / thermalElements
 
         return (status, temperature)
 
@@ -227,13 +256,10 @@ class HeaterClass(object):
         isSupportedDeviceMode = config.isSupportedDeviceEnabled(dayOfWeek, hour)
         isSupportedDeviceEnable = config.isSupportDeviceEnabled()
 
-        # New day - reset statistics
+        # New day - reset statistics per day
         if hour == 0 and minute < 2:
             HeaterClass.__heaterOnToday = 0
-            HeaterClass.__data_per_day = []
-        if HeaterClass.__lastState == HeaterClass.__StateOn:
-            HeaterClass.__heaterOnToday = HeaterClass.__heaterOnToday \
-                + 1
+            HeaterClass.__data_per_day.clearData()
 
         # Check support source - if enable then turn off main source and
         # operate only on support source.
@@ -296,106 +322,44 @@ class HeaterClass(object):
             HeaterClass.__lastState = HeaterClass.__StateOff
 
 
-        # Store data once per defined invokes (currently it means once per 10min) - not need so many data
+        # Update statistics
         self.__storeDataCounter = self.__storeDataCounter + 1
+
+        if HeaterClass.__lastState == HeaterClass.__StateOn:
+            HeaterClass.__heaterOnToday = HeaterClass.__heaterOnToday \
+                + 1
+            if (HeaterClass.__dayMode == True):
+                HeaterClass.__data_per_total.updateTimeOnDay()
+                HeaterClass.__data_per_day.updateTimeOnDay()
+            else:
+                HeaterClass.__data_per_total.updateTimeOnNight()
+                HeaterClass.__data_per_day.updateTimeOnNight()
+        else:
+            HeaterClass.__data_per_total.updateTimeOff()
+            HeaterClass.__data_per_day.updateTimeOff()
+
+        # Store data statistics to local database - once per defined interval (currently it means once per 1h)
         if self.__storeDataCounter % HeaterClass.__storeDataInterval \
             == 0:
             # read from external temperature sensor
             (status, tempOutside) = self.__getTemperatureFromDevice('thermometerOutside')
             if status != 0:
                 return
+            db = DBClass.DBClass()
 
-            HeaterClass.__data.append(HeaterParam(temp, tempOutside,
-                    HeaterClass.__lastState, isDayMode))
-            HeaterClass.__data_per_day.append(HeaterParam(temp,
-                    tempOutside, HeaterClass.__lastState, isDayMode))
+            HeaterClass.__data.append((temp, tempOutside, datetime.now().strftime('%H:%M %d/%m/%y')))
+
+            # store to database once per 1 hour
+            db.addTemperatureEntry(temp, tempOutside)
+            db.addHeaterEntry(HeaterClass.__data_per_total.getData()[0], HeaterClass.__data_per_total.getData()[1], 
+                HeaterClass.__data_per_total.getData()[2])
+
             if len(HeaterClass.__data) > HeaterClass.__maxDataBuffer:
                 HeaterClass.__data.pop(0)
+            db.deleteTemepratureOldEntries()
 
-    def getPercentHeatWorkChart(self):
-        nightItem = 0
-        dayItem = 0
-        notWorkItem = 0
 
-        jsonData = {}
-        jsonData['cols'] = []
-        jsonData['rows'] = []
-
-        jsonData['cols'].append({
-            'id': '',
-            'label': 'Action',
-            'pattern': '',
-            'type': 'string',
-            })
-
-        jsonData['cols'].append({
-            'id': '',
-            'label': 'Percent',
-            'pattern': '',
-            'type': 'number',
-            })
-
-        for item in HeaterClass.__data:
-            if item.mode == 0 or item.mode == -1:
-                notWorkItem = notWorkItem + 1
-
-            if item.isDay == True and item.mode == 1:
-                dayItem = dayItem + 1
-
-            if item.isDay == False and item.mode == 1:
-                nightItem = nightItem + 1
-
-        jsonData['rows'].append({'c': [{'v': 'Tyb dzienny',
-                                'f': 'Tyb dzienny'}, {'v': dayItem,
-                                'f': ''}]})
-        jsonData['rows'].append({'c': [{'v': 'Tyb nocny',
-                                'f': 'Tyb nocny'}, {'v': nightItem,
-                                'f': ''}]})
-        jsonData['rows'].append({'c': [{'v': 'Brak pracy',
-                                'f': 'Brak pracy'}, {'v': notWorkItem,
-                                'f': ''}]})
-
-        return json.dumps(jsonData, indent=4)
-
-    def getStateHeatWorkChart(self):
-        counter = 0
-        jsonData = {}
-        jsonData['cols'] = []
-        jsonData['rows'] = []
-
-        jsonData['cols'].append({
-            'id': '',
-            'label': 'Date',
-            'pattern': '',
-            'type': 'string',
-            })
-
-        jsonData['cols'].append({
-            'id': '',
-            'label': 'Temp.wew',
-            'pattern': '',
-            'type': 'number',
-            })
-
-        jsonData['cols'].append({
-            'id': '',
-            'label': 'Temp.zew',
-            'pattern': '',
-            'type': 'number',
-            })
-
-        for item in HeaterClass.__data:
-            if counter % HeaterClass.__lineChartInterval == 0:
-                jsonData['rows'].append({'c': [{'v': item.date,
-                        'f': item.date}, {'v': item.tempInside,
-                        'f': str(item.tempInside)},
-                        {'v': item.tempOutside,
-                        'f': str(item.tempOutside)}]})
-            counter = counter + 1
-
-        return json.dumps(jsonData, indent=4)
-
-    def getCharts(self):
+    def getHeaterInfo(self):
         config = ConfigClass.ConfigClass()
         nightItem = 0
         dayItem = 0
@@ -404,57 +368,36 @@ class HeaterClass(object):
         dayItemPerDay = 0
         notWorkItemPerDay = 0
 
-        counter = 0
+        counter = 0        
+        limiter = int(len(HeaterClass.__data) / 240)
+        limiter = limiter + 1            
 
         jsonData = {}
         percentage = {}
         percentage_per_day = {}
         config_data = {}
 
-        for item in HeaterClass.__data:
-            if item.mode == 0 or item.mode == -1:
-                notWorkItem = notWorkItem + 1
-
-            if item.isDay == True and item.mode == 1:
-                dayItem = dayItem + 1
-
-            if item.isDay == False and item.mode == 1:
-                nightItem = nightItem + 1
-
-        percentage['day'] = dayItem
-        percentage['night'] = nightItem
-        percentage['off'] = notWorkItem
+        percentage['off'] = HeaterClass.__data_per_total.getData()[0]
+        percentage['day'] = HeaterClass.__data_per_total.getData()[1]
+        percentage['night'] = HeaterClass.__data_per_total.getData()[2]        
         jsonData['percentage'] = percentage
 
-        for item in HeaterClass.__data_per_day:
-            if item.mode == 0 or item.mode == -1:
-                notWorkItemPerDay = notWorkItemPerDay + 1
-
-            if item.isDay == True and item.mode == 1:
-                dayItemPerDay = dayItemPerDay + 1
-
-            if item.isDay == False and item.mode == 1:
-                nightItemPerDay = nightItemPerDay + 1
-
-        percentage_per_day['day'] = dayItemPerDay
-        percentage_per_day['night'] = nightItemPerDay
-        percentage_per_day['off'] = notWorkItemPerDay
+        percentage_per_day['off'] = HeaterClass.__data_per_day.getData()[0]
+        percentage_per_day['day'] = HeaterClass.__data_per_day.getData()[1]
+        percentage_per_day['night'] = HeaterClass.__data_per_day.getData()[2]        
         jsonData['percentagePerDay'] = percentage_per_day
 
         temp = []
         for item in HeaterClass.__data:
-            if counter % HeaterClass.__lineChartInterval == 0:
-
+            if (counter % limiter == 0):
         # jsonData['rows'].append({'c':[ {'v':item.date,'f':item.date}, {'v':item.tempInside,'f':str(item.tempInside)}, {'v':item.tempOutside,'f':str(item.tempOutside)}]  })
-
                 value = {}
-                value['inside'] = item.tempInside
-                value['outside'] = item.tempOutside
-                value['date'] = item.date
+                value['inside'] = item[0]
+                value['outside'] = item[1]
+                value['date'] = item[2]
                 temp.append(value)
             counter = counter + 1
         jsonData['temp'] = temp
-
 
         config_data['mainDevice'] = int(config.isMainDeviceEnabled())
         config_data['supportDevice'] = int(config.isSupportDeviceEnabled())
