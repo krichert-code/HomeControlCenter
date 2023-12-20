@@ -80,7 +80,7 @@ class APIClass:
 
     def APIheaterCharts(self, json_req):
         obj = HeaterClass.HeaterClass()
-        response = obj.getCharts()
+        response = obj.getHeaterInfo()
         return json.dumps(response)
 
     def APIgetGardenSettings(self, json_req):
@@ -254,7 +254,8 @@ class APIClass:
             #print( "Method : " + method_name)
             method = getattr(self, method_name)
             response = method(json_req)
-        except:
+        except Exception as e:
+            print("API Class :" + str(e))
             response = {'error': 'invalid command'}
             response = json.dumps(response)
 
