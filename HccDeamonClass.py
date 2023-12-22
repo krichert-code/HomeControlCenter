@@ -529,9 +529,11 @@ class ProgramAction:
         duskTimestamp = datetime.timestamp(s["dusk"])
         duskTimestamp = duskTimestamp - (2*3600)
 
+        dawnTimestamp = datetime.timestamp(s["dawn"])
+
         currentTimestamp = datetime.timestamp(datetime.now())
 
-        if (currentTimestamp > duskTimestamp):
+        if (currentTimestamp > duskTimestamp or currentTimestamp < dawnTimestamp):
             return True
         else:
             return False

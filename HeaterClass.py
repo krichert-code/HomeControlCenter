@@ -43,21 +43,20 @@ class HeaterParam(object):
 
 
 class HeaterClass(object):
+    # static data - states and statistics
 
     __singletonInit = False
     __mutex = None
-    # static data
+    __dayMode = False
+    __lastState = -1
+    __lastSupportState = -1
 
     __data = []
     __data_per_day = HeaterParam()
     __data_per_total = HeaterParam()
     __heaterOnToday = 0
 
-    __dayMode = False
-    __lastState = -1
-    __lastSupportState = -1
-
-    # State defines
+    # Defines (state and statistics)
 
     __StateOn = 1
     __StateOff = 0
@@ -297,6 +296,8 @@ class HeaterClass(object):
 
         # Main heat source control
         if (isMainDeviceEnable == False):
+            # turn off heater
+            url = alarm.getUpdateUrl(sensor[1], 0)
             self.__mainHeatSourceControl(url, 'clear', sensor[0])
             HeaterClass.__lastState = HeaterClass.__StateOff
         elif (isDayMode == True and temp + threshold <= dayTemp) \
@@ -304,10 +305,11 @@ class HeaterClass(object):
 
             # turn on heater
             url = alarm.getUpdateUrl(sensor[1], 1)
-            if HeaterClass.__lastState == HeaterClass.__StateOff \
-                or HeaterClass.__lastState \
-                == HeaterClass.__StateUnknown:
-                self.__mainHeatSourceControl(url, 'set', sensor[0])
+            #if HeaterClass.__lastState == HeaterClass.__StateOff \
+            #    or HeaterClass.__lastState \
+            #    == HeaterClass.__StateUnknown:
+            #    self.__mainHeatSourceControl(url, 'set', sensor[0])
+            self.__mainHeatSourceControl(url, 'set', sensor[0])
             HeaterClass.__lastState = HeaterClass.__StateOn
         elif (isDayMode == True and temp >= dayTemp + threshold) \
             or (isDayMode == False and temp >= nightTemp + threshold) \
@@ -315,10 +317,11 @@ class HeaterClass(object):
 
             # turn off heater
             url = alarm.getUpdateUrl(sensor[1], 0)
-            if HeaterClass.__lastState == HeaterClass.__StateOn \
-                or HeaterClass.__lastState \
-                == HeaterClass.__StateUnknown:
-                self.__mainHeatSourceControl(url, 'clear', sensor[0])
+            #if HeaterClass.__lastState == HeaterClass.__StateOn \
+            #    or HeaterClass.__lastState \
+            #    == HeaterClass.__StateUnknown:
+            #    self.__mainHeatSourceControl(url, 'clear', sensor[0])
+            self.__mainHeatSourceControl(url, 'clear', sensor[0])
             HeaterClass.__lastState = HeaterClass.__StateOff
 
 
