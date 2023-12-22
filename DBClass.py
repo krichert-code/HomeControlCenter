@@ -73,7 +73,7 @@ class DBClass(object):
 
         results = connection.execute(query)
 
-    def addTemperatureEntry(self, outside, inside):
+    def addTemperatureEntry(self, inside, outside):
         engine = db.create_engine('sqlite:///hcc.db')
         connection = engine.connect()
 

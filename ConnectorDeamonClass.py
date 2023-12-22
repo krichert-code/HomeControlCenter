@@ -79,7 +79,7 @@ class ConnectorDeamonClass(threading.Thread):
                 response.close()
 
             except Exception as e:
-                response.close()
-                reg_data['type'] = 0
                 logging.error('Connector exception : ' + str(e))
+                #response.close()
+                reg_data['type'] = 0
                 time.sleep(5)
