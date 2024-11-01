@@ -100,11 +100,15 @@ class HeaterClass(object):
         else:
             thermData = config.getFirstThermDevices(thermType)
             mode = thermData['mode']
-            while thermData['error'] == 0:                
+            while thermData['error'] == 0:
                 for item in thermDevices['temperature']:
                     if thermData['name'] == item['name']:
-                        tempValue = round(float(item['value'])
-                                + float(thermData['offset']), 2)
+                        try:
+                            tempValue = round(float(item['value'])
+                                    + float(thermData['offset']), 2)
+                        except:
+                            status = 1
+                            tempValue = 0
 
                         if isTemepratureInit == False:
                             temperature = tempValue
@@ -393,13 +397,15 @@ class HeaterClass(object):
         temp = []
         for item in HeaterClass.__data:
             if (counter % limiter == 0):
-        # jsonData['rows'].append({'c':[ {'v':item.date,'f':item.date}, {'v':item.tempInside,'f':str(item.tempInside)}, {'v':item.tempOutside,'f':str(item.tempOutside)}]  })
                 value = {}
                 value['inside'] = item[0]
                 value['outside'] = item[1]
                 value['date'] = item[2]
                 temp.append(value)
             counter = counter + 1
+            #if (counter == 200):
+            #    break
+
         jsonData['temp'] = temp
 
         config_data['mainDevice'] = int(config.isMainDeviceEnabled())
