@@ -1,4 +1,4 @@
-﻿#!/usr/bin/python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 import sqlalchemy as db
 from datetime import datetime
@@ -8,8 +8,8 @@ class DBClass(object):
 
     def __init__(self):
         if os.path.isfile('hcc.db') == False:
-            engine = db.create_engine('sqlite:///hcc.db')
-            connection = engine.connect()
+            print("Creating databae")
+            engine = db.create_engine('sqlite:///hcc.db', echo=True)
 
             metadata_energy = db.MetaData()
             metadata_temp = db.MetaData()
@@ -35,6 +35,7 @@ class DBClass(object):
                               db.String(20), nullable=False) )
             metadata_temp.create_all(engine)  # Creates the table
 
+            connection = engine.connect()
             query = db.insert(energy)
             values_list = [
                 {'Id': '1', 'month_name': 'Styczen', 'energy': 0, 'prev_energy' : 0},
@@ -52,19 +53,21 @@ class DBClass(object):
                 ]
             ResultProxy = connection.execute(query, values_list)
 
-            query = db.insert(heater)
-            ResultProxy = connection.execute(query, 
-                {'heaterOnDay': 0, 'heaterOnNight': 0, 'heaterOff': 0})
 
-        else:
-            engine = db.create_engine('sqlite:///hcc.db')
-            connection = engine.connect()
+            query = db.insert(heater).values(heaterOnDay = 0, heaterOnNight = 0, heaterOff = 0)
+            ResultProxy = connection.execute(query)
+            connection.commit()
+
+#        else:
+#            engine = db.create_engine('sqlite:///hcc.db')
+#            connection = engine.connect()
 
     def addHeaterEntry(self, offTime, dayOnTime, nightOnTime):
         engine = db.create_engine('sqlite:///hcc.db')
         connection = engine.connect()
 
         metadata = db.MetaData()
+        metadata.reflect(bind=engine)
         heaterData = db.Table('HeaterData', metadata, autoload=True,
                           autoload_with=engine)
         
@@ -72,17 +75,20 @@ class DBClass(object):
             heaterOnDay=dayOnTime, heaterOnNight=nightOnTime)
 
         results = connection.execute(query)
+        connection.commit()
 
     def addTemperatureEntry(self, inside, outside):
         engine = db.create_engine('sqlite:///hcc.db')
         connection = engine.connect()
 
         metadata = db.MetaData()
+        metadata.reflect(bind=engine)
         temperature = db.Table('TemperatureData', metadata, autoload=True,
                           autoload_with=engine)
         query = db.insert(temperature).values(outside=str(outside), inside=str(inside), 
                           date=datetime.now().strftime('%H:%M %d/%m/%y'))
         results = connection.execute(query)
+        connection.commit()
 
     def getTemeperatureEntries(self):
         data = []
@@ -90,10 +96,12 @@ class DBClass(object):
         connection = engine.connect()
 
         metadata = db.MetaData()
+        metadata.reflect(bind=engine)
+
         temperature = db.Table('TemperatureData', metadata, autoload=True,
                           autoload_with=engine)
         results = \
-            connection.execute(db.select([temperature])).fetchall()
+            connection.execute(temperature.select()).fetchall()
         return results
 
     def getHeaterStats(self):
@@ -102,11 +110,14 @@ class DBClass(object):
         connection = engine.connect()
 
         metadata = db.MetaData()
+        metadata.reflect(bind=engine)
         heaterStats = db.Table('HeaterData', metadata, autoload=True,
                           autoload_with=engine)
+
         results = \
-            connection.execute(db.select([heaterStats])).fetchall()
-        return results[0]
+            connection.execute(heaterStats.select()).fetchall()
+
+        return results
 
     def deleteTemepratureOldEntries(self):
         pass
@@ -116,33 +127,40 @@ class DBClass(object):
         connection = engine.connect()
 
         metadata = db.MetaData()
+        metadata.reflect(bind=engine)
         energy = db.Table('EnergyData', metadata, autoload=True,
-                          autoload_with=engine)
+                          autoflush=True, autoload_with=engine)
+
         query = db.update(energy).values(energy=value)
         query = query.where(energy.columns.Id == monthId)
         results = connection.execute(query)
+        connection.commit()
 
     def updatePrevEnergy(self, monthId, value):
         engine = db.create_engine('sqlite:///hcc.db')
         connection = engine.connect()
 
         metadata = db.MetaData()
+        metadata.reflect(bind=engine)
         energy = db.Table('EnergyData', metadata, autoload=True,
                           autoload_with=engine)
         query = db.update(energy).values(prev_energy=value)
         query = query.where(energy.columns.Id == monthId)
         results = connection.execute(query)
+        connection.commit()
 
     def getEnergyPerMonth(self, monthId):
         engine = db.create_engine('sqlite:///hcc.db')
         connection = engine.connect()
 
         metadata = db.MetaData()
+        metadata.reflect(bind=engine)
         energy = db.Table('EnergyData', metadata, autoload=True,
                           autoload_with=engine)
         results = \
-            connection.execute(db.select([energy]).where(energy.columns.Id
+            connection.execute(energy.select().where(energy.columns.Id
                                == monthId)).fetchall()
+
         return results[0]
 
     def getTotalEnergy(self):
@@ -151,9 +169,10 @@ class DBClass(object):
 
         val = 0
         metadata = db.MetaData()
+        metadata.reflect(bind=engine)
         energy = db.Table('EnergyData', metadata, autoload=True,
                           autoload_with=engine)
-        results = connection.execute(db.select([energy])).fetchall()
+        results = connection.execute(energy.select()).fetchall()
         for item in results:
-            val = val + item['energy']
+            val = val + item[2]
         return val

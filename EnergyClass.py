@@ -31,15 +31,13 @@ class EnergyClass(object):
     def getTotalPerMonth(self):
         energy = []
         for month in range(1, 13):
-            energy.append(EnergyClass.__db.getEnergyPerMonth(month)['energy'
-                          ])
+            energy.append(EnergyClass.__db.getEnergyPerMonth(month)[2])
         return energy
 
     def getTotalPerMonthPrevValue(self):
         energy = []
         for month in range(1, 13):
-            energy.append(EnergyClass.__db.getEnergyPerMonth(month)['prev_energy'
-                          ])
+            energy.append(EnergyClass.__db.getEnergyPerMonth(month)[3])
         return energy
 
 
