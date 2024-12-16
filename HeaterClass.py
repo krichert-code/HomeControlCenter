@@ -78,7 +78,7 @@ class HeaterClass(object):
             self.__storeDataCounter = 0
             db = DBClass.DBClass()
             stats = db.getHeaterStats()
-            HeaterClass.__data_per_total.initializeSamples(stats[0], stats[1], stats[2])
+            HeaterClass.__data_per_total.initializeSamples(stats[0][0], stats[0][1], stats[0][2])
             
             tempEntries = db.getTemeperatureEntries()
             for item in tempEntries:
@@ -375,9 +375,10 @@ class HeaterClass(object):
         dayItemPerDay = 0
         notWorkItemPerDay = 0
 
-        counter = 0        
-        limiter = int(len(HeaterClass.__data) / 240)
-        limiter = limiter + 1            
+        counter = 0
+        limiter = int(len(HeaterClass.__data) / 150)
+        limiter = limiter + 1
+        begin = len(HeaterClass.__data) - 100
 
         jsonData = {}
         percentage = {}
@@ -397,6 +398,7 @@ class HeaterClass(object):
         temp = []
         for item in HeaterClass.__data:
             if (counter % limiter == 0):
+            #if (begin < 0 or (begin > 0 and counter > begin)):
                 value = {}
                 value['inside'] = item[0]
                 value['outside'] = item[1]

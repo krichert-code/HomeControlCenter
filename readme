@@ -1,40 +1,29 @@
 1. Install pip
-   sudo apt-get install python-pip python-dev build-essential
+   sudo apt-get install python3-pip python3-dev build-essential
 
-2. Install Flask (globally)
-   sudo -H pip install flask
+2. Change env to not brake system packages (became a root)
+    python3 -m venv ~/py_envs
+    source ~/py_envs/bin/activate
+    python3 -m pip install xyz
 
-3. Install GPIO library
-    a. Download package
-	http://pypi.python.org/pypi/RPi.GPIO
-    b. Install python-dev library
-	sudo apt-get install python-dev
-    c. Run setup file
-	sudo python setup.py install
-    d. Alternative to above is to use pip (still installing python-dev is required)
-	pip install RPi.GPIO
+3. Install HCC libs
+    pip install flask
+    pip install RPi.GPIO  (http://pypi.python.org/pypi/RPi.GPIO)
+    pip install pycryptodome
+    pip install youtube-search-python
+    pip install cec (https://github.com/trainman419/python-cec)
+    pip3 install   --force-reinstall -v httpx==0.27.2  (for yt serch 0.28 has bug)
 
-4. Install cec library
-    a. pip install cec (https://github.com/trainman419/python-cec)
+4. Run application (as a service)
+    Add one of below entry to /etc/rc.local file
 
-5. Run application (as a service)
-      Add one of below entry to /etc/rc.local file
-
-    1. start as a regular bash script
-      cd /RtspSrv && ./rtsp-simple-server &
-      cd /HomeControlCenter && python proxy.py &
-      cd /HomeControlCenter && python new_hcc.py &
-
-    2.start-stop-daemon -b -S --chdir /HomeControlCenter -x hcc.py
+    cd /HomeControlCenter && ./run.sh &
 
 5. Sms API - https://justsend.pl/
    BulkSms - https://www.bulksms.com/
 
+
+
 TODO list:
 0. If temp sensor is the last in Alarm.xml then move sensors are not reported
 1. Change class name for radio component (player is more generic)
-2. Alarm implementation
-3. Camera implementation
-4. Separate class for 'info' data (currently implemented as a part of hcc)
-6. Exception logger in  hccDeamon - exceptions shall be displayed in info view
-7. Saving and restoring history of temperature data
