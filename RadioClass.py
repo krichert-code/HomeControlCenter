@@ -7,6 +7,7 @@ import json
 import os
 import time
 import copy
+from requests.auth import HTTPBasicAuth
 from youtubesearchpython import *
 #import cec
 
@@ -175,6 +176,7 @@ class RadioClass(object):
         payload = RadioClass.__get_volume_req
         volume = requests.post(req, data=json.dumps(payload),
                                headers=RadioClass.__headers,
+                               auth=HTTPBasicAuth('kodi', 'kodi'),
                                verify=False, timeout=3)
 
         data = json.loads(volume.text)
@@ -195,6 +197,7 @@ class RadioClass(object):
         req = self.__getRadioDevice() + '/jsonrpc'
         resp = requests.post(req, data=json.dumps(post_data),
                              headers=RadioClass.__headers,
+                             auth=HTTPBasicAuth('kodi', 'kodi'),
                              verify=False, timeout=10)
         data = json.loads(resp.text)
         return data['result']['channels']
@@ -204,6 +207,7 @@ class RadioClass(object):
         req = self.__getRadioDevice() + '/jsonrpc'
         resp = requests.post(req, data=json.dumps(post_data),
                              headers=RadioClass.__headers,
+                             auth=HTTPBasicAuth('kodi', 'kodi'),
                              verify=False, timeout=10)
         data = json.loads(resp.text)
         return data['result']['channels']
@@ -221,6 +225,7 @@ class RadioClass(object):
         req = self.__getRadioDevice() + '/jsonrpc'
         d = requests.post(req, data=json.dumps(post_data),
                           headers=RadioClass.__headers, verify=False,
+                          auth=HTTPBasicAuth('kodi', 'kodi'),
                           timeout=10)
         resp = {}
         resp['channelid'] = channel
@@ -305,7 +310,8 @@ class RadioClass(object):
 
     def getYTsearch(self, text):
         result = []
-        customSearch = VideosSearch(text, limit = 20)
+
+        customSearch = VideosSearch(text, limit = 30)
         for entry in customSearch.result()['result']:
             entry_data = {}
             entry_data['title'] = entry['title']
@@ -313,6 +319,7 @@ class RadioClass(object):
             entry_data['link'] = entry['link']
             entry_data['icon'] = entry['thumbnails'][0]['url']
             result.append(entry_data)
+
         return result
 
     def getRadioStations(self):
@@ -401,6 +408,7 @@ class RadioClass(object):
             payload['params']['volume'] = volume
             volume = requests.post(req, data=json.dumps(payload),
                                    headers=RadioClass.__headers,
+                                   auth=HTTPBasicAuth('kodi', 'kodi'),
                                    verify=False, timeout=3)
         except requests.exceptions.RequestException:
             req = None
