@@ -1,6 +1,5 @@
 ﻿#!/usr/bin/python
 # -*- coding: utf-8 -*-
-
 import HeaterClass
 import CalendarClass
 import ActionClass
@@ -17,6 +16,8 @@ import os
 import json
 import psutil
 from subprocess import Popen
+import MediaInterface
+import threading
 
 
 class APIClass:
@@ -24,7 +25,14 @@ class APIClass:
     methods = {}
 
     def __init__(self):
-        pass
+        self.__mutex = threading.Lock()
+        self.__mediaObj = 0
+
+    def registerMedia(self, media):
+        self.__mutex.acquire()
+        self.__mediaObj = media
+        self.__mutex.release()
+
 
     def APItemperature(self, json_req):
         obj = HeaterClass.HeaterClass()
@@ -179,8 +187,14 @@ class APIClass:
         return self.APIGenericCMD(json_req['action'], param)
 
     def APIVideoShare(self, json_req):
-        param = json_req['link']
-        return self.APIGenericCMD(json_req['action'], param)
+        if 'link' in json_req:
+            param = json_req['link']
+            return self.APIGenericCMD(json_req['action'], param)
+        playlist = json_req['playlist']
+        self.__mutex.acquire()
+        self.__mediaObj.mediaPlaylistUpdate(playlist)
+        self.__mutex.release()
+        return self.APIevents()
 
     def APISprinklerOn(self, json_req):
         param = json_req['id']
@@ -195,6 +209,10 @@ class APIClass:
         return self.APIGenericCMD(json_req['action'], param)
 
     def APIStop(self, json_req):
+        if 'next' not in json_req:
+            self.__mutex.acquire()
+            self.__mediaObj.mediaPlaylistUpdate()
+            self.__mutex.release()
         return self.APIGenericCMD(json_req['action'])
 
     def APIVolumeUp(self, json_req):

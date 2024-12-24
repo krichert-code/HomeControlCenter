@@ -11,6 +11,7 @@ import ActionClass
 import SprinklerClass
 import EnergyClass
 import ConfigurationInterface
+import MediaInterface
 import DBClass
 import RPi.GPIO as GPIO
 import json
@@ -18,6 +19,7 @@ import AlarmClass
 import traceback
 import logging
 import SwitchClass
+import RadioClass
 import base64
 import os
 from datetime import date
@@ -408,8 +410,7 @@ class Energy:
             if self.__curr_day != curr_day:
                 # update total value for current month using today produced energy
                 energyForMonth = \
-                    self.__db.getEnergyPerMonth(self.__curr_month)['energy'
-                        ]
+                    self.__db.getEnergyPerMonth(self.__curr_month)[2]
 
                 energyForMonth = energyForMonth \
                     + self.__lastGoodValue
@@ -420,8 +421,7 @@ class Energy:
                 # check if it's new month, then copy current value to previous_energy and clear
                 if (curr_day == 1):
                     energyForMonth = \
-                        self.__db.getEnergyPerMonth(curr_month)['energy'
-                            ]
+                        self.__db.getEnergyPerMonth(curr_month)[2]
                     self.__db.updatePrevEnergy(curr_month,
                             energyForMonth)
                     self.__db.updateEnergy(curr_month,
@@ -601,19 +601,57 @@ class ProgramAction:
                     logging.error("Program class light " + light['lightIp'] +" off - caused time off")
                     continue
 
+
+class Media:
+
+    def __init__(self):
+        self.__radio = RadioClass.RadioClass()
+        self.__idx = 0
+        self.__playlist = []
+
+    def initializePlaylistData(self, playlist):
+        self.__idx = 0
+        self.__playlist.clear()
+        self.__playlist = playlist
+
+    def timeEvent(self, tick):
+        try:
+            if (tick%5 != 0):
+                return
+            if (self.__radio.isPlayerEnabled() == False and self.__idx < len(self.__playlist) ):
+                self.__radio.playYTAddonVideo(self.__playlist[self.__idx])
+                self.__idx=self.__idx+1
+        except Exception as e:
+            logging.error('MEDIA EXCEPT: ' + str(e) + " " + traceback.format_exc())
+
+
 # ------------------------------------------------------------------------------------------------------------------------
 
-class HccDeamonClass(threading.Thread, ConfigurationInterface.ConfigurationInterface):
+class HccDeamonClass(threading.Thread, ConfigurationInterface.ConfigurationInterface, MediaInterface.MediaInterface):
 
     def __init__(self):
         threading.Thread.__init__(self)
         self.__stopEvent = False
+        self.__speaker = Speaker()
+        self.__alarm = Alarm()
+        self.__calendar = Calendar()
+        self.__heater = Heater()
+        self.__messages = Messages()
+        self.__sprinkler = Sprinkler()
+        self.__energy = Energy()
+        self.__status = Status()
+        self.__media = Media()
+        self.__programAction = ProgramAction()
 
     def configurationUpdate(self):
         """Overrides ConfigurationInterface.configurationUpdate()"""
         config = ConfigClass.ConfigClass()
         config.initializeConfigData()
-        print("* Configuration update")        
+        print("* Configuration update")
+
+    def mediaPlaylistUpdate(self, data = []):
+        """Overrides MediaInterface.mediaPlaylistUpdate()"""
+        self.__media.initializePlaylistData(data)
 
     def stop(self):
         self.__stopEvent = True
@@ -638,38 +676,22 @@ class HccDeamonClass(threading.Thread, ConfigurationInterface.ConfigurationInter
 
         logging.info('HCC deamon pid')
         logging.info(str(proc.communicate()[0]))
-
         log.setLevel(logging.ERROR)
 
-        timerTick = 0        
-        speaker = Speaker()
-        alarm = Alarm()
-        calendar = Calendar()
-        heater = Heater()
-        messages = Messages()
-        sprinkler = Sprinkler()
-        energy = Energy()
-        status = Status()
-        programAction = ProgramAction()
-
+        timerTick = 0
         while not self.__stopEvent:
             try:
-                alarm.timeEvent()
-                speaker.timeEvent()
-                calendar.timeEvent()
-                heater.timeEvent(timerTick)
-                messages.timeEvent(timerTick)
-                sprinkler.timeEvent(timerTick)
-                energy.timeEvent(timerTick)
-                status.timeEvent(timerTick)
-                programAction.timeEvent(timerTick)
+                self.__alarm.timeEvent()
+                self.__speaker.timeEvent()
+                self.__calendar.timeEvent()
+                self.__heater.timeEvent(timerTick)
+                self.__messages.timeEvent(timerTick)
+                self.__sprinkler.timeEvent(timerTick)
+                self.__energy.timeEvent(timerTick)
+                self.__status.timeEvent(timerTick)
+                self.__media.timeEvent(timerTick)
+                self.__programAction.timeEvent(timerTick)
                 time.sleep(1)
                 timerTick = timerTick + 1
             except Exception as e:
                 logging.error(str(e))
-
-
-
-
-
-

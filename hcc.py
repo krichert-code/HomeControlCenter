@@ -16,12 +16,12 @@ import AdminPanelSyncClass
 
 app = Flask(__name__)
 admiPanelSync = AdminPanelSyncClass.AdminPanelSyncClass()
+api = APIClass.APIClass()
 
 @app.route("/restApi", methods=['POST'])
 def restApi():
     req = {}
     crypt = CryptClass.CryptClass()
-    api = APIClass.APIClass()
 
     try:
         postData = crypt.DecodeWithId(request.data).decode()
@@ -52,6 +52,7 @@ if (__name__ == "__main__"):
         try:
             hccDeamon = HccDeamonClass.HccDeamonClass()
             admiPanelSync.registerObserver(hccDeamon)
+            api.registerMedia(hccDeamon)
             hccDeamon.start()
 
             #sleep is only for get TID for logging purposes
