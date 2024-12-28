@@ -216,6 +216,11 @@ class RadioClass(object):
         response = {}
         response['radio'] = self.getPVRRadioStations()
         response['tv'] = self.getPVRTVStations()
+        mp3 = self.getFiles()
+        data = []
+        for f in mp3:
+            data.append(f.label)
+        response['mp3'] = data
         response['volume'] = self.__getPlayerVolume()
         return response
 
@@ -360,6 +365,9 @@ class RadioClass(object):
         return files
 
     def playMp3File(self, file):
+        config = ConfigClass.ConfigClass()
+        file = config.getMp3Directory() + "/" + file
+
         isDirectory = os.path.isdir(file)
         if isDirectory == False:
             post_data = copy.deepcopy(RadioClass.__play_req)

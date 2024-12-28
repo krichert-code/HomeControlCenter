@@ -178,6 +178,10 @@ class APIClass:
         param = json_req['channel']
         return self.APIGenericCMD(json_req['action'], param)
 
+    def APIPlayMp3(self, json_req):
+        param = json_req['folder']
+        return self.APIGenericCMD(json_req['action'], param)
+
     def APIPlaySpotifyObject(self, json_req):
         param = json_req['link']
         return self.APIGenericCMD(json_req['action'], param)
