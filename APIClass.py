@@ -217,7 +217,10 @@ class APIClass:
             self.__mutex.acquire()
             self.__mediaObj.mediaPlaylistUpdate()
             self.__mutex.release()
-        return self.APIGenericCMD(json_req['action'])
+        if 'sourceIsLocal' in json_req:
+            return self.APIGenericCMD(json_req['action'], json_req['sourceIsLocal'])
+        else:
+            return self.APIGenericCMD(json_req['action'], False)
 
     def APIVolumeUp(self, json_req):
         return self.APIGenericCMD(json_req['action'])

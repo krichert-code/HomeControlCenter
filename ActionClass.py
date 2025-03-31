@@ -149,7 +149,10 @@ class ActionClass(object):
 
     def actionOnStop(self, param=''):
         radio = RadioClass.RadioClass()
-        radio.getRadioStopRequest()
+        if (param == False):
+            radio.getRadioStopRequest()
+        else:
+            radio.getRadioNextRequest()
         return 0
 
     def actionOnVolumeUp(self, param=''):
