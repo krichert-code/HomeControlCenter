@@ -63,8 +63,14 @@ class RadioClass(object):
         'jsonrpc': '2.0',
         'id': '1',
         'method': 'Player.Open',
-        'params': {'item': {'directory': 'PLAY_REQUEST'}},
+        'params': {'item': {'directory': 'PLAY_REQUEST'}, 'options': {'repeat':'all', 'shuffled':True}},
         }
+    __play_req_next = {
+        'jsonrpc': '2.0',
+        'method': 'Player.GoTo',
+        'params': { 'playerid': 1, 'to': 'next' },
+        'id': 1,
+       }
     __stop_req = {
         'jsonrpc': '2.0',
         'method': 'Player.Stop',
@@ -400,6 +406,19 @@ class RadioClass(object):
         try:
             req = self.__getRadioDevice() + '/jsonrpc'
             payload = RadioClass.__stop_req
+            for idx in range(0, 2):
+                payload['params']['playerid'] = idx
+                requests.post(req, data=json.dumps(payload),
+                              headers=RadioClass.__headers,
+                              verify=False, timeout=3)
+                time.sleep(1)
+        except:
+            req = None
+
+    def getRadioNextRequest(self):
+        try:
+            req = self.__getRadioDevice() + '/jsonrpc'
+            payload = RadioClass.__play_req_next
             for idx in range(0, 2):
                 payload['params']['playerid'] = idx
                 requests.post(req, data=json.dumps(payload),

@@ -8,18 +8,9 @@
 #
 # In order to enable or disable this script just change the execution
 # bits.
-#
-# By default this script does nothing.
 
+if test -d /etc/boot.d ; then
+	run-parts /etc/boot.d
+fi
 
-#cd /HomeControlCenter && ./proxy.py &
-cd /HomeControlCenter && ./hcc.py &
-#cd /PKKK && python3 pkkk.py &
-
-#start-stop-daemon -b -S --chdir /HomeControlCenter -x proxy.py
-#start-stop-daemon -b -S --chdir /HomeControlCenter -x new_hcc.py
-#start-stop-daemon -b -S --chdir /PKKK -x pkkk.py
-
-#cd /RtspSrv && ./rtsp-simple-server &
-
-exit 0
+cd /HomeControlCenter && ./run.sh &
