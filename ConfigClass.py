@@ -656,6 +656,7 @@ class ConfigClass(object):
 
         for (key, value) in data.items():
             try:
+                #print("-------saveSettigsData key = " + key)
                 item = \
                     ConfigClass.__xmldoc.getElementsByTagName(element_name)[0].getElementsByTagName(key)[0]
 
@@ -664,6 +665,7 @@ class ConfigClass(object):
 
                 item.setAttribute('value', value)
             except Exception as e:
+                #print("-------saveSettigsData error key = " + key)
                 pass
 
         self.__writeConfigfile()

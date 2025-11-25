@@ -9,6 +9,9 @@ import time
 import copy
 from requests.auth import HTTPBasicAuth
 from youtubesearchpython import *
+#from yt_dlp import YoutubeDL
+import requests
+import re
 #import cec
 
 
@@ -293,21 +296,60 @@ class RadioClass(object):
         response_data = {}
         return response_data
 
+
+    def getPlaylistLinks(self, url):
+        url="https://youtube.com/" + url[url.rfind("watch"):]
+        links = []
+
+        list_id = url[url.find("list="):url.rfind("&")]
+        pattern = "v=.{11}"r"\\u0026"+list_id
+
+        result = set()
+
+        resp = requests.get(url)
+        if resp.status_code == 200:
+            html = resp.text
+
+            while(True):
+                obj = re.search(pattern,html)
+                if (obj == None):
+                    break
+                idx_s = obj.span()[0]
+                idx_e = obj.span()[1]
+
+                link = "https://www.youtube.com/"+html[idx_s:idx_s+13]
+                result.add(link)
+                html=html[idx_e:]
+                obj=None
+
+            links = list(result)
+        return links
+
+
+    def isYTPlaylist(self, link):
+        if link.find('list') != -1:
+            return True
+        return False
+
     def playYTAddonVideo(self, link):
-        #print("LINK = " + link)
-        if link.find("youtube.com") != -1:
-            link="https://youtu.be/" + link[link.rfind("v=")+2:]
-        #print("LINK = " + link)
+        #print("!!!!!!LINK = " + link)
 
         post_data = copy.deepcopy(RadioClass.__play_req_yt)
-        if link.find('playlist') == -1:
+        if link.find('list') == -1:
+            link="https://youtu.be/" + link[link.rfind("v=")+2:]
+
             post_data['params']['item']['file'] = \
                 'plugin://plugin.video.youtube/play/?screensaver=true&video_id=' \
                 + link[link.rindex('/') + 1:]
         else:
-            post_data['params']['item']['file'] = \
-                'plugin://plugin.video.youtube/play/?play=1&&order=default&playlist_id=' \
-                + link[link.rindex('=') + 1:]
+            return
+#            link="https://youtube.com/" + link[link.rfind("watch"):]
+#            post_data['params']['item']['file'] = \
+#                'plugin://plugin.video.youtube/play/?order=default&playlist_id=' \
+#                + link[link.rindex('=') + 1:]
+
+#        print("!!!!!!PLUGIN = " + post_data['params']['item']['file'])
+
         resp = {}
         resp['status'] = 0
         try:
