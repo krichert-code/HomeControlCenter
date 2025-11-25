@@ -1,4 +1,4 @@
-﻿#!/usr/bin/python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 import requests
 import threading
@@ -610,6 +610,7 @@ class Media:
         self.__playlist = []
 
     def initializePlaylistData(self, playlist):
+        self.__radio.getRadioStopRequest()
         self.__idx = 0
         self.__playlist.clear()
         self.__playlist = playlist

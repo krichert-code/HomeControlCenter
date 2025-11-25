@@ -76,16 +76,16 @@ class SprinklerClass(object):
         duration = int(config.getDurationTime()) * 60
         currentTS = time.time()
 
-        print ("---------------AutoWater Begin")
+        print ("---------------AutoWater Begin : globalEnabled = " + str(config.getGlobalEnable()) )
 
-        if int(config.getGlobalEnable()) == 0:
-            self.setSprinklerOff()
+        if config.getGlobalEnable() == 0:
+            #self.setSprinklerOff()
+            #print ("---------------AutoWaterOff 1")
             return returnState
 
         if SprinklerClass.__autowater == False:
             self.__state = 0
             self.__timestamp = currentTS
-            print ("---------------AutoWaterOff")
             if config.isStartTime(curr_week_day, curr_hour, curr_min) \
                 or SprinklerClass.__force_auto_water == True:
                 print ("---------------Time or force = " + str(SprinklerClass.__force_auto_water))
@@ -100,6 +100,7 @@ class SprinklerClass(object):
                 returnState = True
             else:
                 returnState = False
+                print ("---------------AutoWaterOff 1")
                 self.setSprinklerOff()
 
         return returnState

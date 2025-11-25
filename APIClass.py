@@ -191,14 +191,26 @@ class APIClass:
         return self.APIGenericCMD(json_req['action'], param)
 
     def APIVideoShare(self, json_req):
-        if 'link' in json_req:
-            param = json_req['link']
-            return self.APIGenericCMD(json_req['action'], param)
-        playlist = json_req['playlist']
-        self.__mutex.acquire()
-        self.__mediaObj.mediaPlaylistUpdate(playlist)
-        self.__mutex.release()
-        return self.APIevents()
+        obj = RadioClass.RadioClass()
+        ytlist = False
+
+        if 'playlist' in json_req:
+            playlist = json_req['playlist']
+            ytlist = True
+        elif 'link' in json_req:
+            url = json_req['link']
+            if (obj.isYTPlaylist(url) == True):
+                playlist = obj.getPlaylistLinks(url)
+                ytlist = True
+
+        if ytlist == True:
+            self.__mutex.acquire()
+            self.__mediaObj.mediaPlaylistUpdate(playlist)
+            self.__mutex.release()
+            return self.APIevents()
+        else:
+            return self.APIGenericCMD(json_req['action'], url)
+
 
     def APISprinklerOn(self, json_req):
         param = json_req['id']
