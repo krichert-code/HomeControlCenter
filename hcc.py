@@ -52,14 +52,14 @@ if (__name__ == "__main__"):
         try:
             hccDeamon = HccDeamonClass.HccDeamonClass()
             admiPanelSync.registerObserver(hccDeamon)
-            api.registerMedia(hccDeamon)
+            api.registerAPIInterface(hccDeamon)
             hccDeamon.start()
 
             #sleep is only for get TID for logging purposes
             time.sleep(1)
 
             #start connector deamon only if 'remote access' is enable (settings in configuration)
-            connectorDeamon = ConnectorDeamonClass.ConnectorDeamonClass()
+            connectorDeamon = ConnectorDeamonClass.ConnectorDeamonClass(api)
             connectorDeamon.start()
 
             app.run(host="0.0.0.0", port = 80)

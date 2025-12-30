@@ -493,6 +493,19 @@ class ConfigClass(object):
 
         return result
 
+    def getAlarmActivateSensors(self):
+        result = {}
+        rooms = self.getRooms()
+        actions = ConfigClass.__xmldoc.getElementsByTagName('actions')[0].getElementsByTagName('action')
+        for action in actions:
+            if action.getAttribute('device') == 'alarm' :
+                result['timeToActivate'] = action.getAttribute('timeToActivate')
+                result['sensors'] = action.getAttribute('armDevices').split(",")
+                result['exclude'] = action.getAttribute('excludeDevices').split(",")
+                break
+
+        return result
+
     def getProgramLightAction(self):
         result = []
         rooms = self.getRooms()

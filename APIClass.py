@@ -16,21 +16,19 @@ import os
 import json
 import psutil
 from subprocess import Popen
-import MediaInterface
+import APIInterface
 import threading
 
 
 class APIClass:
 
-    methods = {}
-
     def __init__(self):
         self.__mutex = threading.Lock()
-        self.__mediaObj = 0
+        self.__apiObj = APIInterface.APIInterface()
 
-    def registerMedia(self, media):
+    def registerAPIInterface(self, obj):
         self.__mutex.acquire()
-        self.__mediaObj = media
+        self.__apiObj = obj
         self.__mutex.release()
 
 
@@ -145,7 +143,16 @@ class APIClass:
         response['events'] = resEvents
         response['temperature'] = temperature
         response['energy'] = energy
-        
+
+        self.__mutex.acquire()
+        print ("---------alarm = " + str(self.__apiObj.isAlarmArmed()))
+        if (self.__apiObj.isAlarmArmed() == True):
+            response['alarm'] = 1
+            print ("---------ARMED")
+        else:
+            response['alarm'] = 0
+            print ("------------------------------------NO ARMED")
+        self.__mutex.release()
         return json.dumps(response)
 
     def APIevents(self, json_req=''):
@@ -205,7 +212,7 @@ class APIClass:
 
         if ytlist == True:
             self.__mutex.acquire()
-            self.__mediaObj.mediaPlaylistUpdate(playlist)
+            self.__apiObj.mediaPlaylistUpdate(playlist)
             self.__mutex.release()
             return self.APIevents()
         else:
@@ -227,7 +234,7 @@ class APIClass:
     def APIStop(self, json_req):
         if 'next' not in json_req:
             self.__mutex.acquire()
-            self.__mediaObj.mediaPlaylistUpdate()
+            self.__apiObj.mediaPlaylistUpdate()
             self.__mutex.release()
         if 'sourceIsLocal' in json_req:
             return self.APIGenericCMD(json_req['action'], json_req['sourceIsLocal'])
