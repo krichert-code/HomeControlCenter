@@ -1,15 +1,15 @@
 <?xml version="1.0" ?><HomeControlCenter file="configuration and status" id="" password="" server="">
 
-    <AlarmSystem ip="192.168.1.100" port="9080"/>
+    <AlarmSystem ip="192.168.1.100" port="80"/>
 	<radio ip="127.0.0.1" mp3_directory="/media/usb0/Muzyka/" port="8080"/>
 
     <alarm>
-		<start_time title="Godzina alarmu" type="text" value="06:30"/>
-		<stop_time title="Czas alarmu[min]" type="text" value="75"/>
-		<channel type="text" value="43"/>
+		<start_time title="Godzina alarmu" type="text" value="06:00"/>
+		<stop_time title="Czas alarmu[min]" type="text" value="90"/>
+		<channel type="text" value="94"/>
 		<day_policy param="week;Zawsze,week_day;Tylko w tygodniu,disable;Nigdy" title="Aktywny" type="select" value="week_day"/>
 		<alarm_on_holiday type="select" value="no"/>
-		<volume title="Glosnosc[%]" type="text" value="47"/>
+		<volume title="Glosnosc[%]" type="text" value="55"/>
     </alarm>
 
     <calendar>
@@ -23,22 +23,22 @@
 
     <autowater>
 		<state param="disable;Wylaczone,enable;Aktywne" title="Stan" type="select" value="disable"/>
-		<start_time title="Podlewanie start" type="text" value="06:40"/>
-		<duration title="Czas trwania" type="text" value="20"/>
+		<start_time title="Podlewanie start" type="text" value="06:30"/>
+		<duration title="Czas trwania" type="text" value="35"/>
 		<rain param="False;Ignoruj,True;Sprawdzaj" title="Sprawdzaj prognoze pogody" type="select" value="True"/>
-    	<day1 param="False;Wylaczone,True;Aktywne" title="Poniedzialek" type="select" value="True"/>
+    	<day1 param="False;Wylaczone,True;Aktywne" title="Poniedzialek" type="select" value="False"/>
     	<day2 param="False;Wylaczone,True;Aktywne" title="Wtorek" type="select" value="False"/>
-    	<day3 param="False;Wylaczone,True;Aktywne" title="Sroda" type="select" value="True"/>
+    	<day3 param="False;Wylaczone,True;Aktywne" title="Sroda" type="select" value="False"/>
     	<day4 param="False;Wylaczone,True;Aktywne" title="Czwartek" type="select" value="False"/>
-    	<day5 param="False;Wylaczone,True;Aktywne" title="Piatek" type="select" value="True"/>
+    	<day5 param="False;Wylaczone,True;Aktywne" title="Piatek" type="select" value="False"/>
     	<day6 param="False;Wylaczone,True;Aktywne" title="Sobota" type="select" value="False"/>
     	<day7 param="False;Wylaczone,True;Aktywne" title="Niedziela" type="select" value="False"/>
     </autowater>
 
     <heater>
 		<main_device_enable value="1"/>
-		<day_temperature title="Temperatura dzienna" type="text" value="19.0"/>
-		<night_temperature title="Temperatura nocna" type="text" value="19.0"/>
+		<day_temperature title="Temperatura dzienna" type="text" value="19.4"/>
+		<night_temperature title="Temperatura nocna" type="text" value="18.2"/>
 		<threshold title="Tolerancja" type="text" value="0.3"/>
 		<support_device_enable value="0"/>
 
@@ -46,6 +46,8 @@
 			<device name="TempSalon" offset="0"/>
 			<device name="TempKuchnia" offset="0"/>
 			<device name="TempSypialnia" offset="0"/>
+			<device name="TempNati" offset="0"/>
+			<device name="TempPati" offset="0"/>
 		</thermometerInside>
 
 		<thermometerOutside mode="min">
@@ -64,22 +66,22 @@
 			<device ip=""/>			
 		</support_device>
 
-		<day1 name="day1" param="24" title="Poniedzialek" type="bitfield" value="4194240"/>
-		<day2 name="day2" param="24" title="Wtorek" type="bitfield" value="4194240"/>
-		<day3 name="day3" param="24" title="Sroda" type="bitfield" value="4194240"/>
-		<day4 name="day4" param="24" title="Czwartek" type="bitfield" value="4194240"/>
-		<day5 name="day5" param="24" title="Piatek" type="bitfield" value="8388544"/>
-		<day6 name="day6" param="24" title="Sobota" type="bitfield" value="4194176"/>
-		<day7 name="day7" param="24" title="Niedziela" type="bitfield" value="1048320"/>
+		<day1 name="day1" param="24" title="Poniedzialek" type="bitfield" value="4161632"/>
+		<day2 name="day2" param="24" title="Wtorek" type="bitfield" value="4161632"/>
+		<day3 name="day3" param="24" title="Sroda" type="bitfield" value="4161632"/>
+		<day4 name="day4" param="24" title="Czwartek" type="bitfield" value="4161632"/>
+		<day5 name="day5" param="24" title="Piatek" type="bitfield" value="4161632"/>
+		<day6 name="day6" param="24" title="Sobota" type="bitfield" value="3932544"/>
+		<day7 name="day7" param="24" title="Niedziela" type="bitfield" value="3932544"/>
 
 
-		<day_support1 name="day1" param="24" title="Poniedzialek" type="bitfield" value="929888"/>
-		<day_support2 name="day2" param="24" title="Wtorek" type="bitfield" value="929888"/>
-		<day_support3 name="day3" param="24" title="Sroda" type="bitfield" value="929888"/>
-		<day_support4 name="day4" param="24" title="Czwartek" type="bitfield" value="929888"/>
-		<day_support5 name="day5" param="24" title="Piatek" type="bitfield" value="929888"/>
-		<day_support6 name="day6" param="24" title="Sobota" type="bitfield" value="995712"/>
-		<day_support7 name="day7" param="24" title="Niedziela" type="bitfield" value="995712"/>
+		<day_support1 name="day1" param="24" title="Poniedzialek" type="bitfield" value="3244064"/>
+		<day_support2 name="day2" param="24" title="Wtorek" type="bitfield" value="3244064"/>
+		<day_support3 name="day3" param="24" title="Sroda" type="bitfield" value="3244064"/>
+		<day_support4 name="day4" param="24" title="Czwartek" type="bitfield" value="3244064"/>
+		<day_support5 name="day5" param="24" title="Piatek" type="bitfield" value="3244064"/>
+		<day_support6 name="day6" param="24" title="Sobota" type="bitfield" value="7340224"/>
+		<day_support7 name="day7" param="24" title="Niedziela" type="bitfield" value="7340416"/>
     </heater>
 
     <text_messages>
@@ -150,9 +152,9 @@
     </rooms>
 
     <actions>
-        <action device="alarm" roomId="9" timeToActivate="10"/>
-		<action device="light" mode="always" roomId="0" timeMode="on" timeOff="22:00" validMonths="2273"/>
-		<action device="light" mode="onAlarmActivate" roomId="1" validMonths="4095"/>
+        <action device="alarm" roomId="9" armDevices="Brama,OgrodCam" excludeDevices="Szambo" timeToActivate="180"/>
+	<action device="light" mode="always" roomId="0" timeMode="on" timeOff="22:00" validMonths="2272"/>
+	<action device="light" mode="onAlarmActivate" roomId="1" validMonths="4095"/>
         <action device="light" mode="onAlarmActivate" roomId="0" timeMode="switch" timeOff="10" triggerSensor="OgrodCam" validMonths="4095"/>
     </actions>
 
@@ -181,7 +183,7 @@
 
 		<status>
 			<element desc="Brak komunikacji ze sterownikiem" id="1" messageActive="" messageInactive="" messageSend="" sensor="Alarm (reserved)" state="0"/>
-			<element desc="Szambo pelne" id="2" messageActive="Dom:Szmbo pelne" messageInactive="Dom:Szmbo oproznione" messageSend="checked" sensor="Szambo" state="0"/>
+			<element desc="Szambo pelne" id="2" messageActive="Dom:Szmbo pelne" messageInactive="Dom:Szmbo oproznione" messageSend="" sensor="Szambo" state="0"/>
 			<element desc="Brama otwarta" id="3" messageActive="" messageInactive="" messageSend="" sensor="Brama" state="0"/>
 			<element desc="Brak komunikacji z grzalka" id="4" messageActive="" messageInactive="" messageSend="" sensor="Support heater (reserved)" state="0"/>
 			<element desc="" id="5" messageActive="" messageInactive="" messageSend="" sensor="" state="0"/>

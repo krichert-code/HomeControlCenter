@@ -14,13 +14,14 @@ from subprocess import Popen, PIPE
 
 class ConnectorDeamonClass(threading.Thread):
 
-    def __init__(self):
+    def __init__(self, apiObj):
         threading.Thread.__init__(self)
 
         config = ConfigClass.ConfigClass()
         self.__url = config.getHccServer().encode('utf-8')
         self.__id = config.getHccId().encode('utf-8')
         self.__stopEvent = False
+        self.__apiObj = apiObj
 
     def stop(self):
         self.__stopEvent = True
@@ -41,7 +42,6 @@ class ConnectorDeamonClass(threading.Thread):
         logging.info('HCC connector pid')
         logging.info(str(proc.communicate()[0]))
 
-        apiObj = APIClass.APIClass()
         crypt = CryptClass.CryptClass()
         headers = {'Content-type': 'application/json',
                    'Accept': 'text/plain'}
@@ -72,7 +72,7 @@ class ConnectorDeamonClass(threading.Thread):
                     postData = crypt.DecodeWithId(response.text.encode()).decode()
                     postData = postData[:postData.rfind('}') + 1]
                     #logging.error("-------------get request " + postData)
-                    response_data = apiObj.invoke(json.loads(postData))
+                    response_data = self.__apiObj.invoke(json.loads(postData))
                     #logging.error("-------------get reponse " + response_data)
                     reg_data['type'] = 1
 

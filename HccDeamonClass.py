@@ -11,7 +11,7 @@ import ActionClass
 import SprinklerClass
 import EnergyClass
 import ConfigurationInterface
-import MediaInterface
+import APIInterface
 import DBClass
 import RPi.GPIO as GPIO
 import json
@@ -483,43 +483,137 @@ class ProgramAction:
         self.__alarmActivatedFlag = False
         self.__lights = config.getProgramLightAction()
         self.__alarmActivatSettings = config.getAlarmActivate()
-        self.__alarmTriggered = False
+        self.__alarmArmed = True
+
+        self.__alarmArmSettings = config.getAlarmActivateSensors()
+        self.__alarmArmState = 0
+        self.__sensorsTimeStamps = {}
 
 
-    def __checkIfNoBodyHome(self):
-        result = False
+    # 0 - initial state
+    # 1 - any sesnor was ascivated (posible go to 2 if arm sesnor is last activated, otherwise to 0)
+    # 2 - last activated sensor was arm sesnor, wait defined time before arm alarm (possible go to 3 if arm sesnor is last activated or to 0 if other sensor is activate)
+    # 3 - arm alarm if no sensors activated (possible go to 2 if arm sensor still activated or to 0 if other sensor is active)
+    def __checkIfAlarmArmed(self):
         alarm = AlarmClass.AlarmClass()
-        settings = self.__alarmActivatSettings
+        armSettings = self.__alarmArmSettings
         currentTimestamp = time.time()
+        allSensorsOff = True
+        someArmedSensorsOn = False
 
-        sensors = alarm.getPresence()['presence']
-        #logging.error(str(sensors))
-        #print(sensors)
-        for sensor in sensors:
-            #todo : check if sensor exists in any room, if not then continue without checking (szambo case)
-            if (sensor['name'] in settings['sensors']) and (sensor['presence'] == 'on'):
-                result = True
-                self.__alarmActivatedFlag = True
-                self.__alarmActivatedTimestamp = currentTimestamp
-            elif (sensor['name'] not in settings['sensors']) and (sensor['presence'] == 'on'):
-                result = False
-                self.__alarmActivatedFlag = False
-                break
+        data = alarm.getPresence()
+        print("---" + str(self.__alarmArmState) + " TS = " + str(int(currentTimestamp - self.__alarmActivatedTimestamp)) + " " +str(int(armSettings['timeToActivate']))  )
 
-        #print(currentTimestamp - self.__alarmActivatedTimestamp)
-        #print(int(settings['timeToActivate']) * 60)
-        #print(self.__alarmActivatedFlag)
-        if (currentTimestamp - self.__alarmActivatedTimestamp >= (int(settings['timeToActivate']) * 60)) and (self.__alarmActivatedFlag == True):
-            return True
+#        print(data)
+#        print(armSettings)
+
+        if (data['error'] == 0):
+            sensors = data['presence']
         else:
             return False
 
+        for sensor in sensors:
+            if (sensor['name'] in armSettings['exclude']):
+                continue
+
+            if (sensor['presence'] == 'on'):
+                allSensorsOff = False
+
+            if (sensor['presence'] == 'on') and (sensor['name'] in armSettings['sensors']):
+               someArmedSensorsOn = True
+
+            # update timestamp of arm sensor when is on - even if its prevously state was off
+            if (sensor['presence'] == 'on') and (sensor['name'] in armSettings['sensors']):
+                self.__sensorsTimeStamps[sensor['name']] = {'prev_state' : 1, 'timestamp' : currentTimestamp}
+                if (self.__alarmArmState == 0):
+                    self.__alarmArmState = 1
+                continue
+
+            # update timestamp only if sensor is on and its previous state was off (to avoid arm sensor will have smaller timestamp)
+            if (sensor['presence'] == 'on') and (sensor['name'] in self.__sensorsTimeStamps) and (self.__sensorsTimeStamps[sensor['name']]['prev_state'] == 0):
+                self.__sensorsTimeStamps[sensor['name']] = {'prev_state' : 1, 'timestamp' : currentTimestamp}
+                if (self.__alarmArmState == 0):
+                    self.__alarmArmState = 1
+                continue
+
+            if (sensor['presence'] == 'off'):
+                if (sensor['name'] not in armSettings['sensors'] or sensor['name'] not in self.__sensorsTimeStamps):
+                    self.__sensorsTimeStamps[sensor['name']] = {'prev_state' : 0, 'timestamp' : 0}
+                else:
+                    self.__sensorsTimeStamps[sensor['name']]['prev_state'] = 0
+                continue
+
+        if (self.__alarmArmState >= 1):
+            # check if armSensor has the highest timestamp, then wait defined time and arm Alarm
+            highestTS = 0
+            highestSensorName = ''
+
+            for element in self.__sensorsTimeStamps:
+                # if state was in 2 or 3 then still consider armed sensor as active because it could deactive faster then camera
+                print ("    +++name = " + element + " sensor state = " + str(self.__sensorsTimeStamps[element]['prev_state']) + " timestamp = " + str(self.__sensorsTimeStamps[element]['timestamp']) + " state = " + str(self.__alarmArmState))
+                if ((self.__sensorsTimeStamps[element]['prev_state'] == 1) or ((element in armSettings['sensors']) and (self.__alarmArmState >= 2))) and (self.__sensorsTimeStamps[element]['timestamp'] > highestTS):
+                    highestTS = self.__sensorsTimeStamps[element]['timestamp']
+                    highestSensorName = element
+
+            print ("    +++Highest = " + highestSensorName)
+
+            if (self.__alarmArmState == 3) and (allSensorsOff == True):
+               self.__alarmArmState = 0
+               return True
+            elif (self.__alarmArmState == 3) and (someArmedSensorsOn == True):
+               self.__alarmArmState = 2
+               self.__alarmActivatedTimestamp = currentTimestamp
+
+            # armSensor must be at least timeToActivate the highest timestamp (no other sesnors were acitavted)
+            if (self.__alarmArmState == 2) and (int(currentTimestamp - self.__alarmActivatedTimestamp) >= (int(armSettings['timeToActivate']))):
+                self.__alarmActivatedFlag = False
+                self.__alarmArmState = 3
+
+            if (highestSensorName in armSettings['sensors']) and (self.__alarmArmState == 1):
+                self.__alarmArmState = 2
+                self.__alarmActivatedTimestamp = currentTimestamp
+            elif (highestSensorName not in armSettings['sensors']):
+                self.__alarmArmState = 0
+
+            print("+++" + highestSensorName + " " + str(self.__alarmArmState) + " TS = " + str(int(currentTimestamp - self.__alarmActivatedTimestamp)) + " " +str(int(armSettings['timeToActivate'])) + " " + str(self.__alarmActivatedFlag) )
+            return False
+        else:
+            self.__alarmActivatedFlag = False
+            return False
+
+    # TODO: remove this function and use checkIfAnySensorTriggered
     def __checkIfSensorTriggered(self, sensorName):
         result = False
         alarm = AlarmClass.AlarmClass()
-        sensors = alarm.getPresence()['presence']
+        armSettings = self.__alarmArmSettings
+
+        data = alarm.getPresence()
+        if (data['error'] == 0):
+            sensors = data['presence']
+        else:
+            return result
+
         for sensor in sensors:
             if (sensor['name'] == sensorName) and (sensor['presence'] == 'on'):
+                result = True
+        return result
+
+    def __checkIfAnySensorTriggered(self):
+        result = False
+        alarm = AlarmClass.AlarmClass()
+        armSettings = self.__alarmArmSettings
+
+        data = alarm.getPresence()
+        if (data['error'] == 0):
+            sensors = data['presence']
+        else:
+            return result
+
+        for sensor in sensors:
+            if (sensor['name'] in armSettings['exclude']):
+                continue
+
+            if (sensor['presence'] == 'on'):
                 result = True
         return result
 
@@ -538,6 +632,9 @@ class ProgramAction:
         else:
             return False
 
+    def isAlarmArmed(self):
+        return self.__alarmArmed
+
     def timeEvent(self, tick):
         alarmActivated = False
         lightSwitch = SwitchClass.SwitchClass()
@@ -545,16 +642,15 @@ class ProgramAction:
         curr_month = int(datetime.now().strftime('%m'))
 
         if tick % 1 == 0:
-            checkIfNoBodyHome = self.__checkIfNoBodyHome()
-            #logging.error(str(checkIfNoBodyHome))
+            checkIfAlarmArmed = self.__checkIfAlarmArmed()
 
-            if (checkIfNoBodyHome == True) and (self.__alarmTriggered == False):
-                self.__alarmTriggered = True
-                logging.error("[HCC] Program class : move detected")
-            elif (checkIfNoBodyHome == False and self.__alarmTriggered == True):
+            if (checkIfAlarmArmed == True) and (self.__alarmArmed == False):
+                self.__alarmArmed = True
+                logging.info("[HCC] Program class : Alarm armed - nobody at home")
+            elif (self.__checkIfAnySensorTriggered() and self.__alarmArmed == True):
                 alarmActivated = True
-                self.__alarmTriggered = False
-                logging.error("[HCC] Program class : alarm activated")
+                self.__alarmArmed = False
+                logging.info("[HCC] Program class : Alarm activated - move detected")
                 # TODO : enable alarm automaticlly
 
             for light in self.__lights:
@@ -586,19 +682,19 @@ class ProgramAction:
 
                 if (light['onAlarmActivate'] == True) and (alarmActivated == True) and (self.__isDuskTime() == True):
                     lightSwitch.changeSwitchState(light['lightIp'], 'on')
-                    logging.error("Program class light " + light['lightIp'] +" on - caused alarm activated")
+                    logging.info("Program class light " + light['lightIp'] +" on - caused alarm activated")
                     continue
 
                 if (self.__isDuskTime() == True) and (light['state'] == 0) and (light['onAlarmActivate'] == False):
                     light['state'] = 1
                     lightSwitch.changeSwitchState(light['lightIp'], 'on')
-                    logging.error("Program class light " + light['lightIp'] +" on - caused dusk")
+                    logging.info("Program class light " + light['lightIp'] +" on - caused dusk")
                     continue
 
                 if (light['timeMode'] == 'on') and (light['timeOff'] == currentTime) and (light['state'] == 1) and (light['onAlarmActivate'] == False):
                     light['state'] = 3
                     lightSwitch.changeSwitchState(light['lightIp'], 'off')
-                    logging.error("Program class light " + light['lightIp'] +" off - caused time off")
+                    logging.info("Program class light " + light['lightIp'] +" off - caused time off")
                     continue
 
 
@@ -628,7 +724,7 @@ class Media:
 
 # ------------------------------------------------------------------------------------------------------------------------
 
-class HccDeamonClass(threading.Thread, ConfigurationInterface.ConfigurationInterface, MediaInterface.MediaInterface):
+class HccDeamonClass(threading.Thread, ConfigurationInterface.ConfigurationInterface, APIInterface.APIInterface):
 
     def __init__(self):
         threading.Thread.__init__(self)
@@ -651,8 +747,12 @@ class HccDeamonClass(threading.Thread, ConfigurationInterface.ConfigurationInter
         print("* Configuration update")
 
     def mediaPlaylistUpdate(self, data = []):
-        """Overrides MediaInterface.mediaPlaylistUpdate()"""
+        """Overrides APIInterface.mediaPlaylistUpdate()"""
         self.__media.initializePlaylistData(data)
+
+    def isAlarmArmed(self):
+        """Overrides APIInterface.infoGetAlarmSystemState()"""
+        return self.__programAction.isAlarmArmed()
 
     def stop(self):
         self.__stopEvent = True
@@ -696,3 +796,4 @@ class HccDeamonClass(threading.Thread, ConfigurationInterface.ConfigurationInter
                 timerTick = timerTick + 1
             except Exception as e:
                 logging.error(str(e))
+
