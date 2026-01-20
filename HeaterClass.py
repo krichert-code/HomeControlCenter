@@ -91,7 +91,7 @@ class HeaterClass(object):
         thermDevices = alarm.getTemperature()
         temperature = 0
         isTemepratureInit = False
-        thermalElements = 1
+        thermalElements = 0
         status = 0
         mode = ""
 
@@ -125,7 +125,7 @@ class HeaterClass(object):
                         break
                 thermData = config.getNextThermDevices(thermType)
             
-            if (mode == 'avg'):
+            if (mode == 'avg' and thermalElements > 0):
                 temperature = temperature / thermalElements
 
         return (status, temperature)
@@ -245,11 +245,13 @@ class HeaterClass(object):
         hour,
         minute,
         ):
+        result = 0
         config = ConfigClass.ConfigClass()
         alarm = AlarmClass.AlarmClass()
 
         dayTemp = float(config.getDayTemp())
         nightTemp = float(config.getNightTemp())
+        supportTemp = float(config.getSupportTemp())
         threshold = float(config.geTempThreshold())
 
         isDayMode = config.isDayMode(dayOfWeek, hour)
@@ -264,33 +266,13 @@ class HeaterClass(object):
             HeaterClass.__heaterOnToday = 0
             HeaterClass.__data_per_day.clearData()
 
-        # Check support source - if enable then turn off main source and
-        # operate only on support source.
-        # Supported divice is consider as enabled if for particular time is enabled
-        # and main switch (support_device_enable) is enabled.
-        # print("----Check support state = " + str(isSupportedDeviceEnable) + " " + str(isSupportedDeviceMode))
-        if (isSupportedDeviceEnable == True and isSupportedDeviceMode == True):
-            # print("----Support device start. Current main source = " + str(HeaterClass.__lastState))
-            # turn off main heat source
-            url = alarm.getUpdateUrl(sensor[1], 0)
-            if HeaterClass.__lastState == HeaterClass.__StateOn \
-                or HeaterClass.__lastState \
-                == HeaterClass.__StateUnknown:
-                self.__mainHeatSourceControl(url, 'clear', sensor[0])
-            HeaterClass.__lastState = HeaterClass.__StateOff
-
-            # Turn on supported devices
-            self.__supportHeatSourceControl('set', sensor[0])
-            return
-        else:
-            # Turn off supported devices and go with main heat source
-            self.__supportHeatSourceControl('clear', sensor[0])
 
 
         # Read current temperature
         (status, temp) = self.__getTemperatureFromDevice('thermometerInside')
         if status != 0:
-            return
+            result = -1
+            return result
 
         # Update current mode (day or night mode)
         if HeaterClass.__dayMode != isDayMode:
@@ -314,6 +296,8 @@ class HeaterClass(object):
             #    == HeaterClass.__StateUnknown:
             #    self.__mainHeatSourceControl(url, 'set', sensor[0])
             self.__mainHeatSourceControl(url, 'set', sensor[0])
+            if (HeaterClass.__lastState == HeaterClass.__StateOff or HeaterClass.__lastState == HeaterClass.__StateUnknown):
+                result = result | 1
             HeaterClass.__lastState = HeaterClass.__StateOn
         elif (isDayMode == True and temp >= dayTemp + threshold) \
             or (isDayMode == False and temp >= nightTemp + threshold) \
@@ -326,7 +310,35 @@ class HeaterClass(object):
             #    == HeaterClass.__StateUnknown:
             #    self.__mainHeatSourceControl(url, 'clear', sensor[0])
             self.__mainHeatSourceControl(url, 'clear', sensor[0])
+            if (HeaterClass.__lastState == HeaterClass.__StateOn or HeaterClass.__lastState == HeaterClass.__StateUnknown):
+                result = result | 2
             HeaterClass.__lastState = HeaterClass.__StateOff
+
+        # turn on support source (if main source is off)
+        # Supported divice is consider as enabled if for particular time is enabled
+        # and main source is off and temperature is below threshold.
+
+        # Read current support temperature sensor
+        (status, temp) = self.__getTemperatureFromDevice('thermometerSupport')
+        print("----Support device temp = (current temp)" + str(temp) + " / (temp on)" +  str(supportTemp) + " status = " + str(status) + " isSupportedDeviceMode = " +str(isSupportedDeviceMode))
+        if (HeaterClass.__lastState == HeaterClass.__StateOff and isSupportedDeviceEnable == True and isSupportedDeviceMode == True and status == 0 and temp + threshold <= supportTemp):
+            print("----Support device start. Current main source = " + str(HeaterClass.__lastState))
+            # turn off main heat source
+            url = alarm.getUpdateUrl(sensor[1], 0)
+            if HeaterClass.__lastState == HeaterClass.__StateOn \
+                or HeaterClass.__lastState \
+                == HeaterClass.__StateUnknown:
+                self.__mainHeatSourceControl(url, 'clear', sensor[0])
+            if (HeaterClass.__lastSupportState == HeaterClass.__StateOff or HeaterClass.__lastSupportState == HeaterClass.__StateUnknown):
+                result = result | 4
+            HeaterClass.__lastState = HeaterClass.__StateOff
+            # Turn on supported devices
+            self.__supportHeatSourceControl('set', sensor[0])
+        else:
+            # Turn off supported devices
+            if (HeaterClass.__lastSupportState == HeaterClass.__StateOn or HeaterClass.__lastSupportState == HeaterClass.__StateUnknown):
+                result = result | 8
+            self.__supportHeatSourceControl('clear', sensor[0])
 
 
         # Update statistics
@@ -351,7 +363,7 @@ class HeaterClass(object):
             # read from external temperature sensor
             (status, tempOutside) = self.__getTemperatureFromDevice('thermometerOutside')
             if status != 0:
-                return
+                return result
             db = DBClass.DBClass()
 
             HeaterClass.__data.append((temp, tempOutside, datetime.now().strftime('%H:%M %d/%m/%y')))
@@ -364,6 +376,8 @@ class HeaterClass(object):
             if len(HeaterClass.__data) > HeaterClass.__maxDataBuffer:
                 HeaterClass.__data.pop(0)
             db.deleteTemepratureOldEntries()
+
+        return result
 
 
     def getHeaterInfo(self):
@@ -414,6 +428,7 @@ class HeaterClass(object):
         config_data['supportDevice'] = int(config.isSupportDeviceEnabled())
         config_data['dayTemp'] = float(config.getDayTemp())
         config_data['nightTemp'] = float(config.getNightTemp())
+        config_data['supportTemp'] = float(config.getSupportTemp())
         config_data['threshold'] = float(config.geTempThreshold())
         config_data['day1'] = int(config.getDayModeSettings(0))
         config_data['day2'] = int(config.getDayModeSettings(1))

@@ -148,6 +148,8 @@ class ConfigClass(object):
             room['name'] = item.getAttribute('name')
             room['light_ip'] = item.getAttribute('light')
             room['tempId'] = item.getAttribute('temperature')
+            #if (len(room['name'])==0):
+            #    continue
 
             room['alarmSensors'] = []
             for alarmItem in item.getElementsByTagName('alarmSensor'):
@@ -414,6 +416,12 @@ class ConfigClass(object):
                 )[0].getElementsByTagName('day_temperature'
                 )[0].getAttribute('value')
 
+    def getSupportTemp(self):
+        return ConfigClass.__xmldoc.getElementsByTagName('HomeControlCenter'
+                )[0].getElementsByTagName('heater'
+                )[0].getElementsByTagName('support_temperature'
+                )[0].getAttribute('value')
+
     def geTempThreshold(self):
         return ConfigClass.__xmldoc.getElementsByTagName('heater'
                 )[0].getElementsByTagName('threshold'
@@ -579,6 +587,7 @@ class ConfigClass(object):
                 'support_device_enable',
                 'day_temperature',
                 'night_temperature',
+                'support_temperature',
                 'threshold',
                 'day1',
                 'day2',

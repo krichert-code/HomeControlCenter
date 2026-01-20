@@ -172,15 +172,25 @@ class Heater:
 
     def timeEvent(self, tick):
         try:
-
         # manage heater state once per 60 sec
-
             if tick % 60 == 0:
                 curr_week_day = datetime.today().weekday()
                 curr_hour = int(datetime.now().strftime('%H'))
                 curr_min = int(datetime.now().strftime('%M'))
-                self.__heater.manageHeaterState(curr_week_day,
+                result = self.__heater.manageHeaterState(curr_week_day,
                         curr_hour, curr_min)
+                #logging.error('Heater status = ' +str(result))
+                if (result == -1):
+                   logging.error('Heater error - wrong temperature readings')
+                else:
+                    if (result & 1):
+                        logging.error('Heater main source on')
+                    if (result & 2):
+                        logging.error('Heater main source off')
+                    if (result & 4):
+                        logging.error('Heater support source on')
+                    if (result & 8):
+                        logging.error('Heater support source off')
         except Exception as e:
             logging.error('HEATER EXCEPT: ' + str(e) + " " + traceback.format_exc())
 
@@ -502,7 +512,7 @@ class ProgramAction:
         someArmedSensorsOn = False
 
         data = alarm.getPresence()
-        print("---" + str(self.__alarmArmState) + " TS = " + str(int(currentTimestamp - self.__alarmActivatedTimestamp)) + " " +str(int(armSettings['timeToActivate']))  )
+        #print("---" + str(self.__alarmArmState) + " TS = " + str(int(currentTimestamp - self.__alarmActivatedTimestamp)) + " " +str(int(armSettings['timeToActivate']))  )
 
 #        print(data)
 #        print(armSettings)
@@ -550,12 +560,12 @@ class ProgramAction:
 
             for element in self.__sensorsTimeStamps:
                 # if state was in 2 or 3 then still consider armed sensor as active because it could deactive faster then camera
-                print ("    +++name = " + element + " sensor state = " + str(self.__sensorsTimeStamps[element]['prev_state']) + " timestamp = " + str(self.__sensorsTimeStamps[element]['timestamp']) + " state = " + str(self.__alarmArmState))
+                #print ("    +++name = " + element + " sensor state = " + str(self.__sensorsTimeStamps[element]['prev_state']) + " timestamp = " + str(self.__sensorsTimeStamps[element]['timestamp']) + " state = " + str(self.__alarmArmState))
                 if ((self.__sensorsTimeStamps[element]['prev_state'] == 1) or ((element in armSettings['sensors']) and (self.__alarmArmState >= 2))) and (self.__sensorsTimeStamps[element]['timestamp'] > highestTS):
                     highestTS = self.__sensorsTimeStamps[element]['timestamp']
                     highestSensorName = element
 
-            print ("    +++Highest = " + highestSensorName)
+            #print ("    +++Highest = " + highestSensorName)
 
             if (self.__alarmArmState == 3) and (allSensorsOff == True):
                self.__alarmArmState = 0
@@ -575,7 +585,7 @@ class ProgramAction:
             elif (highestSensorName not in armSettings['sensors']):
                 self.__alarmArmState = 0
 
-            print("+++" + highestSensorName + " " + str(self.__alarmArmState) + " TS = " + str(int(currentTimestamp - self.__alarmActivatedTimestamp)) + " " +str(int(armSettings['timeToActivate'])) + " " + str(self.__alarmActivatedFlag) )
+            #print("+++" + highestSensorName + " " + str(self.__alarmArmState) + " TS = " + str(int(currentTimestamp - self.__alarmActivatedTimestamp)) + " " +str(int(armSettings['timeToActivate'])) + " " + str(self.__alarmActivatedFlag) )
             return False
         else:
             self.__alarmActivatedFlag = False

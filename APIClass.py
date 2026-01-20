@@ -145,13 +145,13 @@ class APIClass:
         response['energy'] = energy
 
         self.__mutex.acquire()
-        print ("---------alarm = " + str(self.__apiObj.isAlarmArmed()))
+        #print ("---------alarm = " + str(self.__apiObj.isAlarmArmed()))
         if (self.__apiObj.isAlarmArmed() == True):
             response['alarm'] = 1
-            print ("---------ARMED")
+            #print ("---------ARMED")
         else:
             response['alarm'] = 0
-            print ("------------------------------------NO ARMED")
+            #print ("------------------------------------NO ARMED")
         self.__mutex.release()
         return json.dumps(response)
 
