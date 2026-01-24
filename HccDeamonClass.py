@@ -181,16 +181,17 @@ class Heater:
                         curr_hour, curr_min)
                 #logging.error('Heater status = ' +str(result))
                 if (result == -1):
-                   logging.error('Heater error - wrong temperature readings')
+                   #logging.error('Heater error - wrong temperature readings')
+                   result = 0
                 else:
                     if (result & 1):
-                        logging.error('Heater main source on')
+                        logging.info('Heater main source on')
                     if (result & 2):
-                        logging.error('Heater main source off')
+                        logging.info('Heater main source off')
                     if (result & 4):
-                        logging.error('Heater support source on')
+                        logging.info('Heater support source on')
                     if (result & 8):
-                        logging.error('Heater support source off')
+                        logging.info('Heater support source off')
         except Exception as e:
             logging.error('HEATER EXCEPT: ' + str(e) + " " + traceback.format_exc())
 

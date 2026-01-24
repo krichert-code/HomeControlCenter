@@ -179,11 +179,18 @@ class HeaterClass(object):
             print ("___________heater exception 2")
         return heaterStats
 
-    def __mainHeatSourceControl(self, url, action, sensorId):
+    def __mainHeatSourceControl(self, state):
+        config = ConfigClass.ConfigClass()
+        sensor = config.getDeviceSensors('heater')[0]
+        alarm = AlarmClass.AlarmClass()
+
+        if(state == HeaterClass.__StateOn):
+            url = alarm.getUpdateUrl(sensor[1], 1)
+        else:
+            url = alarm.getUpdateUrl(sensor[1], 0)
+
+        HeaterClass.__lastState = state
         threadTask = ActionThread.ActionThread()
-        threadTask.addTask(ActionThread.Task(action,
-                           ActionThread.UpdateParam('heater',
-                           sensorId)))
 
         threadTask.addTask(ActionThread.Task('request',
                            ActionThread.RequestParam(url)))
@@ -192,51 +199,56 @@ class HeaterClass(object):
         threadTask.start()
         threadTask.suspend()
 
-    def __supportHeatSourceControl(self, action, sensorId):
-        state = 'off'
+    def __supportHeatSourceControl(self, state):
         config = ConfigClass.ConfigClass()
-        currentState = HeaterClass.__lastSupportState
         threadTask = ActionThread.ActionThread()
-        exceptOccured = False
-
         errorHeaterSensor = config.getDeviceSensors('status')[3]
         supportedDevices = config.getSupportDevices()
-
-        if (action == 'set'):
-            state = 'on'
-            HeaterClass.__lastSupportState = HeaterClass.__StateOn
-        else:
-            state = 'off'
-            HeaterClass.__lastSupportState = HeaterClass.__StateOff
-
         controlInterface = SwitchClass.SwitchClass()
+        HeaterClass.__lastSupportState = state
+        exceptOccured = False
+
         try:
-            if ( HeaterClass.__lastSupportState != currentState):
-                for dev in supportedDevices:
-                    controlInterface.changeSwitchState(dev, state)
-
-                threadTask.addTask(ActionThread.Task(action,
-                                   ActionThread.UpdateParam('heater',
-                                   sensorId)))
+            for dev in supportedDevices:
+                if (state == HeaterClass.__StateOn):
+                    controlInterface.changeSwitchState(dev, 'on')
+                else:
+                    controlInterface.changeSwitchState(dev, 'off')
 
 
-                threadTask.addTask(ActionThread.Task('clear',
-                                   ActionThread.UpdateParam('status',
-                                   errorHeaterSensor[0])))
-
+            threadTask.addTask(ActionThread.Task('clear',
+                               ActionThread.UpdateParam('status',
+                               errorHeaterSensor[0])))
 
         except:
             exceptOccured = True
-            HeaterClass.__lastSupportState = currentState
             threadTask.addTask(ActionThread.Task('set',
                                ActionThread.UpdateParam('status',
                                errorHeaterSensor[0])))
 
-        if ( HeaterClass.__lastSupportState != currentState or exceptOccured == True):
-            threadTask.addTask(ActionThread.Task('notify',
+        #if (exceptOccured == True):
+        threadTask.addTask(ActionThread.Task('notify',
                                ActionThread.NotifyParam()))
-            threadTask.start()
-            threadTask.suspend()
+        threadTask.start()
+        threadTask.suspend()
+
+    def __setHeaterStatus(self):
+        threadTask = ActionThread.ActionThread()
+        config = ConfigClass.ConfigClass()
+        sensor = config.getDeviceSensors('heater')[0]
+        sensorId = sensor[0]
+
+        if (HeaterClass.__lastSupportState == HeaterClass.__StateOn or \
+            HeaterClass.__lastState == HeaterClass.__StateOn):
+            threadTask.addTask(ActionThread.Task('set',
+                               ActionThread.UpdateParam('heater',
+                               sensorId)))
+        else:
+            threadTask.addTask(ActionThread.Task('clear',
+                               ActionThread.UpdateParam('heater',
+                               sensorId)))
+
+        threadTask.start()
 
 
     def manageHeaterState(
@@ -247,7 +259,6 @@ class HeaterClass(object):
         ):
         result = 0
         config = ConfigClass.ConfigClass()
-        alarm = AlarmClass.AlarmClass()
 
         dayTemp = float(config.getDayTemp())
         nightTemp = float(config.getNightTemp())
@@ -256,7 +267,6 @@ class HeaterClass(object):
 
         isDayMode = config.isDayMode(dayOfWeek, hour)
         isMainDeviceEnable = config.isMainDeviceEnabled()
-        sensor = config.getDeviceSensors('heater')[0]
 
         isSupportedDeviceMode = config.isSupportedDeviceEnabled(dayOfWeek, hour)
         isSupportedDeviceEnable = config.isSupportDeviceEnabled()
@@ -265,8 +275,6 @@ class HeaterClass(object):
         if hour == 0 and minute < 2:
             HeaterClass.__heaterOnToday = 0
             HeaterClass.__data_per_day.clearData()
-
-
 
         # Read current temperature
         (status, temp) = self.__getTemperatureFromDevice('thermometerInside')
@@ -283,36 +291,22 @@ class HeaterClass(object):
         # Main heat source control
         if (isMainDeviceEnable == False):
             # turn off heater
-            url = alarm.getUpdateUrl(sensor[1], 0)
-            self.__mainHeatSourceControl(url, 'clear', sensor[0])
-            HeaterClass.__lastState = HeaterClass.__StateOff
+            if (HeaterClass.__lastState == HeaterClass.__StateOn):# or HeaterClass.__lastState == HeaterClass.__StateUnknown):
+                result = result | 2
+            self.__mainHeatSourceControl(HeaterClass.__StateOff)
         elif (isDayMode == True and temp + threshold <= dayTemp) \
             or (isDayMode == False and temp + threshold <= nightTemp):
-
             # turn on heater
-            url = alarm.getUpdateUrl(sensor[1], 1)
-            #if HeaterClass.__lastState == HeaterClass.__StateOff \
-            #    or HeaterClass.__lastState \
-            #    == HeaterClass.__StateUnknown:
-            #    self.__mainHeatSourceControl(url, 'set', sensor[0])
-            self.__mainHeatSourceControl(url, 'set', sensor[0])
-            if (HeaterClass.__lastState == HeaterClass.__StateOff or HeaterClass.__lastState == HeaterClass.__StateUnknown):
+            if (HeaterClass.__lastState == HeaterClass.__StateOff):# or HeaterClass.__lastState == HeaterClass.__StateUnknown):
                 result = result | 1
-            HeaterClass.__lastState = HeaterClass.__StateOn
+            self.__mainHeatSourceControl(HeaterClass.__StateOn)
         elif (isDayMode == True and temp >= dayTemp + threshold) \
             or (isDayMode == False and temp >= nightTemp + threshold) \
             or (HeaterClass.__lastState == HeaterClass.__StateUnknown):
-
             # turn off heater
-            url = alarm.getUpdateUrl(sensor[1], 0)
-            #if HeaterClass.__lastState == HeaterClass.__StateOn \
-            #    or HeaterClass.__lastState \
-            #    == HeaterClass.__StateUnknown:
-            #    self.__mainHeatSourceControl(url, 'clear', sensor[0])
-            self.__mainHeatSourceControl(url, 'clear', sensor[0])
-            if (HeaterClass.__lastState == HeaterClass.__StateOn or HeaterClass.__lastState == HeaterClass.__StateUnknown):
+            if (HeaterClass.__lastState == HeaterClass.__StateOn):# or HeaterClass.__lastState == HeaterClass.__StateUnknown):
                 result = result | 2
-            HeaterClass.__lastState = HeaterClass.__StateOff
+            self.__mainHeatSourceControl(HeaterClass.__StateOff)
 
         # turn on support source (if main source is off)
         # Supported divice is consider as enabled if for particular time is enabled
@@ -324,22 +318,23 @@ class HeaterClass(object):
         if (HeaterClass.__lastState == HeaterClass.__StateOff and isSupportedDeviceEnable == True and isSupportedDeviceMode == True and status == 0 and temp + threshold <= supportTemp):
             print("----Support device start. Current main source = " + str(HeaterClass.__lastState))
             # turn off main heat source
-            url = alarm.getUpdateUrl(sensor[1], 0)
             if HeaterClass.__lastState == HeaterClass.__StateOn \
                 or HeaterClass.__lastState \
                 == HeaterClass.__StateUnknown:
-                self.__mainHeatSourceControl(url, 'clear', sensor[0])
-            if (HeaterClass.__lastSupportState == HeaterClass.__StateOff or HeaterClass.__lastSupportState == HeaterClass.__StateUnknown):
-                result = result | 4
-            HeaterClass.__lastState = HeaterClass.__StateOff
-            # Turn on supported devices
-            self.__supportHeatSourceControl('set', sensor[0])
-        else:
-            # Turn off supported devices
-            if (HeaterClass.__lastSupportState == HeaterClass.__StateOn or HeaterClass.__lastSupportState == HeaterClass.__StateUnknown):
-                result = result | 8
-            self.__supportHeatSourceControl('clear', sensor[0])
+                self.__mainHeatSourceControl(HeaterClass.__StateOff)
 
+            if (HeaterClass.__lastSupportState == HeaterClass.__StateOff):# or HeaterClass.__lastSupportState == HeaterClass.__StateUnknown):
+                result = result | 4
+            # Turn on supported devices
+            self.__supportHeatSourceControl(HeaterClass.__StateOn)
+        elif ((isSupportedDeviceMode == False or temp  > supportTemp + threshold or HeaterClass.__lastState == HeaterClass.__StateOn) and status == 0):
+            # Turn off supported devices
+            if (HeaterClass.__lastSupportState == HeaterClass.__StateOn):# or HeaterClass.__lastSupportState == HeaterClass.__StateUnknown):
+                result = result | 8
+            self.__supportHeatSourceControl(HeaterClass.__StateOff)
+
+        self.__setHeaterStatus()
+        print("---- End support function ")
 
         # Update statistics
         self.__storeDataCounter = self.__storeDataCounter + 1
