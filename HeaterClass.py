@@ -43,8 +43,13 @@ class HeaterParam(object):
 
 
 class HeaterClass(object):
-    # static data - states and statistics
+    # Defines (state and statistics)
+    __StateOn = 1
+    __StateOff = 0
+    __StateUnknown = -1
+    __TemperatureReadSuccess = 0
 
+    # static data - states and statistics
     __singletonInit = False
     __mutex = None
     __dayMode = False
@@ -56,24 +61,27 @@ class HeaterClass(object):
     __data_per_total = HeaterParam()
     __heaterOnToday = 0
 
-    # Defines (state and statistics)
-
-    __StateOn = 1
-    __StateOff = 0
-    __StateUnknown = -1
+    __lastTempInside  = 0
+    __lastTempOutside = 0
+    __lastTempStatusInside = -1
+    __lastTempStatusOutside = -1
 
     # Stored data buffer size - data to generate charts
-
     __maxDataBuffer = 10000
 
     # How offent data should be stored in buffer [min]
-
     __storeDataInterval = 60
 
     def __init__(self):
         if (HeaterClass.__singletonInit == False):            
             HeaterClass.__singletonInit = True                        
             HeaterClass.__mutex = threading.Lock()
+
+            HeaterClass.__lastState = HeaterClass.__StateUnknown
+            HeaterClass.__lastSupportState = HeaterClass.__StateUnknown
+
+            HeaterClass.__lastTempStatusInside = HeaterClass.__StateUnknown
+            HeaterClass.__lastTempStatusOutside = HeaterClass.__StateUnknown
 
             self.__storeDataCounter = 0
             db = DBClass.DBClass()
@@ -128,28 +136,29 @@ class HeaterClass(object):
             if (mode == 'avg' and thermalElements > 0):
                 temperature = temperature / thermalElements
 
+        if (status == HeaterClass.__TemperatureReadSuccess and thermType == 'thermometerInside'):
+            HeaterClass.__lastTempStatusInside = HeaterClass.__TemperatureReadSuccess
+            HeaterClass.__lastTempInside = temperature
+        elif (status == HeaterClass.__TemperatureReadSuccess and thermType == 'thermometerOutside'):
+            HeaterClass.__lastTempStatusOutside = HeaterClass.__TemperatureReadSuccess
+            HeaterClass.__lastTempOutside = temperature
+
+        if (status != HeaterClass.__TemperatureReadSuccess and \
+            HeaterClass.__lastTempStatusInside == HeaterClass.__TemperatureReadSuccess and \
+            thermType == 'thermometerInside'):
+            return (HeaterClass.__lastTempStatusInside, HeaterClass.__lastTempInside)
+
+        if (status != HeaterClass.__TemperatureReadSuccess and \
+            HeaterClass.__lastTempStatusOutside == HeaterClass.__TemperatureReadSuccess and \
+            thermType == 'thermometerOutside'):
+            return (HeaterClass.__lastTempStatusOutside, HeaterClass.__lastTempOutside)
+
         return (status, temperature)
-
-    def getCurrentTemperatureInside(self):
-        heater = {}
-        (status, temp) = self.__getTemperatureFromDevice('thermometerInside')
-        if status == 0:
-            heater['status'] = 'OK'
-        else:
-            heater['status'] = 'ERROR'
-
-        heater['temp'] = '%.1f' % temp
-        heater['time'] = datetime.now().strftime('%H:%M:%S')
-        heater['mode'] = 'day'
-        if HeaterClass.__dayMode == False:
-            heater['mode'] = 'night'
-
-        return heater
 
     def getCurrentTemperature(self):
         heater = {}
         (status, temp) = self.__getTemperatureFromDevice('thermometerInside')
-        if status == 0:
+        if status == HeaterClass.__TemperatureReadSuccess:
             heater['statusInside'] = 'OK'
         else:
             heater['statusInside'] = 'ERROR'
@@ -157,7 +166,7 @@ class HeaterClass(object):
         heater['tempInside'] = '%.1f' % temp
 
         (status, temp) = self.__getTemperatureFromDevice('thermometerOutside')
-        if status == 0:
+        if status == HeaterClass.__TemperatureReadSuccess:
             heater['statusOutside'] = 'OK'
         else:
             heater['statusOutside'] = 'ERROR'
@@ -183,19 +192,30 @@ class HeaterClass(object):
         config = ConfigClass.ConfigClass()
         sensor = config.getDeviceSensors('heater')[0]
         alarm = AlarmClass.AlarmClass()
+        exceptOccured = False
 
-        if(state == HeaterClass.__StateOn):
-            url = alarm.getUpdateUrl(sensor[1], 1)
-        else:
-            url = alarm.getUpdateUrl(sensor[1], 0)
 
         HeaterClass.__lastState = state
         threadTask = ActionThread.ActionThread()
 
-        threadTask.addTask(ActionThread.Task('request',
-                           ActionThread.RequestParam(url)))
+        try:
+            if(state == HeaterClass.__StateOn):
+               url = alarm.getUpdateUrl(sensor[1], 1)
+            else:
+               url = alarm.getUpdateUrl(sensor[1], 0)
+
+            threadTask.addTask(ActionThread.Task('request',
+                               ActionThread.RequestParam(url)))
+        except:
+            exceptOccured = True
+
+
+        if (exceptOccured == False):
+            HeaterClass.__lastState = state
+
         threadTask.addTask(ActionThread.Task('notify',
                            ActionThread.NotifyParam()))
+
         threadTask.start()
         threadTask.suspend()
 
@@ -205,7 +225,6 @@ class HeaterClass(object):
         errorHeaterSensor = config.getDeviceSensors('status')[3]
         supportedDevices = config.getSupportDevices()
         controlInterface = SwitchClass.SwitchClass()
-        HeaterClass.__lastSupportState = state
         exceptOccured = False
 
         try:
@@ -226,7 +245,9 @@ class HeaterClass(object):
                                ActionThread.UpdateParam('status',
                                errorHeaterSensor[0])))
 
-        #if (exceptOccured == True):
+        if (exceptOccured == False):
+            HeaterClass.__lastSupportState = state
+
         threadTask.addTask(ActionThread.Task('notify',
                                ActionThread.NotifyParam()))
         threadTask.start()
@@ -283,28 +304,28 @@ class HeaterClass(object):
             return result
 
         # Update current mode (day or night mode)
-        if HeaterClass.__dayMode != isDayMode:
+#        if HeaterClass.__dayMode != isDayMode:
             # if mode has changed set heater state as 'unknown'(-1)
-            HeaterClass.__lastState = HeaterClass.__StateUnknown
+#            HeaterClass.__lastState = HeaterClass.__StateUnknown
         HeaterClass.__dayMode = isDayMode
 
         # Main heat source control
         if (isMainDeviceEnable == False):
             # turn off heater
-            if (HeaterClass.__lastState == HeaterClass.__StateOn):# or HeaterClass.__lastState == HeaterClass.__StateUnknown):
+            if (HeaterClass.__lastState == HeaterClass.__StateOn or HeaterClass.__lastState == HeaterClass.__StateUnknown):
                 result = result | 2
             self.__mainHeatSourceControl(HeaterClass.__StateOff)
         elif (isDayMode == True and temp + threshold <= dayTemp) \
             or (isDayMode == False and temp + threshold <= nightTemp):
             # turn on heater
-            if (HeaterClass.__lastState == HeaterClass.__StateOff):# or HeaterClass.__lastState == HeaterClass.__StateUnknown):
+            if (HeaterClass.__lastState == HeaterClass.__StateOff or HeaterClass.__lastState == HeaterClass.__StateUnknown):
                 result = result | 1
             self.__mainHeatSourceControl(HeaterClass.__StateOn)
         elif (isDayMode == True and temp >= dayTemp + threshold) \
             or (isDayMode == False and temp >= nightTemp + threshold) \
             or (HeaterClass.__lastState == HeaterClass.__StateUnknown):
             # turn off heater
-            if (HeaterClass.__lastState == HeaterClass.__StateOn):# or HeaterClass.__lastState == HeaterClass.__StateUnknown):
+            if (HeaterClass.__lastState == HeaterClass.__StateOn or HeaterClass.__lastState == HeaterClass.__StateUnknown):
                 result = result | 2
             self.__mainHeatSourceControl(HeaterClass.__StateOff)
 
@@ -317,19 +338,14 @@ class HeaterClass(object):
         print("----Support device temp = (current temp)" + str(temp) + " / (temp on)" +  str(supportTemp) + " status = " + str(status) + " isSupportedDeviceMode = " +str(isSupportedDeviceMode))
         if (HeaterClass.__lastState == HeaterClass.__StateOff and isSupportedDeviceEnable == True and isSupportedDeviceMode == True and status == 0 and temp + threshold <= supportTemp):
             print("----Support device start. Current main source = " + str(HeaterClass.__lastState))
-            # turn off main heat source
-            if HeaterClass.__lastState == HeaterClass.__StateOn \
-                or HeaterClass.__lastState \
-                == HeaterClass.__StateUnknown:
-                self.__mainHeatSourceControl(HeaterClass.__StateOff)
-
-            if (HeaterClass.__lastSupportState == HeaterClass.__StateOff):# or HeaterClass.__lastSupportState == HeaterClass.__StateUnknown):
+            if (HeaterClass.__lastSupportState == HeaterClass.__StateOff or HeaterClass.__lastSupportState == HeaterClass.__StateUnknown):
                 result = result | 4
             # Turn on supported devices
             self.__supportHeatSourceControl(HeaterClass.__StateOn)
-        elif ((isSupportedDeviceMode == False or temp  > supportTemp + threshold or HeaterClass.__lastState == HeaterClass.__StateOn) and status == 0):
+        elif ((isSupportedDeviceMode == False or temp  > supportTemp + threshold or HeaterClass.__lastState == HeaterClass.__StateOn \
+            or HeaterClass.__lastSupportState == HeaterClass.__StateUnknown) and status == 0):
             # Turn off supported devices
-            if (HeaterClass.__lastSupportState == HeaterClass.__StateOn):# or HeaterClass.__lastSupportState == HeaterClass.__StateUnknown):
+            if (HeaterClass.__lastSupportState == HeaterClass.__StateOn or HeaterClass.__lastSupportState == HeaterClass.__StateUnknown):
                 result = result | 8
             self.__supportHeatSourceControl(HeaterClass.__StateOff)
 
@@ -337,7 +353,6 @@ class HeaterClass(object):
         print("---- End support function ")
 
         # Update statistics
-        self.__storeDataCounter = self.__storeDataCounter + 1
 
         if HeaterClass.__lastState == HeaterClass.__StateOn:
             HeaterClass.__heaterOnToday = HeaterClass.__heaterOnToday \
@@ -353,11 +368,13 @@ class HeaterClass(object):
             HeaterClass.__data_per_day.updateTimeOff()
 
         # Store data statistics to local database - once per defined interval (currently it means once per 1h)
+        self.__storeDataCounter = self.__storeDataCounter + 1
         if self.__storeDataCounter % HeaterClass.__storeDataInterval \
             == 0:
             # read from external temperature sensor
             (status, tempOutside) = self.__getTemperatureFromDevice('thermometerOutside')
             if status != 0:
+                self.__storeDataCounter = self.__storeDataCounter - 1
                 return result
             db = DBClass.DBClass()
 

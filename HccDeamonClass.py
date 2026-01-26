@@ -770,24 +770,16 @@ class HccDeamonClass(threading.Thread, ConfigurationInterface.ConfigurationInter
 
     def run(self):
         logging.basicConfig(handlers=[logging.FileHandler(filename="/media/usb0/hcc.log",
-                                     encoding='utf-8', mode='w+')],
+                                     encoding='utf-8', mode='a')],
                             format="%(asctime)s %(levelname)s %(message)s",
                             datefmt="%F %A %T",
                             level=logging.INFO)
         log = logging.getLogger('werkzeug')
 
-        command = ['ps -A -T | grep hcc.py']
-        proc = Popen(
-            command,
-            shell=True,
-            stdin=None,
-            stdout=PIPE,
-            stderr=None,
-            close_fds=True,
-            )
 
-        logging.info('HCC deamon pid')
-        logging.info(str(proc.communicate()[0]))
+        logging.info('---------- Home Control Center Application ---------')
+        logging.info('HCC deamon thread initialized')
+
         log.setLevel(logging.ERROR)
 
         timerTick = 0
@@ -806,5 +798,5 @@ class HccDeamonClass(threading.Thread, ConfigurationInterface.ConfigurationInter
                 time.sleep(1)
                 timerTick = timerTick + 1
             except Exception as e:
-                logging.error(str(e))
+                logging.error('HCC deamon exception : ' + str(e))
 

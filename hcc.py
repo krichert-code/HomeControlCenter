@@ -63,10 +63,11 @@ if (__name__ == "__main__"):
             connectorDeamon.start()
 
             app.run(host="0.0.0.0", port = 80)
-        except Exception as e:
-            print( "Cannot run application ! Critical error")
 
-        connectorDeamon.stop()
-        hccDeamon.stop()
-        hccDeamon.join()
-        connectorDeamon.join()
+            connectorDeamon.stop()
+            hccDeamon.stop()
+            hccDeamon.join()
+            connectorDeamon.join()
+        except Exception as e:
+            print( "Cannot run application ! Critical error: " +str(e))
+
