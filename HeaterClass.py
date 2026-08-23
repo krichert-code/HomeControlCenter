@@ -155,6 +155,12 @@ class HeaterClass(object):
 
         return (status, temperature)
 
+    def getCurrentOutsideTemperature(self):
+        return (HeaterClass.__lastTempStatusOutside, HeaterClass.__lastTempOutside)
+
+    def getCurrentInsideTemperature(self):
+        return (HeaterClass.__lastTempStatusInside, HeaterClass.__lastTempInside)
+
     def getCurrentTemperature(self):
         heater = {}
         (status, temp) = self.__getTemperatureFromDevice('thermometerInside')

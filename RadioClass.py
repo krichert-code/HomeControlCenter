@@ -167,9 +167,11 @@ class RadioClass(object):
     # __get_volume_req = "/jsonrpc?request={%22jsonrpc%22:%222.0%22,%22method%22:%22Application.GetProperties%22,%22params%22:{%22properties%22:[%22volume%22]},%22id%22:1}"
     # __stop_req = "/jsonrpc?request={%22jsonrpc%22:%222.0%22,%22method%22:%22Player.Stop%22,%22params%22:{%20%22playerid%22:1},%22id%22:%221%22}"
     # __play_req = "/jsonrpc?request={%22jsonrpc%22:%222.0%22,%22id%22:%221%22,%22method%22:%22Player.Open%22,%22params%22:{%22item%22:{%22file%22:%22PLAY_REQUEST%22}}}
-
-    def __init__(self):
+    __media = None
+    def __init__(self, mediaInterface = None):
         config = ConfigClass.ConfigClass()
+        if (mediaInterface != None):
+            RadioClass.__media = mediaInterface
 
         if RadioClass.__initialized == 0:
             RadioClass.__settings = config.getRadioSettings()
@@ -178,6 +180,23 @@ class RadioClass(object):
             #RadioClass.__tv = cec.Device(cec.CECDEVICE_TV)
 
             RadioClass.__initialized = 1
+
+    def getRadioChannels(self):
+        response = {}
+        config = ConfigClass.ConfigClass()
+
+        response['radio'] = config.getRadioStations()
+        response['tv'] = []
+#        mp3 = self.getFiles()
+#        data = []
+#        for f in mp3:
+#            data.append(f.label)
+        response['mp3'] = []
+        if (RadioClass.__media != None):
+            response['volume'] = RadioClass.__media.apiMediaGetVolume()
+        else:
+            response['volume'] = 0
+        return response
 
     def __getPlayerVolume(self):
         req = self.__getRadioDevice() + '/jsonrpc'
@@ -223,6 +242,7 @@ class RadioClass(object):
 
     def getPVRStations(self):
         response = {}
+        print (self.getPVRRadioStations())
         response['radio'] = self.getPVRRadioStations()
         response['tv'] = self.getPVRTVStations()
         mp3 = self.getFiles()
@@ -363,8 +383,8 @@ class RadioClass(object):
 
     def getYTsearch(self, text):
         result = []
+        customSearch = VideosSearch(str(text), limit = 30)
 
-        customSearch = VideosSearch(text, limit = 30)
         for entry in customSearch.result()['result']:
             entry_data = {}
             entry_data['title'] = entry['title']
@@ -372,7 +392,6 @@ class RadioClass(object):
             entry_data['link'] = entry['link']
             entry_data['icon'] = entry['thumbnails'][0]['url']
             result.append(entry_data)
-
         return result
 
     def getRadioStations(self):
@@ -505,14 +524,10 @@ class RadioClass(object):
         isEnabled = False
 
         try:
-            req = self.__getRadioDevice() + '/jsonrpc'
-            payload = RadioClass.__get_player_state_req
-            event = requests.post(req, data=json.dumps(payload),
-                                  headers=RadioClass.__headers,
-                                  verify=False, timeout=3)
-            data = json.loads(event.text)
-            if len(data['result']) > 0:
-                isEnabled = True
+            if (RadioClass.__media != None):
+                isEnabled = RadioClass.__media.apiMediaGetState() == "playing"
+            else:
+                isEnabled = False
         except:
             isEnabled = False
         finally:

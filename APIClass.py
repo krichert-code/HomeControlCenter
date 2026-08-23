@@ -17,6 +17,7 @@ import json
 import psutil
 from subprocess import Popen
 import APIInterface
+import APIMediaInterface
 import threading
 
 
@@ -25,10 +26,14 @@ class APIClass:
     def __init__(self):
         self.__mutex = threading.Lock()
         self.__apiObj = APIInterface.APIInterface()
+        self.__apiMediaObj = APIMediaInterface.APIMediaInterface()
+        self.__media = None 
 
-    def registerAPIInterface(self, obj):
+    def registerAPIInterface(self, obj, mediaObj):
         self.__mutex.acquire()
         self.__apiObj = obj
+        self.__apiMediaObj = mediaObj
+        self.__media = RadioClass.RadioClass(mediaObj)
         self.__mutex.release()
 
 
@@ -49,8 +54,13 @@ class APIClass:
         return json.dumps(response)
 
     def APIgetMediaChannels(self, json_req):
-        obj = RadioClass.RadioClass()
-        response = obj.getPVRStations()
+        #obj = RadioClass.RadioClass()
+        #TODO: cleanup
+        #response = obj.getPVRStations()
+        #print(response)
+        response = self.__media.getRadioChannels()
+        ##print("\n\n\n")
+        #print(response)
         return json.dumps(response)
 
     def APIgetSpotifyData(self, json_req):
@@ -67,21 +77,67 @@ class APIClass:
         return json.dumps(response)
 
     def APIgetYTSearchResult(self, json_req):
-        obj = RadioClass.RadioClass()
         response =  {}
-        response['videos'] = obj.getYTsearch(json_req['search'])
+        response['videos'] = self.__media.getYTsearch(json_req['search'])
         return json.dumps(response)
+
+    def APIVolumeSet(self, json_req):
+        #TODO:cleanup
+        param = json_req['volume']
+        self.__apiMediaObj.apiMediaVolume(param)
+        return self.APIevents()
+        #return self.APIGenericCMD(json_req['action'], param)
+
+    def APIPlayPVR(self, json_req):
+        param = json_req['channel']
+        #TODO:clenup
+        config = ConfigClass.ConfigClass()
+        url = config.getRadioStationUrl(param)
+        self.__apiMediaObj.apiMediaPlay(url)
+        #radio = RadioClass.RadioClass()
+        #radio.playPVRChannel(int(param))
+        return self.APIevents()
+        #return self.APIGenericCMD(json_req['action'], param)
+
+    def APIPlayMp3(self, json_req):
+        param = json_req['folder']
+        return self.APIGenericCMD(json_req['action'], param)
+
+    def APIPlaySpotifyObject(self, json_req):
+        param = json_req['link']
+        return self.APIGenericCMD(json_req['action'], param)
+
+    def APIPlaySpotifyDirectory(self, json_req):
+        param = json_req['link']
+        return self.APIGenericCMD(json_req['action'], param)
+
+    def APIVideoShare(self, json_req):
+        obj = RadioClass.RadioClass()
+        ytlist = False
+
+        if 'playlist' in json_req:
+            playlist = json_req['playlist']
+            ytlist = True
+        elif 'link' in json_req:
+            url = json_req['link']
+            if (obj.isYTPlaylist(url) == True):
+                playlist = obj.getPlaylistLinks(url)
+                ytlist = True
+
+        if ytlist == True:
+            self.__mutex.acquire()
+            self.__apiObj.mediaPlaylistUpdate(playlist)
+            self.__mutex.release()
+            return self.APIevents()
+        else:
+            print(url)
+            self.__apiMediaObj.apiMediaPlayYoutube(url)
+            return self.APIevents()
+            #return self.APIGenericCMD(json_req['action'], url)
 
     def APIinfo(self, json_req):
         infoObj = InfoClass.InfoClass()
         response = infoObj.getInfoData()
-        return json.dumps(response)
-
-    def APIschedule(self, json_req):
-        obj = ScheduleClass.ScheduleClass()
-        response = {}
-        response['DirectionA'] = obj.getJsonFromKoleo('A', 0)
-        response['DirectionB'] = obj.getJsonFromKoleo('B', 0)
         return json.dumps(response)
 
     def APIheaterCharts(self, json_req):
@@ -177,48 +233,6 @@ class APIClass:
         duration = action.performAction(cmd, param)
         return self.APIevents()
 
-    def APIVolumeSet(self, json_req):
-        param = json_req['volume']
-        return self.APIGenericCMD(json_req['action'], param)
-
-    def APIPlayPVR(self, json_req):
-        param = json_req['channel']
-        return self.APIGenericCMD(json_req['action'], param)
-
-    def APIPlayMp3(self, json_req):
-        param = json_req['folder']
-        return self.APIGenericCMD(json_req['action'], param)
-
-    def APIPlaySpotifyObject(self, json_req):
-        param = json_req['link']
-        return self.APIGenericCMD(json_req['action'], param)
-
-    def APIPlaySpotifyDirectory(self, json_req):
-        param = json_req['link']
-        return self.APIGenericCMD(json_req['action'], param)
-
-    def APIVideoShare(self, json_req):
-        obj = RadioClass.RadioClass()
-        ytlist = False
-
-        if 'playlist' in json_req:
-            playlist = json_req['playlist']
-            ytlist = True
-        elif 'link' in json_req:
-            url = json_req['link']
-            if (obj.isYTPlaylist(url) == True):
-                playlist = obj.getPlaylistLinks(url)
-                ytlist = True
-
-        if ytlist == True:
-            self.__mutex.acquire()
-            self.__apiObj.mediaPlaylistUpdate(playlist)
-            self.__mutex.release()
-            return self.APIevents()
-        else:
-            return self.APIGenericCMD(json_req['action'], url)
-
-
     def APISprinklerOn(self, json_req):
         param = json_req['id']
         return self.APIGenericCMD(json_req['action'], param)
@@ -237,15 +251,13 @@ class APIClass:
             self.__apiObj.mediaPlaylistUpdate()
             self.__mutex.release()
         if 'sourceIsLocal' in json_req:
+            # play next mp3 local source
             return self.APIGenericCMD(json_req['action'], json_req['sourceIsLocal'])
         else:
-            return self.APIGenericCMD(json_req['action'], False)
+            # just stop, if playlist was played then next song soon starts
+            self.__apiMediaObj.apiMediaStop()
+            return self.APIevents()
 
-    def APIVolumeUp(self, json_req):
-        return self.APIGenericCMD(json_req['action'])
-
-    def APIVolumeDown(self, json_req):
-        return self.APIGenericCMD(json_req['action'])
 
     def APISprinklerForceAuto(self, json_req):
         return self.APIGenericCMD(json_req['action'])

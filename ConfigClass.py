@@ -113,12 +113,26 @@ class ConfigClass(object):
                 )[0].getAttribute('server')
         return server
 
-    def getRadioURL(self, name):
+    def getRadioStationUrl(self, id):
+        idx = 0
         for item in ConfigClass.__xmldoc.getElementsByTagName('radio'
-                )[0].getElementsByTagName('element'):
-            if item.getAttribute('name') == name:
-                break
-        return item.getAttribute('url')
+                )[0].getElementsByTagName('channel'):
+            if (idx == id):
+                return item.getAttribute('url')
+            idx = idx + 1
+        return ""
+
+    def getRadioStations(self):
+        element = {}
+        result = []
+        id = 0
+        for item in ConfigClass.__xmldoc.getElementsByTagName('radio'
+                )[0].getElementsByTagName('channel'):
+            element['channelid'] = id
+            element['label'] = item.getAttribute('name')
+            result.append(copy.deepcopy(element))
+            id = id + 1
+        return result
 
     def getRadioSettings(self):
         ip = ConfigClass.__xmldoc.getElementsByTagName('radio'
@@ -128,12 +142,7 @@ class ConfigClass(object):
         device = ip + ':' + port
         return device
 
-    def getRadioStationsName(self):
-        names = []
-        for item in ConfigClass.__xmldoc.getElementsByTagName('radio'
-                )[0].getElementsByTagName('element'):
-            names.append(item.getAttribute('name'))
-        return names
+
 
     def getAlarmSetting(self, name):
         return ConfigClass.__xmldoc.getElementsByTagName('alarm'

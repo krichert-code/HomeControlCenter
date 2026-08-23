@@ -12,6 +12,7 @@ import CryptClass
 import APIClass
 import HccDeamonClass
 import ConnectorDeamonClass
+import MediaDeamonClass
 import AdminPanelSyncClass
 
 app = Flask(__name__)
@@ -51,12 +52,16 @@ if (__name__ == "__main__"):
 
         try:
             hccDeamon = HccDeamonClass.HccDeamonClass()
+            mediaDeamon = MediaDeamonClass.MediaDeamonClass()
+
             admiPanelSync.registerObserver(hccDeamon)
-            api.registerAPIInterface(hccDeamon)
+            api.registerAPIInterface(hccDeamon, mediaDeamon)
+
             hccDeamon.start()
 
-            #sleep is only for get TID for logging purposes
+            #sleep is for run logger
             time.sleep(1)
+            mediaDeamon.start()
 
             #start connector deamon only if 'remote access' is enable (settings in configuration)
             connectorDeamon = ConnectorDeamonClass.ConnectorDeamonClass(api)
@@ -66,8 +71,13 @@ if (__name__ == "__main__"):
 
             connectorDeamon.stop()
             hccDeamon.stop()
+            mediaDeamon.stop()
+
             hccDeamon.join()
+            mediaDeamon.join()
             connectorDeamon.join()
+
         except Exception as e:
             print( "Cannot run application ! Critical error: " +str(e))
+
 

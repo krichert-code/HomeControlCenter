@@ -85,10 +85,10 @@ class Alarm:
                 radio.playPVRChannel(int(radioChannel))
                 radio.setRadioVolume(int(volume))
                 self.__playing = True
-            except:
+            except Exception as e:
                 self.__playing = False
                 print("____________radio error1")
-                logging.error('RADIO EXCEPT:')
+                logging.error('HCC deamon exception(Alarm) :' + str(e))
         elif self.__compareTime(stop_time) == True and self.__playing \
             == True:
 
@@ -96,9 +96,9 @@ class Alarm:
                 radio.getRadioStopRequest()
                 radio.setRadioVolume(50)
                 self.__playing = False
-            except:
+            except Exception as e:
+                logging.error('HCC deamon exception(Alarm) :' + str(e))
                 self.__playing = True
-                print ("____________radio error2")
 
 
 class Speaker:
@@ -117,8 +117,8 @@ class Speaker:
 
             GPIO.output(self.__powerPin, GPIO.HIGH)
             GPIO.output(self.__activatePin, GPIO.LOW)
-        except:
-            print("__________speaker excetion")
+        except Exception as e:
+            logging.error('HCC deamon exception(Speaker) :' + str(e))
 
     def timeEvent(self):
         try:
@@ -142,9 +142,8 @@ class Speaker:
                 time.sleep(1)
                 GPIO.output(self.__activatePin, GPIO.LOW)
                 self.__no_activeCounter = 0
-        except:
-            logging.error('SPEAKER EXCEPT:')
-            print("__________speaker excetion")
+        except Exception as e:
+            logging.error('HCC deamon exception(Speaker) :' + str(e))
 
 
 class Calendar:
@@ -159,9 +158,8 @@ class Calendar:
             if self.__day != curr_day:
                 self.__day = curr_day
                 calendar.generateFiles()
-        except:
-            logging.error('CALENDAR EXCEPT:')
-            print("__________calendar excetion")
+        except Exception as e:
+            logging.error('HCC deamon exception(Calendar) :' + str(e))
 
 
 class Heater:
@@ -179,21 +177,23 @@ class Heater:
                 curr_min = int(datetime.now().strftime('%M'))
                 result = self.__heater.manageHeaterState(curr_week_day,
                         curr_hour, curr_min)
-                #logging.error('Heater status = ' +str(result))
+
                 if (result == -1):
                    #logging.error('Heater error - wrong temperature readings')
                    result = 0
                 else:
+                    (temp_status, temp_outside) = self.__heater.getCurrentOutsideTemperature()
+
                     if (result & 1):
-                        logging.info('Heater main source on')
+                        logging.info('Heater main source on (temp outside : ' + str(temp_outside) + ' C)')
                     if (result & 2):
                         logging.info('Heater main source off')
                     if (result & 4):
-                        logging.info('Heater support source on')
+                        logging.info('Heater support source on (temp outside : ' + str(temp_outside) + ' C)')
                     if (result & 8):
                         logging.info('Heater support source off')
         except Exception as e:
-            logging.error('HEATER EXCEPT: ' + str(e) + " " + traceback.format_exc())
+            logging.error('HCC deamon exception(Heater) :' + str(e))
 
 
 class Sprinkler:
@@ -213,7 +213,7 @@ class Sprinkler:
                         curr_hour, curr_min)
                 #logging.error('-------------SPRINKLER RUN :' + str(val))
         except Exception as e:
-            logging.error('SPRINKLER EXCEPT: ' + str(e))
+            logging.error('HCC deamon exception(Sprinkler) :' + str(e))
 
 
 class Messages:
@@ -253,8 +253,8 @@ class Messages:
 
             #resp = json.loads(r.text)
             #resp['responseCode']
-        except:
-            logging.error('MESSAGE (bulk) EXCEPT:')
+        except Exception as e:
+            logging.error('HCC deamon exception(Message) :' + str(e))
             status = 'ERROR'
 
         return status
@@ -282,8 +282,8 @@ class Messages:
                               headers=headers)
             resp = json.loads(r.text)
             status = resp['responseCode']
-        except:
-            logging.error('MESSAGE (justsend) EXCEPT:')
+        except Exception as e:
+            logging.error('HCC deamon exception(Message) :' + str(e))
             status = 'ERROR'
 
         return status
@@ -341,7 +341,8 @@ class Messages:
                     #if update == True:
                     self.lastStates[name] = item.state
         except Exception as e:
-            logging.error('MESSAGE EXCEPT:' + str(e))
+            logging.error('HCC deamon exception(Message) :' + str(e))
+
 
     def __calendarEventMessage(self):
         calendar = CalendarClass.CalendarClass()
@@ -444,7 +445,7 @@ class Energy:
                 self.__curr_day = curr_day
 
         except Exception as e:
-            logging.error('ENERGY EXCEPT:' + str(e))
+            logging.error('HCC deamon exception(Energy) :' + str(e))
 
 
 class Status:
@@ -481,8 +482,10 @@ class Status:
 
                             self.__config.changeStatus('status',
                                     statusSensor[0], '0')
-            except:
-                self.__config.changeStatus('status', '0', '1')
+            except Exception as e:
+                pass
+                #logging.error('HCC deamon exception(Status) :' + str(e))
+                #self.__config.changeStatus('status', '0', '1')
 
 
 class ProgramAction:
@@ -683,7 +686,7 @@ class ProgramAction:
                            lightSwitch.changeSwitchState(light['lightIp'], 'on')
                            if (light['timeMode'] == 'switch'):
                                light['switch_state'] = 1
-                               logging.error("Program class light " + light['lightIp'] +" on - caused sensor activated")
+                               logging.info("Program class light " + light['lightIp'] +" on - caused sensor activated")
                    elif (light['timeMode'] == 'switch') and (light['switch_state'] == 1) and (light['state'] != 1):
                        lightSwitch.changeSwitchState(light['lightIp'], 'off')
                        light['switch_state'] = 0
@@ -730,8 +733,7 @@ class Media:
                 self.__radio.playYTAddonVideo(self.__playlist[self.__idx])
                 self.__idx=self.__idx+1
         except Exception as e:
-            logging.error('MEDIA EXCEPT: ' + str(e) + " " + traceback.format_exc())
-
+            logging.error('HCC deamon exception(Media) :' + str(e))
 
 # ------------------------------------------------------------------------------------------------------------------------
 
