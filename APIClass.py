@@ -54,26 +54,7 @@ class APIClass:
         return json.dumps(response)
 
     def APIgetMediaChannels(self, json_req):
-        #obj = RadioClass.RadioClass()
-        #TODO: cleanup
-        #response = obj.getPVRStations()
-        #print(response)
         response = self.__media.getRadioChannels()
-        ##print("\n\n\n")
-        #print(response)
-        return json.dumps(response)
-
-    def APIgetSpotifyData(self, json_req):
-        obj = RadioClass.RadioClass()
-        print( json_req)
-        if json_req['searchTextExist'] == True:
-            response = \
-                obj.getSpotifyObjectFromSearch(json_req['searchText'])
-        elif json_req['currentDirectoryExist'] == True:
-            response = \
-                obj.getSpotifyObject(json_req['currentDirectoryText'])
-        else:
-            response = obj.getSpotifyObject()
         return json.dumps(response)
 
     def APIgetYTSearchResult(self, json_req):
@@ -82,37 +63,35 @@ class APIClass:
         return json.dumps(response)
 
     def APIVolumeSet(self, json_req):
-        #TODO:cleanup
         param = json_req['volume']
-        self.__apiMediaObj.apiMediaVolume(param)
+        self.__media.setRadioVolume(param)
         return self.APIevents()
-        #return self.APIGenericCMD(json_req['action'], param)
 
+    def APIVolumeUp(self, json_req):
+        volume = self.__media.getRadioVolume()
+        if (volume < 100):
+            volume = volume + 5
+            self.__media.setRadioVolume(volume)
+        return self.APIevents()
+
+    def APIVolumeDown(self, json_req):
+        volume = self.__media.getRadioVolume()
+        if (volume > 0):
+            volume = volume - 5
+            self.__media.setRadioVolume(volume)
+        return self.APIevents()
+    
     def APIPlayPVR(self, json_req):
         param = json_req['channel']
-        #TODO:clenup
-        config = ConfigClass.ConfigClass()
-        url = config.getRadioStationUrl(param)
-        self.__apiMediaObj.apiMediaPlay(url)
-        #radio = RadioClass.RadioClass()
-        #radio.playPVRChannel(int(param))
+        self.__media.playRadioStream(param)
         return self.APIevents()
-        #return self.APIGenericCMD(json_req['action'], param)
 
     def APIPlayMp3(self, json_req):
         param = json_req['folder']
-        return self.APIGenericCMD(json_req['action'], param)
-
-    def APIPlaySpotifyObject(self, json_req):
-        param = json_req['link']
-        return self.APIGenericCMD(json_req['action'], param)
-
-    def APIPlaySpotifyDirectory(self, json_req):
-        param = json_req['link']
+        self.__media.playMp3File(param)
         return self.APIGenericCMD(json_req['action'], param)
 
     def APIVideoShare(self, json_req):
-        obj = RadioClass.RadioClass()
         ytlist = False
 
         if 'playlist' in json_req:
@@ -120,20 +99,16 @@ class APIClass:
             ytlist = True
         elif 'link' in json_req:
             url = json_req['link']
-            if (obj.isYTPlaylist(url) == True):
-                playlist = obj.getPlaylistLinks(url)
+            if (self.__media.isYTPlaylist(url) == True):
+                playlist = self.__media.getPlaylistLinks(url)
                 ytlist = True
 
         if ytlist == True:
-            self.__mutex.acquire()
-            self.__apiObj.mediaPlaylistUpdate(playlist)
-            self.__mutex.release()
-            return self.APIevents()
+            self.__apiMediaObj.apiMediaPlayYoutubeList(playlist)
         else:
-            print(url)
             self.__apiMediaObj.apiMediaPlayYoutube(url)
-            return self.APIevents()
-            #return self.APIGenericCMD(json_req['action'], url)
+            
+        return self.APIevents()
 
     def APIinfo(self, json_req):
         infoObj = InfoClass.InfoClass()
@@ -246,17 +221,13 @@ class APIClass:
         return self.APIGenericCMD(json_req['action'], param)
 
     def APIStop(self, json_req):
-        if 'next' not in json_req:
-            self.__mutex.acquire()
-            self.__apiObj.mediaPlaylistUpdate()
-            self.__mutex.release()
-        if 'sourceIsLocal' in json_req:
-            # play next mp3 local source
-            return self.APIGenericCMD(json_req['action'], json_req['sourceIsLocal'])
+        if 'next' in json_req:
+            # play next song from playlist local source or youtube playlist
+            self.__media.playNextFromPlaylist()
         else:
-            # just stop, if playlist was played then next song soon starts
+            # just stop
             self.__apiMediaObj.apiMediaStop()
-            return self.APIevents()
+        return self.APIevents()
 
 
     def APISprinklerForceAuto(self, json_req):
@@ -288,17 +259,6 @@ class APIClass:
             if proc.name() == 'ffmpeg':
                 streaming_in_progress = True
                 break
-
-        #if streaming_in_progress == False:
-        #    command = ['/HomeControlCenter/play.sh']
-        #    proc = Popen(
-        #        command,
-        #        shell=True,
-        #        stdin=None,
-        #        stdout=None,
-        #        stderr=None,
-        #        close_fds=True,
-        #        )
 
         obj = RoomClass.RoomClass()
         response = obj.getRoomsData()

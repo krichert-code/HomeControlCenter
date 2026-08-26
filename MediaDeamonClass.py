@@ -1,155 +1,110 @@
-import requests
+import random
 import threading
 import time
 import ConfigClass
-import RadioClass
-import CalendarClass
-import HeaterClass
-import ActionClass
-import SprinklerClass
-import EnergyClass
 import APIMediaInterface
-import APIInterface
-import DBClass
-import RPi.GPIO as GPIO
-import json
-import AlarmClass
-import traceback
 import logging
-import SwitchClass
-import RadioClass
-import base64
-import os
-from datetime import date
-from datetime import datetime
-from datetime import timedelta
-from astral.sun import sun
-from astral import LocationInfo
-from subprocess import Popen, PIPE
-
 import yt_dlp
 import vlc
 import time
-
-
-
-#url="https://www.youtube.com/watch?v=kqccmH8FTb8"
-
-
-# --- Pobranie URL strumienia audio ---
-#ydl_opts = {
-#    "format": "bestaudio",
-#    "quiet": True,
-#}
-
-#with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-#    info = ydl.extract_info(url, download=False)
-#    audio_url = info["url"]
-
-#print("Stream URL:", audio_url)
-
-# --- Odtwarzanie strumienia ---
-#radio="http://31.192.216.10/RMFMAXXX48"
-#player = vlc.MediaPlayer(audio_url)
-#player.play()
-
-#time.sleep(1)
-
-
-
-
-
-# Pętla czekająca aż się skończy
-#while True:
-    # setting volume
-#    player.audio_set_volume(50)
-
-#    state = player.get_state()
-#    if state in (vlc.State.Ended, vlc.State.Stopped, vlc.State.Error):
-#        break
-#    time.sleep(5.2)
-
-    # stop play
-    #player.stop()
-
-
-
-
-
-#   def apiMediaPlaylistUpdate(self, playlist=[]):
-#        """Method is called when playall was called."""
-#        pass
-
-#    def apiMediaPlay(self, url):
-#        """Method is called when play was called."""
-#        pass
-
-#    def apiMediaStop(self):
-#        """Method is called when stop  was called."""
-#        pass
-
-#    def apiMediaVolume(self, volume):
-#        """Method is called when volume up/down was called."""
-#        pass
-
-
-#    def apiMediaGetVolume(self):
-#        """Method is called when get volume was called."""
-#        pass
-
-#    def apiMediaGetState(self):
-#        """Method is called when get state was called."""
-#        pass
-
-
+from pathlib import Path
 
 class Media:
+    SOURCE_NONE = 0
+    SOURCE_MP3 = 1
+    SOURCE_STREAM = 2
+    SOURCE_YOUTUBE = 3
+
     def __init__(self):
-#        self.__radio = RadioClass.RadioClass()
         self.__player = vlc.MediaPlayer()
-        self.__idx = 0
-        self.__playlist = []
+        self.__list_player = vlc.MediaListPlayer()
+        self.__list_player.set_media_player(self.__player)
+
+        self.__sourcePlaying = Media.SOURCE_NONE
+        self.__url = ""
         self.__player.audio_set_volume(50)
+        self.__ytTitle = None
 
-    def initializePlaylistData(self, playlist):
-#        self.__radio.getRadioStopRequest()
-        self.__idx = 0
-        self.__playlist.clear()
-        self.__playlist = playlist
-        #except Exception as e:
-        #    logging.error('Media deamon exception(PlayAll) :' + str(e))
-
+    def __stop(self):
+        self.__player.stop()
+        self.__list_player.stop()
+        media_list = vlc.MediaList()
+        self.__list_player.set_media_list(media_list)
+    
     def playYT(self, url):
         ydl_opts = {
            "format": "bestaudio",
            "quiet": True,
         }
 
+        self.__sourcePlaying = Media.SOURCE_YOUTUBE
+        self.__stop()
+
+        self.__url = url
+
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=False)
             audio_url = info["url"]
-
-        print("Stream URL:", audio_url)
+            self.__ytTitle = info["title"]
 
         # setting media to the
         self.__player.set_media(vlc.Media(audio_url))
-
         self.__player.play()
 
 
-    def playStream(self, url):
-        print("Stream URL:", url)
-
-        # setting media to the
+    def playStream(self, name, url):
+        self.__sourcePlaying = Media.SOURCE_STREAM
+        self.__url = name
+        self.__stop()
         self.__player.set_media(vlc.Media(url))
         self.__player.play()
 
+    def playMp3File(self, directory):
+        folder = Path(directory)
+        if not folder.is_dir():
+            return
+
+        files = sorted(
+            str(f) for f in folder.iterdir()
+            if f.is_file() and f.suffix.lower() == '.mp3'
+        )
+        if not files:
+            return
+
+        self.__sourcePlaying = Media.SOURCE_MP3
+        random.shuffle(files)
+        self.__url = directory
+
+        media_list = vlc.MediaList()
+        for f in files:
+            media_list.add_media(vlc.Media(f))
+
+        self.__stop()
+        self.__list_player.set_media_list(media_list)
+        self.__list_player.play()
+
+    def playNext(self):
+        if self.__list_player.is_playing():
+            self.__list_player.next()
+                
     def setVolume(self, volume):
         self.__player.audio_set_volume(volume)
 
     def getVolume(self):
         return self.__player.audio_get_volume()
 
+    def getTitle(self):
+        if self.__sourcePlaying == Media.SOURCE_MP3:
+            media = self.__player.get_media()
+            if media is not None:
+                return media.get_meta(vlc.Meta.Title)
+        elif self.__sourcePlaying == Media.SOURCE_YOUTUBE:
+            return self.__ytTitle
+        elif self.__sourcePlaying == Media.SOURCE_STREAM:
+            return self.__url
+        
+        return None
+    
     def getState(self):
         state = self.__player.get_state()
         if (state in (vlc.State.Ended, vlc.State.Stopped, vlc.State.Error)):
@@ -163,6 +118,7 @@ class Media:
 
     
     def stop(self):
+        self.__sourcePlaying = Media.SOURCE_NONE
         self.__player.stop()
 
 
@@ -174,29 +130,39 @@ class MediaDeamonClass(threading.Thread, APIMediaInterface.APIMediaInterface):
     def __init__(self):
         threading.Thread.__init__(self)
         self.__stopEvent = False
-        self.__config = ConfigClass.ConfigClass()
         self.__media = Media()
         self.__state = "unknown"
+        self.__ytPlaylist = []
 
-    def apiMediaPlaylistUpdate(self, data = []):
-        """Overrides APIMediaInterface.apiMediaPlaylistUpdate()"""
-        self.__media.initializePlaylistData(data)
-
-    def apiMediaPlay(self, url):
-        """Overrides APIMediaInterface.apiMediaPlay()"""
+    def apiMediaPlayMp3(self, path):
+        """Method is called when play was called."""
         self.__media.stop()
-        time.sleep(2)
-        self.__media.playStream(url)
+        time.sleep(1)
+        self.__media.playMp3File(path)
+
+    def apiMediaPlayRadioStream(self, name, url):
+        """Overrides APIMediaInterface.apiMediaPlay()"""        
+        self.__media.stop()
+        time.sleep(1)
+        self.__media.playStream(name, url)
 
     def apiMediaPlayYoutube(self, url):
         """Overrides APIMediaInterface.apiMediaPlayYoutube()"""
         self.__media.stop()
-        time.sleep(2)
+        time.sleep(1)
         self.__media.playYT(url)
 
     def apiMediaStop(self):
         """Overrides APIMediaInterface.apiMediaStop()"""
+        self.__ytPlaylist.clear()
         self.__media.stop()
+
+    def apiMediaPlayNext(self):
+        """Overrides APIMediaInterface.apiMediaPlayNext()"""
+        if len(self.__ytPlaylist) > 0:
+            self.__media.stop()
+        else:
+            self.__media.playNext()
 
     def apiMediaVolume(self, volume):
         """Overrides APIMediaInterface.apiMediaVolume()"""
@@ -210,6 +176,18 @@ class MediaDeamonClass(threading.Thread, APIMediaInterface.APIMediaInterface):
         """Method is called when get state was called."""
         return self.__state
 
+    def apiMediaGetMetaData(self):
+        """Method is called when get media metadata was called."""
+        title = self.__media.getTitle()
+        if title is not None:
+            return title + " [" + str(self.__media.getVolume()) + "%]"
+        return None
+
+    def apiMediaPlayYoutubeList(self, playlist):
+        """Overrides APIMediaInterface.apiMediaPlayYoutubeList()"""
+        self.__media.stop()
+        time.sleep(1)
+        self.__ytPlaylist = playlist
 
     def stop(self):
         self.__stopEvent = True
@@ -224,5 +202,8 @@ class MediaDeamonClass(threading.Thread, APIMediaInterface.APIMediaInterface):
             try:
                 time.sleep(1)
                 self.__state = self.__media.getState()
+                if self.__state == "stopped" and len(self.__ytPlaylist) > 0:
+                    next_url = self.__ytPlaylist.pop(0)
+                    self.__media.playYT(next_url)
             except Exception as e:
                 logging.error('Media deamon exception : ' + str(e))

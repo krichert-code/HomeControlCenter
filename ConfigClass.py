@@ -118,9 +118,9 @@ class ConfigClass(object):
         for item in ConfigClass.__xmldoc.getElementsByTagName('radio'
                 )[0].getElementsByTagName('channel'):
             if (idx == id):
-                return item.getAttribute('url')
+                return item.getAttribute('name'), item.getAttribute('url')
             idx = idx + 1
-        return ""
+        return "", ""
 
     def getRadioStations(self):
         element = {}

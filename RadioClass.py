@@ -187,11 +187,7 @@ class RadioClass(object):
 
         response['radio'] = config.getRadioStations()
         response['tv'] = []
-#        mp3 = self.getFiles()
-#        data = []
-#        for f in mp3:
-#            data.append(f.label)
-        response['mp3'] = []
+        response['mp3'] = self.getFiles()
         if (RadioClass.__media != None):
             response['volume'] = RadioClass.__media.apiMediaGetVolume()
         else:
@@ -239,19 +235,6 @@ class RadioClass(object):
                              verify=False, timeout=10)
         data = json.loads(resp.text)
         return data['result']['channels']
-
-    def getPVRStations(self):
-        response = {}
-        print (self.getPVRRadioStations())
-        response['radio'] = self.getPVRRadioStations()
-        response['tv'] = self.getPVRTVStations()
-        mp3 = self.getFiles()
-        data = []
-        for f in mp3:
-            data.append(f.label)
-        response['mp3'] = data
-        response['volume'] = self.__getPlayerVolume()
-        return response
 
     def playPVRChannel(self, channel):
         post_data = copy.deepcopy(RadioClass.__play_req_pvr)
@@ -410,47 +393,41 @@ class RadioClass(object):
     def getFiles(self, path=''):
         files = []
         config = ConfigClass.ConfigClass()
-
-        post_data = copy.deepcopy(RadioClass.__get_files_req)
         if len(path) == 0:
             path = config.getMp3Directory()
 
-        RadioClass.__current_directory = path
-        post_data['params']['directory'] = path
+        try:
+            entries = os.listdir(path)
+        except OSError:
+            entries = []
 
-        req = self.__getRadioDevice() + '/jsonrpc'
-        resp = requests.post(req, data=json.dumps(post_data),
-                             headers=RadioClass.__headers,
-                             verify=False, timeout=10)
-        data = json.loads(resp.text)
-        items = data['result']['files']
-        for item in items:
-            element = Mp3Class(item['file'], item['label'],
-                               item['filetype'])
-            files.append(element)
-        files.sort(key=lambda x: x.label, reverse=False)
+        for entry in entries:
+            subdir = os.path.join(path, entry)
+            if not os.path.isdir(subdir):
+                continue
+            try:
+                if any(f.lower().endswith('.mp3')
+                       for f in os.listdir(subdir)
+                       if os.path.isfile(os.path.join(subdir, f))):
+                    files.append(entry)
+            except OSError:
+                continue
+
+        files.sort()
         return files
 
-    def playMp3File(self, file):
+    def playRadioStream(self, id):
         config = ConfigClass.ConfigClass()
-        file = config.getMp3Directory() + "/" + file
+        name, url = config.getRadioStationUrl(id)
+        self.__media.apiMediaPlayRadioStream(name, url)
 
-        isDirectory = os.path.isdir(file)
-        if isDirectory == False:
-            post_data = copy.deepcopy(RadioClass.__play_req)
-            post_data['params']['item']['file'] = file
-        else:
-            post_data = copy.deepcopy(RadioClass.__play_req_dir)
-            post_data['params']['item']['directory'] = file
 
-        try:
-            req = self.__getRadioDevice() + '/jsonrpc'
-            requests.post(req, data=json.dumps(post_data),
-                          headers=RadioClass.__headers, verify=False,
-                          timeout=5)
-            time.sleep(1)
-        except:
-            req = None
+    def playMp3File(self, directory):
+        config = ConfigClass.ConfigClass()
+        path = config.getMp3Directory() + "/" + directory
+        isDirectory = os.path.isdir(path)
+        if isDirectory == True:
+            self.__media.apiMediaPlayMp3(path)
 
     def getRadioPlayRequest(self, name):
         station = self.__getRadioStation(name)
@@ -475,6 +452,9 @@ class RadioClass(object):
                 time.sleep(1)
         except:
             req = None
+            
+    def playNextFromPlaylist(self):
+        self.__media.apiMediaPlayNext()
 
     def getRadioNextRequest(self):
         try:
@@ -491,38 +471,22 @@ class RadioClass(object):
 
     def setRadioVolume(self, volume):
         try:
-            req = self.__getRadioDevice() + '/jsonrpc'
-            payload = RadioClass.__set_volume_req
-            payload['params']['volume'] = volume
-            volume = requests.post(req, data=json.dumps(payload),
-                                   headers=RadioClass.__headers,
-                                   auth=HTTPBasicAuth('kodi', 'kodi'),
-                                   verify=False, timeout=3)
-        except requests.exceptions.RequestException:
-            req = None
+            if (RadioClass.__media != None):
+                RadioClass.__media.apiMediaVolume(volume)
+        except:
+            pass
 
-    def getRadioVolumeUpRequest(self):
+    def getRadioVolume(self):
+        volume = 0
         try:
-            new_value = self.__getPlayerVolume() + 5
-
-            if new_value > 100:
-                new_value = 100
-            self.setRadioVolume(new_value)
-        except requests.exceptions.RequestException:
-            req = None
-
-    def getRadioVolumeDownRequest(self):
-        try:
-            new_value = self.__getPlayerVolume() - 5
-            if new_value < 0:
-                new_value = 0
-            self.setRadioVolume(new_value)
-        except requests.exceptions.RequestException:
-            req = None
+            if (RadioClass.__media != None):
+                volume = RadioClass.__media.apiMediaGetVolume()
+        except:
+            pass
+        return volume
 
     def isPlayerEnabled(self):
         isEnabled = False
-
         try:
             if (RadioClass.__media != None):
                 isEnabled = RadioClass.__media.apiMediaGetState() == "playing"
@@ -536,63 +500,12 @@ class RadioClass(object):
     def getEventsData(self, id):
         events = []
         event_text = ''
-        found_event = False
 
-        req = self.__getRadioDevice() + '/jsonrpc'
-        payload = RadioClass.__get_event_req
-
-        for idx in range(0, 2):
-            try:
-                payload['params']['playerid'] = idx
-                event = requests.post(req, data=json.dumps(payload),
-                        headers=RadioClass.__headers, verify=False,
-                        timeout=3)
-                data = json.loads(event.text)
-
-                if len(data['result']['item']['label']) > 0:
-                    event_text = data['result']['item']['label']
-                    found_event = True
-                    break
-
-                if len(data['result']['item']['title']) > 0:
-                    event_text = data['result']['item']['title']
-                    found_event = True
-                    break
-            except:
-
-                pass
-
-        if found_event == True:
-
-        # get volume to present next to title
-
-            volume = self.__getPlayerVolume()
-            event_text = event_text + '[' + str(volume) + ' %]'
-            state = EventClass.EventClass(event_text, '', id)
-            state.type = 'radio'
-            events.append(state)
+        if (RadioClass.__media != None and RadioClass.__media.apiMediaGetState() == "playing"):
+            event_text = RadioClass.__media.apiMediaGetMetaData()
+            if event_text is not None:
+                state = EventClass.EventClass(event_text, '', id)
+                state.type = 'radio'
+                events.append(state)
 
         return events
-
-    def toggleCEC(self):
-        error = False
-        response = {}
-        try:
-            if RadioClass.__tv.is_on() == True:
-                RadioClass.__tv.standby()
-                response['mode'] = 0
-            else:
-                RadioClass.__tv.power_on()
-                response['mode'] = 1
-        except:
-            error = True
-            response['mode'] = 3
-
-        try:
-            if error == True:
-                cec.init()
-                RadioClass.__tv = cec.Device(cec.CECDEVICE_TV)
-        except:
-            response['mode'] = 4
-
-        return response
