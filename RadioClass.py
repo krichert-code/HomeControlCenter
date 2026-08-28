@@ -440,6 +440,9 @@ class RadioClass(object):
         except:
             req = None
 
+    def mediaStop(self):
+        self.__media.apiMediaStop()
+
     def getRadioStopRequest(self):
         try:
             req = self.__getRadioDevice() + '/jsonrpc'
@@ -455,6 +458,12 @@ class RadioClass(object):
             
     def playNextFromPlaylist(self):
         self.__media.apiMediaPlayNext()
+
+    def playYT(self, data, isPlaylist=False):
+        if isPlaylist:
+            self.__media.apiMediaPlayYoutubeList(data)
+        else:
+            self.__media.apiMediaPlayYoutube(data)
 
     def getRadioNextRequest(self):
         try:

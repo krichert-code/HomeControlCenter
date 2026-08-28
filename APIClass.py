@@ -1,23 +1,19 @@
 ﻿#!/usr/bin/python
 # -*- coding: utf-8 -*-
 import HeaterClass
-import CalendarClass
 import ActionClass
 import ConfigClass
 import RadioClass
 import SprinklerClass
 import HeaterClass
-import ScheduleClass
 import SwitchClass
 import InfoClass
 import RoomClass
 import EnergyClass
-import os
 import json
 import psutil
 from subprocess import Popen
 import APIInterface
-import APIMediaInterface
 import threading
 
 
@@ -26,14 +22,12 @@ class APIClass:
     def __init__(self):
         self.__mutex = threading.Lock()
         self.__apiObj = APIInterface.APIInterface()
-        self.__apiMediaObj = APIMediaInterface.APIMediaInterface()
         self.__media = None 
 
-    def registerAPIInterface(self, obj, mediaObj):
+    def registerAPIInterface(self, objAPI, mediaAPI):
         self.__mutex.acquire()
-        self.__apiObj = obj
-        self.__apiMediaObj = mediaObj
-        self.__media = RadioClass.RadioClass(mediaObj)
+        self.__apiObj = objAPI
+        self.__media = RadioClass.RadioClass(mediaAPI)
         self.__mutex.release()
 
 
@@ -104,10 +98,19 @@ class APIClass:
                 ytlist = True
 
         if ytlist == True:
-            self.__apiMediaObj.apiMediaPlayYoutubeList(playlist)
+            self.__media.playYT(playlist, isPlaylist=True)
         else:
-            self.__apiMediaObj.apiMediaPlayYoutube(url)
+            self.__media.playYT(url)
             
+        return self.APIevents()
+
+    def APIStop(self, json_req):
+        if 'next' in json_req:
+            # play next song from playlist local source or youtube playlist
+            self.__media.playNextFromPlaylist()
+        else:
+            # just stop
+            self.__media.mediaStop()
         return self.APIevents()
 
     def APIinfo(self, json_req):
@@ -212,6 +215,12 @@ class APIClass:
         param = json_req['id']
         return self.APIGenericCMD(json_req['action'], param)
 
+    def APISprinklerForceAuto(self, json_req):
+        return self.APIGenericCMD(json_req['action'])
+
+    def APISprinklerOff(self, json_req):
+        return self.APIGenericCMD(json_req['action'])
+
     def APIGate(self, json_req):
         param = json_req['id']
         return self.APIGenericCMD(json_req['action'], param)
@@ -220,38 +229,11 @@ class APIClass:
         param = json_req['id']
         return self.APIGenericCMD(json_req['action'], param)
 
-    def APIStop(self, json_req):
-        if 'next' in json_req:
-            # play next song from playlist local source or youtube playlist
-            self.__media.playNextFromPlaylist()
-        else:
-            # just stop
-            self.__apiMediaObj.apiMediaStop()
-        return self.APIevents()
-
-
-    def APISprinklerForceAuto(self, json_req):
-        return self.APIGenericCMD(json_req['action'])
-
-    def APISprinklerOff(self, json_req):
-        return self.APIGenericCMD(json_req['action'])
-
     def APItoggleLight(self, json_req):
         obj = SwitchClass.SwitchClass()
         ip = json_req['ip']
         response = obj.toggleSwitchState(ip)
         return json.dumps(response)
-
-    def __checkIfProcessRunning(processName):
-        for proc in psutil.process_iter():
-            try:
-                print( proc.name())
-                if processName.lower() in proc.name().lower():
-                    return True
-            except (psutil.NoSuchProcess, psutil.AccessDenied,
-                    psutil.ZombieProcess):
-                pass
-        return False
 
     def APIGetRooms(self, json_req):
         streaming_in_progress = False
