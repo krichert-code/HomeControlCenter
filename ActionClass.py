@@ -2,13 +2,10 @@
 # -*- coding: utf-8 -*-
 from xml.dom import minidom
 import ActionThread
-import EventClass
 import ConfigClass
 import CalendarClass
 import RadioClass
 import SprinklerClass
-import HeaterClass
-import EnergyClass
 import AlarmClass
 import threading
 import copy
@@ -117,68 +114,9 @@ class ActionClass(object):
         sprinkler.setSprinklerForceAuto()
         return 5
 
-    def actionOnPlay(self, param=''):
-        radio = RadioClass.RadioClass()
-        radio.getRadioPlayRequest(param)
-        return 0
-
-    def actionOnPlayPVR(self, param=''):
-        radio = RadioClass.RadioClass()
-        radio.playPVRChannel(int(param))
-        return 0
-
-    def actionOnVideoShare(self, param=''):
-        radio = RadioClass.RadioClass()
-        radio.playYTAddonVideo(param)
-        return 0
-
-    def actionOnPlaySpotifyObject(self, param=''):
-        radio = RadioClass.RadioClass()
-        radio.playSpotifyObject(param)
-        return 0
-
-    def actionOnPlaySpotifyDirectory(self, param=''):
-        radio = RadioClass.RadioClass()
-        radio.playSpotifyDirectory(param)
-        return 0
-
-    def actionOnPlayMp3(self, param=''):
-        player = RadioClass.RadioClass()
-        player.playMp3File(param)
-        return 0
-
-    def actionOnStop(self, param=''):
-        radio = RadioClass.RadioClass()
-        if (param == False):
-            radio.getRadioStopRequest()
-        else:
-            radio.getRadioNextRequest()
-        return 0
-
-    def actionOnVolumeUp(self, param=''):
-        radio = RadioClass.RadioClass()
-        radio.getRadioVolumeUpRequest()
-        return 0
-
-    def actionOnVolumeDown(self, param=''):
-        radio = RadioClass.RadioClass()
-        radio.getRadioVolumeDownRequest()
-        return 0
-
-    def actionOnVolumeSet(self, param=''):
-        radio = RadioClass.RadioClass()
-        try:
-            volume = int(param)
-        except:
-            volume = 50
-
-        radio.setRadioVolume(volume)
-        return 0
 
     def actionOnGetActiveEvents(self, param=''):
-
         # perform on timer tick from browser - currently do nothing
-
         return 0
 
 # ---------------------------------------------------------------------------------------------------------------

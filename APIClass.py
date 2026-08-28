@@ -83,7 +83,7 @@ class APIClass:
     def APIPlayMp3(self, json_req):
         param = json_req['folder']
         self.__media.playMp3File(param)
-        return self.APIGenericCMD(json_req['action'], param)
+        return self.APIevents()
 
     def APIVideoShare(self, json_req):
         ytlist = False

@@ -712,29 +712,6 @@ class ProgramAction:
                     continue
 
 
-class Media:
-
-    def __init__(self):
-        self.__radio = RadioClass.RadioClass()
-        self.__idx = 0
-        self.__playlist = []
-
-    def initializePlaylistData(self, playlist):
-        self.__radio.getRadioStopRequest()
-        self.__idx = 0
-        self.__playlist.clear()
-        self.__playlist = playlist
-
-    def timeEvent(self, tick):
-        try:
-            if (tick%5 != 0):
-                return
-            if (self.__radio.isPlayerEnabled() == False and self.__idx < len(self.__playlist) ):
-                self.__radio.playYTAddonVideo(self.__playlist[self.__idx])
-                self.__idx=self.__idx+1
-        except Exception as e:
-            logging.error('HCC deamon exception(Media) :' + str(e))
-
 # ------------------------------------------------------------------------------------------------------------------------
 
 class HccDeamonClass(threading.Thread, ConfigurationInterface.ConfigurationInterface, APIInterface.APIInterface):
@@ -750,7 +727,6 @@ class HccDeamonClass(threading.Thread, ConfigurationInterface.ConfigurationInter
         self.__sprinkler = Sprinkler()
         self.__energy = Energy()
         self.__status = Status()
-        self.__media = Media()
         self.__programAction = ProgramAction()
 
     def configurationUpdate(self):
@@ -791,7 +767,6 @@ class HccDeamonClass(threading.Thread, ConfigurationInterface.ConfigurationInter
                 self.__sprinkler.timeEvent(timerTick)
                 self.__energy.timeEvent(timerTick)
                 self.__status.timeEvent(timerTick)
-                self.__media.timeEvent(timerTick)
                 self.__programAction.timeEvent(timerTick)
                 time.sleep(1)
                 timerTick = timerTick + 1
