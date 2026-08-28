@@ -82,7 +82,7 @@ class Alarm:
         if self.__compareTime(start_time) == True and playRadio == True \
             and self.__playing == False:
             try:
-                radio.playPVRChannel(int(radioChannel))
+                radio.playRadioStream(int(radioChannel))
                 radio.setRadioVolume(int(volume))
                 self.__playing = True
             except Exception as e:
@@ -93,7 +93,7 @@ class Alarm:
             == True:
 
             try:
-                radio.getRadioStopRequest()
+                radio.mediaStop()
                 radio.setRadioVolume(50)
                 self.__playing = False
             except Exception as e:
@@ -758,10 +758,6 @@ class HccDeamonClass(threading.Thread, ConfigurationInterface.ConfigurationInter
         config = ConfigClass.ConfigClass()
         config.initializeConfigData()
         print("* Configuration update")
-
-    def mediaPlaylistUpdate(self, data = []):
-        """Overrides APIInterface.mediaPlaylistUpdate()"""
-        self.__media.initializePlaylistData(data)
 
     def isAlarmArmed(self):
         """Overrides APIInterface.infoGetAlarmSystemState()"""

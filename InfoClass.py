@@ -14,7 +14,6 @@ class InfoClass:
     def getInfoData(self):
         config = ConfigClass.ConfigClass()
         heater = HeaterClass.HeaterClass()
-        radio = RadioClass.RadioClass()
         energy = EnergyClass.EnergyClass()
 
         infoObj = {}
@@ -32,7 +31,7 @@ class InfoClass:
         infoObj['alarm_stop'] = config.getAlarmSetting('stop_time')
         infoObj['alarm_channel'] = config.getAlarmSetting('channel')
 
-        infoObj['alarm_channels'] = radio.getPVRRadioStations()
+        infoObj['alarm_channels'] = config.getRadioStations()
         infoObj['alarm_volume'] = config.getAlarmSetting('volume')
 
         infoObj['heater_time'] = heater.getHeaterStatistic()

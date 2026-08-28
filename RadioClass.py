@@ -224,6 +224,7 @@ class RadioClass(object):
                              auth=HTTPBasicAuth('kodi', 'kodi'),
                              verify=False, timeout=10)
         data = json.loads(resp.text)
+        print(data['result']['channels'])
         return data['result']['channels']
 
     def getPVRTVStations(self):
@@ -417,16 +418,17 @@ class RadioClass(object):
         return files
 
     def playRadioStream(self, id):
-        config = ConfigClass.ConfigClass()
-        name, url = config.getRadioStationUrl(id)
-        self.__media.apiMediaPlayRadioStream(name, url)
+        if (RadioClass.__media != None):
+            config = ConfigClass.ConfigClass()
+            name, url = config.getRadioStationUrl(id)
+            self.__media.apiMediaPlayRadioStream(name, url)
 
 
     def playMp3File(self, directory):
         config = ConfigClass.ConfigClass()
         path = config.getMp3Directory() + "/" + directory
         isDirectory = os.path.isdir(path)
-        if isDirectory == True:
+        if isDirectory == True and RadioClass.__media != None:
             self.__media.apiMediaPlayMp3(path)
 
     def getRadioPlayRequest(self, name):
@@ -441,7 +443,8 @@ class RadioClass(object):
             req = None
 
     def mediaStop(self):
-        self.__media.apiMediaStop()
+        if (RadioClass.__media != None):
+            RadioClass.__media.apiMediaStop()
 
     def getRadioStopRequest(self):
         try:
@@ -457,13 +460,14 @@ class RadioClass(object):
             req = None
             
     def playNextFromPlaylist(self):
-        self.__media.apiMediaPlayNext()
+        if (RadioClass.__media != None):
+            RadioClass.__media.apiMediaPlayNext()
 
     def playYT(self, data, isPlaylist=False):
-        if isPlaylist:
-            self.__media.apiMediaPlayYoutubeList(data)
-        else:
-            self.__media.apiMediaPlayYoutube(data)
+        if isPlaylist and RadioClass.__media != None:
+            RadioClass.__media.apiMediaPlayYoutubeList(data)
+        elif RadioClass.__media != None:
+            RadioClass.__media.apiMediaPlayYoutube(data)
 
     def getRadioNextRequest(self):
         try:
