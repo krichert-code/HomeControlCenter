@@ -1,0 +1,218 @@
+<?xml version="1.0" ?>
+<HomeControlCenter file="configuration and status" id="00000xxx" password="" server="http://server.com">
+
+    <AlarmSystem ip="192.168.1.100" port="80"/>
+
+    <radio ip="127.0.0.1" mp3_directory="/media/usb0/Muzyka/" port="8080">
+	<channel name="AntyRadio" url="https://an.cdn.eurozet.pl/ant-waw.mp3"/>
+	<channel name="ChilliZet" url="http://redir.atmcdn.pl/sc/o2/Eurozet/live/chillizet.livx"/>
+	<channel name="RMF Relaks" url="http://195.150.20.7/RELAKS"/>
+	<channel name="RMF 2000" url="http://31.192.216.10/2000"/>
+	<channel name="RMF FM" url="http://31.192.216.10/RMFFM48"/>
+	<channel name="COOL" url="http://31.192.216.10/WPRACY"/>
+	<channel name="ROCK" url="http://31.192.216.10/ROCK"/>
+	<channel name="RNB" url="http://31.192.216.10/RNB"/>
+	<channel name="CLUB" url="http://31.192.216.10/CLUB"/>
+	<channel name="HOT NEWS" url="http://31.192.216.10/HOTNEW"/>
+	<channel name="CLASSIC" url="http://31.192.216.10/RMFCLASSIC48"/>
+	<channel name="CALM" url="http://31.192.216.10/RMF5"/>
+	<channel name="Polskie Radio" url="http://stream3.polskieradio.pl:8900"/>
+    </radio>
+
+    <alarm>
+	<start_time title="Godzina alarmu" type="text" value="06:00"/>
+	<stop_time title="Czas alarmu[min]" type="text" value="90"/>
+	<channel type="text" value="94"/>
+	<day_policy param="week;Zawsze,week_day;Tylko w tygodniu,disable;Nigdy" title="Aktywny" type="select" value="week_day"/>
+	<alarm_on_holiday type="select" value="no"/>
+	<volume title="Glosnosc[%]" type="text" value="55"/>
+    </alarm>
+
+    <calendar>
+	<calendars_list>
+    	<element name="email"/>
+	</calendars_list>
+	<key value="token"/>
+	<sms param="False;Wylaczony,True;Aktywny" sendTime="19:00" title="Przypominacz" type="select" value="checked"/>
+	<range title="Zasieg[dni]" type="text" value="10"/>
+    </calendar>
+
+    <autowater>
+	<state param="disable;Wylaczone,enable;Aktywne" title="Stan" type="select" value="disable"/>
+	<start_time title="Podlewanie start" type="text" value="06:30"/>
+	<duration title="Czas trwania" type="text" value="25"/>
+	<rain param="False;Ignoruj,True;Sprawdzaj" title="Sprawdzaj prognoze pogody" type="select" value="True"/>
+    	<day1 param="False;Wylaczone,True;Aktywne" title="Poniedzialek" type="select" value="True"/>
+    	<day2 param="False;Wylaczone,True;Aktywne" title="Wtorek" type="select" value="False"/>
+    	<day3 param="False;Wylaczone,True;Aktywne" title="Sroda" type="select" value="True"/>
+    	<day4 param="False;Wylaczone,True;Aktywne" title="Czwartek" type="select" value="False"/>
+    	<day5 param="False;Wylaczone,True;Aktywne" title="Piatek" type="select" value="True"/>
+    	<day6 param="False;Wylaczone,True;Aktywne" title="Sobota" type="select" value="False"/>
+    	<day7 param="False;Wylaczone,True;Aktywne" title="Niedziela" type="select" value="False"/>
+    </autowater>
+
+    <heater>
+	<main_device_enable value="1"/>
+	<day_temperature title="Temperatura dzienna" type="text" value="20.0"/>
+	<night_temperature title="Temperatura nocna" type="text" value="19.4"/>
+	<support_temperature title="Temperatura w łazience" type="text" value="19.0"/>
+	<threshold title="Tolerancja" type="text" value="0.3"/>
+	<support_device_enable value="1"/>
+
+	<thermometerInside mode="avg">
+		<device name="TempSalon" offset="0"/>
+		<device name="TempKuchnia" offset="0"/>
+		<device name="TempSypialnia" offset="0"/>
+		<device name="TempPati" offset="0"/>
+		<device name="TempNati" offset="0"/>
+	</thermometerInside>
+
+	<thermometerOutside mode="min">
+		<device name="TempOgrod" offset="0"/>
+		<device name="" offset="0"/>
+		<device name="" offset="0"/>
+		<device name="" offset="0"/>
+		<device name="" offset="0"/>
+	</thermometerOutside>
+
+	<thermometerSupport mode="min">
+		<device name="TempLazienka" offset="0"/>
+		<device name="" offset="0"/>
+		<device name="" offset="0"/>
+		<device name="" offset="0"/>
+		<device name="" offset="0"/>
+	</thermometerSupport>
+
+	<support_device>
+		<device ip="192.168.1.110"/>
+		<device ip="192.168.1.111"/>
+		<device ip=""/>
+		<device ip=""/>
+		<device ip=""/>			
+	</support_device>
+
+	<day1 name="day1" param="24" title="Poniedzialek" type="bitfield" value="4177952"/>
+	<day2 name="day2" param="24" title="Wtorek" type="bitfield" value="4177952"/>
+	<day3 name="day3" param="24" title="Sroda" type="bitfield" value="4177952"/>
+	<day4 name="day4" param="24" title="Czwartek" type="bitfield" value="4177952"/>
+	<day5 name="day5" param="24" title="Piatek" type="bitfield" value="4177952"/>
+	<day6 name="day6" param="24" title="Sobota" type="bitfield" value="3932544"/>
+	<day7 name="day7" param="24" title="Niedziela" type="bitfield" value="3932544"/>
+
+
+	<day_support1 name="day1" param="24" title="Poniedzialek" type="bitfield" value="3244064"/>
+	<day_support2 name="day2" param="24" title="Wtorek" type="bitfield" value="3244064"/>
+	<day_support3 name="day3" param="24" title="Sroda" type="bitfield" value="3244064"/>
+	<day_support4 name="day4" param="24" title="Czwartek" type="bitfield" value="3244064"/>
+	<day_support5 name="day5" param="24" title="Piatek" type="bitfield" value="3244064"/>
+	<day_support6 name="day6" param="24" title="Sobota" type="bitfield" value="3146176"/>
+	<day_support7 name="day7" param="24" title="Niedziela" type="bitfield" value="3146112"/>
+    </heater>
+
+    <text_messages>
+		<token value="D7A6E0DC86E44ED38B298C7BBAF3A15D-02-7:m0fvQo#QDsajOhx*GoU2QyHJxLoLj"/>
+		<phones>
+			<element number="+48500000000"/>
+			<element number=""/>
+			<element number=""/>
+			<element number=""/>
+		</phones>
+    </text_messages>
+
+    <rooms>
+		<room id="0" light="192.168.1.103" name="Ogród" temperature="TempOgrod">
+			<alarmSensor sensorName="OgrodCam"/>
+			<alarmSensor sensorName=""/>
+		</room>
+
+		<room id="1" light="192.168.1.101" name="Kuchnia" temperature="TempKuchnia">
+			<alarmSensor sensorName="Kuchnia"/>
+			<alarmSensor sensorName=""/>
+		</room>
+
+		<room id="2" light="0.0.0.0" name="Salon" temperature="TempSalon">
+			<alarmSensor sensorName="Salon1"/>
+			<alarmSensor sensorName="SalonCam"/>
+		</room>
+
+		<room id="3" light="0.0.0.0" name="Gabinet" temperature="TempGabinet">
+			<alarmSensor sensorName=""/>
+			<alarmSensor sensorName=""/>			
+		</room>
+
+		<room id="4" light="0.0.0.0" name="Sypialnia Nati" temperature="TempNati">
+			<alarmSensor sensorName=""/>
+			<alarmSensor sensorName=""/>					
+		</room>
+
+		<room id="5" light="0.0.0.0" name="Sypialnia Pati" temperature="TempPati">
+			<alarmSensor sensorName=""/>		
+			<alarmSensor sensorName=""/>			
+		</room>
+
+		<room id="6" light="192.168.1.102" moveSensor="" name="Sypialnia" temperature="TempSypialnia">
+			<alarmSensor sensorName=""/>
+			<alarmSensor sensorName=""/>					
+		</room>
+
+		<room id="7" light="0.0.0.0" name="Piętro" temperature="TempPietro">
+			<alarmSensor sensorName=""/>		
+			<alarmSensor sensorName=""/>			
+		</room>
+
+		<room id="8" light="0.0.0.0" name="" temperature="">
+			<alarmSensor sensorName=""/>
+			<alarmSensor sensorName=""/>					
+		</room>
+
+		<room id="9" light="0.0.0.0" name="Garaż" temperature="">
+			<alarmSensor sensorName="Brama"/>
+			<alarmSensor sensorName=""/>			
+		</room>
+
+		<room id="10" light="0.0.0.0" name="Łazienka" temperature="TempLazienka">
+			<alarmSensor sensorName=""/>
+			<alarmSensor sensorName=""/>					
+		</room>
+    </rooms>
+
+    <actions>
+        <action device="alarm" roomId="9" armDevices="Brama,OgrodCam" excludeDevices="Szambo" timeToActivate="180"/>
+	<action device="light" mode="always" roomId="0" timeMode="on" timeOff="22:00" validMonths="2272"/>
+	<action device="light" mode="onAlarmActivate" roomId="1" validMonths="4095"/>
+        <action device="light" mode="onAlarmActivate" roomId="0" timeMode="switch" timeOff="10" triggerSensor="OgrodCam" validMonths="4095"/>
+    </actions>
+
+    <devices>
+		<sprinkler>
+			<element desc="Zraszacze w polu 1" id="1" sensor="Zraszacze1" state="0"/>
+			<element desc="Zraszacze w polu 2" id="2" sensor="Zraszacze2" state="0"/>
+			<element desc="Zraszacze w polu 3" id="3" sensor="Zraszacze3" state="0"/>
+		</sprinkler>
+
+		<heater>
+			<element desc="Grzanie aktywne" id="1" sensor="Piec" state="0"/>
+		</heater>
+
+		<gate>
+			<element desc="Otwieranie/zamykanie bramy" id="1" sensor="BramaGaraz" state="0" time="18"/>
+			<element desc="Otwieranie bramy wjazdowej" id="2" sensor="BramaWjazdowa" state="0" time="25"/>
+			<element desc="Otwieranie furtki" id="3" sensor="Furtka" state="0" time="2"/>
+		</gate>
+
+		<energy>
+			<element desc="Moc wygenerowana dzisiaj" id="1" sensor="PowerToday" state="0"/>
+			<element desc="Obecna energia ladowania" id="2" sensor="PowerCurrent" state="0"/>
+			<element desc="Moc wygenerowana calkowita" id="3" sensor="PowerTotal" state="0"/>
+		</energy>
+
+		<status>
+			<element desc="Brak komunikacji ze sterownikiem" id="1" messageActive="" messageInactive="" messageSend="" sensor="Alarm (reserved)" state="0"/>
+			<element desc="Szambo pelne" id="2" messageActive="Dom:Szmbo pelne" messageInactive="Dom:Szmbo oproznione" messageSend="" sensor="Szambo" state="0"/>
+			<element desc="Brama otwarta" id="3" messageActive="" messageInactive="" messageSend="" sensor="Brama" state="0"/>
+			<element desc="Brak komunikacji z grzalka" id="4" messageActive="" messageInactive="" messageSend="" sensor="Support heater (reserved)" state="0"/>
+			<element desc="" id="5" messageActive="" messageInactive="" messageSend="" sensor="" state="0"/>
+		</status>
+    </devices>
+
+</HomeControlCenter>
